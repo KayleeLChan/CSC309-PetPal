@@ -1,0 +1,24 @@
+// import functions and variables
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+
+// custom colours
+$brand-colours: (
+    "primary-brown": #2E1400,
+    "dark-brown": #4E3311,
+    "brown": #6E502C,
+    "cream": #C5A97C,
+    "primary-cream": #FFEFD0,
+    "primary-orange": #F99129,
+);
+
+$theme-colors: map-merge($brand-colours, $theme-colors);
+
+// custom fonts
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Didact+Gothic&display=swap');
+
+$font-family-sans-serif: "Didact Gothic";
+$headings-font-family: "Concert One";
+
+// import bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
