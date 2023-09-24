@@ -6,15 +6,109 @@
   Fall 2023
 -->
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetPal</title>
-    <link rel="stylesheet" href="main.css">
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <p>it's ya boi</p>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetPal</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
+  <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
+  <!-- <nav class="navbar navbar-expand-lg sticky-top bg-cream">
+      <div class="container-fluid">
+        <a class="navbar-brand h1 fs-1 text-primary-cream" href="#">
+          <img src="Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+          PetPal
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ps-5" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown pe-5">
+              <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Adopt
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Adopt Now</a></li>
+                <li><a class="dropdown-item" href="#">Applications</a></li>
+                <li><a class="dropdown-item" href="#">Manage Pets</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown pe-5">
+              <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Shelter
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Find Shelters</a></li>
+                <li><a class="dropdown-item" href="#">Manage Shelter</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2 bg-primary-cream text-cream h1" type="search" placeholder="Search Pets..." aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav> -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-cream">
+    <div class="container-fluid ps-3 pe-3">
+      <a class="navbar-brand h1 fs-1 text-primary-cream" href="#">
+        <img src="Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+        PetPal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Adopt
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Adopt Now</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Pets</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Shelter
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Find Shelters</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Shelter</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="input-group w-25 pe-5" id="basic-addon1">
+          <span class="input-group-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+            aria-describedby="basic-addon1">
+        </div>
+        <button class="btn bg-primary-cream text-primary-brown m-3 shadow-sm" type="">Log In</button>
+        <button class="btn bg-primary-orange text-primary-cream m-3 shadow-sm" type="">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+  <h1>Hello World!</h1>
+  <p>it's ya boi</p>
+</body>
+
 </html>

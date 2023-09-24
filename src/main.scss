@@ -14,11 +14,17 @@ $brand-colours: (
 
 $theme-colors: map-merge($brand-colours, $theme-colors);
 
+$input-bg: #FFEFD0;
+$body-tertiary-bg: #FFEFD0;
+$body-color: #2E1400;
+
 // custom fonts
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Didact+Gothic&display=swap');
 
 $font-family-sans-serif: "Didact Gothic";
 $headings-font-family: "Concert One";
+$input-btn-font-family: "Concert One";
+$form-text-font-style: "Concert One";
 
 // import bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
