@@ -3,20 +3,75 @@
 @import "../node_modules/bootstrap/scss/_variables";
 
 // custom colours
-$brand-colours: (
-    "primary-brown": #2E1400,
-    "dark-brown": #4E3311,
-    "brown": #6E502C,
-    "cream": #C5A97C,
-    "primary-cream": #FFEFD0,
-    "primary-orange": #F99129,
-);
+$primary-brown: #2E1400;
+$dark-brown: #4E3311;
+$brown: #6E502C;
+$cream: #C5A97C;
+$primary-cream: #FFEFD0;
+$primary-orange: #F99129;
 
+// merge custom colours into bootstrap's default theme colours
+$brand-colours: (
+    "primary-brown": rgba($primary-brown, 1),
+    "dark-brown": rgba($dark-brown, 1),
+    "brown": rgba($brown, 1),
+    "cream": rgba($cream, 1),
+    "primary-cream": rgba($primary-cream, 1),
+    "primary-orange": rgba($primary-orange, 1),
+);
 $theme-colors: map-merge($brand-colours, $theme-colors);
 
-$input-bg: #FFEFD0;
-$body-tertiary-bg: #FFEFD0;
-$body-color: #2E1400;
+// override bootstrap default colours for various items that do not use the theme-colors
+
+    // Shadow items
+$box-shadow: 0 .5rem 1rem rgba($primary-brown, .25);
+$box-shadow-sm: 0 .125rem .25rem rgba($primary-brown, .075);
+$box-shadow-lg: 0 1rem 3rem rgba($primary-brown, .4);
+$box-shadow-inset: inset 0 1px 2px rgba($primary-brown, .075);
+
+    // Misc. items
+$body-tertiary-bg: rgba($primary-cream, 1); 
+
+// IMPORT DATA-BS-THEME="PETPAL" INTO BODY TAG OF EVERY PAGE!
+// If anything in main.css needs to be changed, change it inside this theme
+[data-bs-theme="petpal"] {
+    --bs-body-color: #{$primary-brown};
+    --bs-body-color-rgb: #{to-rgb($dark-brown)};
+    --bs-body-bg: #{$body-tertiary-bg};
+    --bs-body-bg-rgb: #{to-rgb($cream)};
+    --bs-tertiary-bg: #{$primary-cream};
+    --bs-border-color: #{$primary-cream};
+
+    p {
+        font-size: larger;
+    }
+
+    .form-control:focus {   // Change glow around search bar to orange
+        color: var(--bs-body-color);
+        background-color: var(--bs-body-bg);
+        border-color: #F99129;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
+    }
+
+    .card {
+        --bs-card-border-width: 0;
+        --bs-card-box-shadow: 0 0 0 0.25rem rgba($primary-brown, 0.25);
+        --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
+        --bs-card-bg: #{$cream};
+      }
+
+    .card-img-top {
+        padding: 1.5rem;
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 100%;
+    }
+
+    .card-text {
+        margin-bottom: 0.5rem;
+    }
+}
 
 // custom fonts
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Didact+Gothic&display=swap');
@@ -25,6 +80,9 @@ $font-family-sans-serif: "Didact Gothic";
 $headings-font-family: "Concert One";
 $input-btn-font-family: "Concert One";
 $form-text-font-style: "Concert One";
+
+// custom card adjustments
+$card-height: 100%;  // Make every card equal height
 
 // import bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
