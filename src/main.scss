@@ -71,6 +71,56 @@ $body-tertiary-bg: rgba($primary-cream, 1);
     .card-text {
         margin-bottom: 0.5rem;
     }
+
+    .bunny{
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        transform: scale(0.5);
+
+    }
+    form{
+        display: grid;
+        grid-template-columns: 200px 600px;
+        grid-row-gap: 50px;
+        grid-column-gap: 30px;
+    }
+
+    .signup{
+        display:grid;
+        margin-top: 60px;
+        grid-template-rows: auto auto;
+        grid-gap: 16px;
+        line-height: 100%;
+    }
+
+    label{
+        font-family: "Concert One";
+        font-size: 30px;
+        text-align:right;
+    }
+    .loghead{
+        margin-bottom: 64px;
+        font-size: 56px;
+    }
+
+    .log{
+        border-radius: 28px;
+        background-color: #FFEFD0;
+    }
+
+    .loginbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #2E1400;
+        color:#C5A97C;
+        width: 70vw;
+        height: 100vh;
+        position: relative;
+        left: 70px;
+    }
 }
 
 // custom fonts
