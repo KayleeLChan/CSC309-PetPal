@@ -8,11 +8,11 @@
   --bs-tertiary-bg: #FFEFD0;
   --bs-border-color: #FFEFD0;
 }
-[data-bs-theme=petpal] p {
-  font-size: larger;
-}
 [data-bs-theme=petpal] main {
   min-height: calc(100vh - 85.333px);
+}
+[data-bs-theme=petpal] p {
+  font-size: larger;
 }
 [data-bs-theme=petpal] .form-control:focus {
   color: var(--bs-body-color);
@@ -12586,4 +12586,4 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}
+}/*# sourceMappingURL=main.css.map */

@@ -42,14 +42,14 @@ $body-tertiary-bg: rgba($primary-cream, 1);
     --bs-tertiary-bg: #{$primary-cream};
     --bs-border-color: #{$primary-cream};
 
-    p {
-        font-size: larger;
-    }
-
     main {
         min-height: calc(100vh - 85.333px);
     }
 
+    p {
+        font-size: larger;
+    }
+    
     .form-control:focus {   // Change glow around search bar to orange
         color: var(--bs-body-color);
         background-color: var(--bs-body-bg);
