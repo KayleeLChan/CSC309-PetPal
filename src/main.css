@@ -39,49 +39,11 @@
 [data-bs-theme=petpal] .card-text {
   margin-bottom: 0.5rem;
 }
-[data-bs-theme=petpal] .bunny {
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-  transform: scale(0.5);
-}
-[data-bs-theme=petpal] form {
-  display: grid;
-  grid-template-columns: 200px 600px;
-  grid-row-gap: 50px;
-  grid-column-gap: 30px;
-}
-[data-bs-theme=petpal] .signup {
-  display: grid;
-  margin-top: 60px;
-  grid-template-rows: auto auto;
-  grid-gap: 16px;
-  line-height: 100%;
-}
 [data-bs-theme=petpal] label {
   font-family: "Concert One";
   font-size: 30px;
-  text-align: right;
-}
-[data-bs-theme=petpal] .loghead {
-  margin-bottom: 64px;
-  font-size: 56px;
-}
-[data-bs-theme=petpal] .log {
-  border-radius: 28px;
-  background-color: #FFEFD0;
-}
-[data-bs-theme=petpal] .loginbox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #2E1400;
-  color: #C5A97C;
-  width: 70vw;
-  height: 100vh;
-  position: relative;
-  left: 70px;
+  text-align: left;
+  display: inline-block;
 }
 
 /*!
