@@ -11,6 +11,9 @@
 [data-bs-theme=petpal] p {
   font-size: larger;
 }
+[data-bs-theme=petpal] main {
+  min-height: calc(100vh - 85.333px);
+}
 [data-bs-theme=petpal] .form-control:focus {
   color: var(--bs-body-color);
   background-color: var(--bs-body-bg);
@@ -28,7 +31,10 @@
   padding: 1.5rem;
   padding-top: 0;
   padding-bottom: 0;
-  height: 100%;
+  height: 10vw;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 [data-bs-theme=petpal] .card-text {
   margin-bottom: 0.5rem;
