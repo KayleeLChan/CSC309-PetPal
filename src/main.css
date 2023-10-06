@@ -8,11 +8,26 @@
   --bs-tertiary-bg: #FFEFD0;
   --bs-border-color: #FFEFD0;
 }
+[data-bs-theme=petpal] main {
+  min-height: calc(100vh - 85.333px);
+}
 [data-bs-theme=petpal] p {
   font-size: larger;
 }
-[data-bs-theme=petpal] main {
-  min-height: calc(100vh - 85.333px);
+[data-bs-theme=petpal] .w-40 {
+  width: 40% !important;
+}
+[data-bs-theme=petpal] .w-90 {
+  width: 90% !important;
+}
+[data-bs-theme=petpal] .ps-6 {
+  padding-left: 6rem !important;
+}
+[data-bs-theme=petpal] .fs-0 {
+  font-size: calc(1.4rem + 1.5vw) !important;
+}
+[data-bs-theme=petpal] .font-plain {
+  font-family: var(--bs-font-sans-serif);
 }
 [data-bs-theme=petpal] .form-control:focus {
   color: var(--bs-body-color);
@@ -27,10 +42,11 @@
   --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
   --bs-card-bg: #C5A97C;
 }
+[data-bs-theme=petpal] .card-click:hover {
+  opacity: 70%;
+}
 [data-bs-theme=petpal] .card-img-top {
   padding: 1.5rem;
-  padding-top: 0;
-  padding-bottom: 0;
   height: 10vw;
   width: 100%;
   -o-object-fit: cover;
@@ -38,6 +54,30 @@
 }
 [data-bs-theme=petpal] .card-text {
   margin-bottom: 0.5rem;
+}
+[data-bs-theme=petpal] .carousel-control-prev {
+  margin-left: -100px;
+}
+[data-bs-theme=petpal] .carousel-control-prev-icon {
+  background-image: url(./imgs/leftArrow.svg);
+}
+[data-bs-theme=petpal] .carousel-control-next {
+  margin-right: -100px;
+}
+[data-bs-theme=petpal] .carousel-control-next-icon {
+  background-image: url(./imgs/rightArrow.svg);
+}
+[data-bs-theme=petpal] .carousel-indicators [data-bs-target] {
+  background-color: #4E3311;
+}
+[data-bs-theme=petpal] .carousel-indicators .active {
+  background-color: #F99129;
+}
+[data-bs-theme=petpal] .btn-xl, [data-bs-theme=petpal] .btn-group-xl > .btn {
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 2rem;
+  --bs-btn-font-size: 2.5rem;
+  --bs-btn-border-radius: var(--bs-border-radius-lg);
 }
 
 /*!
