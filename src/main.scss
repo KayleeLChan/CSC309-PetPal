@@ -80,6 +80,12 @@ $body-tertiary-bg: rgba($primary-cream, 1);
         background-color: rgba(0,0,0,0);
     }
 
+    .dropdown-menu {
+        --bs-dropdown-link-hover-bg: #{$cream};
+        --bs-dropdown-link-active-color: #{$primary-cream};
+        --bs-dropdown-link-active-bg: #{$primary-orange};
+    }
+
     .form-control:focus {   // Change glow around search bar to orange
         color: var(--bs-body-color);
         background-color: var(--bs-body-bg);
