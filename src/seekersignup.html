@@ -77,7 +77,7 @@
     <div class="d-flex w-50 flex-column align-items-center justify-center bg-primary-brown">
       <h1 class="text-primary-cream">Welcome to PetPal!</h1>
       <form>
-        <label class="row-form-label text-primary-cream" for="account_type">Account Type</label>
+        <label class="row-form-label text-primary-cream h5" for="account_type">Account Type</label>
         <div class="form-check">
           <input class="form-check-input bg-primary-orange" type="radio" name="radio" id="petseekerradio" required checked>
           <label class="form-check-label text-primary-cream font-family-sans-serif" for="petseekerradio">Pet Seeker</label>
@@ -87,23 +87,35 @@
           <label class="form-check-label text-primary-cream font-family-sans-serif" for="petshelterradio">Pet Shelter</label>
       </div>
         <div class="form-group row text-primary-cream font-family-sans-serif">
-          <label class="row-form-label" for="username">Username</label>
+          <label class="row-form-label h5" for="username">Username</label>
           <div class="col-sm-10">
           <input type="text" class="form-control bg-primary-cream font-family-sans-serif" id="username" placeholder="username123" required>
           </div>
          </div> 
         <div class="form-group row text-primary-cream font-family-sans-serif">
-          <label class="row-form-label" for="password">Password</label>
+          <label class="row-form-label h5" for="password">Password</label>
           <div class="col-sm-10">
           <input type="password" class="form-control bg-primary-cream font-family-sans-serif" id="password" required>
           </div>
         </div>
         <div class="form-group row text-primary-cream">
-            <label class="row-form-label" for="verifypassword">Verify Password</label>
+            <label class="row-form-label h5" for="verifypassword">Verify Password</label>
             <div class="col-sm-10">
             <input type="password" class="form-control bg-primary-cream font-family-sans-serif" id="verifypassword" required>
             </div>
         </div>
+        <div class="form-group row text-primary-cream">
+          <label class="row-form-label h5" for="phonenumber">Phone Number</label>
+          <div class="col-sm-10">
+          <input type="tel" class="form-control bg-primary-cream font-family-sans-serif" id="phonenumber" placeholder="(555)-555-5555" required>
+          </div>
+      </div>
+      <div class="form-group row text-primary-cream">
+        <label class="row-form-label h5" for="email">Email</label>
+        <div class="col-sm-10">
+        <input type="email" class="form-control bg-primary-cream font-family-sans-serif" id="email" required>
+        </div>
+      </div>
         <button type="submit" class="btn btn-lg bg-primary-orange text-primary-cream m-3 shadow-sm" required>Sign Up</button>
       </form>      
     </div>
