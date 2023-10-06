@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!--
+  CSC309 Assignment 1
+  
+  University of Toronto
+  Fall 2023
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetPal</title>
+  <link rel="icon" sizes="16x16 32x32" type="image/x-icon" href="./imgs/favicon.ico">
+  <link rel="stylesheet" href="main.css">
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body data-bs-theme="petpal" class="min-vh-100">
+
+  <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
+  <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
+    <div class="container-fluid ps-3 pe-3">
+      <a class="navbar-brand h1 fs-1 text-primary-cream" href="./index.html">
+        <img src="./imgs/Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+        PetPal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Adopt
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Adopt Now</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Pets</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Shelter
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Find Shelters</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Shelter</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="input-group w-25 pe-5" id="basic-addon1">
+          <span class="input-group-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+            aria-describedby="basic-addon1">
+        </div>
+        <button class="btn bg-primary-cream text-primary-brown m-3 shadow-sm" type="">Log In</button>
+        <button class="btn bg-primary-orange text-primary-cream m-3 shadow-sm" type="">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="d-flex flex-column justify-content-center align-items-center">
+
+    <div class="d-flex w-40 m-5 p-3 px-5 bg-cream flex-lg-column align-items-center rounded">
+
+      <!-- Title -->
+      <div class="d-flex w-90 py-3 justify-content-between align-items-end">
+        <input class="form-control form-control-lg border border-0 w-25" type="text" placeholder="Pet Name" aria-label="Pet Name Input">
+        <input class="form-control form-control-lg border border-0 w-25 text-end" type="text" placeholder="Location" aria-label="Location Input">
+      </div>
+      <!-- Title -->
+
+      <!-- Image Input -->
+      <div class="d-flex flex-column justify-content-center align-items-center bg-primary-cream rounded p-3">
+            <img src="./imgs/gallery.svg" width="70%">
+            <form class="d-flex flex-column justify-content-center align-items-center" enctype="multipart/form-data">
+                <label for="formFile" class="form-label">Upload images</label>
+                <input class="form-control" type="file" id="formFile" multiple="multiple">
+            </form>
+      </div>
+      <!-- Image Input -->
+
+      <!-- Summary -->  
+      <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-5 p-1 bg-brown text-primary-cream rounded-2">
+        <p class="fs-6 mb-0">Hog Nose Snake</p>
+        <p class="fs-6 mb-0">|</p>
+        <p class="fs-6 mb-0"> Adult</p>
+        <p class="fs-6 mb-0">|</p>
+        <p class="fs-6 mb-0"> Female</p>
+        <p class="fs-6 mb-0">|</p>
+        <p class="fs-6 mb-0"> Small</p>
+        <p class="fs-6 mb-0">|</p>
+        <p class="fs-6 mb-0"> Snow Western Morph</p>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary bg-primary-orange border border-0" data-bs-toggle="modal" data-bs-target="#summaryEditor">
+            Edit Summary
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="summaryEditor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="summaryEditorLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5 text-primary-brown" id="summaryEditor">Summary</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>  
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Breed">
+                        <label class="text-primary-brown" for="floatingInput">Breed</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Age">
+                        <label class="text-primary-brown" for="floatingInput">Age</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Gender">
+                        <label class="text-primary-brown" for="floatingInput">Gender</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Size">
+                        <label class="text-primary-brown" for="floatingInput">Size</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Traits">
+                        <label class="text-primary-brown" for="floatingInput">Traits</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary bg-primary-orange" data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Modal -->
+      </div>
+      <!-- Summary -->
+
+      <div class="w-90 text-start">
+        <div class="d-flex flex-row align-items-center">
+            <h1 class="fs-0">About</h1>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary bg-primary-orange border border-0 h-25 m-3" data-bs-toggle="modal" data-bs-target="#aboutEditor">
+                Edit
+            </button>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="aboutEditor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="aboutEditorLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5 text-primary-brown" id="aboutEditorLabel">About</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>  
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Personality">
+                        <label class="text-primary-brown" for="floatingInput">Personality</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Size">
+                        <label class="text-primary-brown" for="floatingInput">Size</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Training">
+                        <label class="text-primary-brown" for="floatingInput">Training</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Health">
+                        <label class="text-primary-brown" for="floatingInput">Health</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Good In a Home With">
+                        <label class="text-primary-brown" for="floatingInput">Good In a Home With</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Prefers a Home Without">
+                        <label class="text-primary-brown" for="floatingInput">Prefers a Home Without</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary bg-primary-orange" data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <p class="fs-3 mb-0">Personality</p>
+        <p>Loving, Playful, Brave, Friendly</p>
+        <p class="fs-3 mb-0">Size</p>
+        <p>93cm</p>
+        <p class="fs-3 mb-0">House-Trained</p>
+        <p>Yes</p>
+        <p class="fs-3 mb-0">Health</p>
+        <p>Vacinnations up to date, spayed/neutered</p>
+        <p class="fs-3 mb-0">Good In a Home With</p>
+        <p>Other snakes</p>
+        <p class="fs-3 mb-0">Prefers a Home Without</p>
+        <p>Rodents</p>
+
+        <div class="d-flex flex-row align-items-center">
+            <h1 class="fs-0">Description</h1>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary bg-primary-orange border border-0 h-25 m-3" data-bs-toggle="modal" data-bs-target="#descriptionEditor">
+                Edit
+            </button>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="descriptionEditor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="descriptionEditorLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5 text-primary-brown" id="descriptionEditorLabel">Description</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>  
+                <div class="modal-body">
+                    <textarea class="form-control h-100 font-plain" placeholder="Add a description here" id="description"></textarea>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary bg-primary-orange" data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <p class="mb-1">Meet Mr. Newdles. This hog nose snake is the most adorableness goodness, you'll just wanna boop her lil' nose like omg.</p>
+        <p class="mb-1">She bonds great with humans and will only bite you a few times during mealtime. Wow!</p>
+        <p>If you don't adopt her, ngl it's ur loss tbh >.></p>
+      </div>
+    </div>
+    <button class="btn btn-xl bg-primary-orange text-primary-cream mb-5 shadow-sm" type="button">Update Details</button>
+  </main>
+
+</body>
+
+</html>
