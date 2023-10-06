@@ -39,12 +39,6 @@
 [data-bs-theme=petpal] .card-text {
   margin-bottom: 0.5rem;
 }
-[data-bs-theme=petpal] label {
-  font-family: "Concert One";
-  font-size: 30px;
-  text-align: left;
-  display: inline-block;
-}
 
 /*!
  * Bootstrap  v5.3.2 (https://getbootstrap.com/)

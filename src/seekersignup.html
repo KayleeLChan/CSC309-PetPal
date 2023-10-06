@@ -69,46 +69,47 @@
     </div>
   </nav>
 
-  <main class="mh-100 d-flex flex-row align-items-center">
-    <div class="align-self-start justify-content-left">
-        <img src="./imgs/snek.png" class="bunny" width="100%" height="100%">
+  <main class="mh-100 d-flex flex-row">
+    <div class="align-self-start justify-content-left w-25">
+        <img src="./imgs/snek.png" width="75%" height="75%">
     </div>
 
-    <div class="d-flex w-75 h-100 flex-column justify-center align-items-center bg-primary-brown">
-      <h1 class="text-primary-cream">Welcome Back!</h1>
+    <div class="d-flex w-50 flex-column align-items-center justify-center bg-primary-brown">
+      <h1 class="text-primary-cream">Welcome to PetPal!</h1>
       <form>
-        <div class="w-100 form-group row text-primary-cream font-family-sans-serif">
-          <label class="col-sm-10 row-form-label" for="username">Username</label>
+        <label class="row-form-label text-primary-cream" for="account_type">Account Type</label>
+        <div class="form-check">
+          <input class="form-check-input bg-primary-orange" type="radio" name="radio" id="petseekerradio" required checked>
+          <label class="form-check-label text-primary-cream font-family-sans-serif" for="petseekerradio">Pet Seeker</label>
+      </div>
+      <div class="form-check">
+          <input class="form-check-input bg-primary-orange" type="radio" name="radio" id="petshelterradio" onclick="window.location.href = 'sheltersignup.html';" required>
+          <label class="form-check-label text-primary-cream font-family-sans-serif" for="petshelterradio">Pet Shelter</label>
+      </div>
+        <div class="form-group row text-primary-cream font-family-sans-serif">
+          <label class="row-form-label" for="username">Username</label>
           <div class="col-sm-10">
-          <input type="text" class="form-control bg-primary-cream font-family-sans-serif" id="username" placeholder="username123">
+          <input type="text" class="form-control bg-primary-cream font-family-sans-serif" id="username" placeholder="username123" required>
           </div>
          </div> 
-        <div class="w-100 form-group row text-primary-cream font-family-sans-serif">
-          <label class="col-sm-10 row-form-label" for="password">Password</label>
+        <div class="form-group row text-primary-cream font-family-sans-serif">
+          <label class="row-form-label" for="password">Password</label>
           <div class="col-sm-10">
           <input type="password" class="form-control bg-primary-cream font-family-sans-serif" id="password" required>
           </div>
         </div>
-        <div class="w-100 form-group row text-primary-cream font-family-sans-serif">
-            <label class="col-sm-10 row-form-label" for="verifypassword">Verify Password</label>
+        <div class="form-group row text-primary-cream">
+            <label class="row-form-label" for="verifypassword">Verify Password</label>
             <div class="col-sm-10">
             <input type="password" class="form-control bg-primary-cream font-family-sans-serif" id="verifypassword" required>
             </div>
         </div>
-        <div class="form-check">
-            <input class="form-check-input bg-primary-orange" type="radio" name="radio" id="petshelterradio">
-            <label class="form-check-label text-primary-cream" for="petshelterradio">Pet Shelter</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input bg-primary-orange" type="radio" name="radio" id="petseekerradio">
-            <label class="form-check-label text-primary-cream" for="petseekerradio">Pet Seeker</label>
-        </div>
-        <button type="submit" class="btn btn-lg bg-primary-orange text-primary-cream m-3 shadow-sm" required>Login</button>
+        <button type="submit" class="btn btn-lg bg-primary-orange text-primary-cream m-3 shadow-sm" required>Sign Up</button>
       </form>      
     </div>
 
-    <div class="align-self-end justify-content-right">
-        <img src="./imgs/liz.png" class="bunny" width="100%" height="100%">
+    <div class="align-self-end justify-content-right w-25">
+        <img src="./imgs/liz.png" width="100%" height="100%">
     </div>
 
   </main>
