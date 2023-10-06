@@ -6,13 +6,17 @@
   --bs-body-bg: #ffefd0;
   --bs-body-bg-rgb: 197, 169, 124;
   --bs-tertiary-bg: #FFEFD0;
-  --bs-border-color: #FFEFD0;
+  --bs-border-color: #2E1400;
+  --bs-border-width: 1.5px;
 }
 [data-bs-theme=petpal] main {
   min-height: calc(100vh - 85.333px);
 }
 [data-bs-theme=petpal] p {
   font-size: larger;
+}
+[data-bs-theme=petpal] .min-vh-50 {
+  min-height: 50vh !important;
 }
 [data-bs-theme=petpal] .w-40 {
   width: 40% !important;
@@ -33,6 +37,11 @@
   color: var(--bs-body-color);
   background-color: var(--bs-body-bg);
   border-color: #F99129;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(249, 145, 41, 0.25);
+}
+[data-bs-theme=petpal] .form-select:focus {
+  border-color: var(--bs-body-bg);
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(249, 145, 41, 0.25);
 }
