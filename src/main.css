@@ -33,6 +33,9 @@
 [data-bs-theme=petpal] .font-plain {
   font-family: var(--bs-font-sans-serif);
 }
+[data-bs-theme=petpal] .bg-none {
+  background-color: rgba(0, 0, 0, 0);
+}
 [data-bs-theme=petpal] .form-control:focus {
   color: var(--bs-body-color);
   background-color: var(--bs-body-bg);
@@ -82,11 +85,17 @@
 [data-bs-theme=petpal] .carousel-indicators .active {
   background-color: #F99129;
 }
+[data-bs-theme=petpal] .btn {
+  border: none;
+}
 [data-bs-theme=petpal] .btn-xl, [data-bs-theme=petpal] .btn-group-xl > .btn {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 2rem;
   --bs-btn-font-size: 2.5rem;
   --bs-btn-border-radius: var(--bs-border-radius-lg);
+}
+[data-bs-theme=petpal] .btn-cream {
+  color: #FFEFD0;
 }
 
 /*!
@@ -12635,4 +12644,4 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}
+}/*# sourceMappingURL=main.css.map */
