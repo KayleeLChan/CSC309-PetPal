@@ -76,6 +76,10 @@ $body-tertiary-bg: rgba($primary-cream, 1);
         font-family: var(--bs-font-sans-serif);
     }
 
+    .bg-none {
+        background-color: rgba(0,0,0,0);
+    }
+
     .form-control:focus {   // Change glow around search bar to orange
         color: var(--bs-body-color);
         background-color: var(--bs-body-bg);
@@ -136,11 +140,19 @@ $body-tertiary-bg: rgba($primary-cream, 1);
         background-color: #{$primary-orange};
     }
 
+    .btn {
+        border: none;
+    }
+
     .btn-xl, .btn-group-xl > .btn {
         --bs-btn-padding-y: 0.5rem;
         --bs-btn-padding-x: 2rem;
         --bs-btn-font-size: 2.5rem;
         --bs-btn-border-radius: var(--bs-border-radius-lg);
+    }
+
+    .btn-cream {
+        color: $primary-cream;
     }
 }
 
