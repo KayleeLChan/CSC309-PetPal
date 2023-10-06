@@ -40,7 +40,9 @@ $body-tertiary-bg: rgba($primary-cream, 1);
     --bs-body-bg: #{$body-tertiary-bg};
     --bs-body-bg-rgb: #{to-rgb($cream)};
     --bs-tertiary-bg: #{$primary-cream};
-    --bs-border-color: #{$primary-cream};
+    --bs-border-color: #{$primary-brown};
+
+    --bs-border-width: 1.5px;
 
     main {
         min-height: calc(100vh - 85.333px);
@@ -48,6 +50,10 @@ $body-tertiary-bg: rgba($primary-cream, 1);
 
     p {
         font-size: larger;
+    }
+
+    .min-vh-50 {
+        min-height: 50vh !important;
     }
 
     .w-40 {
@@ -77,6 +83,12 @@ $body-tertiary-bg: rgba($primary-cream, 1);
         outline: 0;
         box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
     }
+
+    .form-select:focus {
+        border-color: var(--bs-body-bg);
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
+      }
 
     .card {
         --bs-card-border-width: 0;
