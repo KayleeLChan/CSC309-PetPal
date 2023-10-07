@@ -36,6 +36,11 @@
 [data-bs-theme=petpal] .bg-none {
   background-color: rgba(0, 0, 0, 0);
 }
+[data-bs-theme=petpal] .dropdown-menu {
+  --bs-dropdown-link-hover-bg: #C5A97C;
+  --bs-dropdown-link-active-color: #FFEFD0;
+  --bs-dropdown-link-active-bg: #F99129;
+}
 [data-bs-theme=petpal] .form-control:focus {
   color: var(--bs-body-color);
   background-color: var(--bs-body-bg);
