@@ -67,6 +67,10 @@ $grid-breakpoints: (
         font-size: larger;
     }
 
+    h3 {
+        white-space: nowrap !important;
+    }
+
     // Sizing
     .min-vh-50 {
         min-height: 50vh !important;
@@ -223,6 +227,11 @@ $grid-breakpoints: (
         width: 50vw;
     }
 
+    .notif-col {
+        width: 75%;
+        margin: 3rem;
+    }
+
     // Breakpoint classes
     @include media-breakpoint-down(sm) {
         .hide-sm {  // Don't show element on screen-sizes small and under
@@ -253,6 +262,10 @@ $grid-breakpoints: (
             align-items: start !important;
             row-gap: 0.5rem;
         }
+
+        .notif-col {
+            width: 100%;
+        }
     }
 
     @include media-breakpoint-down(lg) {
@@ -262,6 +275,22 @@ $grid-breakpoints: (
 
         .modal-div {
             flex-direction: column !important;
+        }
+
+        .notif-col {
+            margin: 3rem 0.5rem 3rem 0.5rem;
+        }
+
+        .notif-title {
+            font-size: medium;
+        }
+
+        .notif-msg {
+            padding-top: 0 !important;
+        }
+
+        .text-truncate {
+            font-size: small;
         }
     }
 

@@ -16,6 +16,9 @@
 [data-bs-theme=petpal] p {
   font-size: larger;
 }
+[data-bs-theme=petpal] h3, [data-bs-theme=petpal] .h3 {
+  white-space: nowrap !important;
+}
 [data-bs-theme=petpal] .min-vh-50 {
   min-height: 50vh !important;
 }
@@ -139,6 +142,10 @@
 [data-bs-theme=petpal] .small-img {
   width: 50vw;
 }
+[data-bs-theme=petpal] .notif-col {
+  width: 75%;
+  margin: 3rem;
+}
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {
     display: none !important;
@@ -163,6 +170,9 @@
     align-items: start !important;
     row-gap: 0.5rem;
   }
+  [data-bs-theme=petpal] .notif-col {
+    width: 100%;
+  }
 }
 @media (max-width: 991.98px) {
   [data-bs-theme=petpal] .hide-lg {
@@ -170,6 +180,18 @@
   }
   [data-bs-theme=petpal] .modal-div {
     flex-direction: column !important;
+  }
+  [data-bs-theme=petpal] .notif-col {
+    margin: 3rem 0.5rem 3rem 0.5rem;
+  }
+  [data-bs-theme=petpal] .notif-title {
+    font-size: medium;
+  }
+  [data-bs-theme=petpal] .notif-msg {
+    padding-top: 0 !important;
+  }
+  [data-bs-theme=petpal] .text-truncate {
+    font-size: small;
   }
 }
 @media (max-width: 1199.98px) {
