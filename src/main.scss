@@ -215,6 +215,10 @@ $grid-breakpoints: (
         justify-content: space-evenly;
     }
 
+    .one-col-child {
+        width: 40%;
+    }
+
     .small-img {
         width: 50vw;
     }
@@ -243,11 +247,21 @@ $grid-breakpoints: (
         .small-img {
             width: 30vw;
         }
+
+        .small-title-input {
+            flex-direction: column;
+            align-items: start !important;
+            row-gap: 0.5rem;
+        }
     }
 
     @include media-breakpoint-down(lg) {
         .hide-lg {  // Don't show element on screen-sizes lg and under
           display: none !important;
+        }
+
+        .modal-div {
+            flex-direction: column !important;
         }
     }
 
@@ -301,6 +315,10 @@ $grid-breakpoints: (
 
         .detail-img {
             padding: 0.5rem !important;
+        }
+
+        .one-col-child {
+            width: 90% !important;
         }
     }
 

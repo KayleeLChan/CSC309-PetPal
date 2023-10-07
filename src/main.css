@@ -133,6 +133,9 @@
 [data-bs-theme=petpal] .two-col {
   justify-content: space-evenly;
 }
+[data-bs-theme=petpal] .one-col-child {
+  width: 40%;
+}
 [data-bs-theme=petpal] .small-img {
   width: 50vw;
 }
@@ -155,10 +158,18 @@
   [data-bs-theme=petpal] .small-img {
     width: 30vw;
   }
+  [data-bs-theme=petpal] .small-title-input {
+    flex-direction: column;
+    align-items: start !important;
+    row-gap: 0.5rem;
+  }
 }
 @media (max-width: 991.98px) {
   [data-bs-theme=petpal] .hide-lg {
     display: none !important;
+  }
+  [data-bs-theme=petpal] .modal-div {
+    flex-direction: column !important;
   }
 }
 @media (max-width: 1199.98px) {
@@ -201,6 +212,9 @@
   }
   [data-bs-theme=petpal] .detail-img {
     padding: 0.5rem !important;
+  }
+  [data-bs-theme=petpal] .one-col-child {
+    width: 90% !important;
   }
 }
 @media (max-width: 2149.98px) {
