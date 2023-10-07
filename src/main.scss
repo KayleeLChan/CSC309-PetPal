@@ -154,6 +154,27 @@ $body-tertiary-bg: rgba($primary-cream, 1);
     .btn-cream {
         color: $primary-cream;
     }
+    form{
+        padding-left: 30px;
+        padding-right: 30px;
+        align-self: center;
+    }
+
+    input[type=file]::file-selector-button {
+        background-color: $primary-orange;
+      }
+    
+    label{
+        padding-top: 16px;
+    }
+
+    .signupcontainer{
+        margin-top:20px;
+    }
+
+    .signupcontainer p{
+        margin: 0px;
+    }
 }
 
 // custom fonts

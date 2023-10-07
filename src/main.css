@@ -97,6 +97,23 @@
 [data-bs-theme=petpal] .btn-cream {
   color: #FFEFD0;
 }
+[data-bs-theme=petpal] form {
+  padding-left: 30px;
+  padding-right: 30px;
+  align-self: center;
+}
+[data-bs-theme=petpal] input[type=file]::file-selector-button {
+  background-color: #F99129;
+}
+[data-bs-theme=petpal] label {
+  padding-top: 16px;
+}
+[data-bs-theme=petpal] .signupcontainer {
+  margin-top: 20px;
+}
+[data-bs-theme=petpal] .signupcontainer p {
+  margin: 0px;
+}
 
 /*!
  * Bootstrap  v5.3.2 (https://getbootstrap.com/)
