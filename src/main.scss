@@ -67,6 +67,10 @@ $grid-breakpoints: (
         font-size: larger;
     }
 
+    h3 {
+        white-space: nowrap !important;
+    }
+
     // Sizing
     .min-vh-50 {
         min-height: 50vh !important;
@@ -215,8 +219,17 @@ $grid-breakpoints: (
         justify-content: space-evenly;
     }
 
+    .one-col-child {
+        width: 50%;
+    }
+
     .small-img {
         width: 50vw;
+    }
+
+    .notif-col {
+        width: 75%;
+        margin: 3rem;
     }
 
     // Breakpoint classes
@@ -243,11 +256,41 @@ $grid-breakpoints: (
         .small-img {
             width: 30vw;
         }
+
+        .small-title-input {
+            flex-direction: column;
+            align-items: start !important;
+            row-gap: 0.5rem;
+        }
+
+        .notif-col {
+            width: 100%;
+        }
     }
 
     @include media-breakpoint-down(lg) {
         .hide-lg {  // Don't show element on screen-sizes lg and under
           display: none !important;
+        }
+
+        .modal-div {
+            flex-direction: column !important;
+        }
+
+        .notif-col {
+            margin: 3rem 0.5rem 3rem 0.5rem;
+        }
+
+        .notif-title {
+            font-size: medium;
+        }
+
+        .notif-msg {
+            padding-top: 0 !important;
+        }
+
+        .text-truncate {
+            font-size: small;
         }
     }
 
@@ -269,6 +312,10 @@ $grid-breakpoints: (
         .two-col-child {
             width: 100% !important;
             margin-bottom: 0 !important;
+        }
+
+        .two-col-form {
+            align-items: center;
         }
     }
 
@@ -297,6 +344,10 @@ $grid-breakpoints: (
 
         .detail-img {
             padding: 0.5rem !important;
+        }
+
+        .one-col-child {
+            width: 90% !important;
         }
     }
 
