@@ -1,6 +1,7 @@
 // import functions and variables
 @import "../node_modules/bootstrap/scss/_functions";
 @import "../node_modules/bootstrap/scss/_variables";
+@import '../node_modules/bootstrap/scss/mixins';
 
 // custom colours
 $primary-brown: #2E1400;
@@ -30,11 +31,21 @@ $box-shadow-lg: 0 1rem 3rem rgba($primary-brown, .4);
 $box-shadow-inset: inset 0 1px 2px rgba($primary-brown, .075);
 
     // Misc. items
-$body-tertiary-bg: rgba($primary-cream, 1); 
+$body-tertiary-bg: rgba($primary-cream, 1);
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+    xxxl: 1536px,
+);
 
 // IMPORT DATA-BS-THEME="PETPAL" INTO BODY TAG OF EVERY PAGE!
 // If anything in main.css needs to be changed, change it inside this theme
 [data-bs-theme="petpal"] {
+    // Custom Colours
     --bs-body-color: #{$primary-brown};
     --bs-body-color-rgb: #{to-rgb($dark-brown)};
     --bs-body-bg: #{$body-tertiary-bg};
@@ -42,8 +53,10 @@ $body-tertiary-bg: rgba($primary-cream, 1);
     --bs-tertiary-bg: #{$primary-cream};
     --bs-border-color: #{$primary-brown};
 
+    // Custom borders
     --bs-border-width: 1.5px;
 
+    // Custom CSS
     main {
         min-height: calc(100vh - 85.333px);
     }
@@ -52,6 +65,7 @@ $body-tertiary-bg: rgba($primary-cream, 1);
         font-size: larger;
     }
 
+    // Sizing
     .min-vh-50 {
         min-height: 50vh !important;
     }
@@ -64,14 +78,15 @@ $body-tertiary-bg: rgba($primary-cream, 1);
         width: 90% !important;
     }
 
-    .ps-6 {
-        padding-left: 6rem !important;
-    }
-
     .fs-0 {
         font-size: calc(1.4rem + 1.5vw) !important;
     }
 
+    .fs-7 {
+        font-size: 0.9rem !important;
+    }
+
+    // Styling
     .font-plain {
         font-family: var(--bs-font-sans-serif);
     }
@@ -122,20 +137,17 @@ $body-tertiary-bg: rgba($primary-cream, 1);
         margin-bottom: 0.5rem;
     }
 
-    .carousel-control-prev {
-        margin-left: -100px;
-    }
-
     .carousel-control-prev-icon {
         background-image: url(./imgs/leftArrow.svg);
-    }
-    
-    .carousel-control-next {
-        margin-right: -100px;
     }
 
     .carousel-control-next-icon {
         background-image: url(./imgs/rightArrow.svg);
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        position: static;
     }
 
     .carousel-indicators [data-bs-target] {
@@ -159,6 +171,67 @@ $body-tertiary-bg: rgba($primary-cream, 1);
 
     .btn-cream {
         color: $primary-cream;
+    }
+
+    // Breakpoint classes
+    @include media-breakpoint-down(sm) {
+        .hide-sm {  // Don't show element on screen-sizes small and under
+          display: none;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .hide-md {  // Don't show element on screen-sizes md and under
+          display: none;
+        }
+    }
+
+    @include media-breakpoint-down(lg) {
+        .hide-lg {  // Don't show element on screen-sizes lg and under
+          display: none;
+        }
+    }
+
+    @include media-breakpoint-down(xl) {
+        .hide-xl {  // Don't show element on screen-sizes lg and under
+          display: none;
+        }
+    }
+
+    @include media-breakpoint-down(xxl) {
+        .hide-xxl {  // Don't show element on screen-sizes xxl and under
+          display: none;
+        }
+    }
+
+    @include media-breakpoint-up(sm) {
+        .show-xs {  // Don't show element on screen-sizes small and over
+          display: none;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        .show-sm {  // Don't show element on screen-sizes md and over
+          display: none;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        .show-md {  // Don't show element on screen-sizes lg and over
+          display: none;
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        .show-lg {  // Don't show element on screen-sizes xl and over
+          display: none;
+        }
+    }
+
+    @include media-breakpoint-up(xxl) {
+        .show-xl {  // Don't show element on screen-sizes xxl and over
+          display: none;
+        }
     }
 }
 
