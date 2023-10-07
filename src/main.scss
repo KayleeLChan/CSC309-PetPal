@@ -40,6 +40,7 @@ $grid-breakpoints: (
     xl: 1200px,
     xxl: 1400px,
     xxxl: 1536px,
+    xxxxl: 2150px,
 );
 
 // IMPORT DATA-BS-THEME="PETPAL" INTO BODY TAG OF EVERY PAGE!
@@ -69,6 +70,10 @@ $grid-breakpoints: (
     // Sizing
     .min-vh-50 {
         min-height: 50vh !important;
+    }
+
+    .vw-25 {
+        height: 25vw !important;
     }
 
     .vw-50 {
@@ -198,68 +203,154 @@ $grid-breakpoints: (
         --bs-btn-active-bg: #d87410;
     }
 
+    .summary-text {
+        font-size: calc(1.275rem + 0.3vw);
+    }
+
+    .detail-carousel {
+        width: 90%;
+    }
+
+    .two-col {
+        justify-content: space-evenly;
+    }
+
+    .small-img {
+        width: 50vw;
+    }
+
     // Breakpoint classes
     @include media-breakpoint-down(sm) {
         .hide-sm {  // Don't show element on screen-sizes small and under
-          display: none;
+          display: none !important;
         }
     }
 
     @include media-breakpoint-down(md) {
         .hide-md {  // Don't show element on screen-sizes md and under
-          display: none;
+          display: none !important;
+        }
+
+        main {
+            margin: 0px 2rem 0px 2rem;
+        }
+
+        .small-title {
+            flex-direction: column;
+            align-items: start !important;
+        }
+
+        .small-img {
+            width: 30vw;
         }
     }
 
     @include media-breakpoint-down(lg) {
         .hide-lg {  // Don't show element on screen-sizes lg and under
-          display: none;
+          display: none !important;
         }
     }
 
     @include media-breakpoint-down(xl) {
         .hide-xl {  // Don't show element on screen-sizes lg and under
-          display: none;
+          display: none !important;
         }
 
         .main-carousel {
             width: 75vw !important;
         }
+
+        .two-col {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .two-col-child {
+            width: 100% !important;
+            margin-bottom: 0 !important;
+        }
     }
 
     @include media-breakpoint-down(xxl) {
         .hide-xxl {  // Don't show element on screen-sizes xxl and under
-          display: none;
+          display: none !important;
+        }
+
+        .summary-text {
+            font-size:  smaller !important;
+        }
+
+        .detail-carousel {
+            width: 100% !important;
+        }
+    }
+
+    @include media-breakpoint-down(xxxl) {
+        .hide-xxxl {  // Don't show element on screen-sizes xxxl and under
+          display: none !important;
+        }
+
+        .summary-text {
+            font-size: small !important;
+        }
+
+        .detail-img {
+            padding: 0.5rem !important;
+        }
+    }
+
+    @include media-breakpoint-down(xxxxl) {
+        .hide-xxxxl {  // Don't show element on screen-sizes xxxxl and under
+          display: none !important;
+        }
+
+        .summary-text {
+            font-size: medium;
+        }
+
+        .cta-btn-xl {
+            --bs-btn-font-size: 1.5rem;
+        }
+        
+        .detail-img {
+            padding: 0.75rem;
         }
     }
 
     @include media-breakpoint-up(sm) {
         .show-xs {  // Don't show element on screen-sizes small and over
-          display: none;
+          display: none !important;
         }
     }
 
     @include media-breakpoint-up(md) {
         .show-sm {  // Don't show element on screen-sizes md and over
-          display: none;
+          display: none !important;
         }
     }
 
     @include media-breakpoint-up(lg) {
         .show-md {  // Don't show element on screen-sizes lg and over
-          display: none;
+          display: none !important;
         }
     }
 
     @include media-breakpoint-up(xl) {
         .show-lg {  // Don't show element on screen-sizes xl and over
-          display: none;
+          display: none !important;
         }
     }
 
     @include media-breakpoint-up(xxl) {
         .show-xl {  // Don't show element on screen-sizes xxl and over
-          display: none;
+          display: none !important;
+        }
+    }
+
+    @include media-breakpoint-up(xxxl) {
+        .show-xxl {  // Don't show element on screen-sizes xxxl and over
+          display: none !important;
         }
     }
 }
