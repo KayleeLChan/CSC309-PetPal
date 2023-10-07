@@ -134,7 +134,7 @@
   justify-content: space-evenly;
 }
 [data-bs-theme=petpal] .one-col-child {
-  width: 40%;
+  width: 50%;
 }
 [data-bs-theme=petpal] .small-img {
   width: 50vw;
