@@ -114,6 +114,9 @@
 [data-bs-theme=petpal] .signupcontainer p {
   margin: 0px;
 }
+[data-bs-theme=petpal] .paddingify {
+  padding: 30px;
+}
 
 /*!
  * Bootstrap  v5.3.2 (https://getbootstrap.com/)
