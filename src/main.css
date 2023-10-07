@@ -177,6 +177,9 @@
     width: 100% !important;
     margin-bottom: 0 !important;
   }
+  [data-bs-theme=petpal] .two-col-form {
+    align-items: center;
+  }
 }
 @media (max-width: 1399.98px) {
   [data-bs-theme=petpal] .hide-xxl {

@@ -270,6 +270,10 @@ $grid-breakpoints: (
             width: 100% !important;
             margin-bottom: 0 !important;
         }
+
+        .two-col-form {
+            align-items: center;
+        }
     }
 
     @include media-breakpoint-down(xxl) {

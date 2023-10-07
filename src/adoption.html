@@ -76,11 +76,10 @@
     </div>
   </nav>
 
-    <main>
+    <main class="d-flex two-col">
 
-        <div class="d-flex h-100 justify-content-evenly align-items-center">
             <!-- Left Column -->
-            <div class="d-flex flex-column m-5 p-5 justify-content-start align-items-start w-25">
+            <div class="d-flex flex-column m-5 p-5 justify-content-start two-col-form two-col-child">
                 <h1 class="fs-0">Adopt Mr. Newdles</h1>
 
                 <form class="w-75 mt-3">
@@ -111,12 +110,12 @@
                             than the shelter.</div>
                     </div>
                 </form>
-                <button class="btn btn-lg bg-primary-orange text-primary-cream m-3 ms-0 shadow-sm" type="button">Submit Application</button>
+                <button class="btn btn-lg bg-primary-orange text-primary-cream m-3 ms-0 shadow-sm hide-xl" type="button">Submit Application</button>
             </div>
             <!-- Left Column -->
 
             <!-- Right Column -->
-            <div class="d-flex w-40 h-auto m-5 p-3 pb-5 px-5 bg-cream flex-column align-items-center rounded">
+            <div class="d-flex w-40 h-auto m-5 p-3 pb-5 px-5 bg-cream flex-column align-items-center rounded two-col-child">
 
                 <!-- Title -->
                 <h1 class="fs-0">Compatability Quiz</h1>
@@ -277,13 +276,13 @@
                     <p class="mb-0">yard</p>
                 </div>
                 <!-- Questions -->
-                <div class="m-5 mb-0 form-floating w-100">
+                <div class="m-5 mb-0 form-floating w-100 h-100">
                     <textarea class="form-control border border-0 h-100" placeholder="Leave additional inquiries here" id="additionalInquiries"></textarea>
                     <label for="additionalInquiries">Additional Inquiries</label>
                 </div>
             </div>
             <!-- Right Column -->
-        </div>
+            <button class="btn btn-lg bg-primary-orange text-primary-cream m-3 shadow-sm show-lg" type="button">Submit Application</button>
 
     </main>
 
