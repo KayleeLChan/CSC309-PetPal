@@ -59,15 +59,20 @@ $grid-breakpoints: (
     // Custom CSS
     main {
         min-height: calc(100vh - 85.333px);
+        margin: 0px 5.3rem 0px 5.3rem;
     }
 
-    p {
+    p { 
         font-size: larger;
     }
 
     // Sizing
     .min-vh-50 {
         min-height: 50vh !important;
+    }
+
+    .vw-50 {
+        width: 50vw !important;
     }
 
     .w-40 {
@@ -126,6 +131,10 @@ $grid-breakpoints: (
         opacity: 70%;
     }
 
+    .card-click:active {
+        opacity: 90%;
+    }
+
     .card-img-top {
         padding: 1.5rem;
         height: 10vw;
@@ -148,6 +157,7 @@ $grid-breakpoints: (
     .carousel-control-prev,
     .carousel-control-next {
         position: static;
+        height: 5vh;
     }
 
     .carousel-indicators [data-bs-target] {
@@ -173,6 +183,21 @@ $grid-breakpoints: (
         color: $primary-cream;
     }
 
+    .btn-primary-cream {
+        --bs-btn-color: #{$primary-brown};
+        --bs-btn-hover-color: #{$primary-orange};
+        --bs-btn-hover-bg: #{$primary-cream};
+        --bs-btn-active-color: #{$primary-orange};
+        --bs-btn-active-bg: #eed8ac;
+      }
+
+    .btn-primary-orange {
+        --bs-btn-color: #{$primary-cream};
+        --bs-btn-hover-color: #{$primary-brown};
+        --bs-btn-hover-bg: #{$primary-orange};
+        --bs-btn-active-bg: #d87410;
+    }
+
     // Breakpoint classes
     @include media-breakpoint-down(sm) {
         .hide-sm {  // Don't show element on screen-sizes small and under
@@ -195,6 +220,10 @@ $grid-breakpoints: (
     @include media-breakpoint-down(xl) {
         .hide-xl {  // Don't show element on screen-sizes lg and under
           display: none;
+        }
+
+        .main-carousel {
+            width: 75vw !important;
         }
     }
 
