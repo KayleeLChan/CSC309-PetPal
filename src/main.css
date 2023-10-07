@@ -11,12 +11,16 @@
 }
 [data-bs-theme=petpal] main {
   min-height: calc(100vh - 85.333px);
+  margin: 0px 5.3rem 0px 5.3rem;
 }
 [data-bs-theme=petpal] p {
   font-size: larger;
 }
 [data-bs-theme=petpal] .min-vh-50 {
   min-height: 50vh !important;
+}
+[data-bs-theme=petpal] .vw-50 {
+  width: 50vw !important;
 }
 [data-bs-theme=petpal] .w-40 {
   width: 40% !important;
@@ -62,6 +66,9 @@
 [data-bs-theme=petpal] .card-click:hover {
   opacity: 70%;
 }
+[data-bs-theme=petpal] .card-click:active {
+  opacity: 90%;
+}
 [data-bs-theme=petpal] .card-img-top {
   padding: 1.5rem;
   height: 10vw;
@@ -81,6 +88,7 @@
 [data-bs-theme=petpal] .carousel-control-prev,
 [data-bs-theme=petpal] .carousel-control-next {
   position: static;
+  height: 5vh;
 }
 [data-bs-theme=petpal] .carousel-indicators [data-bs-target] {
   background-color: #4E3311;
@@ -100,6 +108,19 @@
 [data-bs-theme=petpal] .btn-cream {
   color: #FFEFD0;
 }
+[data-bs-theme=petpal] .btn-primary-cream {
+  --bs-btn-color: #2E1400;
+  --bs-btn-hover-color: #F99129;
+  --bs-btn-hover-bg: #FFEFD0;
+  --bs-btn-active-color: #F99129;
+  --bs-btn-active-bg: #eed8ac;
+}
+[data-bs-theme=petpal] .btn-primary-orange {
+  --bs-btn-color: #FFEFD0;
+  --bs-btn-hover-color: #2E1400;
+  --bs-btn-hover-bg: #F99129;
+  --bs-btn-active-bg: #d87410;
+}
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {
     display: none;
@@ -118,6 +139,9 @@
 @media (max-width: 1199.98px) {
   [data-bs-theme=petpal] .hide-xl {
     display: none;
+  }
+  [data-bs-theme=petpal] .main-carousel {
+    width: 75vw !important;
   }
 }
 @media (max-width: 1399.98px) {
