@@ -18,7 +18,7 @@
 
 <body data-bs-theme="petpal" class="min-vh-100">
 
-  <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
+<!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
   <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
   <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
     <div class="container-fluid px-3">
@@ -33,8 +33,8 @@
       <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown pe-5">
-            <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Adopt
             </a>
             <ul class="dropdown-menu bg-primary-cream">
@@ -44,8 +44,8 @@
             </ul>
           </li>
           <li class="nav-item dropdown pe-5">
-            <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Shelter
             </a>
             <ul class="dropdown-menu bg-primary-cream">
@@ -54,60 +54,134 @@
             </ul>
           </li>
         </ul>
-        <div class="input-group w-25 pe-5" id="basic-addon1">
-          <span class="input-group-text">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-              viewBox="0 0 16 16">
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
-              </path>
-            </svg>
+        <div class="input-group w-25 pe-5 hide-lg" id="basic-addon1">
+          <span class="input-group-text p-0">
+            <button type="button" class="btn btn-primary-cream">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                </path>
+              </svg>
+            </button>
+          </span>
+          <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+            aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group w-100 pe-5 show-md" id="basic-addon1">
+          <span class="input-group-text p-0">
+            <button type="button" class="btn btn-primary-cream">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                </path>
+              </svg>
+            </button>
           </span>
           <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
             aria-describedby="basic-addon1">
         </div>
         <div class="text-primary-orange">
-          <button class="btn bg-primary-cream m-3 shadow-sm" type="">Log In</button>
+          <button class="btn btn-primary-cream m-3 ms-0 shadow-sm" type="">Log In</button>
         </div>
         <div class="text-primary-brown">
-          <button class="btn bg-primary-orange btn-cream m-3 shadow-sm" type="">Sign Up</button>
+          <button class="btn btn-primary-orange m-3 ms-0 shadow-sm" type="">Sign Up</button>
         </div>
       </div>
     </div>
   </nav>
 
-  <main class="d-flex justify-content-evenly">
+  <main class="d-flex two-col">
 
     <!-- Left Column -->
-    <div class="d-flex w-40 m-5 p-3 px-5 bg-cream flex-lg-column align-items-center rounded">
+    <div class="d-flex w-50 m-5 p-3 px-5 bg-cream flex-column align-items-center rounded two-col-child">
 
       <!-- Title -->
-      <div class="d-flex w-90 justify-content-between align-items-end">
+      <div class="d-flex w-90 justify-content-between align-items-end small-title">
         <h2>Mr. Newdles</h2>
         <h3>Toronto, ON</h3>
       </div>
       <!-- Title -->
 
-      <!-- Carousel -->
-      <div class="container w-90">
-        <div id="petCarousel" class="carousel slide w-100" data-bs-ride="false">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#petCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-              aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#petCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <!-- <button type="button" data-bs-target="#petCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
+      <!-- Small Carousel -->
+      <div class="container detail-carousel show-lg">
+        <div id="smallPetCarousel" class="carousel slide w-100" data-bs-ride="false">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="card bg-primary-cream shadow m-3 mt-1 small-img rounded mx-auto">
+                  <img src="imgs/MrNewdles1.png" class="card-img-top detail-img rounded-1 h-100" alt="Mr. Newdles Bashful">
+                </div>
+            </div>
+
+            <div class="carousel-item justify-content-center">
+              <div class="card bg-primary-cream shadow m-3 mt-1 small-img rounded mx-auto">
+                <img src="imgs/MrNewdles.png" class="card-img-top detail-img rounded-1 h-100" alt="Mr. Newdles Blushing">
+              </div>
+            </div>
+
+            <div class="carousel-item justify-content-center">
+              <div class="card bg-primary-cream shadow m-3 mt-1 small-img rounded mx-auto">
+                <img src="imgs/MrNewdles2.png" class="card-img-top detail-img rounded-1 h-100" alt="Mr. Newdles Dancing">
+              </div>
+            </div>
+
+            <div class="carousel-item justify-content-center">
+              <div class="card bg-primary-cream shadow m-3 mt-1 small-img rounded mx-auto">
+                <img src="imgs/MrNewdles3.jpg" class="card-img-top detail-img rounded-1 h-100" alt="Mr. Newdles Smiling">
+              </div>
+            </div>
+
+            <div class="carousel-item justify-content-center">
+              <div class="card bg-primary-cream shadow m-3 mt-1 small-img rounded mx-auto">
+                <img src="imgs/MrNewdles5.jpg" class="card-img-top detail-img rounded-1 h-100" alt="Mr. Newdles with a Unicorn Cap">
+              </div>
+            </div>
+
+            <div class="carousel-item justify-content-center">
+              <div class="card bg-primary-cream shadow m-3 mt-1 small-img rounded mx-auto">
+                <img src="imgs/MrNewdles4.jpg" class="card-img-top detail-img rounded-1 h-100" alt="Mr. Newdles Chilling">
+              </div>
+            </div>       
           </div>
+
+          <div class="d-flex flex-row h-100 w-100 justify-content-between align-items-end">
+            <button class="carousel-control-prev" type="button" data-bs-target="#smallPetCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#smallPetCarousel" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#smallPetCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#smallPetCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#smallPetCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#smallPetCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+              <button type="button" data-bs-target="#smallPetCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            </div>
+            <button class="carousel-control-next" type="button" data-bs-target="#smallPetCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Small Carousel -->
+
+      <!-- Carousel -->
+      <div class="container detail-carousel hide-xl">
+        <div id="petCarousel" class="carousel slide w-100" data-bs-ride="false">
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="card-group">
                 <div class="card bg-primary-cream shadow m-3 mt-1 rounded">
-                  <img src="imgs/MrNewdles1.png" class="card-img-top rounded-1" alt="Zawg">
+                  <img src="imgs/MrNewdles1.png" class="card-img-top detail-img rounded-1" alt="Mr. Newdles Bashful">
                 </div>
                 <div class="card bg-primary-cream shadow m-3 mt-1 rounded">
-                  <img src="imgs/MrNewdles.png" class="card-img-top rounded-1" alt="Mr. Newdles">
+                  <img src="imgs/MrNewdles.png" class="card-img-top detail-img rounded-1" alt="Mr. Newdles Blushing">
                 </div>
                 <div class="card bg-primary-cream shadow m-3 mt-1 rounded">
-                  <img src="imgs/MrNewdles2.png" class="card-img-top rounded-1" alt="Gilbert">
+                  <img src="imgs/MrNewdles2.png" class="card-img-top detail-img rounded-1" alt="Mr. Newdles Dancing">
                 </div>
               </div>
             </div>
@@ -115,41 +189,48 @@
             <div class="carousel-item">
               <div class="card-group">
                 <div class="card bg-primary-cream shadow m-3 mt-1 rounded">
-                  <img src="imgs/MrNewdles3.jpg" class="card-img-top" alt="Zawg">
+                  <img src="imgs/MrNewdles3.jpg" class="card-img-top detail-img rounded-1" alt="Mr. Newdles Smiling">
                 </div>
                 <div class="card bg-primary-cream shadow m-3 mt-1 rounded">
-                  <img src="imgs/MrNewdles4.jpg" class="card-img-top" alt="Mr. Newdles">
+                  <img src="imgs/MrNewdles4.jpg" class="card-img-top detail-img rounded-1" alt="Mr. Newdles Chilling">
                 </div>
                 <div class="card bg-primary-cream shadow m-3 mt-1 rounded">
-                  <img src="imgs/MrNewdles5.jpg" class="card-img-top" alt="Gilbert">
+                  <img src="imgs/MrNewdles5.jpg" class="card-img-top detail-img rounded-1" alt="Mr. Newdles with a Unicorn Cap">
                 </div>
               </div>
             </div>
             
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#petCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#petCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+          <div class="d-flex flex-row h-100 w-100 justify-content-between align-items-end">
+            <button class="carousel-control-prev" type="button" data-bs-target="#petCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#petCarousel" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#petCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+            <button class="carousel-control-next" type="button" data-bs-target="#petCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
       </div>
       <!-- Carousel -->
 
       <!-- Summary -->  
-      <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-5 p-1 bg-brown text-primary-cream rounded-2">
-        <p class="fs-4 mb-0">Hog Nose Snake</p>
-        <p class="fs-4 mb-0">|</p>
-        <p class="fs-4 mb-0"> Adult</p>
-        <p class="fs-4 mb-0">|</p>
-        <p class="fs-4 mb-0"> Female</p>
-        <p class="fs-4 mb-0">|</p>
-        <p class="fs-4 mb-0"> Small</p>
-        <p class="fs-4 mb-0">|</p>
-        <p class="fs-4 mb-0"> Snow Western Morph</p>
+      <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-5 py-2 px-3 bg-brown text-primary-cream rounded-2 hide-md">
+        <p class="summary-text mb-0">Hog Nose Snake</p>
+        <p class="summary-text mb-0">|</p>
+        <p class="summary-text mb-0"> Adult</p>
+        <p class="summary-text mb-0">|</p>
+        <p class="summary-text mb-0"> Female</p>
+        <p class="summary-text mb-0">|</p>
+        <p class="summary-text mb-0"> Small</p>
+        <p class="summary-text mb-0">|</p>
+        <p class="summary-text mb-0"> Snow Western Morph</p>
       </div>
       <!-- Summary -->
 
@@ -177,20 +258,20 @@
     <!-- Left Column -->
 
     <!-- Right Column -->
-    <div class="d-flex flex-column m-5 p-5 justify-content-start align-items-center w-25 text-primary-brown">
-      <button class="btn btn-xl btn-cream bg-primary-orange m-3 mb-5 shadow-sm" type="button">Become My Pal!</button>
+    <div class="d-flex flex-column m-5 p-5 justify-content-start align-items-center w-40 text-primary-brown two-col-child">
+      <button class="btn btn-xl cta-btn-xl btn-cream bg-primary-orange m-3 mb-5 shadow-sm" type="button">Become My Pal!</button>
 
       <div class="d-flex flex-column pb-2 m-4 text-primary-cream bg-dark-brown rounded-5 position-relative">
         <img src="./imgs/snakeShelter.jpg" class="position-absolute top-0 start-50 translate-middle rounded-circle" width="30%">
 
-        <div class="p-1 pt-5 text-dark-brown bg-primary-orange rounded-top-5 text-center">
+        <div class="p-1 pt-5 text-dark-brown bg-primary-orange rounded-top-5 text-center shadow">
           <h3>Snelter</h3>
           <h5>In Your Mom's House</h5>
         </div>
         
         <div class="m-3">
           <p>Email: Sssssnelter@snelter.com</p>
-          <p>Phone Number: 123-456-7890</p>
+          <p>Phone Number: <br class="show-xxl">123-456-7890</p>
         </div>
 
         <div class="d-flex m-4 mt-0 p-2 px-3 bg-primary-orange rounded-pill align-text-center justify-content-between">
