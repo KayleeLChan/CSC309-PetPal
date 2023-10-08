@@ -114,7 +114,6 @@
 [data-bs-theme=petpal] .btn-cream {
   color: #FFEFD0;
 }
-
 [data-bs-theme=petpal] .btn-primary-cream {
   --bs-btn-color: #2E1400;
   --bs-btn-hover-color: #F99129;
@@ -146,6 +145,19 @@
 [data-bs-theme=petpal] .notif-col {
   width: 75%;
   margin: 3rem;
+}
+[data-bs-theme=petpal] .signupcontainer {
+  margin-top: 20px;
+}
+[data-bs-theme=petpal] .signupcontainer p {
+  margin: 0px;
+}
+[data-bs-theme=petpal] .paddingify {
+  padding: 30px;
+}
+[data-bs-theme=petpal] .smallpar {
+  font-size: small;
+  color: #F99129;
 }
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {
@@ -283,6 +295,7 @@
   [data-bs-theme=petpal] .show-xxl {
     display: none !important;
   }
+}
 [data-bs-theme=petpal] form {
   padding-left: 30px;
   padding-right: 30px;
@@ -293,15 +306,6 @@
 }
 [data-bs-theme=petpal] label {
   padding-top: 16px;
-}
-[data-bs-theme=petpal] .signupcontainer {
-  margin-top: 20px;
-}
-[data-bs-theme=petpal] .signupcontainer p {
-  margin: 0px;
-}
-[data-bs-theme=petpal] .paddingify {
-  padding: 30px;
 }
 
 /*!
@@ -14718,4 +14722,4 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}
+}/*# sourceMappingURL=main.css.map */
