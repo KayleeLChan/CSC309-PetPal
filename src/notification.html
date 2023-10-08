@@ -18,11 +18,11 @@
 
 <body data-bs-theme="petpal" class="min-vh-100">
 
-  <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
+<!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
   <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
   <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
-    <div class="container-fluid ps-3 pe-3">
-      <a class="navbar-brand h1 fs-1 text-primary-cream" href="./index.html">
+    <div class="container-fluid px-3">
+      <a class="navbar-brand h1 fs-1 btn-cream" href="./index.html">
         <img src="./imgs/Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
         PetPal
       </a>
@@ -33,7 +33,7 @@
       <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown pe-5">
-            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+            <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
               Adopt
             </a>
@@ -44,7 +44,7 @@
             </ul>
           </li>
           <li class="nav-item dropdown pe-5">
-            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+            <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
               Shelter
             </a>
@@ -66,24 +66,28 @@
           <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
             aria-describedby="basic-addon1">
         </div>
-        <button class="btn bg-primary-cream text-primary-brown m-3 shadow-sm" type="">Log In</button>
-        <button class="btn bg-primary-orange text-primary-cream m-3 shadow-sm" type="">Sign Up</button>
+        <div class="text-primary-orange">
+          <button class="btn bg-primary-cream m-3 shadow-sm" type="">Log In</button>
+        </div>
+        <div class="text-primary-brown">
+          <button class="btn bg-primary-orange btn-cream m-3 shadow-sm" type="">Sign Up</button>
+        </div>
       </div>
     </div>
   </nav>
 
   <main class="d-flex justify-content-center">
 
-    <div class="d-flex w-75 m-5 p-3 px-5 bg-cream flex-lg-column rounded shadow">
+    <div class="d-flex p-3 px-5 bg-cream flex-column rounded shadow notif-col">
       <h1 class="fs-0 w-75 pb-2 align-self-center border-bottom border-3 text-center">Notifications</h1>
 
       <!-- Notification -->
-      <div class="d-flex pt-2 w-100">
-        <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 w-100 mx-3 text-start"
+      <div class="d-flex pt-2 w-100 justify-content-center">
+        <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 w-90 mx-3 text-start"
           data-bs-toggle="modal" data-bs-target="#torontoCatRelief">
           <div class="d-flex flex-row align-items-center">
-            <h3 class="m-0">Toronto Cat Relief:</h3>
-          <p class="font-plain fs-6 m-0 ps-3 pt-2">Hello! We took a look at your application and thought wow, this gorl is crazy, but perfect for Mr....</p>
+            <h3 class="m-0 notif-title">Toronto Cat Relief:</h3>
+          <p class="font-plain fs-6 m-0 ps-3 pt-2 text-truncate notif-msg">Hello! We took a look at your application and thought wow, this gorl is crazy but perfect for Mr. Newdles, so we’d love to continue with the adoption process! Please reach out to us using our contacts or the chat system. Thanks and we hope to hear from you soon!</p>
           </div>
         </button>
 
@@ -106,12 +110,12 @@
       <!-- Notification -->
 
       <!-- Notification -->
-      <div class="d-flex w-100">
-        <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 w-100 mx-3 text-start"
+      <div class="d-flex w-100 justify-content-center">
+        <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 w-90 mx-3 text-start"
           data-bs-toggle="modal" data-bs-target="#system">
           <div class="d-flex flex-row align-items-center">
-            <h3 class="m-0">System:</h3>
-          <p class="font-plain fs-6 m-0 ps-3 pt-2">You reset your password. If this is you, no worries. If not, then change your password as soon as possible from your... </p>
+            <h3 class="m-0 notif-title">System:</h3>
+          <p class="font-plain fs-6 m-0 ps-3 pt-2 text-truncate notif-msg">You reset your password. If this is you, no worries. If not, then change your password as soon as possible from your account settings. </p>
           </div>
         </button>
 
