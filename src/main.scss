@@ -49,7 +49,7 @@ $grid-breakpoints: (
     // Custom Colours
     --bs-body-color: #{$primary-brown};
     --bs-body-color-rgb: #{to-rgb($dark-brown)};
-    --bs-body-bg: #{$body-tertiary-bg};
+    --bs-body-bg: #{$primary-cream};
     --bs-body-bg-rgb: #{to-rgb($cream)};
     --bs-tertiary-bg: #{$primary-cream};
     --bs-border-color: #{$primary-brown};
@@ -116,18 +116,29 @@ $grid-breakpoints: (
     }
 
     .form-control:focus {   // Change glow around search bar to orange
-        color: var(--bs-body-color);
-        background-color: var(--bs-body-bg);
+        color: #{$primary-brown};
+        background-color: #{$primary-cream};
         border-color: #{$primary-orange};
         outline: 0;
         box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
     }
 
     .form-select:focus {
-        border-color: var(--bs-body-bg);
+        border-color: #{$primary-brown};
         outline: 0;
         box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
-      }
+    }
+
+    .form-check-input:checked {
+        background-color: #{$primary-orange};
+        border-color: #{$primary-orange};
+    }
+
+    .form-check-input:focus {
+        border-color: #{$primary-brown};
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
+    }
 
     .card {
         --bs-card-border-width: 0;
@@ -235,6 +246,10 @@ $grid-breakpoints: (
     .radio_gap{
         margin-right: 10px;
     }
+
+    .translate-top-corner {
+        transform: translate(-0%, -100%) !important;
+    }
     
     // Breakpoint classes
     @include media-breakpoint-down(sm) {
@@ -295,6 +310,10 @@ $grid-breakpoints: (
 
         .text-truncate {
             font-size: small;
+        }
+
+        .responsive-heading {
+            font-size: medium !important;
         }
     }
 
@@ -370,6 +389,10 @@ $grid-breakpoints: (
         
         .detail-img {
             padding: 0.75rem;
+        }
+
+        .responsive-heading {
+            font-size: larger;
         }
     }
 

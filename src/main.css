@@ -3,7 +3,7 @@
 [data-bs-theme=petpal] {
   --bs-body-color: #2E1400;
   --bs-body-color-rgb: 78, 51, 17;
-  --bs-body-bg: #ffefd0;
+  --bs-body-bg: #FFEFD0;
   --bs-body-bg-rgb: 197, 169, 124;
   --bs-tertiary-bg: #FFEFD0;
   --bs-border-color: #2E1400;
@@ -52,14 +52,23 @@
   --bs-dropdown-link-active-bg: #F99129;
 }
 [data-bs-theme=petpal] .form-control:focus {
-  color: var(--bs-body-color);
-  background-color: var(--bs-body-bg);
+  color: #2E1400;
+  background-color: #FFEFD0;
   border-color: #F99129;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(249, 145, 41, 0.25);
 }
 [data-bs-theme=petpal] .form-select:focus {
-  border-color: var(--bs-body-bg);
+  border-color: #2E1400;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(249, 145, 41, 0.25);
+}
+[data-bs-theme=petpal] .form-check-input:checked {
+  background-color: #F99129;
+  border-color: #F99129;
+}
+[data-bs-theme=petpal] .form-check-input:focus {
+  border-color: #2E1400;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(249, 145, 41, 0.25);
 }
@@ -146,6 +155,12 @@
   width: 75%;
   margin: 3rem;
 }
+[data-bs-theme=petpal] .radio_gap {
+  margin-right: 10px;
+}
+[data-bs-theme=petpal] .translate-top-corner {
+  transform: translate(0%, -100%) !important;
+}
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {
     display: none !important;
@@ -192,6 +207,9 @@
   }
   [data-bs-theme=petpal] .text-truncate {
     font-size: small;
+  }
+  [data-bs-theme=petpal] .responsive-heading {
+    font-size: medium !important;
   }
 }
 @media (max-width: 1199.98px) {
@@ -251,6 +269,9 @@
   }
   [data-bs-theme=petpal] .detail-img {
     padding: 0.75rem;
+  }
+  [data-bs-theme=petpal] .responsive-heading {
+    font-size: larger;
   }
 }
 @media (min-width: 576px) {
