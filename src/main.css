@@ -114,7 +114,8 @@
 [data-bs-theme=petpal] .btn {
   border: none;
 }
-[data-bs-theme=petpal] .btn-xl, [data-bs-theme=petpal] .btn-group-xl > .btn {
+[data-bs-theme=petpal] .btn-xl,
+[data-bs-theme=petpal] .btn-group-xl > .btn {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 2rem;
   --bs-btn-font-size: 2.5rem;
@@ -158,8 +159,19 @@
 [data-bs-theme=petpal] .radio_gap {
   margin-right: 10px;
 }
-[data-bs-theme=petpal] .translate-top-corner {
-  transform: translate(0%, -100%) !important;
+[data-bs-theme=petpal] .nav-tabs {
+  --bs-nav-tabs-border-color: #C5A97C --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
+  --bs-nav-tabs-link-active-border-color: #C5A97C;
+}
+[data-bs-theme=petpal] .nav-tabs .nav-link:hover,
+[data-bs-theme=petpal] .nav-tabs .nav-link:focus {
+  border-color: #F99129;
+}
+[data-bs-theme=petpal] .nav-link {
+  color: #2E1400;
+}
+[data-bs-theme=petpal] .nav-link:hover, [data-bs-theme=petpal] .nav-link:focus {
+  color: #F99129;
 }
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {

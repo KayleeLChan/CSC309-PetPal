@@ -24,13 +24,13 @@ $theme-colors: map-merge($brand-colours, $theme-colors);
 
 // override bootstrap default colours for various items that do not use the theme-colors
 
-    // Shadow items
+// Shadow items
 $box-shadow: 0 .5rem 1rem rgba($primary-brown, .25);
 $box-shadow-sm: 0 .125rem .25rem rgba($primary-brown, .075);
 $box-shadow-lg: 0 1rem 3rem rgba($primary-brown, .4);
 $box-shadow-inset: inset 0 1px 2px rgba($primary-brown, .075);
 
-    // Misc. items
+// Misc. items
 $body-tertiary-bg: rgba($primary-cream, 1);
 $grid-breakpoints: (
     xs: 0,
@@ -63,7 +63,7 @@ $grid-breakpoints: (
         margin: 0px 5.3rem 0px 5.3rem;
     }
 
-    p { 
+    p {
         font-size: larger;
     }
 
@@ -106,7 +106,7 @@ $grid-breakpoints: (
     }
 
     .bg-none {
-        background-color: rgba(0,0,0,0);
+        background-color: rgba(0, 0, 0, 0);
     }
 
     .dropdown-menu {
@@ -115,7 +115,8 @@ $grid-breakpoints: (
         --bs-dropdown-link-active-bg: #{$primary-orange};
     }
 
-    .form-control:focus {   // Change glow around search bar to orange
+    .form-control:focus {
+        // Change glow around search bar to orange
         color: #{$primary-brown};
         background-color: #{$primary-cream};
         border-color: #{$primary-orange};
@@ -145,7 +146,7 @@ $grid-breakpoints: (
         --bs-card-box-shadow: 0 0 0 0.25rem rgba($primary-brown, 0.25);
         --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
         --bs-card-bg: #{$cream};
-      }
+    }
 
     .card-click:hover {
         opacity: 70%;
@@ -184,7 +185,7 @@ $grid-breakpoints: (
         background-color: #{$dark-brown};
     }
 
-    .carousel-indicators .active{
+    .carousel-indicators .active {
         background-color: #{$primary-orange};
     }
 
@@ -192,7 +193,8 @@ $grid-breakpoints: (
         border: none;
     }
 
-    .btn-xl, .btn-group-xl > .btn {
+    .btn-xl,
+    .btn-group-xl>.btn {
         --bs-btn-padding-y: 0.5rem;
         --bs-btn-padding-x: 2rem;
         --bs-btn-font-size: 2.5rem;
@@ -209,7 +211,7 @@ $grid-breakpoints: (
         --bs-btn-hover-bg: #{$primary-cream};
         --bs-btn-active-color: #{$primary-orange};
         --bs-btn-active-bg: #eed8ac;
-      }
+    }
 
     .btn-primary-orange {
         --bs-btn-color: #{$primary-cream};
@@ -243,24 +245,40 @@ $grid-breakpoints: (
         margin: 3rem;
     }
 
-    .radio_gap{
+    .radio_gap {
         margin-right: 10px;
     }
 
-    .translate-top-corner {
-        transform: translate(-0%, -100%) !important;
+    .nav-tabs {
+        --bs-nav-tabs-border-color: #{$cream} --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
+        --bs-nav-tabs-link-active-border-color: #{$cream};
     }
-    
+
+    .nav-tabs .nav-link:hover,
+    .nav-tabs .nav-link:focus {
+        border-color: #{$primary-orange};
+    }
+
+    .nav-link {
+        color: #{$primary-brown};
+    }
+
+    .nav-link:hover, .nav-link:focus {
+        color: #{$primary-orange};
+      }
+
     // Breakpoint classes
     @include media-breakpoint-down(sm) {
-        .hide-sm {  // Don't show element on screen-sizes small and under
-          display: none !important;
+        .hide-sm {
+            // Don't show element on screen-sizes small and under
+            display: none !important;
         }
     }
 
     @include media-breakpoint-down(md) {
-        .hide-md {  // Don't show element on screen-sizes md and under
-          display: none !important;
+        .hide-md {
+            // Don't show element on screen-sizes md and under
+            display: none !important;
         }
 
         main {
@@ -288,8 +306,9 @@ $grid-breakpoints: (
     }
 
     @include media-breakpoint-down(lg) {
-        .hide-lg {  // Don't show element on screen-sizes lg and under
-          display: none !important;
+        .hide-lg {
+            // Don't show element on screen-sizes lg and under
+            display: none !important;
         }
 
         .modal-div {
@@ -318,8 +337,9 @@ $grid-breakpoints: (
     }
 
     @include media-breakpoint-down(xl) {
-        .hide-xl {  // Don't show element on screen-sizes lg and under
-          display: none !important;
+        .hide-xl {
+            // Don't show element on screen-sizes lg and under
+            display: none !important;
         }
 
         .main-carousel {
@@ -343,12 +363,13 @@ $grid-breakpoints: (
     }
 
     @include media-breakpoint-down(xxl) {
-        .hide-xxl {  // Don't show element on screen-sizes xxl and under
-          display: none !important;
+        .hide-xxl {
+            // Don't show element on screen-sizes xxl and under
+            display: none !important;
         }
 
         .summary-text {
-            font-size:  smaller !important;
+            font-size: smaller !important;
         }
 
         .detail-carousel {
@@ -357,8 +378,9 @@ $grid-breakpoints: (
     }
 
     @include media-breakpoint-down(xxxl) {
-        .hide-xxxl {  // Don't show element on screen-sizes xxxl and under
-          display: none !important;
+        .hide-xxxl {
+            // Don't show element on screen-sizes xxxl and under
+            display: none !important;
         }
 
         .summary-text {
@@ -375,8 +397,9 @@ $grid-breakpoints: (
     }
 
     @include media-breakpoint-down(xxxxl) {
-        .hide-xxxxl {  // Don't show element on screen-sizes xxxxl and under
-          display: none !important;
+        .hide-xxxxl {
+            // Don't show element on screen-sizes xxxxl and under
+            display: none !important;
         }
 
         .summary-text {
@@ -386,7 +409,7 @@ $grid-breakpoints: (
         .cta-btn-xl {
             --bs-btn-font-size: 1.5rem;
         }
-        
+
         .detail-img {
             padding: 0.75rem;
         }
@@ -397,38 +420,44 @@ $grid-breakpoints: (
     }
 
     @include media-breakpoint-up(sm) {
-        .show-xs {  // Don't show element on screen-sizes small and over
-          display: none !important;
+        .show-xs {
+            // Don't show element on screen-sizes small and over
+            display: none !important;
         }
     }
 
     @include media-breakpoint-up(md) {
-        .show-sm {  // Don't show element on screen-sizes md and over
-          display: none !important;
+        .show-sm {
+            // Don't show element on screen-sizes md and over
+            display: none !important;
         }
     }
 
     @include media-breakpoint-up(lg) {
-        .show-md {  // Don't show element on screen-sizes lg and over
-          display: none !important;
+        .show-md {
+            // Don't show element on screen-sizes lg and over
+            display: none !important;
         }
     }
 
     @include media-breakpoint-up(xl) {
-        .show-lg {  // Don't show element on screen-sizes xl and over
-          display: none !important;
+        .show-lg {
+            // Don't show element on screen-sizes xl and over
+            display: none !important;
         }
     }
 
     @include media-breakpoint-up(xxl) {
-        .show-xl {  // Don't show element on screen-sizes xxl and over
-          display: none !important;
+        .show-xl {
+            // Don't show element on screen-sizes xxl and over
+            display: none !important;
         }
     }
 
     @include media-breakpoint-up(xxxl) {
-        .show-xxl {  // Don't show element on screen-sizes xxxl and over
-          display: none !important;
+        .show-xxl {
+            // Don't show element on screen-sizes xxxl and over
+            display: none !important;
         }
     }
 }
@@ -442,7 +471,7 @@ $input-btn-font-family: "Concert One";
 $form-text-font-style: "Concert One";
 
 // custom card adjustments
-$card-height: 100%;  // Make every card equal height
+$card-height: 100%; // Make every card equal height
 
 // import bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
