@@ -92,6 +92,12 @@
                         <input type="text" class="form-control" id="lastName">
                     </div>
                     <div class="mb-3">
+                      <label for="address" class="form-label">home Address</label>
+                      <input type="address" class="form-control" id="address" aria-describedby="addressHelp">
+                      <div id="addressHelp" class="form-text">We'll never share your address with anyone other than the
+                          shelter.</div>
+                  </div>
+                    <div class="mb-3">
                         <label for="email" class="form-label">Email Address</label>
                         <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone other than the
@@ -109,6 +115,47 @@
                         <div id="postalCodeHelp" class="form-text">We'll never share your postal code with anyone other
                             than the shelter.</div>
                     </div>
+                    <div class="mb-3">
+                      <label for="age" class="form-label">Are you above 21 years of age?</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="age" id="ageYes">
+                        <label class="form-check-label" for="ageYes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="age" id="ageNo">
+                        <label class="form-check-label" for="ageNo">
+                          No
+                        </label>
+                      </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="insurance" class="form-label">Are you currently insured?</label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="insurance" id="insuranceYes">
+                      <label class="form-check-label" for="insuranceYes">
+                        Yes
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="insurance" id="insuranceNo">
+                      <label class="form-check-label" for="insuranceNo">
+                        No
+                      </label>
+                    </div>
+                    <label for="insuranceName" class="form-label">Name of Insurance</label>
+                    <input type="text" class="form-control mb-2" id="insuranceName">
+                    <label for="payment" class="form-label">Method of Payment</label>
+                    <select class="form-select form-select-sm font-plain w-auto" aria-label="Default select example" id="payment">
+                        <option selected>(required)</option>
+                        <option value="visa">Visa</option>
+                        <option value="mastercard">Mastercard</option>
+                        <option value="amex">American Express</option>
+                        <option value="interac">Interac E-transfer</option>
+                        <option value="paypal">Paypal</option>
+                    </select>
+                </div>
                 </form>
                 <button class="btn btn-lg bg-primary-orange text-primary-cream m-3 ms-0 shadow-sm hide-xl" type="button">Submit Application</button>
             </div>
