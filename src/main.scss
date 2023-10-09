@@ -232,6 +232,10 @@ $grid-breakpoints: (
         margin: 3rem;
     }
 
+    .radio_gap{
+        margin-right: 10px;
+    }
+    
     // Breakpoint classes
     @include media-breakpoint-down(sm) {
         .hide-sm {  // Don't show element on screen-sizes small and under

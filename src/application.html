@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!--
+  CSC309 Assignment 1
+  
+  University of Toronto
+  Fall 2023
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetPal</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body data-bs-theme="petpal">
+
+  <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
+  <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
+    <div class="container-fluid ps-3 pe-3">
+      <a class="navbar-brand h1 fs-1 text-primary-cream" href="#">
+        <img src="Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+        PetPal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Adopt
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Adopt Now</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Pets</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Shelter
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Find Shelters</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Shelter</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="input-group w-25 pe-5" id="basic-addon1">
+          <span class="input-group-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+            aria-describedby="basic-addon1">
+        </div>
+        <button class="btn bg-primary-cream text-primary-brown m-3 shadow-sm" type="">Log In</button>
+        <button class="btn bg-primary-orange text-primary-cream m-3 shadow-sm" type="">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="d-flex two-col">
+
+    <!-- Left Column -->
+    <div class="d-flex w-50 m-5 p-2 px-5 bg-cream flex-column align-items-center rounded two-col-child">
+        <!-- Title & About -->
+        <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-3 py-2 px-3 bg-brown text-primary-cream rounded-2 hide-md">
+            <h2>Your Application For:</h2>
+            <!-- Dropdown -->
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle bg-brown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    MR. NEWDLES
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Some Other Pet Application</a></li>
+                    <li><a class="dropdown-item" href="#">Some Other Pet Application </a></li>
+                    <li><a class="dropdown-item" href="#">Some Other Pet Application</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <img src="imgs/MrNewdles1.png" class="rounded-circle mb-3" alt="Mr. Newdles Bashful" width="150" height="150">
+
+        <!-- Summary -->
+        <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-4 py-2 px-3 bg-brown text-primary-cream rounded-2 hide-md">
+            <p class="summary-text mb-0">Hog Nose Snake</p>
+            <p class="summary-text mb-0">|</p>
+            <p class="summary-text mb-0"> Adult</p>
+            <p class="summary-text mb-0">|</p>
+            <p class="summary-text mb-0"> Female</p>
+            <p class="summary-text mb-0">|</p>
+            <p class="summary-text mb-0"> Small</p>
+            <p class="summary-text mb-0">|</p>
+            <p class="summary-text mb-0"> Snow Western Morph</p>
+        </div>
+
+        <h2 class="mb-4 text-dark-brown text-decoration-underline">SECTION I: APPLICANT</h2>
+        <div class="align-self-start mb-1 px-3">
+            <p class="fw-bolder">FIRST NAME: <span class="d-inline-block bg-primary-cream p-1 rounded">Jane</span></p>
+            <p>LAST NAME: <span class="d-inline-block bg-primary-cream p-1 rounded">Doe</span></p>
+            <p>ADDRESS: <span class="d-inline-block bg-primary-cream p-1 rounded">123 Street St.</span></p>
+            <p>CITY: <span class="d-inline-block bg-primary-cream p-1 rounded">Brampton</span></p>
+            <p>POSTAL CODE: <span class="d-inline-block bg-primary-cream p-1 rounded">123 ABC</span></p>
+            <p>EMAIL: <span class="d-inline-block bg-primary-cream p-1 rounded">jane.doe@mail.utoronto.ca</span></p>
+            <p>PHONE: <span class="d-inline-block bg-primary-cream p-1 rounded">(012) 345-6789</span> </p>
+            <p>ABOVE 21 YEARS OF AGE? <span class="d-inline-block bg-primary-cream p-1 rounded">Yes</span></p>
+        </div>
+
+
+        <h2 class="mb-4 text-dark-brown text-decoration-underline">SECTION II: APPLICATION DETAILS</h2>
+        <div class="align-self-start mb-1 px-3">
+            <p>I am looking to adopt for: <span class="d-inline-block bg-primary-cream p-1 rounded">MYSELF</span></p>
+            <p>I have <span class="d-inline-block bg-primary-cream p-1 rounded">NO KIDS</span>at home</p>
+            <p>I am a <span class="d-inline-block bg-primary-cream p-1 rounded">PREVIOUS</span> pet owner</p>
+            <p>I currently have <span class="d-inline-block bg-primary-cream p-1 rounded">NO PETS</span></p>
+            <p>My ideal pet is a <span class="d-inline-block bg-primary-cream p-1 rounded">NEWBORN</span></p>
+            <p>I would like to adopt a <span class="d-inline-block bg-primary-cream p-1 rounded">FEMALE</span></p>
+            <p>I prefer a pet that is <span class="d-inline-block bg-primary-cream p-1 rounded">SMALL</span></p>
+            <p>My pet's behaviour should be <span class="d-inline-block bg-primary-cream p-1 rounded">ACTIVE</span></p>
+        </div>  
+
+        <h2 class="mb-4 text-dark-brown text-decoration-underline">SECTION III: PAYMENT</h2>
+        <div class="align-self-start mb-1 px-3">
+            <p>CURRENTLY INSURED:<span class="d-inline-block bg-primary-cream p-1 rounded">YES</span></p>
+            <p>INUSRANCE NAME:<span class="d-inline-block bg-primary-cream p-1 rounded">Greenshield Insurance</span></p>
+            <p>METHOD OF PAYMENT*:<span class="d-inline-block bg-primary-cream p-1 rounded">VISA</span></p>
+            <p class="fst-italic"> *Further payment information will be expected upon approval of application. 
+                Please routinely check chatbox or notifications for further instructions from shelter.</p>
+        </div> 
+    </div>
+    <!-- Left Column -->
+
+    <!-- Right Column -->
+    <div class="d-flex flex-column m-5 p-5 justify-content-start align-items-center w-40 text-primary-brown two-col-child">
+
+        <div class="d-flex flex-column w-75 mb-5 text-dark-brown bg-white rounded-5 position-relative">
+            <div class="p-1 pt-3 text-white bg-primary-orange rounded-top-5 text-center shadow">
+                <h3>Application Status</h3>
+            </div>
+            <div class="d-flex justify-content-center align-items-center m-3" style="min-height: 50px;">
+                <h2 class="mb-0">PENDING</h2>
+            </div>
+        </div>
+
+      <div class="d-flex flex-column m-4 text-dark-brown bg-white rounded-5 position-relative mx-auto w-100">
+        <img src="./imgs/snakeShelter.jpg" class="position-absolute top-0 start-50 translate-middle rounded-circle" width="20%">
+        <div class="p-1 pt-5 text-dark-brown bg-primary-orange rounded-top-5 text-center shadow">
+          <h3>Toronto Cat Relief</h3>
+          <h5>20 King's College Circle, Toronto</h5>
+        </div>
+        
+        <div class="justify-content-center align-items-center mb-3 p-4">
+
+            <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 w-90 mb-3 p-1 text-start" data-bs-toggle="modal" data-bs-target="#responseLabel">
+                <div class="d-flex flex-row align-items-center">
+                    <p class="fs-5">Inquiry</p>
+                    <p class="font-plain fs-6 m-0 ps-3 pt-2 text-truncate notif-msg">
+                    Hi, I was wondering if your shelter accepts other forms of payment? For example, McDonalds?
+                    </p>
+                </div>
+            </button>
+
+            <div class="modal fade" id="responseLabel" data-bs-keyboard="false" tabindex="-1" aria-labelledby="responseLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <p class="fw-bolder">You Messaged, 02/10/2023 7:07am</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        Hi, I was wondering if your shelter accepts other forms of payment? For example, McDonalds?
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-lg btn-primary-orange text-dark-brown bg-none border border-0 w-90 mb-3 p-1 text-start" data-bs-toggle="modal" data-bs-target="#torontoCatRelief">
+                <div class="d-flex flex-row align-items-center">
+                <p class="fs-5">Application Received!</p>
+                <p class="font-plain fs-6 m-0 ps-3 pt-2 text-truncate notif-msg">
+                    Hi! Thank you for expressing interest in Mr. Newdles at Toronto Cat Relief. 
+                    We have received your application and are in the process of reviewing it.
+                </p>
+                </div>
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="torontoCatRelief" data-bs-keyboard="false" tabindex="-1" aria-labelledby="torontoCatReliefLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <p class="fw-bolder">Toronto Pet Relief, 01/10/2023 7:07pm</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        Hi! Thank you for expressing interest in Mr. Newdles at Toronto Pet Relief. 
+                        We have received your application and are in the process of reviewing it.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button to trigger the modal -->
+            <button type="button" class="btn btn-primary-cream text-dark-brown bg-cream align-items-center" data-bs-toggle="modal" data-bs-target="#myModal">
+                Click to Reply
+            </button>
+        
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Replying to: Toronto Cat Relief</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <!-- Reply -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInput" class="fw-bolder mb-3">Message from TORONTO CAT RELIEF: <span class="fst-italic">Responses can take up to 3-5 business days. We appreciate your patience.</span></label>
+                                    <input type="text" class="form-control mb-3" id="exampleInput" placeholder="Your Message Here">
+                                </div>
+                                <button type="submit" class="btn btn-primary bg-cream text-brown align-self-center">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Right Column-->
+
+</main>
+
+
+</body>
+
+</html>

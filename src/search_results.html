@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--
+  CSC309 Assignment 1
+  
+  University of Toronto
+  Fall 2023
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetPal</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body data-bs-theme="petpal">
+
+  <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
+  <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
+    <div class="container-fluid ps-3 pe-3">
+      <a class="navbar-brand h1 fs-1 text-primary-cream" href="#">
+        <img src="Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+        PetPal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Adopt
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Adopt Now</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Pets</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Shelter
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Find Shelters</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Shelter</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="input-group w-25 pe-5" id="basic-addon1">
+          <span class="input-group-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+            aria-describedby="basic-addon1">
+        </div>
+        <button class="btn bg-primary-cream text-primary-brown m-3 shadow-sm" type="">Log In</button>
+        <button class="btn bg-primary-orange text-primary-cream m-3 shadow-sm" type="">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+  
+  <main class="h-100 d-flex flex-column">
+
+    <div class="bg-dark-brown text-white p-4 mb-4 d-flex justify-content-between align-items-center">
+        <div class="d-flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search mr-3" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+            </svg>
+            <h2>Finding CATS Near TORONTO...</h2>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle bg-white text-brown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              FILTER RESULTS BY:
+            </button>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item text-primary-brown">Location</li>
+                <li class="dropdown-item text-primary-brown">Color</li>
+                <li class="dropdown-item text-primary-brown">Age</li>
+                <li class="dropdown-item text-primary-brown">Breed</li>
+                <li class="dropdown-item text-primary-brown">Sex</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <!-- User's Search Results -->
+            <div class="col-md-3 h-50 bg-primary-orange p-5 rounded">
+                <h2 class="text-white text-center mb-4"> YOUR SEARCH: </h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-white fw-bolder">Location: </p>
+                        <p class="text-white fw-bolder">Animal:</p>
+                        <p class="text-white fw-bolder">Breed:</p>
+                        <p class="text-white fw-bolder">Color:</p>
+                        <p class="text-white fw-bolder">Size:</p>
+                        <p class="text-white fw-bolder">Age:</p>
+                        <p class="text-white fw-bolder">Sex:</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <p class="text-brown bg-white rounded">TORONTO</p>
+                        <p class="text-brown bg-white rounded">CAT</p>
+                        <p class="text-brown bg-white rounded">ANY</p>
+                        <p class="text-brown bg-white rounded">ANY</p>
+                        <p class="text-brown bg-white rounded">ANY</p>
+                        <p class="text-brown bg-white rounded">ANY</p>
+                        <p class="text-brown bg-white rounded">ANY</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="col-md-9">
+                <p style="margin-left: 20px;" class="fst-italic">Select any of the following results to see more information.</p>
+                <div class="row">
+
+                    <div class="col-md-4 mb-5">
+                        <div class="card card-click shadow vh-50 m-3 rounded overflow-auto">
+                            <h2 class="px-4 pt-3 fs-4">Mr. Newdles</h2>
+                            <img src="imgs/MrNewdles.png" class="card-img-top h-100 py-0 rounded-1" alt="Mr. Newdles">
+                            <div class="card-body px-4 d-flex flex-column align-items-center text-center">
+                              <h3 class="card-title fs-4">Breed</h3>
+                              <p class="card-text">Hog Nose Snake</p>
+                              <h3 class="card-title fs-4">Personality</h3>
+                              <p class="card-text">Loving</p>
+                              <a href="./MrNewdles.html" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-5">
+                        <div class="card card-click shadow vh-50 m-3 rounded overflow-auto">
+                            <h2 class="px-4 pt-3 fs-4">Mr. Newdles</h2>
+                            <img src="imgs/MrNewdles.png" class="card-img-top h-100 py-0 rounded-1" alt="Mr. Newdles">
+                            <div class="card-body px-4 d-flex flex-column align-items-center text-center">
+                              <h3 class="card-title fs-4">Breed</h3>
+                              <p class="card-text">Hog Nose Snake</p>
+                              <h3 class="card-title fs-4">Personality</h3>
+                              <p class="card-text">Loving</p>
+                              <a href="./MrNewdles.html" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-5">
+                        <div class="card card-click shadow vh-50 m-3 rounded overflow-auto">
+                            <h2 class="px-4 pt-3 fs-4">Mr. Newdles</h2>
+                            <img src="imgs/MrNewdles.png" class="card-img-top h-100 py-0 rounded-1" alt="Mr. Newdles">
+                            <div class="card-body px-4 d-flex flex-column align-items-center text-center">
+                              <h3 class="card-title fs-4">Breed</h3>
+                              <p class="card-text">Hog Nose Snake</p>
+                              <h3 class="card-title fs-4">Personality</h3>
+                              <p class="card-text">Loving</p>
+                              <a href="./MrNewdles.html" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-5">
+                        <div class="card card-click shadow vh-50 m-3 rounded overflow-auto">
+                            <h2 class="px-4 pt-3 fs-4">Mr. Newdles</h2>
+                            <img src="imgs/MrNewdles.png" class="card-img-top h-100 py-0 rounded-1" alt="Mr. Newdles">
+                            <div class="card-body px-4 d-flex flex-column align-items-center text-center">
+                              <h3 class="card-title fs-4">Breed</h3>
+                              <p class="card-text">Hog Nose Snake</p>
+                              <h3 class="card-title fs-4">Personality</h3>
+                              <p class="card-text">Loving</p>
+                              <a href="./MrNewdles.html" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-5">
+                        <div class="card card-click shadow vh-50 m-3 rounded overflow-auto">
+                            <h2 class="px-4 pt-3 fs-4">Mr. Newdles</h2>
+                            <img src="imgs/MrNewdles.png" class="card-img-top h-100 py-0 rounded-1" alt="Mr. Newdles">
+                            <div class="card-body px-4 d-flex flex-column align-items-center text-center">
+                              <h3 class="card-title fs-4">Breed</h3>
+                              <p class="card-text">Hog Nose Snake</p>
+                              <h3 class="card-title fs-4">Personality</h3>
+                              <p class="card-text">Loving</p>
+                              <a href="./MrNewdles.html" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-5">
+                        <div class="card card-click shadow vh-50 m-3 rounded overflow-auto">
+                            <h2 class="px-4 pt-3 fs-4">Mr. Newdles</h2>
+                            <img src="imgs/MrNewdles.png" class="card-img-top h-100 py-0 rounded-1" alt="Mr. Newdles">
+                            <div class="card-body px-4 d-flex flex-column align-items-center text-center">
+                              <h3 class="card-title fs-4">Breed</h3>
+                              <p class="card-text">Hog Nose Snake</p>
+                              <h3 class="card-title fs-4">Personality</h3>
+                              <p class="card-text">Loving</p>
+                              <a href="./MrNewdles.html" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ADD A "NEXT PAGE" BAR -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</body>
+
+</html>

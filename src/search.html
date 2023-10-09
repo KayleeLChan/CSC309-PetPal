@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--
+  CSC309 Assignment 1
+  
+  University of Toronto
+  Fall 2023
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetPal</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body data-bs-theme="petpal">
+
+  <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
+  <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
+    <div class="container-fluid ps-3 pe-3">
+      <a class="navbar-brand h1 fs-1 text-primary-cream" href="#">
+        <img src="Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+        PetPal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Adopt
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Adopt Now</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Pets</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Shelter
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Find Shelters</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Shelter</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="input-group w-25 pe-5" id="basic-addon1">
+          <span class="input-group-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+            aria-describedby="basic-addon1">
+        </div>
+        <button class="btn bg-primary-cream text-primary-brown m-3 shadow-sm" type="">Log In</button>
+        <button class="btn bg-primary-orange text-primary-cream m-3 shadow-sm" type="">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="h-100 d-flex p-5 justify-content-around">
+
+    <div class="h-100 d-flex flex-column justify-center align-items">
+
+        <div class="d-flex flex-column justify-content-center align-items-center bg-primary-orange text-white rounded p-10" style="width: 1000px; height: 150px; margin-bottom: 30px;">
+            <h1>Start Searching Right Meow!</h1>
+            <p>Find a pal from our network of over 11,500 shelters and rescues</p>
+        </div>
+
+        <div class="container" style="margin-bottom: 20px;">
+            <div class="row">
+                <div class="col-md-6 justify-center">
+                    <!-- Pet Search -->
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-lg" type="button" style="width: 375px; height: 55px; background-color: white; border-color: #ccc; color: #4E3311;">
+                          Animal
+                        </button>
+                        <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="width: 50px; background-color: #6E502C; border-color: #6E502C;">
+                          <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <ul>
+                            <p>Cat</p>
+                            <p>Dog</p>
+                            <p>Hamster</p>
+                            <p>Bird</p>
+                            <p>Other</p>
+                          </ul>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 justify-center">
+                    <!-- Location Search -->
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-lg" type="button" style="width: 375px; height: 55px; background-color: white; border-color: #ccc; color: #4E3311;">
+                          Location
+                        </button>
+                        <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="width: 50px; background-color: #6E502C; border-color: #6E502C;">
+                          <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <ul>
+                            <p>Toronto</p>
+                            <p>Mississauga</p>
+                            <p>Brampton</p>
+                            <p>Scarborough</p>
+                            <p>Barrie</p>
+                          </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>
+                        <button class="btn text-primary-orange text-decoration-underline" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                            ADDITIONAL FILTERS:
+                        </button>
+                    </p>
+                    <div>
+                        <div class="card-body card collapse-vertical mx-auto" id="collapseWidthExample">
+                            <div class="text-center">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="age">
+                                                    <p>AGE:</p>
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="size">
+                                                    <p>SIZE:</p></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sex">
+                                                    <p>SEX:</p>
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="breed">
+                                                    <p>BREED:</p>
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="color">
+                                                    <p>COLOR:</p></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label for="young">0-3 years:</label>
+                                                <input style="margin-right: 10px;" type="radio" id="young" name="age" value="young">
+                                                <label for="adult">3-7 years:</label>
+                                                <input style="margin-right: 10px;" type="radio" id="adult" name="age" value="adult">
+                                                <label for="old">7+ years:</label>
+                                                <input style="margin-right: 10px;" type="radio" id="old" name="age" value="old">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="small">Small:</label>
+                                                <input style="margin-right: 10px;" type="radio" id="small" name="size_type" value="small">
+                                                <label for="medium">Medium:</label>
+                                                <input style="margin-right: 10px;" type="radio" id="medium" name="size_type" value="medium">
+                                                <label for="large">Large:</label>
+                                                <input style="margin-right: 10px;" type="radio" id="large" name="size_type" value="large">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="female">Female:</label>
+                                                <input style="margin-right: 10px;" type="radio" id="female" name="gender" value="female">
+                                                <label for="male">Male:</label>
+                                                <input style="margin-right: 10px;" type="radio" id="male" name="gender" value="male">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <input type="text" class="form-control" id="breed">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <select id="color" name="color" class="form-select">
+                                                    <option value="brown">Brown</option>
+                                                    <option value="black">Black</option>
+                                                    <option value="ginger">Ginger</option>
+                                                    <option value="blonde">Blonde</option>
+                                                    <option value="beige">Beige</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+        
+        <button class="btn btn-lg bg-primary-orange text-primary-cream m-2 shadow-sm w-25">            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                </path>
+          </svg>
+          SEARCH
+        </button>
+    </div>
+  </main>
+
+</body>
+
+</html>
