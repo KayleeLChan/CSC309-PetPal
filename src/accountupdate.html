@@ -67,6 +67,7 @@
             aria-describedby="basic-addon1">
         </div>
 
+        <!-- logged in profile dropdown -->
         <div class="dropdown">
             <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
@@ -75,7 +76,8 @@
             <ul class="dropdown-menu bg-primary-cream">
               <li><a class="dropdown-item text-primary-brown" href="notification.html">Notifications</a></li>
               <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
-              <li><a class="dropdown-item text-primary-brown" href="accountupdate.html">Manage Account</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="viewaccount.html">View Profile</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Logout</a></li>
             </ul>
         </div>
         </div>
@@ -83,9 +85,10 @@
     </div>
   </nav>
 
-  <main class="mh-100 d-flex flex-row">
+  <main class="mh-100 d-flex two-col">
     
-    <div class="d-flex flex-column bg-primary-brown align-items-center w-50 hide-md">
+    <!-- profile pic div -->
+    <div class="d-flex flex-column bg-primary-brown align-items-center w-50 hide-md two-col-child">
         <div class="paddingify">
         <div class="w-100 h-100">
         <img src="imgs/MrNewdles.png" class="rounded-circle" width="100%" height="100%">
@@ -100,8 +103,8 @@
     </div>
 
 
-    
-    <div class="d-flex flex-column justify-content-center align-items-center w-50">
+    <!-- user info div -->
+    <div class="d-flex flex-column justify-content-center align-items-center hide-md w-50 two-col-child">
         <h1>Hi Username!</h1>
         <div class="paddingify">
         <div class="d-flex flex-row">
@@ -131,19 +134,56 @@
                 <img src="imgs/image 5.png" height="20" width="20"></img>
             </a>
         </div>
-        <div class="text-primary-cream show-sm">
-            <label for="profilepic">Change Profile Photo</label>
-            <div>
-            <input type="file" class="form-control bg-primary-cream font-plain" id="profilepic">
-            </div>
-          </div>
-
         </div>
-        <img src="imgs/Group_9.svg" height="50%" width="50%">
+        <!-- paws -->
+        <img class="hide-xl" src="imgs/Group_9.svg" height="50%" width="50%">
+
     </div>
 
 
+        <!-- for small screen -->
+        <div class="d-flex flex-column justify-content-center align-items-center w-100 show-sm">
+        <h1>Hi Username!</h1>
+        <div class="paddingify">
+        <div class="d-flex flex-row">
+        <h2 class="font-plain">Username: username123</h2>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#user">
+                <img src="imgs/image 5.png" height="20" width="20"></img>
+            </a>
+        </div>
+        <hr/>
+        <div class="d-flex flex-row">
+            <h2 class="font-plain">Password: *********</h2>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#password">
+                <img src="imgs/image 5.png" height="20" width="20"></img>
+            </a>
+        </div>
+        <hr/>
+        <div class="d-flex flex-row">
+            <h2 class="font-plain">Phone: (555)-555-5555</h2>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#phone">
+                <img src="imgs/image 5.png" height="20" width="20"></img>
+            </a>
+        </div>
+        <hr/>
+        <div class="d-flex flex-row">
+            <h2 class="font-plain">Email: email@site.ca</h2>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#email">
+                <img src="imgs/image 5.png" height="20" width="20"></img>
+            </a>
+        </div>
+            <label class="text-primary-cream" for="profilepic">Change Profile Photo</label>
+            <div>
+            <input type="file" class="form-control bg-primary-cream font-plain" id="profilepic">
+            </div>
+        </div>
+        </div>
 
+
+
+
+
+        <!-- Edit modals -->
 
         <div class="modal fade" id="user" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="user" aria-hidden="true">
@@ -203,8 +243,5 @@
         
 
   </main>
-
-
-
 
 </body>

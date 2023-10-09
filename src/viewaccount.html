@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--
+  CSC309 Assignment 1
+  
+  University of Toronto
+  Fall 2023
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetPal</title>
+  <link rel="icon" sizes="16x16 32x32" type="image/x-icon" href="./imgs/favicon.ico">
+  <link rel="stylesheet" href="main.css">
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body data-bs-theme="petpal" class="min-vh-100">
+
+  <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
+  <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
+    <div class="container-fluid ps-3 pe-3">
+      <a class="navbar-brand h1 fs-1 text-primary-cream" href="./index.html">
+        <img src="./imgs/Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+        PetPal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Adopt
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Adopt Now</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Pets</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Shelter
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Find Shelters</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Shelter</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="input-group w-25 pe-5" id="basic-addon1">
+          <span class="input-group-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+            aria-describedby="basic-addon1">
+        </div>
+
+        <div class="dropdown">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="rounded-circle" height="50" width="50" src="imgs/MrNewdles.png" >
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="notification.html">Notifications</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="viewaccount.html">View Profile</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Logout</a></li>
+            </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="mh-100 d-flex two-col">
+
+    <div class="d-flex flex-column bg-primary-brown align-items-center w-50 hide-md two-col-child">
+        <div class="paddingify">
+        <div class="w-100 h-100">
+        <img src="imgs/MrNewdles.png" class="rounded-circle" width="100%" height="100%">
+        </div>
+        <div class="text-primary-cream d-flex align-items-center justify-content-center mt-3">
+            <button type="submit" class="btn btn-lg btn-primary-cream m-3 shadow-sm" onclick="window.location.href = 'accountupdate.html';">Edit Profile</button>
+          </div>
+        </div>
+    </div>
+        
+    <div class="d-flex flex-column justify-content-center align-items-center w-50 hide-md two-col-child">
+        <h1>Hi Username!</h1>
+        <div class="paddingify">
+        <div class="d-flex flex-row">
+        <h2 class="font-plain">Username: username123</h2>
+        </div>
+        <hr/>
+        <div class="d-flex flex-row">
+            <h2 class="font-plain">Password: *********</h2>
+        </div>
+        <hr/>
+        <div class="d-flex flex-row">
+            <h2 class="font-plain">Phone: (555)-555-5555</h2>
+        </div>
+        <hr/>
+        <div class="d-flex flex-row">
+            <h2 class="font-plain">Email: email@site.ca</h2>
+        </div>
+
+        </div>
+        <img class="hide-xl" src="imgs/Group_9.svg" height="50%" width="50%">
+        </div>
+
+        <!-- for small screen -->
+          <div class="d-flex flex-column justify-content-center align-items-center w-100 show-sm">
+            <h1>Hi Username!</h1>
+            <div class="paddingify">
+            <div class="d-flex flex-row">
+            <h2 class="font-plain">Username: username123</h2>
+            </div>
+            <hr/>
+            <div class="d-flex flex-row">
+                <h2 class="font-plain">Password: *********</h2>
+            </div>
+            <hr/>
+            <div class="d-flex flex-row">
+                <h2 class="font-plain">Phone: (555)-555-5555</h2>
+            </div>
+            <hr/>
+            <div class="d-flex flex-row">
+                <h2 class="font-plain">Email: email@site.ca</h2>
+            </div>
+            <div class="text-primary-cream d-flex align-items-center justify-content-center mt-3">
+                <button type="submit" class="btn btn-lg btn-primary-orange m-3 shadow-sm" onclick="window.location.href = 'viewaccount.html';">Edit Profile</button>
+            </div>
+            <div class="d-flex justify-content-center">
+                <img src="imgs/MrNewdles.png" class="rounded-circle" width="200" height="200">
+            </div>
+        </div>
+
+
