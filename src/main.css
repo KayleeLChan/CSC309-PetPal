@@ -19,6 +19,9 @@
 [data-bs-theme=petpal] h3, [data-bs-theme=petpal] .h3 {
   white-space: nowrap !important;
 }
+[data-bs-theme=petpal] .swappable-pic:hover {
+  opacity: 70%;
+}
 [data-bs-theme=petpal] .min-vh-50 {
   min-height: 50vh !important;
 }
@@ -28,8 +31,23 @@
 [data-bs-theme=petpal] .vw-50 {
   width: 50vw !important;
 }
+[data-bs-theme=petpal] .w-10 {
+  width: 10% !important;
+}
+[data-bs-theme=petpal] .w-15 {
+  width: 15% !important;
+}
+[data-bs-theme=petpal] .w-20 {
+  width: 20% !important;
+}
 [data-bs-theme=petpal] .w-40 {
   width: 40% !important;
+}
+[data-bs-theme=petpal] .w-60 {
+  width: 60% !important;
+}
+[data-bs-theme=petpal] .w-70 {
+  width: 70% !important;
 }
 [data-bs-theme=petpal] .w-90 {
   width: 90% !important;
@@ -14734,4 +14752,4 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}
+}/*# sourceMappingURL=main.css.map */

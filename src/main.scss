@@ -71,6 +71,10 @@ $grid-breakpoints: (
         white-space: nowrap !important;
     }
 
+    .swappable-pic:hover {
+        opacity: 70%
+    }
+
     // Sizing
     .min-vh-50 {
         min-height: 50vh !important;
@@ -84,8 +88,28 @@ $grid-breakpoints: (
         width: 50vw !important;
     }
 
+    .w-10 {
+        width: 10% !important;
+    }
+
+    .w-15 {
+        width: 15% !important;
+    }
+
+    .w-20 {
+        width: 20% !important;
+    }
+
     .w-40 {
         width: 40% !important;
+    }
+
+    .w-60 {
+        width: 60% !important;
+    }
+
+    .w-70 {
+        width: 70% !important;
     }
 
     .w-90 {
@@ -140,6 +164,7 @@ $grid-breakpoints: (
         outline: 0;
         box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
     }
+
 
     .card {
         --bs-card-border-width: 0;
