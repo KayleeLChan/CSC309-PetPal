@@ -122,7 +122,10 @@
   --bs-btn-border-radius: var(--bs-border-radius-lg);
 }
 [data-bs-theme=petpal] .btn-cream {
-  color: #FFEFD0;
+  color: #FFEFD0 !important;
+}
+[data-bs-theme=petpal] .btn-cream:hover {
+  color: #2E1400 !important;
 }
 [data-bs-theme=petpal] .btn-primary-cream {
   --bs-btn-color: #2E1400;

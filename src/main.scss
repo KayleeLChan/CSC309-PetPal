@@ -202,7 +202,11 @@ $grid-breakpoints: (
     }
 
     .btn-cream {
-        color: $primary-cream;
+        color: $primary-cream !important;
+    }
+
+    .btn-cream:hover {
+        color: $primary-brown !important;
     }
 
     .btn-primary-cream {
