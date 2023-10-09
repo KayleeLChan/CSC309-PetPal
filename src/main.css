@@ -3,7 +3,7 @@
 [data-bs-theme=petpal] {
   --bs-body-color: #2E1400;
   --bs-body-color-rgb: 78, 51, 17;
-  --bs-body-bg: #ffefd0;
+  --bs-body-bg: #FFEFD0;
   --bs-body-bg-rgb: 197, 169, 124;
   --bs-tertiary-bg: #FFEFD0;
   --bs-border-color: #2E1400;
@@ -70,14 +70,23 @@
   --bs-dropdown-link-active-bg: #F99129;
 }
 [data-bs-theme=petpal] .form-control:focus {
-  color: var(--bs-body-color);
-  background-color: var(--bs-body-bg);
+  color: #2E1400;
+  background-color: #FFEFD0;
   border-color: #F99129;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(249, 145, 41, 0.25);
 }
 [data-bs-theme=petpal] .form-select:focus {
-  border-color: var(--bs-body-bg);
+  border-color: #2E1400;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(249, 145, 41, 0.25);
+}
+[data-bs-theme=petpal] .form-check-input:checked {
+  background-color: #F99129;
+  border-color: #F99129;
+}
+[data-bs-theme=petpal] .form-check-input:focus {
+  border-color: #2E1400;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(249, 145, 41, 0.25);
 }
@@ -123,14 +132,18 @@
 [data-bs-theme=petpal] .btn {
   border: none;
 }
-[data-bs-theme=petpal] .btn-xl, [data-bs-theme=petpal] .btn-group-xl > .btn {
+[data-bs-theme=petpal] .btn-xl,
+[data-bs-theme=petpal] .btn-group-xl > .btn {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 2rem;
   --bs-btn-font-size: 2.5rem;
   --bs-btn-border-radius: var(--bs-border-radius-lg);
 }
 [data-bs-theme=petpal] .btn-cream {
-  color: #FFEFD0;
+  color: #FFEFD0 !important;
+}
+[data-bs-theme=petpal] .btn-cream:hover {
+  color: #2E1400 !important;
 }
 [data-bs-theme=petpal] .btn-primary-cream {
   --bs-btn-color: #2E1400;
@@ -163,6 +176,23 @@
 [data-bs-theme=petpal] .notif-col {
   width: 75%;
   margin: 3rem;
+}
+[data-bs-theme=petpal] .radio_gap {
+  margin-right: 10px;
+}
+[data-bs-theme=petpal] .nav-tabs {
+  --bs-nav-tabs-border-color: #C5A97C --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
+  --bs-nav-tabs-link-active-border-color: #C5A97C;
+}
+[data-bs-theme=petpal] .nav-tabs .nav-link:hover,
+[data-bs-theme=petpal] .nav-tabs .nav-link:focus {
+  border-color: #F99129;
+}
+[data-bs-theme=petpal] .nav-link {
+  color: #2E1400;
+}
+[data-bs-theme=petpal] .nav-link:hover, [data-bs-theme=petpal] .nav-link:focus {
+  color: #F99129;
 }
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {
@@ -210,6 +240,9 @@
   }
   [data-bs-theme=petpal] .text-truncate {
     font-size: small;
+  }
+  [data-bs-theme=petpal] .responsive-heading {
+    font-size: medium !important;
   }
 }
 @media (max-width: 1199.98px) {
@@ -269,6 +302,9 @@
   }
   [data-bs-theme=petpal] .detail-img {
     padding: 0.75rem;
+  }
+  [data-bs-theme=petpal] .responsive-heading {
+    font-size: larger;
   }
 }
 @media (min-width: 576px) {
