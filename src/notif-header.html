@@ -32,23 +32,25 @@
             <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown pe-5 d-flex flex-column">
-                        <a class="nav-link dropdown-toggle h1 fs-4 btn-cream m-0" href="#" role="button"
+                        <a class="nav-link dropdown-toggle h1 shelter-header-text btn-cream m-0" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Adopt
+                            Pet Listings
                         </a>
                         <ul class="dropdown-menu bg-primary-cream">
-                            <li><a class="dropdown-item text-primary-brown" href="#">Adopt Now</a></li>
-                            <li><a class="dropdown-item text-primary-brown" href="#">Feeling Lucky?</a></li>
+                            <li><a class="dropdown-item text-primary-brown" href="#">Find Listings</a></li>
+                            <li><a class="dropdown-item text-primary-brown" href="#">Manage Listings</a></li>
+                            <li><a class="dropdown-item text-primary-brown" href="#">Create Listing</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown pe-5 d-flex flex-column">
-                        <a class="nav-link dropdown-toggle h1 fs-4 btn-cream m-0" href="#" role="button"
+                        <a class="nav-link dropdown-toggle h1 shelter-header-text btn-cream m-0" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Shelter
+                            Shelter Management
                         </a>
                         <ul class="dropdown-menu bg-primary-cream">
                             <li><a class="dropdown-item text-primary-brown" href="#">Find Shelters</a></li>
-                            <li><a class="dropdown-item text-primary-brown" href="#">Feeling Lucky?</a></li>
+                            <li><a class="dropdown-item text-primary-brown" href="#">Your Reviews</a></li>
+                            <li><a class="dropdown-item text-primary-brown" href="#">Your Shelter Page</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -144,12 +146,24 @@
                         </div>
                       </div>
                 </div>
-                <div class="text-primary-orange">
-                    <button class="btn btn-primary-cream m-3 ms-0 shadow-sm" type="">Log In</button>
+                <div class="pe-3 dropdown dropstart hide-lg position-relative">
+                    <div class="ratio ratio-1x1 notif-dot w-20 rounded-circle position-absolute top-0 start-60"></div>
+                        <img src="./imgs/snakeShelter.jpg" class="p-0 profile-pic rounded-circle border btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <ul class="dropdown-menu bg-primary-cream">
+                            <li><a class="dropdown-item text-primary-brown" href="#">View Profile</a></li>
+                            <li><a class="dropdown-item text-primary-brown position-relative" href="#">Notifications <div class="ratio ratio-1x1 w-7 notif-dot rounded-circle position-absolute top-0 start-65"></div></a></li>
+                            <li><a class="dropdown-item text-primary-brown" href="#">Log Out</a></li>
+                        </ul>
                   </div>
-                  <div class="text-primary-brown">
-                    <button class="btn btn-primary-orange m-3 ms-0 shadow-sm" type="">Sign Up</button>
-                  </div>
+
+                  <div class="pe-3 dropdown show-md">
+                    <div class="position-relative profile-pic"><div class="ratio ratio-1x1 notif-dot w-20 rounded-circle position-absolute top-0 start-75"></div><img src="./imgs/snakeShelter.jpg" class="p-0 profile-pic rounded-circle border btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></div>
+                    <ul class="dropdown-menu bg-primary-cream">
+                        <li><a class="dropdown-item text-primary-brown" href="#">View Profile</a></li>
+                        <li><a class="dropdown-item text-primary-brown position-relative" href="#">Notifications <div class="ratio ratio-1x1 w-7 notif-dot rounded-circle position-absolute top-0 start-65"></div></a></li>
+                        <li><a class="dropdown-item text-primary-brown" href="#">Log Out</a></li>
+                    </ul>
+              </div>
             </div>
         </div>
     </nav>
