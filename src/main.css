@@ -242,6 +242,17 @@
     font-size: small;
   }
 }
+[data-bs-theme=petpal] .chat {
+  max-width: 400px;
+}
+@media (max-width: 409.98px) {
+  [data-bs-theme=petpal] .hide-xs {
+    display: none !important;
+  }
+  [data-bs-theme=petpal] .responsive-tab {
+    font-size: small;
+  }
+}
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {
     display: none !important;
@@ -15751,4 +15762,4 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}
+}/*# sourceMappingURL=main.css.map */
