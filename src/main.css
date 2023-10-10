@@ -215,7 +215,6 @@
   width: 75%;
   margin: 3rem;
 }
-
 [data-bs-theme=petpal] .radio_gap {
   margin-right: 10px;
 }
@@ -236,15 +235,6 @@
 [data-bs-theme=petpal] .chat {
   max-width: 400px;
 }
-@media (max-width: 409.98px) {
-  [data-bs-theme=petpal] .hide-xs {
-    display: none !important;
-  }
-  [data-bs-theme=petpal] .responsive-tab {
-    font-size: small;
-  }
-}
-
 [data-bs-theme=petpal] .signupcontainer {
   margin-top: 20px;
 }
@@ -258,7 +248,14 @@
   font-size: small;
   color: #F99129;
 }
-
+@media (max-width: 409.98px) {
+  [data-bs-theme=petpal] .hide-xs {
+    display: none !important;
+  }
+  [data-bs-theme=petpal] .responsive-tab {
+    font-size: small;
+  }
+}
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {
     display: none !important;
@@ -397,6 +394,9 @@
 @media (min-width: 768px) {
   [data-bs-theme=petpal] .show-sm {
     display: none !important;
+  }
+  [data-bs-theme=petpal] .title-separate {
+    width: 25% !important;
   }
 }
 @media (min-width: 992px) {
@@ -15779,4 +15779,4 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}/*# sourceMappingURL=main.css.map */
+}

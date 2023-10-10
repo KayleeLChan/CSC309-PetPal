@@ -97,9 +97,9 @@
 
             <!-- Title -->
             <div class="d-flex w-90 py-3 justify-content-between align-items-end small-title-input">
-              <input class="form-control form-control-lg border border-0 w-25" type="text" placeholder="Pet Name"
+              <input class="form-control form-control-lg border border-0 title-separate" type="text" placeholder="Pet Name"
                 aria-label="Pet Name Input">
-              <input class="form-control form-control-lg border border-0 w-25 text-end" type="text"
+              <input class="form-control form-control-lg border border-0 text-end title-separate" type="text"
                 placeholder="Location" aria-label="Location Input">
             </div>
             <!-- Title -->
@@ -116,17 +116,19 @@
 
             <!-- Summary -->
             <div
-              class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-5 p-1 bg-brown text-primary-cream rounded-2">
-              <div
-                class="w-100 d-flex flex-row align-items-center justify-content-evenly m-0 bg-brown text-primary-cream rounded-2 hide-lg position-relative">
-                <p class="fs-6 mb-0">Summary</p>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-sm btn-primary bg-primary-orange border border-0 position-absolute top-0 start-100 translate-middle"
-                data-bs-toggle="modal" data-bs-target="#summaryEditor">
-                Edit Summary
-              </button>
+              class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-5 p-1 bg-brown text-primary-cream rounded-2 position-relative">
+              <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-0 bg-brown text-primary-cream rounded-2 show-md">
+                <h1 class="fs-0">Summary</h1>
               </div>
-
+              <div
+                class="w-100 d-flex flex-row align-items-center justify-content-evenly m-0 bg-brown text-primary-cream rounded-2 hide-lg">
+                <p class="fs-6 mb-0">Summary</p>
+              </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-sm border border-0 position-absolute top-0 start-100"
+data-bs-toggle="modal" data-bs-target="#summaryEditor">
+<img src="imgs/image 5.png" height="20" width="20"></img>
+</button>
               <!-- Modal -->
               <div class="modal fade" id="summaryEditor" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="summaryEditorLabel" aria-hidden="true">
@@ -169,14 +171,14 @@
             </div>
             <!-- Summary -->
 
-            <div class="w-90 text-start">
+            <div class="w-100 text-start">
               <div class="d-flex flex-row align-items-center modal-div">
-                <h1 class="fs-0">About</h1>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary bg-primary-orange border border-0 h-25 m-3"
-                  data-bs-toggle="modal" data-bs-target="#aboutEditor">
-                  Edit
-                </button>
+                <h1 class="fs-0">About<!-- Button trigger modal -->
+                  <button type="button" class="btn border border-0 h-25 m-0 ps-0 translate-middle"
+                    data-bs-toggle="modal" data-bs-target="#aboutEditor">
+                    <img src="imgs/image 5.png" height="20" width="20"></img>
+                  </button></h1>
+                
               </div>
 
               <!-- Modal -->
@@ -224,12 +226,12 @@
               <!-- Modal -->
 
               <div class="d-flex flex-row align-items-center modal-div">
-                <h1 class="fs-0">Description</h1>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary bg-primary-orange border border-0 h-25 m-3"
-                  data-bs-toggle="modal" data-bs-target="#descriptionEditor">
-                  Edit
-                </button>
+                <h1 class="fs-0">Description<!-- Button trigger modal -->
+                  <button type="button" class="btn border border-0 h-25 m-0 ps-0 translate-middle"
+                    data-bs-toggle="modal" data-bs-target="#descriptionEditor">
+                    <img src="imgs/image 5.png" height="20" width="20"></img>
+                  </button></h1>
+                
               </div>
 
               <!-- Modal -->
@@ -484,16 +486,14 @@
 
     <div class="w-50 d-flex flex-column justify-content-center align-items-center">
 
-      <div class="d-flex flex-column w-100 mb-5 text-dark-brown bg-white rounded-5 text-center">
-        <div class="p-1 pt-3 text-primary-cream bg-primary-orange rounded-top-5 shadow">
-          <h2 class="responsive-heading">Application Status</h2>
-        </div>
-        <div class="d-flex flex-column justify-content-center align-items-center m-3">
+      <div class="d-flex flex-column mb-5 text-dark-brown bg-white rounded-5 text-center">
+        <div class="p-3 pt-3 text-primary-cream bg-primary-orange rounded-5 shadow position-relative">
+          <h2 class="responsive-heading m-0">Application Status</h2>
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-brown border border-0 h-25 m-3" data-bs-toggle="modal"
-            data-bs-target="#statusEditor">
-            Edit
-          </button>
+          <button type="button" class="btn border border-0 h-25 position-absolute top-0 start-100" data-bs-toggle="modal"
+          data-bs-target="#statusEditor">
+          <img src="imgs/image 5.png" height="20" width="20"></img>
+        </button>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="statusEditor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -505,7 +505,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body d-flex flex-column justify-content-start align-items-start">
-                <label for="payment" class="form-label">Application Status</label>
+                <label for="payment" class="form-label pt-0">Application Status</label>
                 <select class="form-select form-select-sm font-plain w-auto" aria-label="Default select example"
                   id="status">
                   <option selected>(required)</option>

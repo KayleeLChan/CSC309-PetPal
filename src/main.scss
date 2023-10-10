@@ -565,6 +565,10 @@ $grid-breakpoints: (
             // Don't show element on screen-sizes md and over
             display: none !important;
         }
+
+        .title-separate {
+            width: 25% !important;
+        }
     }
 
     @include media-breakpoint-up(lg) {
