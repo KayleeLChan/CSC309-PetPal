@@ -50,6 +50,9 @@
 [data-bs-theme=petpal] .swappable-pic:hover {
   opacity: 70%;
 }
+[data-bs-theme=petpal] .empty-star {
+  opacity: 30%;
+}
 [data-bs-theme=petpal] .min-vh-50 {
   min-height: 50vh !important;
 }
@@ -230,17 +233,6 @@
 }
 [data-bs-theme=petpal] .nav-link:hover, [data-bs-theme=petpal] .nav-link:focus {
   color: #2E1400;
-}
-[data-bs-theme=petpal] .chat {
-  max-width: 400px;
-}
-@media (max-width: 409.98px) {
-  [data-bs-theme=petpal] .hide-xs {
-    display: none !important;
-  }
-  [data-bs-theme=petpal] .responsive-tab {
-    font-size: small;
-  }
 }
 [data-bs-theme=petpal] .chat {
   max-width: 400px;
