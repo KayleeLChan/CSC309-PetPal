@@ -26,11 +26,20 @@
      object-fit: cover;
 }
 [data-bs-theme=petpal] .profile-pic {
+  min-width: 50px;
+  min-height: 50px;
   width: 50px;
   height: 50px;
+  max-width: 50px;
+  max-height: 50px;
 }
 [data-bs-theme=petpal] .profile-pic:hover {
   border-color: #FFEFD0 !important;
+}
+[data-bs-theme=petpal] .user-pic {
+  width: 170px;
+  height: 170px;
+  max-width: 170px;
 }
 [data-bs-theme=petpal] .notif-dot {
   background-color: #c63030;
@@ -214,6 +223,9 @@
 [data-bs-theme=petpal] .one-col-child {
   width: 50%;
 }
+[data-bs-theme=petpal] .responsive-col {
+  width: 75%;
+}
 [data-bs-theme=petpal] .small-img {
   width: 50vw;
 }
@@ -315,6 +327,11 @@
   [data-bs-theme=petpal] .responsive-heading {
     font-size: medium !important;
   }
+  [data-bs-theme=petpal] .user-pic {
+    width: 80px !important;
+    height: 80px !important;
+    max-width: 80px !important;
+  }
 }
 @media (max-width: 1199.98px) {
   [data-bs-theme=petpal] .hide-xl {
@@ -343,6 +360,9 @@
   }
   [data-bs-theme=petpal] .shelter-header-text {
     font-size: 1.25rem !important;
+  }
+  [data-bs-theme=petpal] .responsive-col {
+    width: 100% !important;
   }
 }
 @media (max-width: 1399.98px) {

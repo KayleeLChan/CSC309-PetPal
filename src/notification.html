@@ -18,63 +18,162 @@
 
 <body data-bs-theme="petpal" class="min-vh-100">
 
-<!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
-  <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
   <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
     <div class="container-fluid px-3">
-      <a class="navbar-brand h1 fs-1 btn-cream" href="./index.html">
-        <img src="./imgs/Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
-        PetPal
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown pe-5">
-            <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Adopt
-            </a>
-            <ul class="dropdown-menu bg-primary-cream">
-              <li><a class="dropdown-item text-primary-brown" href="#">Adopt Now</a></li>
-              <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
-              <li><a class="dropdown-item text-primary-brown" href="#">Manage Pets</a></li>
+        <a class="navbar-brand h1 fs-1 btn-cream mb-1" href="./index-shelter.html">
+            <img src="./imgs/Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top me-3">
+            PetPal
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown pe-5 d-flex flex-column">
+                    <a class="nav-link dropdown-toggle h1 shelter-header-text btn-cream m-0" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Pet Listings
+                    </a>
+                    <ul class="dropdown-menu bg-primary-cream">
+                        <li><a class="dropdown-item text-primary-brown" href="search.html">Find Listings</a></li>
+                        <li><a class="dropdown-item text-primary-brown" href="shelterpetcollection.html">Manage Listings</a></li>
+                        <li><a class="dropdown-item text-primary-brown" href="creation.html">Create Listing</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown pe-5 d-flex flex-column">
+                    <a class="nav-link dropdown-toggle h1 shelter-header-text btn-cream m-0" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Shelter Management
+                    </a>
+                    <ul class="dropdown-menu bg-primary-cream">
+                        <li><a class="dropdown-item text-primary-brown" href="search.html">Find Shelters</a></li>
+                        <li><a class="dropdown-item text-primary-brown" href="shelterreview.html">Your Reviews</a></li>
+                        <li><a class="dropdown-item text-primary-brown" href="shelterdetails.html">Your Shelter Page</a></li>
+                    </ul>
+                </li>
             </ul>
-          </li>
-          <li class="nav-item dropdown pe-5">
-            <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Shelter
-            </a>
-            <ul class="dropdown-menu bg-primary-cream">
-              <li><a class="dropdown-item text-primary-brown" href="#">Find Shelters</a></li>
-              <li><a class="dropdown-item text-primary-brown" href="#">Manage Shelter</a></li>
-            </ul>
-          </li>
-        </ul>
-        <div class="input-group w-25 pe-5" id="basic-addon1">
-          <span class="input-group-text">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-              viewBox="0 0 16 16">
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
-              </path>
-            </svg>
-          </span>
-          <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
-            aria-describedby="basic-addon1">
+            <div class="w-25 pe-5 hide-lg" id="basic-addon1">
+                <ul class="nav nav-tabs" id="search-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active search-tab-link p-1 px-3" id="search-pets-tab" data-bs-toggle="pill" data-bs-target="#search-pets" type="button" role="tab" aria-controls="search-pets" aria-selected="true">Pets</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link search-tab-link p-1 px-3" id="search-shelters-tab" data-bs-toggle="pill" data-bs-target="#search-shelters" type="button" role="tab" aria-controls="search-shelters" aria-selected="false">Shelters</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content flex-fill" id="search-tabContent">
+                    <div class="tab-pane input-group w-100 show active" id="search-pets" role="tabpanel" aria-labelledby="search-pets-tab" tabindex="0">
+                        <div class="d-flex flex-row w-100">
+                            <div class="input-group-text p-0 rounded-end-0 rounded-top-0">
+                                <a href="search_results.html">
+                                    <button type="button" class="btn btn-primary-cream">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-search" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
+                            
+                            <input type="text" class="form-control rounded-start-0" placeholder="Search Pets..." aria-label="Search Pets..."
+                            aria-describedby="basic-addon1">
+                        </div>                      
+                    </div>
+                    <div class="tab-pane input-group w-100" id="search-shelters" role="tabpanel" aria-labelledby="search-shelters-tab" tabindex="0">
+                        <div class="d-flex flex-row w-100">
+                            <div class="input-group-text p-0 rounded-end-0">
+                                <a href="search_results.html">
+                                    <button type="button" class="btn btn-primary-cream">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-search" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
+                            
+                            <input type="text" class="form-control rounded-start-0" placeholder="Search Shelters..." aria-label="Search Shelters..."
+                            aria-describedby="basic-addon1">
+                        </div> 
+                    </div>
+                  </div>
+            </div>
+            <div class="w-100 pe-5 mb-3 show-md" id="basic-addon1">
+                <ul class="nav nav-tabs" id="search-tab-md" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active fs-6 p-1 px-3" id="search-pets-tab-md" data-bs-toggle="pill" data-bs-target="#search-pets-md" type="button" role="tab" aria-controls="search-pets-md" aria-selected="true">Pets</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link fs-6 p-1 px-3" id="search-shelters-tab-md" data-bs-toggle="pill" data-bs-target="#search-shelters-md" type="button" role="tab" aria-controls="search-shelters-md" aria-selected="false">Shelters</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content flex-fill" id="search-tabContent-md">
+                    <div class="tab-pane input-group w-100 show active" id="search-pets-md" role="tabpanel" aria-labelledby="search-pets-tab-md" tabindex="0">
+                        <div class="d-flex flex-row w-100">
+                            <div class="input-group-text p-0 rounded-end-0 rounded-top-0">
+                                <a href="search_results.html">
+                                    <button type="button" class="btn btn-primary-cream">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-search" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
+                            
+                            <input type="text" class="form-control rounded-start-0" placeholder="Search Pets..." aria-label="Search Pets..."
+                            aria-describedby="basic-addon1">
+                        </div>                      
+                    </div>
+                    <div class="tab-pane input-group w-100" id="search-shelters-md" role="tabpanel" aria-labelledby="search-shelters-tab-md" tabindex="0">
+                        <div class="d-flex flex-row w-100">
+                            <div class="input-group-text p-0 rounded-end-0">
+                                <a href="search_results.html">
+                                    <button type="button" class="btn btn-primary-cream">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-search" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
+                            
+                            <input type="text" class="form-control rounded-start-0" placeholder="Search Shelters..." aria-label="Search Shelters..."
+                            aria-describedby="basic-addon1">
+                        </div> 
+                    </div>
+                  </div>
+            </div>
+            <div class="pe-3 dropdown dropstart hide-lg">
+                    <img src="./imgs/snakeShelter.jpg" class="p-0 profile-pic rounded-circle border btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <ul class="dropdown-menu bg-primary-cream">
+                        <li><a class="dropdown-item text-primary-brown" href="viewaccount-shelter.html">View Profile</a></li>
+                        <li><a class="dropdown-item text-primary-brown" href="notification.html">Notifications</a></li>
+                        <li><a class="dropdown-item text-primary-brown" href="index-shelter.html">Log Out</a></li>
+                    </ul>
+              </div>
+
+              <div class="pe-3 dropdown show-md">
+                <img src="./imgs/snakeShelter.jpg" class="p-0 profile-pic rounded-circle border btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <ul class="dropdown-menu bg-primary-cream">
+                    <li><a class="dropdown-item text-primary-brown" href="viewaccount-shelter.html">View Profile</a></li>
+                    <li><a class="dropdown-item text-primary-brown" href="notification.html">Notifications</a></li>
+                    <li><a class="dropdown-item text-primary-brown" href="index-shelter.html">Log Out</a></li>
+                </ul>
+          </div>
         </div>
-        <div class="text-primary-orange">
-          <button class="btn bg-primary-cream m-3 shadow-sm" type="">Log In</button>
-        </div>
-        <div class="text-primary-brown">
-          <button class="btn bg-primary-orange btn-cream m-3 shadow-sm" type="">Sign Up</button>
-        </div>
-      </div>
     </div>
-  </nav>
+</nav>
 
   <main class="d-flex justify-content-center">
 
@@ -84,10 +183,37 @@
       <!-- Notification -->
       <div class="d-flex pt-2 w-100 justify-content-center">
         <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 w-90 mx-3 text-start"
+          data-bs-toggle="modal" data-bs-target="#barackObama">
+          <div class="d-flex flex-row align-items-center">
+            <h3 class="m-0 notif-title">Barack Obama:</h3>
+          <p class="font-plain fs-6 m-0 ps-3 pt-2 text-truncate notif-msg">Hi! I was looking at Ssssnelter and wanted to adopt your lovely snake Mr. Newdles! I sent in my application for you to review at your convenience. I sincerely hope that we'll be able to adopt Mr. Newdles and gain a great new addition to our family, since she's so obviously loving. I look forward to hearing you respond soon!</p>
+          </div>
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="barackObama" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="barackObamaLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-2 text-primary-brown" id="barackObamaLabel">Barack Obama</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Hi! I was looking at Ssssnelter and wanted to adopt your lovely snake Mr. Newdles! I sent in my application for you to review at your convenience. I sincerely hope that we'll be able to adopt Mr. Newdles and gain a great new addition to our family, since she's so obviously loving. I look forward to hearing you respond soon!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notification -->
+      <div class="d-flex w-100 justify-content-center">
+        <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 w-90 mx-3 text-start"
           data-bs-toggle="modal" data-bs-target="#torontoCatRelief">
           <div class="d-flex flex-row align-items-center">
             <h3 class="m-0 notif-title">Toronto Cat Relief:</h3>
-          <p class="font-plain fs-6 m-0 ps-3 pt-2 text-truncate notif-msg">Hello! We took a look at your application and thought wow, this gorl is crazy but perfect for Mr. Newdles, so we’d love to continue with the adoption process! Please reach out to us using our contacts or the chat system. Thanks and we hope to hear from you soon!</p>
+          <p class="font-plain fs-6 m-0 ps-3 pt-2 text-truncate notif-msg">Toronto Cat Relief gave you a review! Wow, they're so amazing, so many sneks galore, we stan. pop off queens. GO AWFFFFF.</p>
           </div>
         </button>
 
@@ -101,7 +227,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                Hello! We took a look at your application and thought wow, this gorl is crazy but perfect for Mr. Newdles, so we’d love to continue with the adoption process! Please reach out to us using our contacts or the chat system. Thanks and we hope to hear from you soon!
+                Toronto Cat Relief gave you a review! Wow, they're so amazing, so many sneks galore, we stan. pop off queens. GO AWFFFFF.
               </div>
             </div>
           </div>
