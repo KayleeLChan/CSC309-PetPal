@@ -79,12 +79,22 @@ $grid-breakpoints: (
     }
 
     .profile-pic {
+        min-width: 50px;
+        min-height: 50px;
         width: 50px;
         height: 50px;
+        max-width: 50px;
+        max-height: 50px;
     }
 
     .profile-pic:hover {
         border-color: #{$primary-cream} !important;
+    }
+
+    .user-pic {
+        width: 170px;
+        height: 170px;
+        max-width: 170px;
     }
 
     .notif-dot {
@@ -218,6 +228,9 @@ $grid-breakpoints: (
         box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
     }
 
+    .form-check-label {
+        padding-top: 0;
+    }
 
     .card {
         --bs-card-border-width: 0;
@@ -316,6 +329,10 @@ $grid-breakpoints: (
 
     .one-col-child {
         width: 50%;
+    }
+
+    .responsive-col {
+        width: 75%;
     }
 
     .small-img {
@@ -453,6 +470,12 @@ $grid-breakpoints: (
         .responsive-heading {
             font-size: medium !important;
         }
+
+        .user-pic {
+            width: 80px !important;
+            height: 80px !important;
+            max-width: 80px !important;
+        }
     }
 
     @include media-breakpoint-down(xl) {
@@ -490,6 +513,10 @@ $grid-breakpoints: (
 
         .shelter-header-text {
             font-size: 1.25rem !important;
+        }
+
+        .responsive-col {
+            width: 100% !important;
         }
     }
 
@@ -568,6 +595,10 @@ $grid-breakpoints: (
         .show-sm {
             // Don't show element on screen-sizes md and over
             display: none !important;
+        }
+
+        .title-separate {
+            width: 25% !important;
         }
     }
 
