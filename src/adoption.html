@@ -85,32 +85,79 @@
                 <form class="w-75 mt-3">
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName">
+                        <input type="text" class="form-control" id="firstName" required>
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName">
+                        <input type="text" class="form-control" id="lastName" required>
                     </div>
                     <div class="mb-3">
+                      <label for="address" class="form-label">home Address</label>
+                      <input type="address" class="form-control" id="address" aria-describedby="addressHelp" required>
+                      <div id="addressHelp" class="form-text">We'll never share your address with anyone other than the
+                          shelter.</div>
+                  </div>
+                    <div class="mb-3">
                         <label for="email" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone other than the
                             shelter.</div>
                     </div>
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp">
+                        <input type="tel" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp" required>
                         <div id="phoneNumberHelp" class="form-text">We'll never share your phone number with anyone
                             other than the shelter.</div>
                     </div>
                     <div class="mb-3">
                         <label for="postalCode" class="form-label">Postal Code</label>
-                        <input type="text" class="form-control" id="postalCode" aria-describedby="postalCodeHelp">
+                        <input type="text" class="form-control" id="postalCode" aria-describedby="postalCodeHelp" required>
                         <div id="postalCodeHelp" class="form-text">We'll never share your postal code with anyone other
                             than the shelter.</div>
                     </div>
+                    <div class="mb-3">
+                      <label for="age" class="form-label">Are you above 21 years of age?</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="age" id="ageYes">
+                        <label class="form-check-label" for="ageYes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="age" id="ageNo">
+                        <label class="form-check-label" for="ageNo">
+                          No
+                        </label>
+                      </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="insurance" class="form-label">Are you currently insured?</label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="insurance" id="insuranceYes">
+                      <label class="form-check-label" for="insuranceYes">
+                        Yes
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="insurance" id="insuranceNo">
+                      <label class="form-check-label" for="insuranceNo">
+                        No
+                      </label>
+                    </div>
+                    <label for="insuranceName" class="form-label">Name of Insurance</label>
+                    <input type="text" class="form-control mb-2" id="insuranceName">
+                    <label for="payment" class="form-label">Method of Payment</label>
+                    <select class="form-select form-select-sm font-plain w-auto" aria-label="Default select example" id="payment" required>
+                        <option selected>(required)</option>
+                        <option value="visa">Visa</option>
+                        <option value="mastercard">Mastercard</option>
+                        <option value="amex">American Express</option>
+                        <option value="interac">Interac E-transfer</option>
+                        <option value="paypal">Paypal</option>
+                    </select>
+                </div>
+                <button class="btn btn-lg bg-primary-orange text-primary-cream m-3 ms-0 shadow-sm hide-xl" type="submit">Submit Application</button>
                 </form>
-                <button class="btn btn-lg bg-primary-orange text-primary-cream m-3 ms-0 shadow-sm hide-xl" type="button">Submit Application</button>
             </div>
             <!-- Left Column -->
 
@@ -122,41 +169,57 @@
                 <!-- Title -->
 
                 <!-- Questions -->
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
                     <p class="mb-0">I am looking to adopt for</p>
-                    <select class="form-select form-select-sm font-plain w-auto ms-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(required)</option>
                         <option value="myself">myself</option>
                         <option value="my family">my family</option>
                     </select>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
                     <p class="mb-0">I have</p>
-                    <select class="form-select form-select-sm font-plain w-auto mx-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(required)</option>
                         <option value="kids">kids</option>
                         <option value="no kids">no kids</option>
                     </select>
+                  </div>
+                  <div class="col-12">
                     <p class="mb-0">at home</p>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
                     <p class="mb-0">I am a</p>
-                    <select class="form-select form-select-sm font-plain w-auto mx-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(required)</option>
                         <option value="previous">previous</option>
                         <option value="first-time">first-time</option>
                     </select>
+                  </div>
+                  <div class="col-12">
                     <p class="mb-0">pet owner</p>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
                     <p class="mb-0">I currently have</p>
-                    <select class="form-select form-select-sm font-plain w-auto ms-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(required)</option>
                         <option value="none">no pet(s)</option>
@@ -165,11 +228,14 @@
                         <option value="both">dog(s) and cat(s)</option>
                         <option value="other">other pet(s)</option>
                     </select>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
-                    <p class="mb-0">My ideal pet is a</p>
-                    <select class="form-select form-select-sm font-plain w-auto ms-2 border border-0"
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
+                    <p class="mb-0">My ideal pet is a(n)</p>
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(no age preference)</option>
                         <option value="newborn">newborn</option>
@@ -177,21 +243,27 @@
                         <option value="adult">adult</option>
                         <option value="senior">senior</option>
                     </select>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
                     <p class="mb-0">I would like to adopt a</p>
-                    <select class="form-select form-select-sm font-plain w-auto ms-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(no gender preference)</option>
                         <option value="female">female</option>
                         <option value="male">male</option>
                     </select>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
                     <p class="mb-0">I prefer a pet that is</p>
-                    <select class="form-select form-select-sm font-plain w-auto ms-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(no size preference)</option>
                         <option value="small">small</option>
@@ -199,11 +271,14 @@
                         <option value="large">large</option>
                         <option value="extra large">extra large</option>
                     </select>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
                     <p class="mb-0">My pet's behaviour should be</p>
-                    <select class="form-select form-select-sm font-plain w-auto ms-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(no behaviour preference)</option>
                         <option value="very active">very active</option>
@@ -211,32 +286,30 @@
                         <option value="laid-back">laid-back</option>
                         <option value="lap-pet">lap-pet</option>
                     </select>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
-                    <p class="mb-0">My pet must be</p>
-                    <select class="form-select form-select-sm font-plain w-auto ms-2 border border-0"
-                        aria-label="Default select example">
-                        <option selected>(no preference)</option>
-                        <option value="allergy-friendly">allergy-friendly</option>
-                        <option value="house-trained">house-trained</option>
-                    </select>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
                     <p class="mb-0">I am</p>
-                    <select class="form-select form-select-sm font-plain w-auto mx-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(required)</option>
                         <option value="open">open</option>
                         <option value="not open">not open</option>
                     </select>
+                  </div>
+                  <div class="col-12">
                     <p class="mb-0">to adopting a pet with special needs</p>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
-                    <p class="mb-0">I live in a </p>
-                    <select class="form-select form-select-sm font-plain w-auto mx-2 border border-0"
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
+                    <p class="mb-0">I live in a(n)</p>
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(required)</option>
                         <option value="house">house</option>
@@ -245,36 +318,49 @@
                         <option value="townhouse">townhouse</option>
                         <option value="other">other</option>
                     </select>
-                    <p class="mb-0">that I</p>
-                    <select class="form-select form-select-sm font-plain w-auto mx-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <p class="mb-0">that is</p>
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(required)</option>
                         <option value="own">own</option>
                         <option value="rent">rent</option>
                     </select>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
                     <p class="mb-0">The pet will be kept</p>
-                    <select class="form-select form-select-sm font-plain w-auto mx-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(required)</option>
                         <option value="indoors">indoors</option>
                         <option value="outdoors">outdoors</option>
                     </select>
-                </div>
-
-                <div class="d-flex flex-row w-100 pt-4 justify-content-start align-self-start align-items-center">
+                  </div>
+                </form>
+                <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+                  <div class="col-12">
                     <p class="mb-0">I have</p>
-                    <select class="form-select form-select-sm font-plain w-auto mx-2 border border-0"
+                  </div>
+                  <div class="col-12">
+                    <select class="form-select form-select-sm font-plain w-auto border border-0"
                         aria-label="Default select example">
                         <option selected>(required)</option>
                         <option value="none">no</option>
                         <option value="fenced">a fenced</option>
                         <option value="un-fenced">an un-fenced</option>
                     </select>
+                  </div>
+                  <div class="col-12">
                     <p class="mb-0">yard</p>
-                </div>
+                  </div>
+                </form>
                 <!-- Questions -->
                 <div class="m-5 mb-0 form-floating w-100 h-100">
                     <textarea class="form-control border border-0 h-100" placeholder="Leave additional inquiries here" id="additionalInquiries"></textarea>

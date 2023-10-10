@@ -16,7 +16,7 @@
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body data-bs-theme="petpal" class="min-vh-100">
+<body data-bs-theme="petpal" class="min-vh-100 overflow-y-scroll">
 
   <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
   <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
@@ -72,180 +72,502 @@
     </div>
   </nav>
 
-  <main class="d-flex flex-column justify-content-center align-items-center">
+  <main class="d-flex flex-column justify-content-start align-items-center">
 
-    <div class="d-flex one-col-child m-5 p-3 px-5 bg-cream flex-column align-items-center rounded">
-
-      <!-- Title -->
-      <div class="d-flex w-90 py-3 justify-content-between align-items-end small-title-input">
-        <input class="form-control form-control-lg border border-0 w-25" type="text" placeholder="Pet Name" aria-label="Pet Name Input">
-        <input class="form-control form-control-lg border border-0 w-25 text-end" type="text" placeholder="Location" aria-label="Location Input">
+    <nav>
+      <div class="nav nav-tabs mt-5 " id="nav-tab" role="tablist">
+        <button class="responsive-tab nav-link active" id="nav-details-tab" data-bs-toggle="tab"
+          data-bs-target="#nav-details" type="button" role="tab" aria-controls="nav-details"
+          aria-selected="true">Details</button>
+        <button class="responsive-tab nav-link" id="nav-compatability-tab" data-bs-toggle="tab"
+          data-bs-target="#nav-compatability" type="button" role="tab" aria-controls="nav-compatability"
+          aria-selected="false">Compatability</button>
+        <button class="responsive-tab nav-link" id="nav-applicants-tab" data-bs-toggle="tab"
+          data-bs-target="#nav-applicants" type="button" role="tab" aria-controls="nav-applicants"
+          aria-selected="false">Applicants</button>
       </div>
-      <!-- Title -->
+    </nav>
+    <div
+      class="d-flex one-col-child w-50 m-5 mt-0 p-3 px-5 bg-cream flex-column align-items-center justify-content-center rounded">
+      <div class="tab-content w-100" id="nav-tabContent">
+        <!-- Details -->
+        <div class="tab-pane fade show active" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab"
+          tabindex="0">
+          <div class="d-flex flex-column align-items-center">
 
-      <!-- Image Input -->
-      <div class="d-flex flex-column justify-content-center align-items-center bg-primary-cream rounded p-3">
-            <img src="./imgs/gallery.svg" width="70%">
-            <form class="d-flex flex-column justify-content-center align-items-center" enctype="multipart/form-data">
+            <!-- Title -->
+            <div class="d-flex w-90 py-3 justify-content-between align-items-end small-title-input">
+              <input class="form-control form-control-lg border border-0 w-25" type="text" placeholder="Pet Name"
+                aria-label="Pet Name Input">
+              <input class="form-control form-control-lg border border-0 w-25 text-end" type="text"
+                placeholder="Location" aria-label="Location Input">
+            </div>
+            <!-- Title -->
+
+            <!-- Image Input -->
+            <div class="d-flex flex-column justify-content-center align-items-center bg-primary-cream rounded p-3">
+              <img src="./imgs/gallery.svg" width="70%">
+              <form class="d-flex flex-column justify-content-center align-items-center" enctype="multipart/form-data">
                 <label for="formFile" class="form-label">Upload images</label>
                 <input class="form-control" type="file" id="formFile" multiple="multiple">
-            </form>
-      </div>
-      <!-- Image Input -->
+              </form>
+            </div>
+            <!-- Image Input -->
 
-      <!-- Summary -->  
-      <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-5 p-1 bg-brown text-primary-cream rounded-2">
-        <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-0 bg-brown text-primary-cream rounded-2 hide-lg">
-          <p class="fs-6 mb-0">Hog Nose Snake</p>
-          <p class="fs-6 mb-0">|</p>
-          <p class="fs-6 mb-0"> Adult</p>
-          <p class="fs-6 mb-0">|</p>
-          <p class="fs-6 mb-0"> Female</p>
-          <p class="fs-6 mb-0">|</p>
-          <p class="fs-6 mb-0"> Small</p>
-          <p class="fs-6 mb-0">|</p>
-          <p class="fs-6 mb-0"> Snow Western Morph</p>
-        </div>
+            <!-- Summary -->
+            <div
+              class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-5 p-1 bg-brown text-primary-cream rounded-2">
+              <div
+                class="w-100 d-flex flex-row align-items-center justify-content-evenly m-0 bg-brown text-primary-cream rounded-2 hide-lg">
+                <p class="fs-6 mb-0">Hog Nose Snake</p>
+                <p class="fs-6 mb-0">|</p>
+                <p class="fs-6 mb-0"> Adult</p>
+                <p class="fs-6 mb-0">|</p>
+                <p class="fs-6 mb-0"> Female</p>
+                <p class="fs-6 mb-0">|</p>
+                <p class="fs-6 mb-0"> Small</p>
+                <p class="fs-6 mb-0">|</p>
+                <p class="fs-6 mb-0"> Snow Western Morph</p>
+              </div>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-sm btn-primary bg-primary-orange border border-0" data-bs-toggle="modal" data-bs-target="#summaryEditor">
-            Edit Summary
-        </button>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="summaryEditor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="summaryEditorLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5 text-primary-brown" id="summaryEditor">Summary</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>  
-                <div class="modal-body">
-                    <div class="form-floating mb-3">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-sm btn-primary bg-primary-orange border border-0"
+                data-bs-toggle="modal" data-bs-target="#summaryEditor">
+                Edit Summary
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="summaryEditor" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="summaryEditorLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5 text-primary-brown" id="summaryEditor">Summary</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Breed">
                         <label class="text-primary-brown" for="floatingInput">Breed</label>
-                    </div>
-                    <div class="form-floating mb-3">
+                      </div>
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Age">
                         <label class="text-primary-brown" for="floatingInput">Age</label>
-                    </div>
-                    <div class="form-floating mb-3">
+                      </div>
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Gender">
                         <label class="text-primary-brown" for="floatingInput">Gender</label>
-                    </div>
-                    <div class="form-floating mb-3">
+                      </div>
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Size">
                         <label class="text-primary-brown" for="floatingInput">Size</label>
-                    </div>
-                    <div class="form-floating mb-3">
+                      </div>
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Traits">
                         <label class="text-primary-brown" for="floatingInput">Traits</label>
+                      </div>
                     </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary bg-primary-orange"
+                        data-bs-dismiss="modal">Save</button>
+                    </div>
+                  </div>
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-primary bg-primary-orange" data-bs-dismiss="modal">Save</button>
-                </div>
+              </div>
+              <!-- Modal -->
             </div>
-            </div>
-        </div>
-        <!-- Modal -->
-      </div>
-      <!-- Summary -->
+            <!-- Summary -->
 
-      <div class="w-90 text-start">
-        <div class="d-flex flex-row align-items-center modal-div">
-            <h1 class="fs-0">About</h1>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary bg-primary-orange border border-0 h-25 m-3" data-bs-toggle="modal" data-bs-target="#aboutEditor">
-                Edit
-            </button>
-        </div>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="aboutEditor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="aboutEditorLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5 text-primary-brown" id="aboutEditorLabel">About</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>  
-                <div class="modal-body">
-                    <div class="form-floating mb-3">
+            <div class="w-90 text-start">
+              <div class="d-flex flex-row align-items-center modal-div">
+                <h1 class="fs-0">About</h1>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary bg-primary-orange border border-0 h-25 m-3"
+                  data-bs-toggle="modal" data-bs-target="#aboutEditor">
+                  Edit
+                </button>
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="aboutEditor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="aboutEditorLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5 text-primary-brown" id="aboutEditorLabel">About</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Personality">
                         <label class="text-primary-brown" for="floatingInput">Personality</label>
-                    </div>
-                    <div class="form-floating mb-3">
+                      </div>
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Size">
                         <label class="text-primary-brown" for="floatingInput">Size</label>
-                    </div>
-                    <div class="form-floating mb-3">
+                      </div>
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Training">
                         <label class="text-primary-brown" for="floatingInput">Training</label>
-                    </div>
-                    <div class="form-floating mb-3">
+                      </div>
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Health">
                         <label class="text-primary-brown" for="floatingInput">Health</label>
-                    </div>
-                    <div class="form-floating mb-3">
+                      </div>
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Good In a Home With">
                         <label class="text-primary-brown" for="floatingInput">Good In a Home With</label>
-                    </div>
-                    <div class="form-floating mb-3">
+                      </div>
+                      <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Prefers a Home Without">
                         <label class="text-primary-brown" for="floatingInput">Prefers a Home Without</label>
+                      </div>
                     </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary bg-primary-orange"
+                        data-bs-dismiss="modal">Save</button>
+                    </div>
+                  </div>
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-primary bg-primary-orange" data-bs-dismiss="modal">Save</button>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!-- Modal -->
-        <p class="fs-3 mb-0">Personality</p>
-        <p>Loving, Playful, Brave, Friendly</p>
-        <p class="fs-3 mb-0">Size</p>
-        <p>93cm</p>
-        <p class="fs-3 mb-0">House-Trained</p>
-        <p>Yes</p>
-        <p class="fs-3 mb-0">Health</p>
-        <p>Vacinnations up to date, spayed/neutered</p>
-        <p class="fs-3 mb-0">Good In a Home With</p>
-        <p>Other snakes</p>
-        <p class="fs-3 mb-0">Prefers a Home Without</p>
-        <p>Rodents</p>
+              </div>
+              <!-- Modal -->
+              <p class="fs-3 mb-0">Personality</p>
+              <p>Loving, Playful, Brave, Friendly</p>
+              <p class="fs-3 mb-0">Size</p>
+              <p>93cm</p>
+              <p class="fs-3 mb-0">House-Trained</p>
+              <p>Yes</p>
+              <p class="fs-3 mb-0">Health</p>
+              <p>Vacinnations up to date, spayed/neutered</p>
+              <p class="fs-3 mb-0">Good In a Home With</p>
+              <p>Other snakes</p>
+              <p class="fs-3 mb-0">Prefers a Home Without</p>
+              <p>Rodents</p>
 
-        <div class="d-flex flex-row align-items-center modal-div">
-            <h1 class="fs-0">Description</h1>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary bg-primary-orange border border-0 h-25 m-3" data-bs-toggle="modal" data-bs-target="#descriptionEditor">
-                Edit
-            </button>
-        </div>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="descriptionEditor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="descriptionEditorLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5 text-primary-brown" id="descriptionEditorLabel">Description</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>  
-                <div class="modal-body">
-                    <textarea class="form-control h-100 font-plain" placeholder="Add a description here" id="description"></textarea>
+              <div class="d-flex flex-row align-items-center modal-div">
+                <h1 class="fs-0">Description</h1>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary bg-primary-orange border border-0 h-25 m-3"
+                  data-bs-toggle="modal" data-bs-target="#descriptionEditor">
+                  Edit
+                </button>
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="descriptionEditor" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="descriptionEditorLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5 text-primary-brown" id="descriptionEditorLabel">Description</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <textarea class="form-control h-100 font-plain" placeholder="Add a description here"
+                        id="description"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary bg-primary-orange"
+                        data-bs-dismiss="modal">Save</button>
+                    </div>
+                  </div>
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-primary bg-primary-orange" data-bs-dismiss="modal">Save</button>
-                </div>
+              </div>
+              <p class="mb-1">Meet Mr. Newdles. This hog nose snake is the most adorableness goodness, you'll just wanna
+                boop her lil' nose like omg.</p>
+              <p class="mb-1">She bonds great with humans and will only bite you a few times during mealtime. Wow!</p>
+              <p>If you don't adopt her, ngl it's ur loss tbh >.></p>
             </div>
-            </div>
+          </div>
         </div>
-        <p class="mb-1">Meet Mr. Newdles. This hog nose snake is the most adorableness goodness, you'll just wanna boop her lil' nose like omg.</p>
-        <p class="mb-1">She bonds great with humans and will only bite you a few times during mealtime. Wow!</p>
-        <p>If you don't adopt her, ngl it's ur loss tbh >.></p>
+        <!-- Details -->
+
+        <!-- Compatability -->
+        <div class="tab-pane fade" id="nav-compatability" role="tabpanel" aria-labelledby="nav-compatability-tab"
+          tabindex="0">
+          <div class="d-flex flex-column w-100">
+
+            <!-- Questions -->
+            <form class="row row-cols-xs-auto gx-3 gy-1 pt-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet prefers</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                  aria-label="Default select example">
+                  <option>(required)</option>
+                  <option value="single" selected>single</option>
+                  <option value="family">family</option>
+                </select>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet likes</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                aria-label="Default select example">
+                <option>(required)</option>
+                <option value="kids" selected>kids</option>
+                <option value="no kids">no kids</option>
+              </select>
+              </div>
+              <div class="col-12">
+                <p class="mb-0">at home</p>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet should be with a</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                aria-label="Default select example">
+                <option>(required)</option>
+                <option value="previous" selected>previous</option>
+                <option value="first-time">first-time</option>
+              </select>
+              </div>
+              <div class="col-12">
+                <p class="mb-0">pet owner</p>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet is comfortable with</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                aria-label="Default select example">
+                <option>(required)</option>
+                <option value="none">no pet(s)</option>
+                <option value="cat">cat(s)</option>
+                <option value="dog">dog(s)</option>
+                <option value="both" selected>dog(s) and cat(s)</option>
+                <option value="other">other pet(s)</option>
+              </select>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet is a(n)</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                aria-label="Default select example">
+                <option>(required)</option>
+                <option value="newborn">newborn</option>
+                <option value="young">young</option>
+                <option value="adult">adult</option>
+                <option value="senior" selected>senior</option>
+              </select>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet's gender is</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                aria-label="Default select example">
+                <option>(required)</option>
+                <option value="female" selected>female</option>
+                <option value="male">male</option>
+              </select>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet's size is</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                aria-label="Default select example">
+                <option>(required)</option>
+                <option value="small">small</option>
+                <option value="medium" selected>medium</option>
+                <option value="large">large</option>
+                <option value="extra large">extra large</option>
+              </select>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet's behaviour is</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                aria-label="Default select example">
+                <option>(required)</option>
+                <option value="very active">very active</option>
+                <option value="active">active</option>
+                <option value="laid-back" selected>laid-back</option>
+                <option value="lap-pet">lap-pet</option>
+              </select>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+              <p for="age" class="form-label mb-0">My pet has special needs</p>
+              <div class="form-check ms-2 mb-0">
+                <input class="form-check-input" type="radio" name="needs" id="needsYes" checked>
+                <label class="form-check-label" for="needsYes">
+                  Yes
+                </label>
+              </div>
+              <div class="form-check ms-2 mb-0">
+                <input class="form-check-input" type="radio" name="needs" id="needsNo">
+                <label class="form-check-label" for="needsNo">
+                  No
+                </label>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet prefers living in a(n)</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                aria-label="Default select example">
+                <option>(required)</option>
+                <option value="house" selected>house</option>
+                <option value="condominium">condominium</option>
+                <option value="apartment">apartment</option>
+                <option value="townhouse">townhouse</option>
+                <option value="other">other</option>
+              </select>
+              </div>
+              <div class="col-12">
+                <p class="mb-0">that is</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                aria-label="Default select example">
+                <option>(required)</option>
+                <option value="own" selected>owned</option>
+                <option value="rent">rented</option>
+              </select>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet should be kept</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                aria-label="Default select example">
+                <option>(required)</option>
+                <option value="indoors">indoors</option>
+                <option value="outdoors" selected>outdoors</option>
+              </select>
+              </div>
+            </form>
+
+            <form class="row row-cols-xs-auto gx-3 gy-1 w-100 py-4 align-items-center">
+              <div class="col-12">
+                <p class="mb-0">My pet prefers</p>
+              </div>
+              <div class="col-12">
+                <select class="form-select form-select-sm font-plain w-auto border border-0"
+                  aria-label="Default select example">
+                  <option>(required)</option>
+                  <option value="none">no</option>
+                  <option value="fenced" selected>a fenced</option>
+                  <option value="un-fenced">an un-fenced</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <p class="mb-0">yard</p>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Compatability -->
+
+        <!-- Applicants -->
+        <div class="tab-pane fade" id="nav-applicants" role="tabpanel" aria-labelledby="nav-applicants-tab"
+          tabindex="0">
+          <div class="d-flex flex-column align-items-center">
+            <div class="d-flex flex-column pt-2 w-100 justify-content-center">
+              <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 mx-3">
+                <h3 class="m-0 notif-title">Firstha Lasteem</h3>
+              </button>
+              <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 mx-3">
+                <h3 class="m-0 notif-title">Firstlee Chlast</h3>
+              </button>
+              <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 mx-3">
+                <h3 class="m-0 notif-title">Firstghan Lasteorge</h3>
+              </button>
+              <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 mx-3">
+                <h3 class="m-0 notif-title">Arfirst Gingolast</h3>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Applicants -->
       </div>
     </div>
-    <button class="btn btn-xl cta-btn-xl bg-primary-orange text-primary-cream mb-5 shadow-sm" type="button">Update Details</button>
+
+    <div class="w-50 d-flex flex-column justify-content-center align-items-center">
+
+      <div class="d-flex flex-column w-100 mb-5 text-dark-brown bg-white rounded-5 text-center">
+        <div class="p-1 pt-3 text-primary-cream bg-primary-orange rounded-top-5 shadow">
+          <h2 class="responsive-heading">Application Status</h2>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center m-3">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-brown border border-0 h-25 m-3" data-bs-toggle="modal"
+            data-bs-target="#statusEditor">
+            Edit
+          </button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="statusEditor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="statusEditorLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5 text-primary-brown" id="statusEditorLabel">Status</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body d-flex flex-column justify-content-start align-items-start">
+                <label for="payment" class="form-label">Application Status</label>
+                <select class="form-select form-select-sm font-plain w-auto" aria-label="Default select example"
+                  id="status">
+                  <option selected>(required)</option>
+                  <option value="visa">Available</option>
+                  <option value="mastercard">Adopted</option>
+                  <option value="amex">Withdrawn</option>
+                </select>
+                <div class="form-floating mt-3">
+                  <input type="date" class="form-control" id="floatingInput" placeholder="Application Deadline">
+                  <label class="text-primary-brown" for="floatingInput">Application Deadline</label>
+                  <p class="fs-7 text-start m-0">Application Status will automatically change to Pending once
+                    application deadline passes</p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary bg-primary-orange" data-bs-dismiss="modal">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+      </div>
+    </div>
+
+    <button class="btn btn-xl cta-btn-xl bg-primary-orange text-primary-cream mb-5 shadow-sm" type="button">Update
+      Details</button>
   </main>
 
 </body>

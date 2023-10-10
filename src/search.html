@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!--
+  CSC309 Assignment 1
+  
+  University of Toronto
+  Fall 2023
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetPal</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body data-bs-theme="petpal">
+
+    <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
+    <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand h1 fs-1 btn-cream" href="./index.html">
+                <img src="./imgs/Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+                PetPal
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown pe-5">
+                        <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Adopt
+                        </a>
+                        <ul class="dropdown-menu bg-primary-cream">
+                            <li><a class="dropdown-item text-primary-brown" href="#">Adopt Now</a></li>
+                            <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
+                            <li><a class="dropdown-item text-primary-brown" href="#">Manage Pets</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown pe-5">
+                        <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Shelter
+                        </a>
+                        <ul class="dropdown-menu bg-primary-cream">
+                            <li><a class="dropdown-item text-primary-brown" href="#">Find Shelters</a></li>
+                            <li><a class="dropdown-item text-primary-brown" href="#">Manage Shelter</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="input-group w-25 pe-5 hide-lg" id="basic-addon1">
+                    <span class="input-group-text p-0">
+                        <button type="button" class="btn btn-primary-cream">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                                </path>
+                            </svg>
+                        </button>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group w-100 pe-5 show-md" id="basic-addon1">
+                    <span class="input-group-text p-0">
+                        <button type="button" class="btn btn-primary-cream">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                                </path>
+                            </svg>
+                        </button>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="text-primary-orange">
+                    <button class="btn btn-primary-cream m-3 ms-0 shadow-sm" type="">Log In</button>
+                </div>
+                <div class="text-primary-brown">
+                    <button class="btn btn-primary-orange m-3 ms-0 shadow-sm" type="">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="h-100 d-flex p-5 justify-content-center align-items-center">
+
+        <div class="d-flex flex-column">
+
+            <div
+                class="w-100 mb-3 p-4 d-flex flex-column bg-primary-orange text-white text-center justify-content-center align-items-center rounded">
+                <h2 class="responsive_header">Start Searching Right Meow!</h2>
+                Find a pal from our network of over 11,500 shelters and rescues
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 justify-center">
+                        <!-- Pet Search -->
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control bg-white"
+                                aria-label="Text input with dropdown button">
+                            <button class="btn btn-primary dropdown-toggle bg-primary-brown" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Animal</button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Cat</a></li>
+                                <li><a class="dropdown-item" href="#">Dog</a></li>
+                                <li><a class="dropdown-item" href="#">Hamster</a></li>
+                                <li><a class="dropdown-item" href="#">Capybara</a></li>
+                                <li><a class="dropdown-item" href="#">Unicorn</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 justify-center">
+                        <!-- Location Search -->
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control bg-white"
+                                aria-label="Text input with dropdown button">
+                            <button class="btn btn-primary dropdown-toggle bg-primary-brown" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Location</button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Toronto</a></li>
+                                <li><a class="dropdown-item" href="#">Brampton</a></li>
+                                <li><a class="dropdown-item" href="#">Mississauga</a></li>
+                                <li><a class="dropdown-item" href="#">Scarborough</a></li>
+                                <li><a class="dropdown-item" href="#">Barrie</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>
+                            <button class="btn text-primary-orange text-decoration-underline" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                ADDITIONAL FILTERS:
+                            </button>
+                        </p>
+                        <div>
+                            <div class="card-body card collapse-vertical" id="collapseExample">
+                                <div class="text-center">
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <!-- Row 1 Column 1 content -->
+                                            <div class="col-md-6">
+                                                <p>AGE:</p>
+                                            </div>
+
+                                            <!-- Row 1 Column 2 content -->
+                                            <div class="col-md-6">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="young">
+                                                    <label class="form-check-label" for="young">0-3 years</label>
+                                                </div>
+
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="grown">
+                                                    <label class="form-check-label" for="grown">3-7 years</label>
+                                                </div>
+
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="old">
+                                                    <label class="form-check-label" for="old">7+ years</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- Row 2 Column 1 content -->
+                                            <p>SIZE:</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Row 2 Column 2 content -->
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                    id="small">
+                                                <label class="form-check-label" for="small">Small</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                    id="medium">
+                                                <label class="form-check-label" for="medium">Medium</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                    id="large">
+                                                <label class="form-check-label" for="large">Large</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Row 3 Column 1 content -->
+                                        <p>SEX:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Row 3 Column 2 content -->
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="female">
+                                            <label class="form-check-label" for="female">Female</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="male">
+                                            <label class="form-check-label" for="male">Male</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Row 4 Column 1 content -->
+                                        <p>BREED:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Row 4 Column 2 content -->
+                                        <div class="form-group mb-3">
+                                            <input type="text" class="form-control" id="breed">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Row 5 Column 1 content -->
+                                        <p>COLOR:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Row 5 Column 2 content -->
+                                        <div class="form-group mb-3">
+                                            <select id="color" name="color" class="form-select">
+                                                <option value="brown">Brown</option>
+                                                <option value="black">Black</option>
+                                                <option value="ginger">Ginger</option>
+                                                <option value="blonde">Blonde</option>
+                                                <option value="beige">Beige</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button
+                            class="btn btn-lg bg-primary-orange text-primary-cream m-2 shadow-sm w-25 align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                                </path>
+                            </svg>
+                            SEARCH
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+    </main>
+
+</body>
+
+</html>

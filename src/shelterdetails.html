@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--
+  CSC309 Assignment 1
+  
+  University of Toronto
+  Fall 2023
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetPal</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body data-bs-theme="petpal" class="min-vh-100">
+
+  <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
+  <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
+    <div class="container-fluid ps-3 pe-3">
+      <a class="navbar-brand h1 fs-1 text-primary-cream" href="#">
+        <img src="./imgs/Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+        PetPal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Adopt
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Adopt Now</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Applications</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Pets</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Shelter
+            </a>
+            <ul class="dropdown-menu bg-primary-cream">
+              <li><a class="dropdown-item text-primary-brown" href="#">Find Shelters</a></li>
+              <li><a class="dropdown-item text-primary-brown" href="#">Manage Shelter</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="input-group w-25 pe-5" id="basic-addon1">
+          <span class="input-group-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+            aria-describedby="basic-addon1">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- content container -->
+  <main class="mh-100 d-flex flex-column">
+    
+    <!-- shelter header -->
+    <div class="d-flex flex-row align-self-start mt-4 w-100 justify-content-left bg-brown rounded-2">
+        <!-- shelter logo -->
+        <img src="./imgs/snakeShelter.jpg" width="10%" height="10%" class="align-self-center rounded-circle m-5 mt-3 mb-3">
+        <!-- shelter details --> 
+        <div class="align-self-start justify-content-left w-50 mt-2 mb-3">
+            <h1 class="text-primary-cream text-decoration-underline mb-1">Toronto Cat Relief</h1>
+            <h5 class="text-primary-cream mb-1">27 King's College Circle, Toronto</h5>
+            <div class="d-flex flex-row w-25">
+                <img src="./imgs/reviewstar.png" width="30%" height="30%" class="m-1">
+                <img src="./imgs/reviewstar.png" width="30%" height="30%" class="m-1">
+                <img src="./imgs/reviewstar.png" width="30%" height="30%" class="m-1">
+                <img src="./imgs/reviewstar.png" width="30%" height="30%" class="m-1">
+                <img src="./imgs/reviewstar.png" width="30%" height="30%" class="m-1">
+            </div>
+        </div>
+        <!-- shelter contact details -->
+        <div class="d-flex flex-column align-items-center align-self-center justify-content-left w-50 mb-2 mt-1">
+            <p class="text-primary-cream mb-1">Account publised on: Feb 30, 1997</p>
+            <p class="text-primary-cream mb-1">Email: tocatrelief@gmail.com</p>
+            <p class="text-primary-cream mb-1">Phone Number: xxx-xxx-xxxx</p>
+            <p class="text-primary-cream mb-1">Website: www.tocatrelief.com</p>
+        </div>
+    </div>
+
+    <!-- lower half body container -->
+    <div class="d-flex flex-row align-self-start mt-4 w-100 justify-content-left">
+        <!-- Our mission and adoption policy container -->
+        <div class="d-flex w-90 m-4 p-3 px-5 py-5 bg-cream flex-column rounded two-col-child">
+            <h1 class="text-primary-cream text-decoration-underline mb-1">Our Mission</h1>
+            <p class="text-primary-brown mb-1">
+                [Intro]
+                Desert you
+                Ooh-ooh-ooh-ooh
+                Hurt you
+
+                [Verse 1]
+                We're no strangers to love
+                You know the rules and so do I (Do I)
+                A full commitment's what I'm thinking of
+                You wouldn't get this from any other guy
+            </p>
+            <h1 class="text-primary-cream text-decoration-underline mb-1 mt-5">Adoption Policy</h1>
+            <p class="text-primary-brown mb-1">
+                [Pre-Chorus]
+                I just wanna tell you how I'm feeling
+                Gotta make you understand
+                
+                [Chorus]
+                Never gonna give you up
+                Never gonna let you down
+                Never gonna run around and desert you
+                Never gonna make you cry
+                Never gonna say goodbye
+                Never gonna tell a lie and hurt you
+                
+                [Verse 2]
+                We've known each other for so long
+                Your heart's been aching, but you're too shy to say it (To say it)
+                Inside, we both know what's been going on (Going on)
+                We know the game, and we're gonna play it
+            </p>
+        </div>
+        
+        <!-- carousels container -->
+        <div class="d-flex w-40 m-3 mt-4 mb-4 flex-column rounded">
+            <!-- pet carousel -->
+            <h3 class="text-primary-brown align-self-center mt-4">Pets From Us!</h3>
+            <div class="justify-content-center">
+                <div id="shelterPetSmallCarousel" class="carousel slide w-100 d-flex flex-column" data-bs-ride="false">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="card card-click shadow vh-50 m-3 rounded overflow-auto">
+                                <h2 class="px-4 pt-3 fs-4">Chiitan</h2>
+                                <img src="imgs/chiitan.jpg" class="card-img-top h-100 py-0 rounded-1" alt="Chiitan">
+                                <div class="card-body px-4 d-flex flex-column align-items-center text-center">
+                                    <h3 class="card-title fs-4">Breed</h3>
+                                    <p class="card-text">Otter Mascot</p>
+                                    <h3 class="card-title fs-4">Personality</h3>
+                                    <p class="card-text">Unhinged</p>
+                                    <a href="./MrNewdles.html" class="stretched-link"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card card-click shadow vh-50 m-3 rounded overflow-auto">
+                                <h2 class="px-4 pt-3 fs-4">Chiitan</h2>
+                                <img src="imgs/chiitan.jpg" class="card-img-top h-100 py-0 rounded-1" alt="Chiitan">
+                                <div class="card-body px-4 d-flex flex-column align-items-center text-center">
+                                    <h3 class="card-title fs-4">Breed</h3>
+                                    <p class="card-text">Otter Mascot</p>
+                                    <h3 class="card-title fs-4">Personality</h3>
+                                    <p class="card-text">Unhinged</p>
+                                    <a href="./MrNewdles.html" class="stretched-link"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card card-click shadow vh-50 m-3 rounded overflow-auto">
+                                <h2 class="px-4 pt-3 fs-4">Chiitan</h2>
+                                <img src="imgs/chiitan.jpg" class="card-img-top h-100 py-0 rounded-1" alt="Chiitan">
+                                <div class="card-body px-4 d-flex flex-column align-items-center text-center">
+                                    <h3 class="card-title fs-4">Breed</h3>
+                                    <p class="card-text">Otter Mascot</p>
+                                    <h3 class="card-title fs-4">Personality</h3>
+                                    <p class="card-text">Unhinged</p>
+                                    <a href="./MrNewdles.html" class="stretched-link"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- carousel controls -->
+                    <div class="d-flex flex-row h-100 w-100 justify-content-between align-items-end">
+                        <!-- slide back -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#shelterPetSmallCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <!-- slide indicators at bottom -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#shelterPetSmallCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#shelterPetSmallCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#shelterPetSmallCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <!-- slide forward -->
+                        <button class="carousel-control-next" type="button" data-bs-target="#shelterPetSmallCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- button to go see pets -->
+            <a href="./index.html" class="btn btn-primary bg-primary-orange m-3">Meet Our Pals!</a>
+
+            <!-- shelter image carousel -->
+            <h3 class="text-primary-brown align-self-center mt-5">Get To Know Us!</h3>
+            <div class="justify-content-center">
+                <div id="shelterGallerySmallCarousel" class="carousel slide w-100 d-flex flex-column" data-bs-ride="false">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="bg-primary-brown rounded overflow-hidden">
+                                <img src="imgs/MrNewdles.png" class="card-img-top detail-img rounded-1 h-100" alt="Mr. Newdles Blushing">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="bg-primary-brown rounded overflow-hidden">
+                                <img src="imgs/MrNewdles.png" class="card-img-top detail-img rounded-1 h-100" alt="Mr. Newdles Blushing">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="bg-primary-brown rounded overflow-hidden">
+                                <img src="imgs/MrNewdles.png" class="card-img-top detail-img rounded-1 h-100" alt="Mr. Newdles Blushing">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- carousel controls -->
+                    <div class="d-flex flex-row h-100 w-100 justify-content-between align-items-end">
+                        <!-- slide back -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#shelterGallerySmallCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <!-- slide indicators at bottom -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#shelterGallerySmallCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#shelterGallerySmallCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#shelterGallerySmallCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <!-- slide forward -->
+                        <button class="carousel-control-next" type="button" data-bs-target="#shelterGallerySmallCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- button to make a connection -->
+            <a href="./index.html" class="btn btn-primary bg-primary-orange m-3 rounded-5">Start a Conversation!</a>
+
+            <!-- Social media links -->
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <div>
+                    <a href="">
+                        <img src="imgs/twitterlogo.png" class="w-40">
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <img src="imgs/instagramlogo.png" class="w-40">
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <img src="imgs/facebooklogo.png" class="w-40">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- lower half body container -->
+
+  </main>
+
+
+</body>
+
+</html>
