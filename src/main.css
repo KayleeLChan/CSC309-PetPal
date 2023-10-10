@@ -194,6 +194,9 @@
 [data-bs-theme=petpal] .nav-link:hover, [data-bs-theme=petpal] .nav-link:focus {
   color: #F99129;
 }
+[data-bs-theme=petpal] .chat {
+  max-width: 400px;
+}
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {
     display: none !important;
@@ -220,6 +223,9 @@
   }
   [data-bs-theme=petpal] .notif-col {
     width: 100%;
+  }
+  [data-bs-theme=petpal] .search_card {
+    width: 100% !important;
   }
 }
 @media (max-width: 991.98px) {
@@ -263,6 +269,9 @@
   }
   [data-bs-theme=petpal] .two-col-form {
     align-items: center;
+  }
+  [data-bs-theme=petpal] .search-card {
+    width: 50%;
   }
 }
 @media (max-width: 1399.98px) {

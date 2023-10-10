@@ -295,6 +295,14 @@ $grid-breakpoints: (
     .nav-link:hover, .nav-link:focus {
         color: #{$primary-orange};
       }
+    
+    .search_card { 
+
+    }
+
+    .chat{
+        max-width: 400px;
+    }
 
     // Breakpoint classes
     @include media-breakpoint-down(sm) {
@@ -332,6 +340,10 @@ $grid-breakpoints: (
         .notif-col {
             width: 100%;
         }
+
+        .search_card { 
+            width: 100% !important
+        }   
     }
 
     @include media-breakpoint-down(lg) {
@@ -388,6 +400,10 @@ $grid-breakpoints: (
 
         .two-col-form {
             align-items: center;
+        }
+
+        .search-card { 
+            width: 50%
         }
     }
 

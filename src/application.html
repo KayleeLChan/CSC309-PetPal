@@ -20,9 +20,9 @@
   <!-- CHANGE LINKS WHEN ALL PAGES ARE MADE -->
   <!-- CHANGE HEADER BASED ON ACCOUNT TYPE -->
   <nav class="navbar navbar-expand-lg sticky-top bg-cream shadow">
-    <div class="container-fluid ps-3 pe-3">
-      <a class="navbar-brand h1 fs-1 text-primary-cream" href="#">
-        <img src="Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+    <div class="container-fluid px-3">
+      <a class="navbar-brand h1 fs-1 btn-cream" href="./index.html">
+        <img src="./imgs/Logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
         PetPal
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -32,8 +32,8 @@
       <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown pe-5">
-            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Adopt
             </a>
             <ul class="dropdown-menu bg-primary-cream">
@@ -43,8 +43,8 @@
             </ul>
           </li>
           <li class="nav-item dropdown pe-5">
-            <a class="nav-link dropdown-toggle h1 fs-4 text-primary-cream" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle h1 fs-4 btn-cream" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Shelter
             </a>
             <ul class="dropdown-menu bg-primary-cream">
@@ -53,20 +53,40 @@
             </ul>
           </li>
         </ul>
-        <div class="input-group w-25 pe-5" id="basic-addon1">
-          <span class="input-group-text">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-              viewBox="0 0 16 16">
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
-              </path>
-            </svg>
+        <div class="input-group w-25 pe-5 hide-lg" id="basic-addon1">
+          <span class="input-group-text p-0">
+            <button type="button" class="btn btn-primary-cream">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                </path>
+              </svg>
+            </button>
           </span>
           <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
             aria-describedby="basic-addon1">
         </div>
-        <button class="btn bg-primary-cream text-primary-brown m-3 shadow-sm" type="">Log In</button>
-        <button class="btn bg-primary-orange text-primary-cream m-3 shadow-sm" type="">Sign Up</button>
+        <div class="input-group w-100 pe-5 show-md" id="basic-addon1">
+          <span class="input-group-text p-0">
+            <button type="button" class="btn btn-primary-cream">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                </path>
+              </svg>
+            </button>
+          </span>
+          <input type="text" class="form-control" placeholder="Search Pets..." aria-label="Search Pets..."
+            aria-describedby="basic-addon1">
+        </div>
+        <div class="text-primary-orange">
+          <button class="btn btn-primary-cream m-3 ms-0 shadow-sm" type="">Log In</button>
+        </div>
+        <div class="text-primary-brown">
+          <button class="btn btn-primary-orange m-3 ms-0 shadow-sm" type="">Sign Up</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -74,19 +94,19 @@
   <main class="d-flex two-col">
 
     <!-- Left Column -->
-    <div class="d-flex w-50 m-5 p-2 px-5 bg-cream flex-column align-items-center rounded two-col-child">
+    <div class="d-flex flex-column w-50 m-5 bg-cream flex-column align-items-center two-col-child">
         <!-- Title & About -->
-        <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-3 py-2 px-3 bg-brown text-primary-cream rounded-2 hide-md">
-            <h2>Your Application For:</h2>
+        <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-3 py-2 px-3 bg-brown text-primary-cream">
+            <h2 class="responsive_heading">Your Application For:</h2>
             <!-- Dropdown -->
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle bg-brown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle bg-brown p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     MR. NEWDLES
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Some Other Pet Application</a></li>
-                    <li><a class="dropdown-item" href="#">Some Other Pet Application </a></li>
-                    <li><a class="dropdown-item" href="#">Some Other Pet Application</a></li>
+                    <li><a class="dropdown-item" href="#">Zawg</a></li>
+                    <li><a class="dropdown-item" href="#">Some Other Pet</a></li>
+                    <li><a class="dropdown-item" href="#">Some Other Pet</a></li>
                 </ul>
             </div>
         </div>
@@ -94,7 +114,7 @@
         <img src="imgs/MrNewdles1.png" class="rounded-circle mb-3" alt="Mr. Newdles Bashful" width="150" height="150">
 
         <!-- Summary -->
-        <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-4 py-2 px-3 bg-brown text-primary-cream rounded-2 hide-md">
+        <div class="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-4 py-2 px-3 bg-brown text-primary-cream">
             <p class="summary-text mb-0">Hog Nose Snake</p>
             <p class="summary-text mb-0">|</p>
             <p class="summary-text mb-0"> Adult</p>
@@ -106,37 +126,37 @@
             <p class="summary-text mb-0"> Snow Western Morph</p>
         </div>
 
-        <h2 class="mb-4 text-dark-brown text-decoration-underline">SECTION I: APPLICANT</h2>
-        <div class="align-self-start mb-1 px-3">
-            <p class="fw-bolder">FIRST NAME: <span class="d-inline-block bg-primary-cream p-1 rounded">Jane</span></p>
-            <p>LAST NAME: <span class="d-inline-block bg-primary-cream p-1 rounded">Doe</span></p>
-            <p>ADDRESS: <span class="d-inline-block bg-primary-cream p-1 rounded">123 Street St.</span></p>
-            <p>CITY: <span class="d-inline-block bg-primary-cream p-1 rounded">Brampton</span></p>
-            <p>POSTAL CODE: <span class="d-inline-block bg-primary-cream p-1 rounded">123 ABC</span></p>
-            <p>EMAIL: <span class="d-inline-block bg-primary-cream p-1 rounded">jane.doe@mail.utoronto.ca</span></p>
-            <p>PHONE: <span class="d-inline-block bg-primary-cream p-1 rounded">(012) 345-6789</span> </p>
-            <p>ABOVE 21 YEARS OF AGE? <span class="d-inline-block bg-primary-cream p-1 rounded">Yes</span></p>
+        <h2 class="mb-4 text-dark-brown text-decoration-underline responsive_heading">SECTION I: APPLICANT</h2>
+        <div class="align-self-center mb-2 px-5">
+            <p class="d-flex w-100">FIRST NAME: <span class="bg-primary-cream p-1 rounded ms-3 flex-fill">Jane</span></p>
+            <p class="d-flex w-100">LAST NAME: <span class="bg-primary-cream p-1 rounded ms-3 flex-fill">Doe</span></p>
+            <p class="d-flex w-100">ADDRESS: <span class="bg-primary-cream p-1 rounded ms-3 flex-fill">123 Street St.</span></p>
+            <p class="d-flex w-100">CITY: <span class="bg-primary-cream p-1 rounded ms-3 flex-fill">Brampton</span></p>
+            <p class="d-flex w-100">POSTAL CODE: <span class="bg-primary-cream p-1 rounded ms-3 flex-fill">123 ABC</span></p>
+            <p class="d-flex w-100">EMAIL: <span class="bg-primary-cream p-1 rounded ms-3 flex-fill">jane.doe@mail.utoronto.ca</span></p>
+            <p class="d-flex w-100">PHONE: <span class="bg-primary-cream p-1 rounded ms-3 flex-fill">(012) 345-6789</span> </p>
+            <p class="d-flex w-100">ABOVE 21 YEARS OF AGE? <span class="bg-primary-cream p-1 rounded ms-3 flex-fill">Yes</span></p>
         </div>
 
 
-        <h2 class="mb-4 text-dark-brown text-decoration-underline">SECTION II: APPLICATION DETAILS</h2>
-        <div class="align-self-start mb-1 px-3">
-            <p>I am looking to adopt for: <span class="d-inline-block bg-primary-cream p-1 rounded">MYSELF</span></p>
-            <p>I have <span class="d-inline-block bg-primary-cream p-1 rounded">NO KIDS</span>at home</p>
-            <p>I am a <span class="d-inline-block bg-primary-cream p-1 rounded">PREVIOUS</span> pet owner</p>
-            <p>I currently have <span class="d-inline-block bg-primary-cream p-1 rounded">NO PETS</span></p>
-            <p>My ideal pet is a <span class="d-inline-block bg-primary-cream p-1 rounded">NEWBORN</span></p>
-            <p>I would like to adopt a <span class="d-inline-block bg-primary-cream p-1 rounded">FEMALE</span></p>
-            <p>I prefer a pet that is <span class="d-inline-block bg-primary-cream p-1 rounded">SMALL</span></p>
-            <p>My pet's behaviour should be <span class="d-inline-block bg-primary-cream p-1 rounded">ACTIVE</span></p>
+        <h2 class="mb-4 text-dark-brown text-decoration-underline responsive_heading">SECTION II: APPLICATION DETAILS</h2>
+        <div class="align-self-center mb-2 px-5">
+            <p>I am looking to adopt for: <span class="bg-primary-cream p-1 rounded ms-2 flex-fill">MYSELF</span></p>
+            <p>I have <span class="bg-primary-cream p-1 rounded ms-2 me-2 flex-fill">NO KIDS</span>at home</p>
+            <p>I am a <span class="bg-primary-cream p-1 rounded ms-2 me-2 flex-fill">PREVIOUS</span> pet owner</p>
+            <p>I currently have <span class="bg-primary-cream p-1 rounded ms-2 flex-fill">NO PETS</span></p>
+            <p>My ideal pet is a <span class="bg-primary-cream p-1 rounded ms-2 flex-fill">NEWBORN</span></p>
+            <p>I would like to adopt a <span class="bg-primary-cream p-1 rounded ms-2 flex-fill">FEMALE</span></p>
+            <p>I prefer a pet that is <span class="bg-primary-cream p-1 rounded ms-2 flex-fill">SMALL</span></p>
+            <p>My pet's behaviour should be <span class="bg-primary-cream p-1 rounded ms-2 flex-fill">ACTIVE</span></p>
         </div>  
 
-        <h2 class="mb-4 text-dark-brown text-decoration-underline">SECTION III: PAYMENT</h2>
-        <div class="align-self-start mb-1 px-3">
-            <p>CURRENTLY INSURED:<span class="d-inline-block bg-primary-cream p-1 rounded">YES</span></p>
-            <p>INUSRANCE NAME:<span class="d-inline-block bg-primary-cream p-1 rounded">Greenshield Insurance</span></p>
-            <p>METHOD OF PAYMENT*:<span class="d-inline-block bg-primary-cream p-1 rounded">VISA</span></p>
-            <p class="fst-italic"> *Further payment information will be expected upon approval of application. 
+        <h2 class="mb-4 text-dark-brown text-decoration-underline responsive_heading">SECTION III: PAYMENT</h2>
+        <div class="align-self-center mb-2 px-5">
+            <p class="d-flex w-100">CURRENTLY INSURED:<span class="bg-primary-cream p-1 rounded ms-3 flex-fill">YES</span></p>
+            <p class="d-flex w-100">INUSRANCE NAME:<span class="bg-primary-cream p-1 rounded ms-3 flex-fill">Greenshield Insurance</span></p>
+            <p class="d-flex w-100">METHOD OF PAYMENT*:<span class="bg-primary-cream p-1 rounded ms-3 flex-fill">VISA</span></p>
+            <p class="fst-italic d-flex w-100"> *Further payment information will be expected upon approval of application. 
                 Please routinely check chatbox or notifications for further instructions from shelter.</p>
         </div> 
     </div>
@@ -147,21 +167,21 @@
 
         <div class="d-flex flex-column w-75 mb-5 text-dark-brown bg-white rounded-5 position-relative">
             <div class="p-1 pt-3 text-white bg-primary-orange rounded-top-5 text-center shadow">
-                <h3>Application Status</h3>
+                <h2 class="responsive_heading">Application Status</h2>
             </div>
             <div class="d-flex justify-content-center align-items-center m-3" style="min-height: 50px;">
                 <h2 class="mb-0">PENDING</h2>
             </div>
         </div>
 
-      <div class="d-flex flex-column m-4 text-dark-brown bg-white rounded-5 position-relative mx-auto w-100">
+      <div class="d-flex flex-column m-4 mb-3 text-dark-brown bg-white rounded-5 position-relative mx-auto w-100 chat">
         <img src="./imgs/snakeShelter.jpg" class="position-absolute top-0 start-50 translate-middle rounded-circle" width="20%">
         <div class="p-1 pt-5 text-dark-brown bg-primary-orange rounded-top-5 text-center shadow">
-          <h3>Toronto Cat Relief</h3>
+          <h2 class="responsive_heading">Toronto Cat Relief</h2>
           <h5>20 King's College Circle, Toronto</h5>
         </div>
         
-        <div class="justify-content-center align-items-center mb-3 p-4">
+        <div class="align-items-center mb-3 p-4">
 
             <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 w-90 mb-3 p-1 text-start" data-bs-toggle="modal" data-bs-target="#responseLabel">
                 <div class="d-flex flex-row align-items-center">
