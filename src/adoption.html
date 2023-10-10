@@ -85,33 +85,33 @@
                 <form class="w-75 mt-3">
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName">
+                        <input type="text" class="form-control" id="firstName" required>
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName">
+                        <input type="text" class="form-control" id="lastName" required>
                     </div>
                     <div class="mb-3">
                       <label for="address" class="form-label">home Address</label>
-                      <input type="address" class="form-control" id="address" aria-describedby="addressHelp">
+                      <input type="address" class="form-control" id="address" aria-describedby="addressHelp" required>
                       <div id="addressHelp" class="form-text">We'll never share your address with anyone other than the
                           shelter.</div>
                   </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone other than the
                             shelter.</div>
                     </div>
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp">
+                        <input type="tel" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp" required>
                         <div id="phoneNumberHelp" class="form-text">We'll never share your phone number with anyone
                             other than the shelter.</div>
                     </div>
                     <div class="mb-3">
                         <label for="postalCode" class="form-label">Postal Code</label>
-                        <input type="text" class="form-control" id="postalCode" aria-describedby="postalCodeHelp">
+                        <input type="text" class="form-control" id="postalCode" aria-describedby="postalCodeHelp" required>
                         <div id="postalCodeHelp" class="form-text">We'll never share your postal code with anyone other
                             than the shelter.</div>
                     </div>
@@ -147,7 +147,7 @@
                     <label for="insuranceName" class="form-label">Name of Insurance</label>
                     <input type="text" class="form-control mb-2" id="insuranceName">
                     <label for="payment" class="form-label">Method of Payment</label>
-                    <select class="form-select form-select-sm font-plain w-auto" aria-label="Default select example" id="payment">
+                    <select class="form-select form-select-sm font-plain w-auto" aria-label="Default select example" id="payment" required>
                         <option selected>(required)</option>
                         <option value="visa">Visa</option>
                         <option value="mastercard">Mastercard</option>
@@ -156,8 +156,8 @@
                         <option value="paypal">Paypal</option>
                     </select>
                 </div>
+                <button class="btn btn-lg bg-primary-orange text-primary-cream m-3 ms-0 shadow-sm hide-xl" type="submit">Submit Application</button>
                 </form>
-                <button class="btn btn-lg bg-primary-orange text-primary-cream m-3 ms-0 shadow-sm hide-xl" type="button">Submit Application</button>
             </div>
             <!-- Left Column -->
 
