@@ -33,7 +33,8 @@ $box-shadow-inset: inset 0 1px 2px rgba($primary-brown, .075);
 // Misc. items
 $body-tertiary-bg: rgba($primary-cream, 1);
 $grid-breakpoints: (
-    xs: 0,
+    xxs: 0,
+    xs: 410px,
     sm: 576px,
     md: 768px,
     lg: 992px,
@@ -53,13 +54,14 @@ $grid-breakpoints: (
     --bs-body-bg-rgb: #{to-rgb($cream)};
     --bs-tertiary-bg: #{$primary-cream};
     --bs-border-color: #{$primary-brown};
+    --bs-secondary-bg: #ffcc99;
 
     // Custom borders
     --bs-border-width: 1.5px;
 
     // Custom CSS
     main {
-        min-height: calc(100vh - 85.333px);
+        min-height: calc(100vh - 87.833px);
         margin: 0px 5.3rem 0px 5.3rem;
     }
 
@@ -69,6 +71,40 @@ $grid-breakpoints: (
 
     h3 {
         white-space: nowrap !important;
+    }
+
+    img {
+        object-fit: cover;
+    }
+
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+    }
+
+    .profile-pic:hover {
+        border-color: #{$primary-cream} !important;
+    }
+
+    .notif-dot {
+        background-color: #c63030;
+    }
+
+    .start-60 {
+        left: 60% !important;
+    }
+
+    .start-65 {
+        left: 65% !important;
+    }
+
+    .start-75 {
+        left: 75% !important;
+    }
+
+    .navbar-collapse .dropstart .dropdown-menu[data-bs-popper]{
+        top: 100% !important;
+        right: 20% !important;
     }
 
     .swappable-pic:hover {
@@ -86,6 +122,10 @@ $grid-breakpoints: (
 
     .vw-50 {
         width: 50vw !important;
+    }
+
+    .w-7 {
+        width: 7% !important;
     }
 
     .w-10 {
@@ -138,6 +178,14 @@ $grid-breakpoints: (
         --bs-dropdown-link-active-color: #{$primary-cream};
         --bs-dropdown-link-active-bg: #{$primary-orange};
     }
+
+    .search-tab-link {
+        font-size: 1rem;
+    }
+
+    .shelter-header-text {
+        font-size: calc(1.275rem + 0.3vw);
+      }
 
     .form-control:focus {
         // Change glow around search bar to orange
@@ -293,10 +341,24 @@ $grid-breakpoints: (
     }
 
     .nav-link:hover, .nav-link:focus {
-        color: #{$primary-orange};
-      }
+        color: #{$primary-brown};
+    }
+
+    .chat{
+        max-width: 400px;
+    }
 
     // Breakpoint classes
+    @include media-breakpoint-down(xs) {
+        .hide-xs {
+            // Don't show element on screen-sizes xs and under
+            display: none !important;
+        }
+
+        .responsive-tab {
+            font-size: small;
+        }
+    }
     @include media-breakpoint-down(sm) {
         .hide-sm {
             // Don't show element on screen-sizes small and under
@@ -332,6 +394,10 @@ $grid-breakpoints: (
         .notif-col {
             width: 100%;
         }
+
+        .search_card { 
+            width: 100% !important
+        }   
     }
 
     @include media-breakpoint-down(lg) {
@@ -389,6 +455,18 @@ $grid-breakpoints: (
         .two-col-form {
             align-items: center;
         }
+
+        .search-card { 
+            width: 50%
+        }
+
+        .search-tab-link {
+            font-size: 0.73rem;
+        }
+
+        .shelter-header-text {
+            font-size: 1.25rem !important;
+        }
     }
 
     @include media-breakpoint-down(xxl) {
@@ -445,6 +523,13 @@ $grid-breakpoints: (
 
         .responsive-heading {
             font-size: larger;
+        }
+    }
+
+    @include media-breakpoint-up(xs) {
+        .show-xxs {
+            // Don't show element on screen-sizes xs and over
+            display: none !important;
         }
     }
 
