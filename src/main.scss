@@ -61,7 +61,7 @@ $grid-breakpoints: (
 
     // Custom CSS
     main {
-        min-height: calc(100vh - 85.333px);
+        min-height: calc(100vh - 87.833px);
         margin: 0px 5.3rem 0px 5.3rem;
     }
 
@@ -71,6 +71,23 @@ $grid-breakpoints: (
 
     h3 {
         white-space: nowrap !important;
+    }
+
+    img {
+        object-fit: cover;
+    }
+
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+    }
+
+    .profile-pic:hover {
+        border-color: #{$primary-cream} !important;
+    }
+
+    .navbar-collapse .dropstart .dropdown-menu[data-bs-popper]{
+        top: 100% !important;
     }
 
     .swappable-pic:hover {
@@ -139,6 +156,11 @@ $grid-breakpoints: (
         --bs-dropdown-link-hover-bg: #{$cream};
         --bs-dropdown-link-active-color: #{$primary-cream};
         --bs-dropdown-link-active-bg: #{$primary-orange};
+    }
+
+    search-tabs {
+        height: 10%;
+        width:10%;
     }
 
     .form-control:focus {
@@ -295,11 +317,7 @@ $grid-breakpoints: (
     }
 
     .nav-link:hover, .nav-link:focus {
-        color: #{$primary-orange};
-      }
-    
-    .search_card { 
-
+        color: #{$primary-brown};
     }
 
     .chat{
