@@ -349,6 +349,24 @@ $grid-breakpoints: (
         max-width: 400px;
     }
 
+    .signupcontainer{
+        margin-top:20px;
+    }
+
+    .signupcontainer p{
+        margin: 0px;
+    }
+
+
+    .paddingify{
+        padding: 30px;
+    }
+
+    .smallpar{
+        font-size: small;
+        color:#F99129
+    }
+
     // Breakpoint classes
     @include media-breakpoint-down(xs) {
         .hide-xs {
@@ -376,6 +394,7 @@ $grid-breakpoints: (
         main {
             margin: 0px 2rem 0px 2rem;
         }
+
 
         .small-title {
             flex-direction: column;
@@ -575,7 +594,22 @@ $grid-breakpoints: (
             display: none !important;
         }
     }
+    form{
+        padding-left: 30px;
+        padding-right: 30px;
+        align-self: center;
+    }
+
+    input[type=file]::file-selector-button {
+        background-color: $primary-orange;
+      }
+    
+    label{
+        padding-top: 16px;
+    }
+
 }
+
 
 // custom fonts
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Didact+Gothic&display=swap');

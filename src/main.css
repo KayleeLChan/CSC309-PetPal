@@ -215,6 +215,7 @@
   width: 75%;
   margin: 3rem;
 }
+
 [data-bs-theme=petpal] .radio_gap {
   margin-right: 10px;
 }
@@ -243,6 +244,21 @@
     font-size: small;
   }
 }
+
+[data-bs-theme=petpal] .signupcontainer {
+  margin-top: 20px;
+}
+[data-bs-theme=petpal] .signupcontainer p {
+  margin: 0px;
+}
+[data-bs-theme=petpal] .paddingify {
+  padding: 30px;
+}
+[data-bs-theme=petpal] .smallpar {
+  font-size: small;
+  color: #F99129;
+}
+
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {
     display: none !important;
@@ -402,6 +418,17 @@
   [data-bs-theme=petpal] .show-xxl {
     display: none !important;
   }
+}
+[data-bs-theme=petpal] form {
+  padding-left: 30px;
+  padding-right: 30px;
+  align-self: center;
+}
+[data-bs-theme=petpal] input[type=file]::file-selector-button {
+  background-color: #F99129;
+}
+[data-bs-theme=petpal] label {
+  padding-top: 16px;
 }
 
 /*!
@@ -15752,4 +15779,4 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}
+}/*# sourceMappingURL=main.css.map */
