@@ -33,7 +33,8 @@ $box-shadow-inset: inset 0 1px 2px rgba($primary-brown, .075);
 // Misc. items
 $body-tertiary-bg: rgba($primary-cream, 1);
 $grid-breakpoints: (
-    xs: 0,
+    xxs: 0,
+    xs: 410px,
     sm: 576px,
     md: 768px,
     lg: 992px,
@@ -53,6 +54,7 @@ $grid-breakpoints: (
     --bs-body-bg-rgb: #{to-rgb($cream)};
     --bs-tertiary-bg: #{$primary-cream};
     --bs-border-color: #{$primary-brown};
+    --bs-secondary-bg: #ffcc99;
 
     // Custom borders
     --bs-border-width: 1.5px;
@@ -305,6 +307,16 @@ $grid-breakpoints: (
     }
 
     // Breakpoint classes
+    @include media-breakpoint-down(xs) {
+        .hide-xs {
+            // Don't show element on screen-sizes xs and under
+            display: none !important;
+        }
+
+        .responsive-tab {
+            font-size: small;
+        }
+    }
     @include media-breakpoint-down(sm) {
         .hide-sm {
             // Don't show element on screen-sizes small and under
@@ -461,6 +473,13 @@ $grid-breakpoints: (
 
         .responsive-heading {
             font-size: larger;
+        }
+    }
+
+    @include media-breakpoint-up(xs) {
+        .show-xxs {
+            // Don't show element on screen-sizes xs and over
+            display: none !important;
         }
     }
 
