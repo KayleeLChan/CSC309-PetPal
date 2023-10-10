@@ -61,7 +61,7 @@ $grid-breakpoints: (
 
     // Custom CSS
     main {
-        min-height: calc(100vh - 85.333px);
+        min-height: calc(100vh - 87.833px);
         margin: 0px 5.3rem 0px 5.3rem;
     }
 
@@ -71,6 +71,40 @@ $grid-breakpoints: (
 
     h3 {
         white-space: nowrap !important;
+    }
+
+    img {
+        object-fit: cover;
+    }
+
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+    }
+
+    .profile-pic:hover {
+        border-color: #{$primary-cream} !important;
+    }
+
+    .notif-dot {
+        background-color: #c63030;
+    }
+
+    .start-60 {
+        left: 60% !important;
+    }
+
+    .start-65 {
+        left: 65% !important;
+    }
+
+    .start-75 {
+        left: 75% !important;
+    }
+
+    .navbar-collapse .dropstart .dropdown-menu[data-bs-popper]{
+        top: 100% !important;
+        right: 20% !important;
     }
 
     .swappable-pic:hover {
@@ -88,6 +122,10 @@ $grid-breakpoints: (
 
     .vw-50 {
         width: 50vw !important;
+    }
+
+    .w-7 {
+        width: 7% !important;
     }
 
     .w-10 {
@@ -140,6 +178,14 @@ $grid-breakpoints: (
         --bs-dropdown-link-active-color: #{$primary-cream};
         --bs-dropdown-link-active-bg: #{$primary-orange};
     }
+
+    .search-tab-link {
+        font-size: 1rem;
+    }
+
+    .shelter-header-text {
+        font-size: calc(1.275rem + 0.3vw);
+      }
 
     .form-control:focus {
         // Change glow around search bar to orange
@@ -295,11 +341,7 @@ $grid-breakpoints: (
     }
 
     .nav-link:hover, .nav-link:focus {
-        color: #{$primary-orange};
-      }
-    
-    .search_card { 
-
+        color: #{$primary-brown};
     }
 
     .chat{
@@ -416,6 +458,14 @@ $grid-breakpoints: (
 
         .search-card { 
             width: 50%
+        }
+
+        .search-tab-link {
+            font-size: 0.73rem;
+        }
+
+        .shelter-header-text {
+            font-size: 1.25rem !important;
         }
     }
 

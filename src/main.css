@@ -11,7 +11,7 @@
   --bs-border-width: 1.5px;
 }
 [data-bs-theme=petpal] main {
-  min-height: calc(100vh - 85.333px);
+  min-height: calc(100vh - 87.833px);
   margin: 0px 5.3rem 0px 5.3rem;
 }
 [data-bs-theme=petpal] p {
@@ -19,6 +19,33 @@
 }
 [data-bs-theme=petpal] h3, [data-bs-theme=petpal] .h3 {
   white-space: nowrap !important;
+}
+[data-bs-theme=petpal] img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+[data-bs-theme=petpal] .profile-pic {
+  width: 50px;
+  height: 50px;
+}
+[data-bs-theme=petpal] .profile-pic:hover {
+  border-color: #FFEFD0 !important;
+}
+[data-bs-theme=petpal] .notif-dot {
+  background-color: #c63030;
+}
+[data-bs-theme=petpal] .start-60 {
+  left: 60% !important;
+}
+[data-bs-theme=petpal] .start-65 {
+  left: 65% !important;
+}
+[data-bs-theme=petpal] .start-75 {
+  left: 75% !important;
+}
+[data-bs-theme=petpal] .navbar-collapse .dropstart .dropdown-menu[data-bs-popper] {
+  top: 100% !important;
+  right: 20% !important;
 }
 [data-bs-theme=petpal] .swappable-pic:hover {
   opacity: 70%;
@@ -31,6 +58,9 @@
 }
 [data-bs-theme=petpal] .vw-50 {
   width: 50vw !important;
+}
+[data-bs-theme=petpal] .w-7 {
+  width: 7% !important;
 }
 [data-bs-theme=petpal] .w-10 {
   width: 10% !important;
@@ -69,6 +99,12 @@
   --bs-dropdown-link-hover-bg: #C5A97C;
   --bs-dropdown-link-active-color: #FFEFD0;
   --bs-dropdown-link-active-bg: #F99129;
+}
+[data-bs-theme=petpal] .search-tab-link {
+  font-size: 1rem;
+}
+[data-bs-theme=petpal] .shelter-header-text {
+  font-size: calc(1.275rem + 0.3vw);
 }
 [data-bs-theme=petpal] .form-control:focus {
   color: #2E1400;
@@ -193,7 +229,18 @@
   color: #2E1400;
 }
 [data-bs-theme=petpal] .nav-link:hover, [data-bs-theme=petpal] .nav-link:focus {
-  color: #F99129;
+  color: #2E1400;
+}
+[data-bs-theme=petpal] .chat {
+  max-width: 400px;
+}
+@media (max-width: 409.98px) {
+  [data-bs-theme=petpal] .hide-xs {
+    display: none !important;
+  }
+  [data-bs-theme=petpal] .responsive-tab {
+    font-size: small;
+  }
 }
 @media (max-width: 575.98px) {
   [data-bs-theme=petpal] .hide-sm {
@@ -270,6 +317,12 @@
   }
   [data-bs-theme=petpal] .search-card {
     width: 50%;
+  }
+  [data-bs-theme=petpal] .search-tab-link {
+    font-size: 0.73rem;
+  }
+  [data-bs-theme=petpal] .shelter-header-text {
+    font-size: 1.25rem !important;
   }
 }
 @media (max-width: 1399.98px) {
