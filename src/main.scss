@@ -112,6 +112,10 @@ $grid-breakpoints: (
         opacity: 70%
     }
 
+    .empty-star {
+        opacity: 30%
+    }
+
     // Sizing
     .min-vh-50 {
         min-height: 50vh !important;

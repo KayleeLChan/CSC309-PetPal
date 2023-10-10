@@ -51,6 +51,9 @@
 [data-bs-theme=petpal] .swappable-pic:hover {
   opacity: 70%;
 }
+[data-bs-theme=petpal] .empty-star {
+  opacity: 30%;
+}
 [data-bs-theme=petpal] .min-vh-50 {
   min-height: 50vh !important;
 }
