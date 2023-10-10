@@ -8,6 +8,7 @@
   --bs-tertiary-bg: #FFEFD0;
   --bs-border-color: #2E1400;
   --bs-secondary-bg: #ffcc99;
+  --bs-link-hover-color-rgb: #FFEFD0;
   --bs-border-width: 1.5px;
 }
 [data-bs-theme=petpal] main {
@@ -230,17 +231,6 @@
 }
 [data-bs-theme=petpal] .nav-link:hover, [data-bs-theme=petpal] .nav-link:focus {
   color: #2E1400;
-}
-[data-bs-theme=petpal] .chat {
-  max-width: 400px;
-}
-@media (max-width: 409.98px) {
-  [data-bs-theme=petpal] .hide-xs {
-    display: none !important;
-  }
-  [data-bs-theme=petpal] .responsive-tab {
-    font-size: small;
-  }
 }
 [data-bs-theme=petpal] .chat {
   max-width: 400px;
@@ -15762,4 +15752,4 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}/*# sourceMappingURL=main.css.map */
+}
