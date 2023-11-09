@@ -8,7 +8,7 @@ class ListingImageSerializer(ModelSerializer):
 
 class ListingSerializer(ModelSerializer):
     # TODO: Learn how to make required later
-    images = ListField(child=ListingImageSerializer(), required=False)
+    images = ListingImageSerializer(many=True, required=False)
     class Meta:
         model = Listing
         fields = '__all__'
