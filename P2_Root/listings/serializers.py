@@ -4,10 +4,10 @@ from .models import Listing, ListingImage
 class ListingImageSerializer(ModelSerializer):
     class Meta:
         model = ListingImage
-        fields = ['image']
+        fields = '__all__'
+        read_only_fields = ['listing']
 
 class ListingSerializer(ModelSerializer):
-    # TODO: Learn how to make required later
     images = ListingImageSerializer(many=True, required=False)
     class Meta:
         model = Listing
