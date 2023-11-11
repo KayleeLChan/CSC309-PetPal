@@ -10,18 +10,28 @@ class ShelterListSerializer(ModelSerializer):
         fields = ['sheltername']  
 
 class SeekerSerializer(ModelSerializer):
-    password2 = serializers.CharField(write_only=True)
+    confirmpassword = serializers.CharField(write_only=True)
+
     class Meta:
         model = PetSeeker
-        fields = '__all__'
+        fields = ['accounttype','first_name', 'last_name', 'username', 'password', 'confirmpassword','phonenumber', 'profilepic']
+        
+    def validate(self, data):
+        password1 = data.get('password')
+        password2 = data.get('confirmpassword')
+        # Check if the passwords match
+        if not check_password(password1, password2):
+            raise serializers.ValidationError("The passwords do not match. Please try again.")
 
-class SeekerSerializer(ModelSerializer):
+        return data
+
+class ShelterSerializer(ModelSerializer):
     class Meta:
         model = PetShelter
-        fields = '__all__'
+        fields = ['accounttype','first_name', 'last_name', 'username', 'password', 'confirmpassword','phonenumber', 'profilepic'
+            'sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy']
 
     password2 = serializers.CharField(write_only=True)
-    
     def validate(self, data):
         password1 = data.get('password')
         password2 = data.get('password2')
@@ -32,4 +42,7 @@ class SeekerSerializer(ModelSerializer):
         return data
         
     
-# class ShelterDetailsSerializer(ModelSerializer):
+class ShelterDetailsSerializer(ModelSerializer):
+    class Meta:
+        model = PetShelter
+        fields = ['profilepic','sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy']

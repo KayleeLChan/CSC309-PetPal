@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from rest_framework.generics import ListAPIView, UpdateAPIView, CreateAPIView
+# from rest_framework.generics import ListUpdateAPIView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
@@ -11,7 +12,7 @@ from rest_framework import status
 from .models import Account, PetShelter, PetSeeker
 from rest_framework.permissions import IsAuthenticated
 
-from .serializers import SeekerSerializer
+from .serializers import SeekerSerializer, ShelterSerializer, ShelterDetailsSerializer
 
 # Login stuff is covered by the tokens?
 # Create/Update (6 marks)
@@ -40,35 +41,35 @@ class PetSeekerRegisterView(CreateAPIView):
         serializer.save()
 
 
-# class PetShelterRegisterView(CreateAPIView):
-#     serializer_class = ShelterSerializer
+class PetShelterRegisterView(CreateAPIView):
+    serializer_class = ShelterSerializer
 
-#     def perform_create(self, serializer):
-#         serializer.save()
+    def perform_create(self, serializer):
+        serializer.save()
 
 
-# class PetShelterListUpdate(ListUpdateAPIView):
-#     permission_classes = [IsAuthenticated]
+class Update(UpdateAPIView):
+    permission_classes = [IsAuthenticated]
 
-#     def get_object(self):
-#         return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
+    def get_serializer_class(self):
+        if self.request.user.account_type == 'petseeker':
+            return SeekerSerializer
+        else:
+            return ShelterSerializer
 
-# class PetSeekerListUpdate(ListUpdateAPIView):
-#     permission_classes = [IsAuthenticated]
-
-#     def get_object(self):
-#         return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
+    def get_object(self):
+        return get_object_or_404(Account, pk=self.kwargs['pk'])
 
 
 # endpoint /shelter/<int:pk>/details
 # viewable to anyone
-# class ShelterDetailsView(ListAPIView):
-#     permission_classes = [IsAuthenticated]
-#     serializer_class = ShelterDetailsSerializer
-#     def get_query_set(self):
-#         return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
+class ShelterDetailsView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ShelterDetailsSerializer
+    def get_query_set(self):
+        return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
 
-# # get seeker profile , excluding this requirement as the application contains this info
+# get seeker profile , excluding this requirement as the application contains this info
 
 
 # # list of shelters
