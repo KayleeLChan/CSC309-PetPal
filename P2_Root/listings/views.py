@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from .models import Listing, ListingImage
 from .serializers import ListingSerializer, ListingImageSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
-from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework.permissions import BasePermission, SAFE_METHODS, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 # Create your views here.
@@ -11,7 +11,6 @@ class IsShelterOrReadOnly(BasePermission):
     Object-level permission to only allow shelters of a listing to edit it.
     Assumes the model instance has a `shelter` attribute.
     """
-
     def has_object_permission(self, request, view, obj):
         if request.method in SAFE_METHODS:
             return True
@@ -26,7 +25,7 @@ class IsShelterOrReadOnly(BasePermission):
 
 class PetListingsListCreate(ListCreateAPIView):
     serializer_class = ListingSerializer
-    permission_classes = [IsShelterOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         return Listing.objects.all()
@@ -39,7 +38,9 @@ class PetListingsRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsShelterOrReadOnly]
 
     def get_object(self):
-        return get_object_or_404(Listing, id=self.kwargs['pk'], shelter=self.request.user)
+        obj = get_object_or_404(Listing, id=self.kwargs['pk'])
+        self.check_object_permissions(self.request, obj)
+        return obj
     
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -54,6 +55,7 @@ class PetListingsImageCreate(CreateAPIView):
     
     def perform_create(self, serializer):
         listing = get_object_or_404(Listing, id=self.kwargs['pk'], shelter=self.request.user)
+        self.check_object_permissions(self.request, listing)
         serializer.save(listing=listing)
 
 class PetListingsImageRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
@@ -61,7 +63,9 @@ class PetListingsImageRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsShelterOrReadOnly]
 
     def get_object(self):
-        return get_object_or_404(ListingImage, id=self.kwargs['pk'])
+        obj = get_object_or_404(ListingImage, id=self.kwargs['pk'])
+        self.check_object_permissions(self.request, obj)
+        return obj
     
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
