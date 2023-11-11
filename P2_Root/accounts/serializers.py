@@ -1,6 +1,8 @@
 from rest_framework.serializers import ModelSerializer, DateTimeField
-from .models import Account, PetShelter
+from .models import Account, PetShelter, PetSeeker
 from django.contrib.auth.hashers import check_password
+from rest_framework import serializers
+
 
 class ShelterListSerializer(ModelSerializer):
     class Meta:
@@ -8,8 +10,7 @@ class ShelterListSerializer(ModelSerializer):
         fields = ['sheltername']  
 
 class SeekerSerializer(ModelSerializer):
-    password2 = serializers.CharField()
-
+    password2 = serializers.CharField(write_only=True)
     class Meta:
         model = PetSeeker
         fields = '__all__'
@@ -25,10 +26,10 @@ class SeekerSerializer(ModelSerializer):
         password1 = data.get('password')
         password2 = data.get('password2')
         # Check if the passwords match
-        if not check_password(password1, password2)
+        if not check_password(password1, password2):
             raise serializers.ValidationError("The passwords do not match. Please try again.")
 
         return data
         
     
-class ShelterDetailsSerializer(ModelSerializer):
+# class ShelterDetailsSerializer(ModelSerializer):

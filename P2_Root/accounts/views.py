@@ -2,14 +2,16 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from rest_framework.generics import ListAPIView, ListUpdateAPIView, UpdateAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, UpdateAPIView, CreateAPIView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Account, PetShelter
-from .serializers import SeekerSerializer, ShelterSerializer
+from .models import Account, PetShelter, PetSeeker
+from rest_framework.permissions import IsAuthenticated
+
+from .serializers import SeekerSerializer
 
 # Login stuff is covered by the tokens?
 # Create/Update (6 marks)
@@ -28,34 +30,9 @@ from .serializers import SeekerSerializer, ShelterSerializer
 
 #login is done by the token api stuff?
 
-
-from rest_framework.generics import CreateAPIView
-from rest_framework.response import Response
-from rest_framework import status
-
-class PetShelterCreateAPIView(CreateAPIView):
-    serializer_class = PetShelterSerializer
-
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class PetSeekerCreateAPIView(CreateAPIView):
-    serializer_class = PetSeekerSerializer
-
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
+class HelloWorldView(ListAPIView):
+    def get(self, request):
+        return Response({'message': 'Hello, world!'})
 
 class PetSeekerRegisterView(CreateAPIView):
     serializer_class = SeekerSerializer
@@ -63,36 +40,44 @@ class PetSeekerRegisterView(CreateAPIView):
         serializer.save()
 
 
-class PetShelterRegisterView(CreateAPIView):
-    serializer_class = ShelterSerializer
+# class PetShelterRegisterView(CreateAPIView):
+#     serializer_class = ShelterSerializer
+
+#     def perform_create(self, serializer):
+#         serializer.save()
 
 
-class PetShelterListUpdate(ListUpdateAPIView):
-    permission_classes = [IsAuthenticated]
+# class PetShelterListUpdate(ListUpdateAPIView):
+#     permission_classes = [IsAuthenticated]
+
+#     def get_object(self):
+#         return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
+
+# class PetSeekerListUpdate(ListUpdateAPIView):
+#     permission_classes = [IsAuthenticated]
+
+#     def get_object(self):
+#         return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
 
 
-class PetShelterListUpdate(ListUpdateAPIView):
-    permission_classes = [IsAuthenticated]
-
-# get
 # endpoint /shelter/<int:pk>/details
 # viewable to anyone
-class ShelterDetailsView(ListAPIView):
-    permission_classes = [IsAuthenticated]
-    serializer_class = ShelterDetailsSerializer
-    def get_query_set(self):
-        return PetShelter.objects.filter(pk=self.request.pk)
+# class ShelterDetailsView(ListAPIView):
+#     permission_classes = [IsAuthenticated]
+#     serializer_class = ShelterDetailsSerializer
+#     def get_query_set(self):
+#         return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
 
-# get seeker profile , excluding this requirement as the application contains this info
-
-
-# list of shelters
-# endpoint /shelter/all/
-class ShelterListView(ListAPIView):
-    serializer_class = ShelterListSerializer
-    def get_query_set(self):
-        query_set = PetShelter.objects.all()
-        return query_set
+# # get seeker profile , excluding this requirement as the application contains this info
 
 
-#
+# # list of shelters
+# # endpoint /shelter/all/
+# class ShelterListView(ListAPIView):
+#     serializer_class = ShelterListSerializer
+#     def get_query_set(self):
+#         query_set = PetShelter.objects.all()
+#         return query_set
+
+
+# #
