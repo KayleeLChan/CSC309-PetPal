@@ -15,7 +15,6 @@ class UserNotificationsList(ListAPIView):
         filter_read = self.request.query_params.get('read', None)
         queryset = Notification.objects.filter(recipient=user).order_by("-creation_time")
 
-        # Filter queryset to only contain unread notifications
         if filter_read:
             queryset = queryset.filter(is_read=False)
 
