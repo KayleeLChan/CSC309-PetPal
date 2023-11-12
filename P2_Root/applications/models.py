@@ -11,10 +11,11 @@ class Application(models.Model):
         ("pending", "pending"),
         ("withdrawn", "withdrawn"),
     ]
-
+    # status of pet listing, calls Listing class
     pet_listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
+    # creation and update time
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated_at = models.DateTimeField(auto_now=True)
 
@@ -54,11 +55,8 @@ class Application(models.Model):
     insurance_name = models.CharField(max_length=50)
     method_of_payment = models.CharField(max_length=50)
 
-
     def __str__(self):
         return f"Application #{self.id} for {self.pet_listing}"
 
     class Meta:
         ordering = ['-created_at', '-last_updated_at']
-
-

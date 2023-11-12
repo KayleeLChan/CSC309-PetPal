@@ -34,15 +34,32 @@ class UpdateApplicationView(UpdateAPIView):
         application = self.get_object()
         user = self.request.user
 
-        # check if application status 
-        if application.status == "pending":
-            return Response({'error' : })
+        # check if application status can be updated
+        if application.status == 'pending':
+            return Response({'error':'Cannot edit application once submitted/created'})
 
         # check if user is shelter associated with application
+        if user == application.shelter.user:
+            # Shelter can only update status to accepted or denied
+            if 'status' in request.data and request.data['status'] in ['accepted', 'denied']:
+                application.status = request.data['status']
+                application.save()
+                return Response({'message': 'Application status updated successfully.'}, status=200)
+            else:
+                return Response({'error': 'Invalid status update for shelter.'}, status=400)
 
         # check if user is pet seeker associated with application
+        elif user == application.pet_seeker.user:
+         # Pet seeker can only update status to withdrawn
+            if 'status' in request.data and request.data['status'] == 'withdrawn':
+                application.status = request.data['status']
+                application.save()
+                return Response({'message': 'Application status updated successfully.'}, status=200)
+            else:
+                return Response({'error': 'Invalid status update for pet seeker.'}, status=400)
 
         # else return error
+        return Response({'error': 'Unauthorized to update this application.'}, status=401)
 
 
 class ListApplicationView(ListAPIView):
@@ -56,11 +73,19 @@ class ListApplicationView(ListAPIView):
     serializer_class = ApplicationSerializer
 
     def get_queryset(self):
-        # Filter applications by status
+      # Filter applications by status
         status = self.request.query_params.get('status')
         if status:
-            return Application.objects.filter(status=status)
-        return Application.objects.all().order_by('-created_at', '-last_updated_at')
+            queryset = Application.objects.filter(status=status)
+        else:
+            queryset = Application.objects.all()
+
+        # Update last update time when a new comment is added
+        comment_added = ...
+        if comment_added:
+            # update last update time
+
+        return queryset.order_by('-created_at', '-last_updated_at')
 
 
 class GetApplicationView(RetrieveAPIView):
