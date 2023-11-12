@@ -4,34 +4,39 @@ from .models import Application
 from .serializers import ApplicationSerializer
 
 # Create your views here.
-
 class CreateApplicationView(CreateAPIView):
     """ Can only create applications for a pet listing that is "available"
-    
-    URL: path('applications/create/', CreateApplicationView.as_view(), name='application-create')
     """
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     
     def create(self, request, *args, **kwargs):
         # check if pet listing is "available"
+        pet_listing_id = request.data.get('pet_listing')
+        availabile = Listing.objects.filter(id=pet_listing_id, status='available').exists()
+
+        if not available:
+            return Response({"detail": "Cannot create application for an unavailable pet listing."}, status=400)
+
+        return super().create(request, *args, **kwargs)
+
 
 class UpdateApplicationView(UpdateAPIView):
     """ Details of an application cannot be updated once submitted/created, 
     except for its status (see below).
     Shelter can only update the status of an application from pending to accepted or denied.
     Pet seeker can only update the status of an application from pending or accepted to withdrawn.
-
-    URL: path('applications/update/<int:pk>/', UpdateApplicationView.as_view(), name='application-update') 
     """
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer 
 
     def update(self, request, *args, **kwargs):
-        instance = self.get_object()
+        application = self.get_object()
         user = self.request.user
 
         # check if application status 
+        if application.status == "pending":
+            return Response({'error' : })
 
         # check if user is shelter associated with application
 
@@ -39,23 +44,34 @@ class UpdateApplicationView(UpdateAPIView):
 
         # else return error
 
+
 class ListApplicationView(ListAPIView):
     """ Shelters can only view their own applications, not that of other shelters.
     - Filter applications by status (2 marks)
     - Sort application by creation time and last update time (4 marks)
     - When an application receives a new comment, its "last update time" should be changed.
     - Pagination support (1 mark) 
-
-    URL: path('applications/list/', ListApplicationView.as_view(), name='application-list')
     """
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
+
+    def get_queryset(self):
+        # Filter applications by status
+        status = self.request.query_params.get('status')
+        if status:
+            return Application.objects.filter(status=status)
+        return Application.objects.all().order_by('-created_at', '-last_updated_at')
+
 
 class GetApplicationView(RetrieveAPIView):
-    """
+    """ Get Application (2 marks).
     """
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
-    pass
+
+    def retrieve(self, request, *args, **kwargs):
+        application = self.get_object()
+        serializer = self.get_serializer(application)
+        return Response(serializer.data)
 
 
