@@ -5,6 +5,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.permissions import BasePermission, SAFE_METHODS, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.pagination import PageNumberPagination
 import django_filters
 
 class IsShelterOrReadOnly(BasePermission):
@@ -44,6 +45,11 @@ class ListingFilter(django_filters.FilterSet):
         model = Listing
         fields = ['name', 'location', 'status', 'shelter']
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 30
+
 # Create your views here.
 class PetListingsListCreate(ListCreateAPIView):
     serializer_class = ListingSerializer
@@ -51,6 +57,7 @@ class PetListingsListCreate(ListCreateAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_class = ListingFilter
     sort_by_fields = ['name', 'age']
+    pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
         return Listing.objects.all()
