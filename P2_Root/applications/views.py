@@ -13,11 +13,13 @@ class CreateApplicationView(CreateAPIView):
     def create(self, request, *args, **kwargs):
         # check if pet listing is "available"
         pet_listing_id = request.data.get('pet_listing')
-        availabile = Listing.objects.filter(id=pet_listing_id, status='available').exists()
-
+        available = Listing.objects.filter(id=pet_listing_id, status='available').exists()
+        
+        # error if unavailable
         if not available:
             return Response({"detail": "Cannot create application for an unavailable pet listing."}, status=400)
-
+        
+        # create application if available
         return super().create(request, *args, **kwargs)
 
 
@@ -73,18 +75,19 @@ class ListApplicationView(ListAPIView):
     serializer_class = ApplicationSerializer
 
     def get_queryset(self):
-      # Filter applications by status
+      # filter applications by status
         status = self.request.query_params.get('status')
         if status:
             queryset = Application.objects.filter(status=status)
         else:
             queryset = Application.objects.all()
 
-        # Update last update time when a new comment is added
+        # update last update time when a new comment is added
         comment_added = ...
         if comment_added:
             # update last update time
 
+        # sort application by creation time and last update time
         return queryset.order_by('-created_at', '-last_updated_at')
 
 
