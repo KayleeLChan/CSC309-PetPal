@@ -7,9 +7,10 @@ from listings.models import Listing
 class Application(models.Model):
     STATUS_CHOICES = [
        ("available", "available"),
-        ("adopted", "adopted"),
         ("pending", "pending"),
-        ("withdrawn", "withdrawn"),
+        ("denied", "denied")
+        ("withdrawn", "withdrawn")
+        ('accepted', 'accepted')
     ]
     # status of pet listing, calls Listing class
     pet_listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
@@ -24,11 +25,11 @@ class Application(models.Model):
     shelter = models.OneToOneField(User, on_delete=models.CASCADE, related_name='shelter_applications')
 
     # pet listing details - should get from Listing class?
-    breed = models.CharField(Listing.breed)
-    age = models.CharField(Listing.age)
-    sex = models.CharField(Listing.sex)
-    size = models.CharField(Listing.size)
-    personality = models.CharField(Listing.personality)
+    # breed = models.CharField(Listing.breed)
+    # age = models.CharField(Listing.age)
+    # sex = models.CharField(Listing.sex)
+    # size = models.CharField(Listing.size)
+    # personality = models.CharField(Listing.personality)
 
     # section 1: applicant details
     # first name, last name, and email should come from the Account User model?

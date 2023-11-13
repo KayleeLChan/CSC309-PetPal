@@ -34,29 +34,29 @@ class UpdateApplicationView(UpdateAPIView):
         application = self.get_object()
         user = self.request.user
 
-        # check if application status can be updated
-        if application.status == 'pending':
-            return Response({'error':'Cannot edit application once submitted/created'})
-
         # check if user is shelter associated with application
         if user == application.shelter.user:
-            # Shelter can only update status to accepted or denied
-            if 'status' in request.data and request.data['status'] in ['accepted', 'denied']:
-                application.status = request.data['status']
-                application.save()
-                return Response({'message': 'Application status updated successfully.'}, status=200)
-            else:
-                return Response({'error': 'Invalid status update for shelter.'}, status=400)
-
+            # shelter application status can only be updated if pending
+            if application.status == 'pending':
+                # shelter can only update status to accepted or denied
+                if 'status' in request.data and request.data['status'] in ['accepted', 'denied']:
+                    application.status = request.data['status']
+                    application.save()
+                    return Response({'message': 'Application status updated successfully.'}, status=200)
+                else:
+                    return Response({'error': 'Invalid status update for shelter.'}, status=400)
+        
         # check if user is pet seeker associated with application
-        elif user == application.pet_seeker.user:
-         # Pet seeker can only update status to withdrawn
-            if 'status' in request.data and request.data['status'] == 'withdrawn':
-                application.status = request.data['status']
-                application.save()
-                return Response({'message': 'Application status updated successfully.'}, status=200)
-            else:
-                return Response({'error': 'Invalid status update for pet seeker.'}, status=400)
+        if user == application.pet_seeker.user:
+            # pet seeker application status can only be updated if pending or accepted
+            if application.status == 'pending' or 'accepted':
+            # pet seeker can only update status to withdrawn
+                if 'status' in request.data and request.data['status'] == 'withdrawn':
+                    application.status = request.data['status']
+                    application.save()
+                    return Response({'message': 'Application status updated successfully.'}, status=200)
+                else:
+                    return Response({'error': 'Invalid status update for pet seeker.'}, status=400)
 
         # else return error
         return Response({'error': 'Unauthorized to update this application.'}, status=401)
