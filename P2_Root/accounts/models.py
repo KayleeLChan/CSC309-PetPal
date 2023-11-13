@@ -11,7 +11,10 @@ from rest_framework import permissions
 
 class Account(AbstractUser):
 # username, password, email already included
+    identifier = models.CharField(max_length=40, unique=True)# ensure that the username is unique
     ACCOUNT_TYPE_CHOICES = [("petseeker", "Pet Seeker"), ("petshelter", "Pet Shelter")]
+    USERNAME_FIELD = "identifier"
+    REQUIRED_FIELDS = ["account_type", "phonenumber"]
 
     accounttype = models.CharField(max_length=15, choices=ACCOUNT_TYPE_CHOICES)
     phonenumber = models.CharField(max_length=20)
@@ -24,6 +27,7 @@ class Account(AbstractUser):
 
 class PetShelter(Account):
     # only for petshelters
+    REQUIRED_FIELDS = ["sheltername", "companyaddress", "city", "postal", "website", "mission", "policy"]
     sheltername = models.CharField(max_length=50)
     companyaddress = models.CharField(max_length=150)
     city = models.CharField(max_length=50)
