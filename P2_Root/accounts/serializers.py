@@ -2,6 +2,8 @@ from rest_framework.serializers import ModelSerializer, DateTimeField
 from .models import Account, PetShelter, PetSeeker
 from django.contrib.auth.hashers import check_password
 from rest_framework import serializers
+from django.core.validators import EmailValidator
+from rest_framework.validators import UniqueValidator
 
 
 class ShelterListSerializer(ModelSerializer):
@@ -11,38 +13,48 @@ class ShelterListSerializer(ModelSerializer):
 
 class SeekerSerializer(ModelSerializer):
     confirmpassword = serializers.CharField(write_only=True)
+    email = serializers.EmailField(validators=[EmailValidator()])
+    username = serializers.CharField(validators=[UniqueValidator(queryset=Account.objects.all())])
 
     class Meta:
         model = PetSeeker
-        fields = ['accounttype','first_name', 'last_name', 'username', 'password', 'confirmpassword','phonenumber', 'profilepic']
+        fields = ['accounttype','first_name', 'last_name', 'username', 'password','confirmpassword','phonenumber', 'profilepic']
         
-    def validate(self, data):
-        password1 = data.get('password')
-        password2 = data.get('confirmpassword')
-        # Check if the passwords match
-        if not check_password(password1, password2):
-            raise serializers.ValidationError("The passwords do not match. Please try again.")
+    def validate(self, attrs):
+        validate_password(attrs['password'])
+        if attrs['password'] != attrs['confirmpassword']:
+            raise serializers.ValidationError("The two passwords do not match.")
+        return attrs
 
-        return data
+    def create(self, validated_data):
+        validated_data.pop('confirmpassword')
+        return super().create(validated_data)
+        
 
 class ShelterSerializer(ModelSerializer):
+    confirmpassword = serializers.CharField(write_only=True)
+    email = serializers.EmailField(validators=[EmailValidator()])
+    username = serializers.CharField(validators=[UniqueValidator(queryset=Account.objects.all())])
+
     class Meta:
         model = PetShelter
         fields = ['accounttype','first_name', 'last_name', 'username', 'password', 'confirmpassword','phonenumber', 'profilepic'
             'sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy']
 
-    password2 = serializers.CharField(write_only=True)
-    def validate(self, data):
-        password1 = data.get('password')
-        password2 = data.get('password2')
-        # Check if the passwords match
-        if not check_password(password1, password2):
-            raise serializers.ValidationError("The passwords do not match. Please try again.")
+    def validate(self, attrs):
+        validate_password(attrs['password'])
+        if attrs['password'] != attrs['confirmpassword']:
+            raise serializers.ValidationError("The two passwords do not match.")
+        return attrs
 
-        return data
+    def create(self, validated_data):
+        validated_data.pop('confirmpassword')
+        return super().create(validated_data)
         
     
 class ShelterDetailsSerializer(ModelSerializer):
     class Meta:
         model = PetShelter
         fields = ['profilepic','sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy']
+
+

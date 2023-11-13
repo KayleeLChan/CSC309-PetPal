@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from rest_framework.generics import ListAPIView, UpdateAPIView, CreateAPIView
-# from rest_framework.generics import ListUpdateAPIView
+from rest_framework.generics import ListAPIView, UpdateAPIView, CreateAPIView, DestroyAPIView
+from rest_framework.generics import ListUpdateAPIView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
@@ -11,8 +11,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Account, PetShelter, PetSeeker
 from rest_framework.permissions import IsAuthenticated
-
-from .serializers import SeekerSerializer, ShelterSerializer, ShelterDetailsSerializer
+from .serializers import SeekerSerializer, ShelterSerializer, ShelterDetailsSerializer, ShelterListSerializer
 
 # Login stuff is covered by the tokens?
 # Create/Update (6 marks)
@@ -48,7 +47,7 @@ class PetShelterRegisterView(CreateAPIView):
         serializer.save()
 
 
-class Update(UpdateAPIView):
+class ProfileUpdateView(UpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
@@ -69,16 +68,28 @@ class ShelterDetailsView(ListAPIView):
     def get_query_set(self):
         return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
 
+
+
 # get seeker profile , excluding this requirement as the application contains this info
 
 
-# # list of shelters
-# # endpoint /shelter/all/
-# class ShelterListView(ListAPIView):
-#     serializer_class = ShelterListSerializer
-#     def get_query_set(self):
-#         query_set = PetShelter.objects.all()
-#         return query_set
+# list of shelters
+# endpoint /shelter/all/
+class ShelterListView(ListAPIView):
+    serializer_class = ShelterListSerializer
+    def get_query_set(self):
+        query_set = PetShelter.objects.all()
+        return query_set
 
 
-# #
+class AccountDeleteView(DestroyAPIView):
+    queryset = Account.objects.all()
+    lookup_field = 'pk'
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        instance = get_object_or_404(PetShelter, pk=self.kwargs['pk'])
+        if instance.user != request.user:
+            return Response({'error': 'You are not authorized to delete this account.'}, status=status.HTTP_403_FORBIDDEN)
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
