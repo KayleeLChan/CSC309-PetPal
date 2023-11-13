@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
+from django.shortcuts import get_object_or_404
 from .models import Application
 from .serializers import ApplicationSerializer
 
@@ -33,7 +34,7 @@ class UpdateApplicationView(UpdateAPIView):
     serializer_class = ApplicationSerializer 
 
     def update(self, request, *args, **kwargs):
-        application = self.get_object()
+        application = self.get_object_or_404()
         user = self.request.user
 
         # check if user is shelter associated with application
@@ -104,7 +105,7 @@ class GetApplicationView(RetrieveAPIView):
     serializer_class = ApplicationSerializer
 
     def retrieve(self, request, *args, **kwargs):
-        application = self.get_object()
+        application = self.get_object_or_404()
         serializer = self.get_serializer(application)
         return Response(serializer.data)
 
