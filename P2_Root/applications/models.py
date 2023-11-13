@@ -33,11 +33,11 @@ class Application(models.Model):
 
     # section 1: applicant details
     # first name, last name, and email should come from the Account User model?
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    first_name = models.ForeignKey(User, on_delete=models.CASCADE)
+    last_name = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=50)
     postal_code = models.CharField(max_length=50)
-    email = models.EmailField()
+    email = models.ForeignKey(User, on_delete=models.CASCADE)
     phone = models.IntegerField()
     above_twentyone = models.CharField(max_length=50)
 
