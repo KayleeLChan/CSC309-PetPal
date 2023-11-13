@@ -11,11 +11,11 @@ class CreateApplicationView(CreateAPIView):
     serializer_class = ApplicationSerializer
     
     def create(self, request, *args, **kwargs):
-        # check if pet listing is "available"
+        # check if pet listing is available
         pet_listing_id = request.data.get('pet_listing')
         available = Listing.objects.filter(id=pet_listing_id, status='available').exists()
         
-        # error if unavailable
+        # cannot create application if pet listing is unavailable
         if not available:
             return Response({"detail": "Cannot create application for an unavailable pet listing."}, status=400)
         
@@ -67,7 +67,7 @@ class UpdateApplicationView(UpdateAPIView):
 class ListApplicationView(ListAPIView):
     """ Shelters can only view their own applications, not that of other shelters.
     - Filter applications by status (2 marks)
-    - Sort application by creation time and last update time (4 marks)
+    - Sort applications by creation time and last update time (4 marks)
     - When an application receives a new comment, its "last update time" should be changed.
     - Pagination support (1 mark) 
     """
@@ -75,17 +75,23 @@ class ListApplicationView(ListAPIView):
     serializer_class = ApplicationSerializer
 
     def get_queryset(self):
-      # filter applications by status
+        # to ensure shelter is only viewings their own applications
+        user_shelter = self.request.user.shelter
+
+        # filter applications by status
         status = self.request.query_params.get('status')
         if status:
-            queryset = Application.objects.filter(status=status)
+            queryset = Application.objects.filter(shelter=user_shelter, status=status)
         else:
-            queryset = Application.objects.all()
-
-        # update last update time when a new comment is added
-        comment_added = ...
-        if comment_added:
-            # update last update time
+            queryset = Application.objects.filter(shelter=user_shelter)
+        
+        for application in queryset:
+            # update last update time when a new comment is added
+            comments_added = application.Comments_set.all().order_by(creation_time)
+            # update last update time of application (creation time of comment)
+            new_comment_creation_time = comments_added.last().creation_time
+            application.last_updated_at = new_comment_creation_time
+            application.save()
 
         # sort application by creation time and last update time
         return queryset.order_by('-created_at', '-last_updated_at')
