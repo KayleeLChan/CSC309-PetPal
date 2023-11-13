@@ -11,16 +11,18 @@ from rest_framework import permissions
 
 class Account(AbstractUser):
 # username, password, email already included
-    identifier = models.CharField(max_length=40, unique=True)# ensure that the username is unique
+    # identifier = models.CharField(max_length=40, unique=True)# ensure that the username is unique
     ACCOUNT_TYPE_CHOICES = [("petseeker", "Pet Seeker"), ("petshelter", "Pet Shelter")]
-    USERNAME_FIELD = "identifier"
+    # USERNAME_FIELD = "identifier"
     REQUIRED_FIELDS = ["account_type", "phonenumber"]
 
-    accounttype = models.CharField(max_length=15, choices=ACCOUNT_TYPE_CHOICES)
+    accounttype = models.CharField(max_length=15, choices=ACCOUNT_TYPE_CHOICES, null=True)
     phonenumber = models.CharField(max_length=20)
     profilepic = models.ImageField(upload_to='images/', blank=True)
-    groups = models.ManyToManyField(Group, related_name='account_groups', blank=True) #chatgt suggestion
-    user_permissions = models.ManyToManyField(Permission, related_name='account_permissions', blank=True)
+    groups = None
+    user_permissions = None
+    # groups = models.ManyToManyField(Group, related_name='account_groups', blank=True) #chatgt suggestion
+    # user_permissions = models.ManyToManyField(Permission, related_name='account_permissions', blank=True)
 
     def __str__(self):
         return f"{self.username}"

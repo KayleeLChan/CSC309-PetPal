@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from rest_framework.generics import ListAPIView, UpdateAPIView, CreateAPIView, DestroyAPIView
-from rest_framework.generics import ListUpdateAPIView
+from rest_framework.generics import ListAPIView, UpdateAPIView, CreateAPIView, DestroyAPIView, RetrieveUpdateAPIView
+# from rest_framework.generics import ListUpdateAPIView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
@@ -37,17 +37,17 @@ class HelloWorldView(ListAPIView):
 class PetSeekerRegisterView(CreateAPIView):
     serializer_class = SeekerSerializer
     def perform_create(self, serializer):
-        serializer.save()
+        serializer.save(accounttype="petseeker")
 
 
 class PetShelterRegisterView(CreateAPIView):
     serializer_class = ShelterSerializer
 
     def perform_create(self, serializer):
-        serializer.save()
+        serializer.save(accounttype="petshelter")
 
 
-class ProfileUpdateView(UpdateAPIView):
+class ProfileUpdateView(RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
@@ -58,6 +58,13 @@ class ProfileUpdateView(UpdateAPIView):
 
     def get_object(self):
         return get_object_or_404(Account, pk=self.kwargs['pk'])
+
+    def perform_update():
+        instance = get_object_or_404(Account, pk=self.kwargs['pk'])
+        if instance.user != request.user:
+            return Response({'error': 'You are not authorized to delete this account.'}, status=status.HTTP_403_FORBIDDEN)
+        else:
+            return instance
 
 
 # endpoint /shelter/<int:pk>/details
@@ -87,7 +94,7 @@ class AccountDeleteView(DestroyAPIView):
     lookup_field = 'pk'
     permission_classes = [IsAuthenticated]
 
-    def delete(self, request, *args, **kwargs):
+    def perform_destroy(self, request, *args, **kwargs):
         instance = get_object_or_404(PetShelter, pk=self.kwargs['pk'])
         if instance.user != request.user:
             return Response({'error': 'You are not authorized to delete this account.'}, status=status.HTTP_403_FORBIDDEN)

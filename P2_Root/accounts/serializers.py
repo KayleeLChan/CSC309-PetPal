@@ -13,15 +13,16 @@ class ShelterListSerializer(ModelSerializer):
 
 class SeekerSerializer(ModelSerializer):
     confirmpassword = serializers.CharField(write_only=True)
-    email = serializers.EmailField(validators=[EmailValidator()])
+    # email = serializers.EmailField(validators=[EmailValidator()])
     username = serializers.CharField(validators=[UniqueValidator(queryset=Account.objects.all())])
 
     class Meta:
         model = PetSeeker
-        fields = ['accounttype','first_name', 'last_name', 'username', 'password','confirmpassword','phonenumber', 'profilepic']
+        fields = '__all__'
+        # fields = ['first_name', 'last_name', 'username', 'password','confirmpassword','phonenumber', 'profilepic', 'email', 'accounttype']
         
     def validate(self, attrs):
-        validate_password(attrs['password'])
+        # validate_password(attrs['password'])
         if attrs['password'] != attrs['confirmpassword']:
             raise serializers.ValidationError("The two passwords do not match.")
         return attrs
@@ -33,16 +34,16 @@ class SeekerSerializer(ModelSerializer):
 
 class ShelterSerializer(ModelSerializer):
     confirmpassword = serializers.CharField(write_only=True)
-    email = serializers.EmailField(validators=[EmailValidator()])
+    # email = serializers.EmailField(validators=[EmailValidator()])
     username = serializers.CharField(validators=[UniqueValidator(queryset=Account.objects.all())])
 
     class Meta:
         model = PetShelter
-        fields = ['accounttype','first_name', 'last_name', 'username', 'password', 'confirmpassword','phonenumber', 'profilepic'
+        fields = ['first_name', 'last_name', 'username', 'password', 'confirmpassword','phonenumber', 'profilepic',
             'sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy']
 
     def validate(self, attrs):
-        validate_password(attrs['password'])
+        # validate_password(attrs['password'])
         if attrs['password'] != attrs['confirmpassword']:
             raise serializers.ValidationError("The two passwords do not match.")
         return attrs
