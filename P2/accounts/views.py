@@ -8,23 +8,27 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import PetSeeker, Account, PetShelter
-from .serializers import PetSeekerRetrieveSerializer, PetSeekerSignUpSerializer,PetSeekerUpdateSerializer,PetSeekerSerializer
-from rest_framework.generics import RetrieveAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
+from .serializers import PetSeekerRetrieveSerializer, PetSeekerSignUpSerializer,PetSeekerUpdateSerializer,PetSeekerSerializer, PetShelterSignUpSerializer
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import PermissionDenied
 
 
 class PetSeekerSignUpView(CreateAPIView):
-
     serializer_class = PetSeekerSignUpSerializer
     permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
-        firstname = serializer.validated_data.pop('firstname')
-        lastname = serializer.validated_data.pop('lastname')
         new_user = serializer.save()
-        new_seeker = PetSeeker.objects.create(user=new_user, firstname=firstname, lastname=lastname)
-        new_seeker.save()
+        new_user.is_active = True
+        new_user.save()
+
+class PetShelterSignUpView(CreateAPIView):
+    serializer_class = PetShelterSignUpSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def perform_create(self, serializer):
+        serializer.save()
 
 class PetSeekerLoginView(views.APIView):
 

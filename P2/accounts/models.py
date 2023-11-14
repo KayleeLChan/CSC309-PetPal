@@ -17,6 +17,7 @@ class Account(AbstractUser):
     REQUIRED_FIELDS = ["phonenumber"]
 
     # accounttype = models.CharField(max_length=15, choices=ACCOUNT_TYPE_CHOICES, null=True)
+    is_active = models.BooleanField(default=True)
     phonenumber = models.CharField(max_length=20)
     profilepic = models.ImageField(upload_to='images/', blank=True)
     groups = None
@@ -27,24 +28,24 @@ class Account(AbstractUser):
     def __str__(self):
         return f"{self.username}"
 
-class PetShelter(models.Model):
-    user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True, related_name='shelters')
+class PetShelter(Account):
+    # user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True, related_name='shelters')
     # only for petshelters
     REQUIRED_FIELDS = ["sheltername", "companyaddress", "city", "postal", "website", "mission", "policy"]
     sheltername = models.CharField(max_length=50)
     companyaddress = models.CharField(max_length=150)
     city = models.CharField(max_length=50)
     postal = models.CharField(max_length=6)
-    website = models.URLField(max_length=200)
-    mission = models.CharField(max_length=200)
-    policy = models.CharField(max_length=200)
+    website = models.URLField(max_length=200, null=True)
+    mission = models.TextField(null=True)
+    policy = models.TextField(null=True)
     # listings and applications will have a foreign key?
 
     def __str__(self):
         return f"{self.sheltername}"
 
-class PetSeeker(models.Model):
-    user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True, related_name='seekers')
+class PetSeeker(Account):
+    # user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True, related_name='seekers')
     firstname = models.CharField(max_length=30, blank=False, null=False)
     lastname = models.CharField(max_length=30, blank=False, null=False)
     def __str__(self):
