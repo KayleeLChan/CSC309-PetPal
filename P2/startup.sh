@@ -12,6 +12,6 @@ python3 -m pip install --upgrade Pillow
 pip install djangorestframework-simplejwt
 pip install django-multiselectfield
 
-chmod +x manage.py
-./manage.py makemigrations
-./manage.py migrate
+# chmod +x manage.py
+# ./manage.py makemigrations
+# ./manage.py migrate
