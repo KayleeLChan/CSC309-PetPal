@@ -11,19 +11,15 @@ from rest_framework import permissions
 
 class Account(AbstractUser):
 # username, password, email already included
-    # identifier = models.CharField(max_length=40, unique=True)# ensure that the username is unique
-    # ACCOUNT_TYPE_CHOICES = [("petseeker", "Pet Seeker"), ("petshelter", "Pet Shelter")]
-    # USERNAME_FIELD = "identifier"
+    ACCOUNT_TYPE_CHOICES = [("petseeker", "Pet Seeker"), ("petshelter", "Pet Shelter")]
     REQUIRED_FIELDS = ["phonenumber"]
 
-    # accounttype = models.CharField(max_length=15, choices=ACCOUNT_TYPE_CHOICES, null=True)
+    accounttype = models.CharField(max_length=15, choices=ACCOUNT_TYPE_CHOICES, null=True)
     is_active = models.BooleanField(default=True)
     phonenumber = models.CharField(max_length=20)
     profilepic = models.ImageField(upload_to='images/', blank=True)
     groups = None
     user_permissions = None
-    # groups = models.ManyToManyField(Group, related_name='account_groups', blank=True) #chatgt suggestion
-    # user_permissions = models.ManyToManyField(Permission, related_name='account_permissions', blank=True)
 
     def __str__(self):
         return f"{self.username}"
@@ -46,7 +42,7 @@ class PetShelter(Account):
 
 class PetSeeker(Account):
     # user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True, related_name='seekers')
-    firstname = models.CharField(max_length=30, blank=False, null=False)
-    lastname = models.CharField(max_length=30, blank=False, null=False)
+    # first_name = models.CharField(max_length=30)
+    # last_name = models.CharField(max_length=30)
     def __str__(self):
-        return f"{self.firstname}"
+        return f"{self.first_name}"

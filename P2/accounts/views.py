@@ -8,31 +8,40 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import PetSeeker, Account, PetShelter
-from .serializers import PetSeekerRetrieveSerializer, PetSeekerSignUpSerializer,PetSeekerUpdateSerializer,PetSeekerSerializer, PetShelterSignUpSerializer
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView
+from .serializers import PetSeekerRetrieveSerializer, SeekerSerializer, PetSeekerUpdateSerializer, AccountSerializer, DeleteSerializer, \
+ShelterSerializer, ShelterDetailsSerializer, ShelterListSerializer, PetSeekerSignUpSerializer, PetSeekerGetSerializer, PetShelterGetSerializer
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView, RetrieveUpdateAPIView, RetrieveAPIView, ListAPIView, DestroyAPIView
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import PermissionDenied
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
 
-
-class PetSeekerSignUpView(CreateAPIView):
-    serializer_class = PetSeekerSignUpSerializer
+class PetSeekerRegisterView(CreateAPIView):
+    serializer_class = SeekerSerializer
     permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         new_user = serializer.save()
         new_user.is_active = True
+        new_user.accounttype = "petseeker"
         new_user.save()
 
-class PetShelterSignUpView(CreateAPIView):
-    serializer_class = PetShelterSignUpSerializer
+
+class PetShelterRegisterView(CreateAPIView):
+    serializer_class = ShelterSerializer
     permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
-        serializer.save()
+        new_user = serializer.save()
+        new_user.is_active = True
+        new_user.accounttype = "petshelter"
+        new_user.save()
+
+
+#NOT EdITING THIs
 
 class PetSeekerLoginView(views.APIView):
-
-    serializer_class = PetSeekerSerializer
+    serializer_class = AccountSerializer
     permission_classes = [permissions.AllowAny]
 
     def post(self, request, *args, **kwargs):
@@ -51,72 +60,94 @@ class PetSeekerLoginView(views.APIView):
             'access_token': str(refresh.access_token),
         }
         return Response(response_data)
-    
-    
-"""
-must be logged in to see a seeker 
-Single endpoint /seeker/<>/
--> GET : user can see own profile, shelter can see user profile if application active
--> DELETE profile
-=> UPDATE profile information
-"""
-class SeekerRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
-    serializer_class = PetSeekerRetrieveSerializer
-    queryset = PetSeeker.objects.all()
 
-    def get_object(self):
-        
-        # this is Account object, NOT a PetSeeker object 
-        user_id = self.request.user.id
-        user = get_object_or_404(Account, id=user_id)
 
-        seeker_id = self.kwargs.get('pk') # pet seeker id from URL capture 
-        url_seeker = get_object_or_404(PetSeeker, id=seeker_id)
-
-        seeker = get_object_or_404(PetSeeker, user=user)
-        print(seeker_id)
-        print(seeker.id)
-        if seeker_id != seeker.id:
-            shelter = get_object_or_404(PetShelter, user=user)
-            # Check if the shelter has an active application with the pet seeker
-            if seeker.applications.filter(shelter=shelter, application_status__in=['Approved', 'Pending']).exists():
-                return seeker
-            else:
-                raise PermissionDenied(
-                    'You do not have permission to view this profile. This shelter does not have an active application with this pet seeker.')
-        
-        return seeker 
-        
-        
+class ProfileUpdateView(RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
-        # Override to use different serializers for different HTTP methods
-        if self.request.method == 'PUT': # update
-            return PetSeekerUpdateSerializer
-        return PetSeekerRetrieveSerializer
+        if self.request.user.accounttype == 'petseeker':
+            return PetSeekerGetSerializer
+        else:
+            return PetShelterGetSerializer
+
+    def get_object(self):
+        instance = get_object_or_404(Account, pk=self.kwargs['pk'])
+        if instance != self.request.user:
+            raise PermissionDenied('You do not have permission to view this profile')
+        else:
+            return instance
+
+    # def get(self, request, *args, **kwargs):
+    #     # Retrieve the object
+    #     instance = self.get_object()
+
+    #     # Create the serializer with the instance as initial data
+    #     serializer = self.get_serializer(instance)
+
+    #     return Response(serializer.data)
+
+    # def perform_update():
+    #     instance = self.get()
+    #     if instance != self.request.user:
+    #         raise PermissionDenied('You do not have permission to view this profile')
+    #     else:
+    #         return instance
+
+    def get(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=self.partial_update)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
 
     def perform_update(self, serializer):
-        # can only update your own profile 
-        if self.request.user != serializer.instance.user:
-            return Response({"detail": "You do not have permission to update this shelter."},
-                            status=status.HTTP_403_FORBIDDEN)
-
-        
-        user_data = serializer.validated_data.pop('user', tuple())
-
-        user = Account.objects.get(id=self.request.user.id)
-        for key, value in user_data.items():
-            setattr(user, key, value)
-        user.save()
-
         serializer.save()
+
+
+
+class ShelterDetailsView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ShelterDetailsSerializer
+    def get_object(self):
+        return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
+    
+class ShelterListView(ListAPIView):
+    serializer_class = ShelterListSerializer
+    def get_queryset(self):
+        query_set = PetShelter.objects.all()
+        return query_set
+
+class AccountDeleteView(DestroyAPIView):
+    queryset = Account.objects.all()
+    serializer_class = DeleteSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_destroy(self, request, *args, **kwargs):
+        instance = get_object_or_404(Account, pk=self.kwargs['pk'])
+        instance.delete()
+        # pk = self.kwargs['pk']
+        # if instance != request:
+        #     raise PermissionDenied('You do not have permission to delete this profile')
+        # if PetSeeker.objects.filter(pk=pk):
+        #     child =PetSeeker.objects.get(pk=pk)
+        # else:
+        #     child = PetShelter.objects.get(pk=pk)
+        # child.delete()
+        # self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
         
 
-    def perform_destroy(self, instance):
-        # can only edit your own profile
-        if self.request.user != instance.user:
-            return Response({"detail": "You do not have permission to delete this shelter."},
-                            status=status.HTTP_403_FORBIDDEN)
-        user = Account.objects.get(id=instance.user.id)
-        user.delete()
-        instance.delete()
+#     def perform_destroy(self, instance):
+#         # can only edit your own profile
+#         if self.request.user != instance.user:
+#             return Response({"detail": "You do not have permission to delete this shelter."},
+#                             status=status.HTTP_403_FORBIDDEN)
+#         user = Account.objects.get(id=instance.user.id)
+#         user.delete()
+#         instance.delete()
