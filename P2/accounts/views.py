@@ -119,6 +119,7 @@ class ShelterDetailsView(RetrieveAPIView):
     
 class ShelterListView(ListAPIView):
     serializer_class = ShelterListSerializer
+    permission_classes = [permissions.AllowAny]
     def get_queryset(self):
         query_set = PetShelter.objects.all()
         return query_set
