@@ -6,11 +6,11 @@ from listings.models import Listing
 # Create your models here.
 class Application(models.Model):
     STATUS_CHOICES = [
-       ("available", "available"),
-        ("pending", "pending"),
-        ("denied", "denied")
-        ("withdrawn", "withdrawn")
-        ('accepted', 'accepted')
+       ("available", "Available"),
+        ("pending", "Pending"),
+        ("denied", "Denied"),
+        ("withdrawn", "Withdrawn"),
+        ('accepted', 'Accepted')
     ]
     # status of pet listing, calls Listing class
     pet_listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
