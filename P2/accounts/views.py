@@ -85,9 +85,9 @@ class ProfileUpdateView(RetrieveUpdateAPIView):
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
+        data = request.data.copy()
         if request.user.accounttype == "petshelter":
             additional_fields = ["sheltername", "companyaddress", "city", "postal", "website", "mission", "policy"]
-            data = request.data.copy()
             shelter_instance = PetShelter.objects.get(pk=instance.pk)
             for field in additional_fields:
                 if not request.data.get(field):
