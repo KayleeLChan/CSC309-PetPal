@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from petpal.settings import AUTH_USER_MODEL as User
@@ -11,7 +10,6 @@ class Notification(models.Model):
     ]
 
     # Associated users that have access to the notification
-    # TODO: Might have to change User to shelter/seeker model, depends, we'll see
     recipient = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='notifications_received', null=True)
     notifier = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='notifications_sent', null=True)
     # Notification metadata
