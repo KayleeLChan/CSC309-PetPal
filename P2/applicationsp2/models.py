@@ -16,7 +16,7 @@ class Application(models.Model):
     last_updated_at = models.DateTimeField(auto_now=True)
 
     # status of application
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending') 
+    application_status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending') 
 
     # pet listing of application, calls Listing class (access pet details through this field)
     pet_listing = models.ForeignKey(Listing, on_delete=models.CASCADE)

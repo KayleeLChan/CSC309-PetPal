@@ -37,7 +37,7 @@ class CreateApplicationView(CreateAPIView):
         new_application.pet_listing = pet_listing
 
         # default initial status of application
-        new_application.status = 'pending'
+        new_application.application_status = 'pending'
 
         # Call the super method to perform the actual creation
         return super().perform_create(new_application)
@@ -61,28 +61,29 @@ class UpdateApplicationView(UpdateAPIView):
 
     def update(self, request, *args, **kwargs):
         application_id = self.kwargs['pk']
-        application = self.get_object()
+        application = get_object_or_404(Application, id=application_id)
         user = self.request.user
 
         # check if user is shelter associated with application
-        if self.request.user.accounttype == 'petshelter':
+        if self.request.user.accounttype in ['petshelter', 'Pet Shelter']:
             # shelter can only update application status if pending
             if application.status == 'pending':
                 # shelter can only update status to accepted or denied
-                if 'status' in request.data and request.data['status'] in ['accepted', 'denied']:
-                    application.status = request.data['status']
+                if 'status' in self.request.data and self.request.data['status'] in ['accepted', 'denied']:
+                    application.status = self.request.data['status']
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
                 else:
                     return Response({'error': 'Invalid status update for shelter.'}, status=400)
         
         # check if user is pet seeker associated with application
-        if self.request.user.accounttype == 'petseeker':
+        elif self.request.user.accounttype in ['petseeker', 'Pet Seeker']:
             # pet seeker application status can only be updated if pending or accepted
             if application.status == 'pending' or 'accepted':
+                print(application.status)
             # pet seeker can only update status to withdrawn
-                if 'status' in request.data and request.data['status'] == 'withdrawn':
-                    application.status = request.data['status']
+                if 'status' in self.request.data and self.request.data['status'] == 'withdrawn':
+                    application.status = self.request.data['status']
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
                 else:
