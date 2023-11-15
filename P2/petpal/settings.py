@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+zmj6(6kqy@g97j+^7*tt060t33#7j7)u5omes%4-usbe-kgto
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'multiselectfield',
-    'notifications',
-    'listings',
     'accounts'
 ]
 
@@ -136,8 +134,8 @@ MEDIA_URL = "media/"
 # rest framework
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-        # 'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
       'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -152,4 +150,4 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
 }
 
-USER_AUTH_MODEL = "accounts.Account"
+AUTH_USER_MODEL = "accounts.Account"
