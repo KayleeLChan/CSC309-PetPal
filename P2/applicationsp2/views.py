@@ -7,6 +7,7 @@ from .serializers import ApplicationSerializer, CreateApplicationSerializer
 from rest_framework.response import Response
 from listings.models import Listing
 from accounts.models import Account
+from notifications.models import Notification
 from django.urls import reverse
 
 

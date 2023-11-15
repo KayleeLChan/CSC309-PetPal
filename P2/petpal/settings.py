@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'multiselectfield',
     'accounts',
     'applicationsp2',
-    'listings'
+    'listings',
     'notifications'
 ]
 

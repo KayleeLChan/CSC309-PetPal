@@ -9,7 +9,7 @@ from django.core.exceptions import PermissionDenied
 from rest_framework.pagination import PageNumberPagination
 import django_filters
 
->>>>>>> origin/kayleeIntegrate
+
 class IsShelterOrReadOnly(BasePermission):
     """
     Object-level permission to only allow shelters of a listing to edit it.
