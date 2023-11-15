@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from petpal.settings import AUTH_USER_MODEL as User
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+from django.db.models import Q
 
 class Notification(models.Model):
     NOTIF_TYPE_CHOICES = [
@@ -28,3 +31,8 @@ class Notification(models.Model):
 
     def __str__(self):
         return f"{self.notifier} to {self.recipient}: {self.title}"
+
+    @receiver(pre_delete, sender=User)
+    def delete_notifications(sender, instance, **kwargs):
+        Notification.objects.filter(Q(recipient=instance) & Q(notifier=None)).delete()
+        Notification.objects.filter(Q(notifier=instance) & Q(recipient=None)).delete()

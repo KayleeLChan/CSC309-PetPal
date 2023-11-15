@@ -78,22 +78,6 @@ class ProfileUpdateView(RetrieveUpdateAPIView):
         else:
             return instance
 
-    # def get(self, request, *args, **kwargs):
-    #     # Retrieve the object
-    #     instance = self.get_object()
-
-    #     # Create the serializer with the instance as initial data
-    #     serializer = self.get_serializer(instance)
-
-    #     return Response(serializer.data)
-
-    # def perform_update():
-    #     instance = self.get()
-    #     if instance != self.request.user:
-    #         raise PermissionDenied('You do not have permission to view this profile')
-    #     else:
-    #         return instance
-
     def get(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
@@ -129,26 +113,12 @@ class AccountDeleteView(DestroyAPIView):
     serializer_class = DeleteSerializer
     permission_classes = [IsAuthenticated]
 
-    def perform_destroy(self, request, *args, **kwargs):
-        instance = get_object_or_404(Account, pk=self.kwargs['pk'])
-        instance.delete()
-        # pk = self.kwargs['pk']
-        # if instance != request:
-        #     raise PermissionDenied('You do not have permission to delete this profile')
-        # if PetSeeker.objects.filter(pk=pk):
-        #     child =PetSeeker.objects.get(pk=pk)
-        # else:
-        #     child = PetShelter.objects.get(pk=pk)
-        # child.delete()
-        # self.perform_destroy(instance)
+    def destroy(self, request, *args, **kwargs):
+        pk = self.kwargs['pk']
+        instance = get_object_or_404(Account, pk=pk)
+        
+        if instance != request.user:
+            raise PermissionDenied('You do not have permission to delete this profile')
+        self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
         
-
-#     def perform_destroy(self, instance):
-#         # can only edit your own profile
-#         if self.request.user != instance.user:
-#             return Response({"detail": "You do not have permission to delete this shelter."},
-#                             status=status.HTTP_403_FORBIDDEN)
-#         user = Account.objects.get(id=instance.user.id)
-#         user.delete()
-#         instance.delete()
