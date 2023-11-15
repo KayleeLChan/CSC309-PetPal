@@ -39,8 +39,12 @@ class CreateApplicationView(CreateAPIView):
         # Set fields based on the pet_listing (pk)
         new_application.pet_listing = pet_listing
 
-        # # default initial status of application
-        # new_application.application_status = 'pending'
+        Notification.objects.create(
+            recipient=application.pet_listing.shelter.user,
+            notifier=self.request.user, 
+            content=f"New Application", 
+            title="application", 
+            link=reverse('application-get', kwargs={'pk': application.id}))
 
         # Call the super method to perform the actual creation
         return super().perform_create(new_application)
@@ -81,8 +85,7 @@ class UpdateApplicationView(UpdateAPIView):
                         notifier=request.user, 
                         content=f"Status update", 
                         title="application", 
-                        link=reverse('application-get', kwargs={'pk': application.id})
-                        )
+                        link=reverse('application-get', kwargs={'pk': application.id}))
 
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
@@ -103,8 +106,7 @@ class UpdateApplicationView(UpdateAPIView):
                         notifier=request.user, 
                         content=f"Status update", 
                         title="application", 
-                        link=reverse('application-get', kwargs={'pk': application.id})
-                        )
+                        link=reverse('application-get', kwargs={'pk': application.id}))
 
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
