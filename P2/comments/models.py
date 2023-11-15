@@ -11,6 +11,7 @@ class Comment(models.Model):
 
     # comment id is the django generated object ID
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
+    content_model = models.CharField(max_length=15, null=True)
     object_id = models.PositiveIntegerField() # id of object this comment references to (i.e. shelter user or application)
     content_object = GenericForeignKey('content_type', 'object_id')
 

@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 
 class CommentSerializer(ModelSerializer):
     creation_time = DateTimeField(read_only=True)
-    content_type = serializers.PrimaryKeyRelatedField(required=False, allow_null=True)
+    content_type = serializers.PrimaryKeyRelatedField(queryset=ContentType.objects.all(), required=False, allow_null=True)
     object_id = serializers.IntegerField(required=False, min_value=1)
 
     class Meta:
