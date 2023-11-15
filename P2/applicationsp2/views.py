@@ -41,11 +41,11 @@ class CreateApplicationView(CreateAPIView):
         new_application.pet_listing = pet_listing
 
         Notification.objects.create(
-            recipient=application.pet_listing.shelter.user,
+            recipient=new_application.pet_listing.shelter,
             notifier=self.request.user, 
             content=f"New Application", 
             title="application", 
-            link=reverse('application-get', kwargs={'pk': application.id}))
+            link=reverse('applicationsp2:application-get', kwargs={'pk': new_application.id}))
 
         # Call the super method to perform the actual creation
         return super().perform_create(new_application)
@@ -86,7 +86,7 @@ class UpdateApplicationView(UpdateAPIView):
                         notifier=request.user, 
                         content=f"Status update", 
                         title="application", 
-                        link=reverse('application-get', kwargs={'pk': application.id}))
+                        link=reverse('applicationsp2:application-get', kwargs={'pk': application.id}))
 
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
@@ -103,11 +103,11 @@ class UpdateApplicationView(UpdateAPIView):
 
                     # create notification for status change
                     Notification.objects.create(
-                        recipient=application.pet_listing.shelter.user,
+                        recipient=application.pet_listing.shelter,
                         notifier=request.user, 
                         content=f"Status update", 
                         title="application", 
-                        link=reverse('application-get', kwargs={'pk': application.id}))
+                        link=reverse('applicationsp2:application-get', kwargs={'pk': application.id}))
 
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
