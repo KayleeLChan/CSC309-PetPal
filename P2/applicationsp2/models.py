@@ -30,7 +30,7 @@ class Application(models.Model):
     applicant_email = models.CharField(max_length=50) # pre-populated
     applicant_phone_number = models.CharField(max_length=50) # pre-populated
     address = models.CharField(max_length=50)
-    postal_code = models.CharField(max_length=50)
+    postal_code = models.CharField(max_length=6)
     above_twentyone = models.CharField(max_length=50)
 
     # section 2: application details

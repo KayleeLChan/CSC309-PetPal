@@ -5,7 +5,8 @@ from django.shortcuts import get_object_or_404
 from .models import Application
 from .serializers import ApplicationSerializer, CreateApplicationSerializer
 from rest_framework.response import Response
-from .models import Listing
+from listings.models import Listing
+from accounts.models import Account
 
 # Create your views here.
 class CreateApplicationView(CreateAPIView):
@@ -36,8 +37,8 @@ class CreateApplicationView(CreateAPIView):
         # Set fields based on the pet_listing (pk)
         new_application.pet_listing = pet_listing
 
-        # default initial status of application
-        new_application.application_status = 'pending'
+        # # default initial status of application
+        # new_application.application_status = 'pending'
 
         # Call the super method to perform the actual creation
         return super().perform_create(new_application)
@@ -67,10 +68,10 @@ class UpdateApplicationView(UpdateAPIView):
         # check if user is shelter associated with application
         if self.request.user.accounttype in ['petshelter', 'Pet Shelter']:
             # shelter can only update application status if pending
-            if application.status == 'pending':
+            if application.application_status == 'pending':
                 # shelter can only update status to accepted or denied
-                if 'status' in self.request.data and self.request.data['status'] in ['accepted', 'denied']:
-                    application.status = self.request.data['status']
+                if 'application_status' in self.request.data and self.request.data['application_status'] in ['accepted', 'denied']:
+                    application.application_status = self.request.data['application_status']
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
                 else:
@@ -79,11 +80,10 @@ class UpdateApplicationView(UpdateAPIView):
         # check if user is pet seeker associated with application
         elif self.request.user.accounttype in ['petseeker', 'Pet Seeker']:
             # pet seeker application status can only be updated if pending or accepted
-            if application.status == 'pending' or 'accepted':
-                print(application.status)
+            if application.application_status == 'pending' or 'accepted':
             # pet seeker can only update status to withdrawn
-                if 'status' in self.request.data and self.request.data['status'] == 'withdrawn':
-                    application.status = self.request.data['status']
+                if 'application_status' in self.request.data and self.request.data['application_status'] == 'withdrawn':
+                    application.application_status = self.request.data['application_status']
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
                 else:
@@ -105,25 +105,39 @@ class ListApplicationView(ListAPIView):
 
     def get_queryset(self):
         # to ensure shelter is only viewings their own applications
-        user_shelter = self.request.user.shelter
+        if self.request.user.is_authenticated:
+            # retrieve all listings associated to that shelter
+            instance = get_object_or_404(Account, id=self.kwargs["pk"])
+            listings_queryset = Listing.objects.filter(shelter=instance)
+            # create queryset for those listings
+            application_querysets = [Application.objects.filter(pet_listing=listing) for listing in listings_queryset]
 
-        # filter applications by status
-        status = self.request.query_params.get('status')
-        if status:
-            queryset = Application.objects.filter(shelter=user_shelter, status=status)
-        else:
-            queryset = Application.objects.filter(shelter=user_shelter)
-        
-        for application in queryset:
-            # update last update time when a new comment is added
-            comments_added = application.Comments_set.all().order_by(creation_time)
-            # update last update time of application (creation time of comment)
-            new_comment_creation_time = comments_added.last().creation_time
-            application.last_updated_at = new_comment_creation_time
-            application.save()
+            # Combine the QuerySets using the | operator (or union method)
+            all_applications = Application.objects.none()  # Create an empty queryset as the initial value
+            for queryset in application_querysets:
+                all_applications |= queryset
 
-        # sort application by creation time and last update time
-        return queryset.order_by('-created_at', '-last_updated_at')
+            # filter applications by status
+            status = self.request.query_params.get('application_status')
+            if status:
+                queryset = all_applications.filter(application_status=status)
+            else:
+                queryset = all_applications
+            
+            # when an application receives a new comment ...
+            for application in application_querysets:
+                # update last update time when a new comment is added
+                comments_added = application.Comments_set.all().order_by(creation_time)
+                # update last update time of application (creation time of comment)
+                new_comment_creation_time = comments_added.last().creation_time
+                application.last_updated_at = new_comment_creation_time
+                application.save()
+
+            # sort application by creation time and last update time
+            return queryset.order_by('-created_at', '-last_updated_at')
+
+        # Return an empty queryset if the user is not authenticated
+        return Response({'error': 'Unauthorized to view these applications.'}, status=401)
 
 
 class GetApplicationView(RetrieveAPIView):
@@ -133,7 +147,7 @@ class GetApplicationView(RetrieveAPIView):
     serializer_class = ApplicationSerializer
 
     def retrieve(self, request, *args, **kwargs):
-        application = self.get_object_or_404()
+        application = self.get_object()
         serializer = self.get_serializer(application)
         return Response(serializer.data)
 
