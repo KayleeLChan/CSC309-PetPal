@@ -16,10 +16,15 @@ class CreateApplicationView(CreateAPIView):
     serializer_class = CreateApplicationSerializer
 
     def perform_create(self, serializer):
+        # verify that a Pet Seeker (not a Shelter) is trying to create an application 
+
+        if self.request.user.accounttype == 'petshelter':
+            raise PermissionDenied('You do not have permission to create an application')
+
         pet_listing_id = self.kwargs['pk']
         pet_listing = get_object_or_404(Listing, id=pet_listing_id, status='available')
 
-        new_application = serializer.save()
+        new_application = serializer.save(pet_listing=pet_listing, pet_seeker_user=self.request.user)
         
         # Set fields based on pet seeker (User)
         new_application.pet_seeker_user = self.request.user
@@ -30,13 +35,7 @@ class CreateApplicationView(CreateAPIView):
 
         # Set fields based on the pet_listing (pk)
         new_application.pet_listing = pet_listing
-        # new_application.breed = pet_listing.breed
-        # new_application.age = pet_listing.age
-        # new_application.sex = pet_listing.sex
-        # new_application.size = pet_listing.size
-        # new_application.belongs_to_shelter = pet_listing.shelter
         new_application.status = pet_listing.status
-        
 
         # Call the super method to perform the actual creation
         return super().perform_create(new_application)
@@ -63,7 +62,7 @@ class UpdateApplicationView(UpdateAPIView):
         user = self.request.user
 
         # check if user is shelter associated with application
-        if user == application.shelter.user:
+        if self.request.user.accounttype == 'petshelter':
             # shelter application status can only be updated if pending
             if application.status == 'pending':
                 # shelter can only update status to accepted or denied
@@ -75,7 +74,7 @@ class UpdateApplicationView(UpdateAPIView):
                     return Response({'error': 'Invalid status update for shelter.'}, status=400)
         
         # check if user is pet seeker associated with application
-        if user == application.pet_seeker.user:
+        if self.request.user.accounttype == 'petseeker':
             # pet seeker application status can only be updated if pending or accepted
             if application.status == 'pending' or 'accepted':
             # pet seeker can only update status to withdrawn
