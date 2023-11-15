@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from accounts.models import Account, PetSeeker, PetShelter
 from .models import Account
+import re
 
 ###############LOGIN AND DELETE SERIALIZERS #############################
 #Account Serializer called in the login view. Works for either seeker or shelter
