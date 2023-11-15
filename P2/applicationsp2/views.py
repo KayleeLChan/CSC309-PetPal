@@ -16,13 +16,13 @@ class CreateApplicationView(CreateAPIView):
     serializer_class = ApplicationSerializer
 
     def perform_create(self, serializer):
-        pet_listing_id = self.kwargs.get('pk')
+        pet_listing_id = self.kwargs['pk']
         pet_listing = get_object_or_404(Listing, id=pet_listing_id, status='available')
 
         new_application = serializer.save()
         
         # Set fields based on pet seeker (User)
-        new_application.pet_seeker = self.request.user
+        new_application.pet_seeker_user = self.request.user
         new_application.first_name = self.request.user.first_name
         new_application.last_name = self.request.user.last_name
         new_application.email = self.request.user.email

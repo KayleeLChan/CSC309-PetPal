@@ -22,7 +22,7 @@ class Application(models.Model):
     age = models.CharField(max_length=50) # pre-populated
     sex = models.CharField(max_length=50) # pre-populated
     size = models.CharField(max_length=50) # pre-populated
-    belongs_to_shelter = models.CharField(max_length=50) # pre-populated
+    belongs_to_shelter = models.IntegerField()# pre-populated
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending') # pre-populated
 
     # User viewing application - either a Pet Seeker (applicant) or a Shelter (rejector, approver, etc.)
