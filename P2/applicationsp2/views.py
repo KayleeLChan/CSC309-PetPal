@@ -21,14 +21,14 @@ class CreateApplicationView(CreateAPIView):
 
         new_application = serializer.save()
         
-        # Set fields based on the current user
+        # Set fields based on pet seeker (User)
         new_application.pet_seeker = self.request.user
         new_application.first_name = self.request.user.first_name
         new_application.last_name = self.request.user.last_name
         new_application.email = self.request.user.email
         new_application.phone_number = self.request.user.phonenumber
 
-        # Set fields based on the pet_listing 
+        # Set fields based on the pet_listing (pk)
         new_application.pet_listing = pet_listing
         new_application.breed = pet_listing.breed
         new_application.age = pet_listing.age

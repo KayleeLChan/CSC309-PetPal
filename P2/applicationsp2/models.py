@@ -12,29 +12,28 @@ class Application(models.Model):
         ("withdrawn", "Withdrawn"),
         ('accepted', 'Accepted')
     ]
-    # status of pet listing, calls Listing class
+    # creation and update time
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_updated_at = models.DateTimeField(auto_now=True)
+
+    # status and details of pet listing, calls Listing class
     pet_listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
-    # pet listing details - comes from Listing
-    breed = models.CharField(max_length=50)
-    age = models.CharField(max_length=50)
-    sex = models.CharField(max_length=50)
-    size = models.CharField(max_length=50)
-    belongs_to_shelter = models.CharField(max_length=50)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    breed = models.CharField(max_length=50) # pre-populated
+    age = models.CharField(max_length=50) # pre-populated
+    sex = models.CharField(max_length=50) # pre-populated
+    size = models.CharField(max_length=50) # pre-populated
+    belongs_to_shelter = models.CharField(max_length=50) # pre-populated
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending') # pre-populated
 
     # User viewing application - either a Pet Seeker (applicant) or a Shelter (rejector, approver, etc.)
     pet_seeker_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pet_seeker_applicant')
     shelter_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shelter_applicant')
 
-    # creation and update time
-    created_at = models.DateTimeField(auto_now_add=True)
-    last_updated_at = models.DateTimeField(auto_now=True)
-
-    # section 1: applicant details
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    phone_number = models.CharField(max_length=50)
+    # section 1: applicant details - first name, last name, phone number and email come from User class
+    first_name = models.CharField(max_length=50) # pre-populated
+    last_name = models.CharField(max_length=50) # pre-populated
+    email = models.CharField(max_length=50) # pre-populated
+    phone_number = models.CharField(max_length=50) # pre-populated
     address = models.CharField(max_length=50)
     postal_code = models.CharField(max_length=50)
     above_twentyone = models.CharField(max_length=50)
