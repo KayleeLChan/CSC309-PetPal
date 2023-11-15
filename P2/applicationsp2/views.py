@@ -7,6 +7,8 @@ from .serializers import ApplicationSerializer, CreateApplicationSerializer
 from rest_framework.response import Response
 from listings.models import Listing
 from accounts.models import Account
+from django.urls import reverse
+
 
 # Create your views here.
 class CreateApplicationView(CreateAPIView):
@@ -72,6 +74,16 @@ class UpdateApplicationView(UpdateAPIView):
                 # shelter can only update status to accepted or denied
                 if 'application_status' in self.request.data and self.request.data['application_status'] in ['accepted', 'denied']:
                     application.application_status = self.request.data['application_status']
+
+                    # create notification for status change
+                    Notification.objects.create(
+                        recipient=application.pet_seeker_user,
+                        notifier=request.user, 
+                        content=f"Status update", 
+                        title="application", 
+                        link=reverse('application-get', kwargs={'pk': application.id})
+                        )
+
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
                 else:
@@ -84,6 +96,16 @@ class UpdateApplicationView(UpdateAPIView):
             # pet seeker can only update status to withdrawn
                 if 'application_status' in self.request.data and self.request.data['application_status'] == 'withdrawn':
                     application.application_status = self.request.data['application_status']
+
+                    # create notification for status change
+                    Notification.objects.create(
+                        recipient=application.pet_listing.shelter.user,
+                        notifier=request.user, 
+                        content=f"Status update", 
+                        title="application", 
+                        link=reverse('application-get', kwargs={'pk': application.id})
+                        )
+
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
                 else:
