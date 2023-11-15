@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'multiselectfield',
     'accounts',
     'notifications',
+    'comments',
 ]
 
 MIDDLEWARE = [
