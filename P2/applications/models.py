@@ -11,6 +11,14 @@ class Application(models.Model):
         ("denied", "Denied"),
         ("withdrawn", "Withdrawn")
     ]
+
+    INSURANCE_CHOICES = [
+        ("visa", "Visa"),
+        ("master", "Mastercard"),
+        ("amex", "American Express"),
+        ("interac", "Interac E-transfer"),
+        ("paypal", "Paypal")
+    ]
     # creation and update time
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated_at = models.DateTimeField(auto_now=True)
@@ -28,25 +36,24 @@ class Application(models.Model):
     applicant_first_name = models.CharField(max_length=50) # pre-populated
     applicant_last_name = models.CharField(max_length=50) # pre-populated
     applicant_email = models.CharField(max_length=50) # pre-populated
-    applicant_phone_number = models.CharField(max_length=50) # pre-populated
+    applicant_phone_number = models.IntegerField() # pre-populated
     address = models.CharField(max_length=50)
     postal_code = models.CharField(max_length=6)
-    above_twentyone = models.CharField(max_length=50)
+    above_twentyone = models.BooleanField()
 
     # section 2: application details
-    adopting_for = models.CharField(max_length=50)
-    children = models.CharField(max_length=50)
-    pet_owner_history = models.CharField(max_length=50)
-    current_pets = models.CharField(max_length=50)
-    ideal_pet = models.CharField(max_length=50)
-    ideal_pet_sex = models.CharField(max_length=50)
-    ideal_pet_size = models.CharField(max_length=50)
-    ideal_pet_behaviour = models.CharField(max_length=50)
+    adopting_for = models.CharField(max_length=10, choices=[("myself", "myself"),("family", "my family")])
+    children = models.CharField(max_length=5, choices=[("kids", "kids"),("none", "no kids")])
+    pet_owner_history = models.CharField(max_length=10, choices=[("previous", "previous"),("first", "first-time")])
+    current_pets = models.CharField(max_length=10, choices=[("none", "no pet(s)"),("cat", "cat(s)"),("dog", "dog(s)"), ("both", "dog(s) and cat(s)"), ("other", "other pet(s)")])
+    ideal_pet = models.CharField(max_length=10, choices=[("none", "none"), ("new", "newborn"), ("young", "young"), ("adult", "adult"), ("senior", "senior")], default="none")
+    ideal_pet_sex = models.CharField(max_length=5, choices=[("none", "no gender preference"), ("F", "female"), ("M", "male")], default="none")
+    ideal_pet_size = models.CharField(max_length=5, choices=[("none", "no size preference"), ("S", "small"), ("M", "medium"), ("L", "large"), ("XL", "extra large")], default="none")
+    ideal_pet_behaviour = models.CharField(max_length=15, choices=[("none", "no behaviour preference"), ("very active", "very active"), ("active", "active"), ("laid-back", "laid-back"), ("lap", "lap-pet")], default="none")
 
     # section 3: payment
-    currently_insured = models.CharField(max_length=50)
-    insurance_name = models.CharField(max_length=50)
-    method_of_payment = models.CharField(max_length=50)
+    currently_insured = models.BooleanField()
+    insurance_name = models.CharField(max_length=10, choices=INSURANCE_CHOICES)
 
     def __str__(self):
         return f"Application #{self.id} for {self.pet_listing}"

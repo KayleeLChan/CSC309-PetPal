@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
 from .models import Comment
 from accounts.models import Account, PetShelter, PetSeeker
-from applicationsp2.models import Application
+from applications.models import Application
 from notifications.models import Notification
 from .serializers import CommentSerializer
 from django.contrib.contenttypes.models import ContentType
