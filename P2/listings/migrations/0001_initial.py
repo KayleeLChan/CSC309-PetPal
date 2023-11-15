@@ -27,19 +27,11 @@ class Migration(migrations.Migration):
                 ('colour', models.CharField(max_length=50)),
                 ('sex', models.CharField(choices=[('F', 'Female'), ('M', 'Male')], max_length=1)),
                 ('personality', models.CharField(max_length=50)),
-<<<<<<< HEAD
-                ('health', multiselectfield.db.fields.MultiSelectField(choices=[('F', 'Female'), ('M', 'Male')], max_length=28)),
-                ('good_with', models.CharField(max_length=50)),
-                ('good_without', models.CharField(max_length=50)),
-                ('description', models.TextField()),
-                ('shelter', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='shelters', to=settings.AUTH_USER_MODEL)),
-=======
                 ('health', multiselectfield.db.fields.MultiSelectField(choices=[('N/A', 'N/A'), ('vaccinated', 'vaccinated'), ('spayed/neutered', 'spayed/neutered')], max_length=28)),
                 ('good_with', models.CharField(max_length=50)),
                 ('good_without', models.CharField(max_length=50)),
                 ('description', models.TextField()),
                 ('shelter', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='listings', to=settings.AUTH_USER_MODEL)),
->>>>>>> origin/kayleeIntegrate
             ],
         ),
         migrations.CreateModel(
