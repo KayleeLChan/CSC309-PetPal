@@ -13,5 +13,4 @@ class ApplicationSerializer(serializers.ModelSerializer):
 class CreateApplicationSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Application
-        exclude = ['pet_seeker_user', 'shelter_user', 'pet_listing']
-        read_only_fields = ['breed', 'age', 'sex', 'size', 'belongs_to_shelter']
+        exclude = ['pet_seeker_user', 'pet_listing']
