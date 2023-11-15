@@ -6,28 +6,23 @@ from listings.models import Listing
 # Create your models here.
 class Application(models.Model):
     STATUS_CHOICES = [
-       ("available", "Available"),
         ("pending", "Pending"),
+        ('accepted', 'Accepted'),
         ("denied", "Denied"),
-        ("withdrawn", "Withdrawn"),
-        ('accepted', 'Accepted')
+        ("withdrawn", "Withdrawn")
     ]
     # creation and update time
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated_at = models.DateTimeField(auto_now=True)
 
-    # status and details of pet listing, calls Listing class
-    pet_listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
-    # breed = models.CharField(max_length=50) # pre-populated
-    # age = models.CharField(max_length=50) # pre-populated
-    # sex = models.CharField(max_length=50) # pre-populated
-    # size = models.CharField(max_length=50) # pre-populated
-    # belongs_to_shelter = models.IntegerField() # pre-populated
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending') # pre-populated
+    # status of application
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending') 
 
-    # User viewing application - either a Pet Seeker (applicant) or a Shelter (rejector, approver, etc.)
+    # pet listing of application, calls Listing class (access pet details through this field)
+    pet_listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
+
+    # the User viewing application - either a Pet Seeker (applicant) or a Shelter (rejector, approver, etc.)
     pet_seeker_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pet_seeker_applicant')
-    # shelter_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shelter_applicant')
 
     # section 1: applicant details - first name, last name, phone number and email come from User class
     applicant_first_name = models.CharField(max_length=50) # pre-populated

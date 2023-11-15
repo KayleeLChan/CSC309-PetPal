@@ -35,7 +35,9 @@ class CreateApplicationView(CreateAPIView):
 
         # Set fields based on the pet_listing (pk)
         new_application.pet_listing = pet_listing
-        new_application.status = pet_listing.status
+
+        # default initial status of application
+        new_application.status = 'pending'
 
         # Call the super method to perform the actual creation
         return super().perform_create(new_application)
@@ -58,12 +60,13 @@ class UpdateApplicationView(UpdateAPIView):
     serializer_class = ApplicationSerializer 
 
     def update(self, request, *args, **kwargs):
-        application = self.get_object_or_404()
+        application_id = self.kwargs['pk']
+        application = self.get_object()
         user = self.request.user
 
         # check if user is shelter associated with application
         if self.request.user.accounttype == 'petshelter':
-            # shelter application status can only be updated if pending
+            # shelter can only update application status if pending
             if application.status == 'pending':
                 # shelter can only update status to accepted or denied
                 if 'status' in request.data and request.data['status'] in ['accepted', 'denied']:
