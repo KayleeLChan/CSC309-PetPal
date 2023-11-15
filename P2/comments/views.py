@@ -63,15 +63,17 @@ class CommentListCreateView(ListCreateAPIView):
             title= comment_title,
             link= reverse("comments:comment", kwargs={'model': model, 'object_id': object_id})
         )
-        
 
     def get_queryset(self):
         object_id = self.kwargs['object_id']
         model = self.kwargs['model']
+        
         if model != "shelter":
+        
             application = get_object_or_404(Application, id=object_id)
             involved_users = [application.pet_seeker_user, application.pet_listing.shelter]
-        if self.request.user in involved_users:
+        
+        if (model == "shelter") or (self.request.user in involved_users and model !='shelter'):
             comments = Comment.objects.filter(content_model=model, object_id=object_id).order_by("-creation_time")
             return comments
         else:
