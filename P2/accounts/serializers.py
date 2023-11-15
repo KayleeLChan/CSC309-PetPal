@@ -36,7 +36,26 @@ class PetShelterGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = PetShelter
         fields = '__all__'
-        # edit the fields
+
+    def validate(self, attrs):
+        phonenumber = attrs.get('phonenumber')
+        errors = {}
+        if attrs.get('password') != attrs.get('confirmpassword'):
+            errors['password'] = "The two passwords do not match."
+
+        if (phonenumber and len(phonenumber) != 10):
+            errors['phonenumber'] = 'Enter a valid Phone Number'
+
+        username = attrs.get('username')
+        
+        if Account.objects.filter(username=username):
+            errors['username'] = 'This username already exists'
+
+        if errors:
+            raise serializers.ValidationError(errors)
+
+        return attrs
+    
 #######################################################################
 
 ########### REGISTER SERIALIZERS #####################################
