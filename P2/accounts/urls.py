@@ -15,5 +15,4 @@ urlpatterns = [
     path('shelter/<int:pk>/details/', views.ShelterDetailsView.as_view()),
     path('<int:pk>/', views.AccountDeleteView.as_view()),
     path('shelter/all/', views.ShelterListView.as_view()),
-    # path('<int:pk>/', views.SeekerRetrieveUpdateDestroyView.as_view(), name='seeker_detail'),
 ]

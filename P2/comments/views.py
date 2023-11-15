@@ -7,10 +7,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
 from .models import Comment
 from accounts.models import Account, PetShelter, PetSeeker
+from applicationsp2.models import Application
 from notifications.models import Notification
 from .serializers import CommentSerializer
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
+from django.core.exceptions import PermissionDenied
 
 
 # Create your views here.
@@ -29,7 +31,14 @@ class CommentListCreateView(ListCreateAPIView):
         object_id = self.kwargs['object_id']
         model = self.kwargs['model']
         comment_object = get_object_or_404(ContentType, id=object_id)
-        serializer.save(author=self.request.user, object_id=object_id, content_type=comment_object, content_model=model)
+        
+        if model != "shelter":
+            application = get_object_or_404(Application, id=object_id)
+            involved_users = [application.pet_seeker_user, application.pet_listing.shelter]
+            if self.request.user not in involved_users:
+                raise PermissionDenied("You do not have permission to access this view.")
+        
+        new_comment = serializer.save(author=self.request.user, object_id=object_id, content_type=comment_object, content_model=model)
 
         if model == "shelter":
             comment_content = "A new comment has been added to your shelter!"
@@ -39,12 +48,14 @@ class CommentListCreateView(ListCreateAPIView):
             comment_content = "A new comment has been added to one of your applications!"
             comment_title = "application"
             if self.request.user.accounttype == "petshelter":
-                comment_recipient = (get_object_or_404(Application, id=object_id)).pet_seeker_user
+                comment_recipient = application.pet_seeker_user
             else:
-                comment_recipient = (get_object_or_404(Application, id=object_id)).pet_listing.shelter
-            
-        print(comment_recipient)
+                comment_recipient = application.pet_listing.shelter
 
+            application.last_updated_at = new_comment.creation_time
+            application.save()
+            
+            
         Notification.objects.create(
             recipient= comment_recipient,
             notifier= self.request.user,
@@ -57,13 +68,14 @@ class CommentListCreateView(ListCreateAPIView):
     def get_queryset(self):
         object_id = self.kwargs['object_id']
         model = self.kwargs['model']
-        # if model == "shelter":
-        #     account_content_type = ContentType.objects.get_for_model(PetShelter)
-        # else:
-        #     account_content_type = ContentType.objects.get_for_model(Application)
-        # print(account_content_type)
-        comments = Comment.objects.filter(content_model=model, object_id=object_id).order_by("-creation_time")
-        return comments
+        if model != "shelter":
+            application = get_object_or_404(Application, id=object_id)
+            involved_users = [application.pet_seeker_user, application.pet_listing.shelter]
+        if self.request.user in involved_users:
+            comments = Comment.objects.filter(content_model=model, object_id=object_id).order_by("-creation_time")
+            return comments
+        else:
+            raise PermissionDenied("You do not have permission to access this view.")
 
 # class ApplicationCommentListCreateView(ListCreateAPIView):
 #     queryset = Comment.objects.filter(content_type='application')

@@ -9,6 +9,7 @@ from listings.models import Listing
 from accounts.models import Account
 from notifications.models import Notification
 from django.urls import reverse
+from django.core.exceptions import PermissionDenied
 
 
 # Create your views here.
@@ -130,36 +131,42 @@ class ListApplicationView(ListAPIView):
 
     def get_queryset(self):
         # to ensure shelter is only viewings their own applications
-        if self.request.user.is_authenticated:
-            # retrieve all listings associated to that shelter
-            instance = get_object_or_404(Account, id=self.kwargs["pk"])
-            listings_queryset = Listing.objects.filter(shelter=instance)
-            # create queryset for those listings
-            application_querysets = [Application.objects.filter(pet_listing=listing) for listing in listings_queryset]
+        user = self.request.user
+        if user.is_authenticated:
+            # retrieve all applications associated to that shelter
+            if user.accounttype == "petseeker":
+                applications = Application.objects.filter(pet_seeker_user=user)
+                status = self.request.query_params.get('application_status')
+                if status:
+                    applications = applications.filter(application_status=status)
+                
+                return applications.order_by('-created_at', '-last_updated_at')
+            
+            applications = Application.objects.filter(pet_listing__shelter=user)
 
-            # Combine the QuerySets using the | operator (or union method)
-            all_applications = Application.objects.none()  # Create an empty queryset as the initial value
-            for queryset in application_querysets:
-                all_applications |= queryset
+            # # Combine the QuerySets using the | operator (or union method)
+            # all_applications = Application.objects.none()  # Create an empty queryset as the initial value
+            # for queryset in application_querysets:
+            #     all_applications |= queryset
 
             # filter applications by status
             status = self.request.query_params.get('application_status')
             if status:
-                queryset = all_applications.filter(application_status=status)
+                applications = applications.filter(application_status=status)
             else:
-                queryset = all_applications
+                applications = applications
             
-            # when an application receives a new comment ...
-            for application in application_querysets:
-                # update last update time when a new comment is added
-                comments_added = application.Comments_set.all().order_by(creation_time)
-                # update last update time of application (creation time of comment)
-                new_comment_creation_time = comments_added.last().creation_time
-                application.last_updated_at = new_comment_creation_time
-                application.save()
+            # # when an application receives a new comment ...
+            # for application in application_querysets:
+            #     # update last update time when a new comment is added
+            #     comments_added = application.Comments_set.all().order_by("creation_time")
+            #     # update last update time of application (creation time of comment)
+            #     new_comment_creation_time = comments_added.last().creation_time
+            #     application.last_updated_at = new_comment_creation_time
+            #     application.save()
 
             # sort application by creation time and last update time
-            return queryset.order_by('-created_at', '-last_updated_at')
+            return applications.order_by('-created_at', '-last_updated_at')
 
         # Return an empty queryset if the user is not authenticated
         return Response({'error': 'Unauthorized to view these applications.'}, status=401)
