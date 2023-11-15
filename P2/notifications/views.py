@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
-from rest_framework.generics import ListAPIView, DestroyAPIView, RetrieveAPIView
+from django.core.exceptions import PermissionDenied
+from rest_framework.generics import ListAPIView, RetrieveDestroyAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
@@ -32,18 +33,14 @@ class UserNotificationsList(ListAPIView):
 
         return queryset
     
-class NotificationDeleteView(DestroyAPIView):
-    queryset = Notification.objects.all()
-    serializer_class = NotificationSerializer
-    
-    def get_object(self):
-        return get_object_or_404(Notification, pk=self.kwargs['pk'], recipient=self.request.user)
-    
-class NotificationRetrieve(RetrieveAPIView):
+class NotificationRetrieveDestroy(RetrieveDestroyAPIView):
     serializer_class = NotificationSerializer
 
     def get_object(self):
-        return get_object_or_404(Notification, pk=self.kwargs['pk'], recipient=self.request.user)
+        notification = get_object_or_404(Notification, pk=self.kwargs['pk'])
+        if notification.recipient != self.request.user:
+            raise PermissionDenied("You do not have access to this notification")
+        return notification
 
     def to_representation(self, instance):
         return {"link": instance.link}
@@ -51,7 +48,6 @@ class NotificationRetrieve(RetrieveAPIView):
     def retrieve(self, request, *a, **k):
         notification = self.get_object()
         link = self.to_representation(notification)
-        # TODO: Double check that is_read bool should be updated here
         notification.is_read = True
         notification.save()
         return Response(link)

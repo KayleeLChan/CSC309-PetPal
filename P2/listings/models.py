@@ -23,8 +23,7 @@ class Listing(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
-    # TODO: might have to change shelter to new account type
-    shelter = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="shelters", null=True)
+    shelter = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="listings", null=True)
     animal = models.CharField(max_length=50)
     breed = models.CharField(max_length=50)
     age = models.IntegerField()
