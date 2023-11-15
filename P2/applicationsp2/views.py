@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.generics import CreateAPIView, UpdateAPIView, ListAPIView, RetrieveAPIView
 from django.shortcuts import get_object_or_404
 from .models import Application
-from .serializers import ApplicationSerializer
+from .serializers import ApplicationSerializer, CreateApplicationSerializer
 from rest_framework.response import Response
 from .models import Listing
 
@@ -13,7 +13,7 @@ class CreateApplicationView(CreateAPIView):
     Pet Shelters cannot create applications.
     """
     queryset = Application.objects.all()
-    serializer_class = ApplicationSerializer
+    serializer_class = CreateApplicationSerializer
 
     def perform_create(self, serializer):
         pet_listing_id = self.kwargs['pk']
