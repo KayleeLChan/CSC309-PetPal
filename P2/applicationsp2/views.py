@@ -4,25 +4,48 @@ from rest_framework.generics import CreateAPIView, UpdateAPIView, ListAPIView, R
 from django.shortcuts import get_object_or_404
 from .models import Application
 from .serializers import ApplicationSerializer
+from rest_framework.response import Response
+from .models import Listing
 
 # Create your views here.
 class CreateApplicationView(CreateAPIView):
-    """ Can only create applications for a pet listing that is "available"
+    """ Pet Seekers can only create applications for a pet listing that is "available"
+    Pet Shelters cannot create applications.
     """
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
-    
+
+    def perform_create(self, serializer):
+        pet_listing_id = self.kwargs.get('pk')
+        pet_listing = get_object_or_404(Listing, id=pet_listing_id, status='available')
+
+        new_application = serializer.save()
+        
+        # Set fields based on the current user
+        new_application.pet_seeker = self.request.user
+        new_application.first_name = self.request.user.first_name
+        new_application.last_name = self.request.user.last_name
+        new_application.email = self.request.user.email
+        new_application.phone_number = self.request.user.phonenumber
+
+        # Set fields based on the pet_listing 
+        new_application.pet_listing = pet_listing
+        new_application.breed = pet_listing.breed
+        new_application.age = pet_listing.age
+        new_application.sex = pet_listing.sex
+        new_application.size = pet_listing.size
+        new_application.belongs_to_shelter = pet_listing.shelter
+        new_application.status = pet_listing.status
+        
+        # Call the super method to perform the actual creation
+        return super().perform_create(new_application)
+
     def create(self, request, *args, **kwargs):
-        # check if pet listing is available
-        pet_listing_id = request.data.get('pet_listing')
-        available = Listing.objects.filter(id=pet_listing_id, status='available').exists()
-        
-        # cannot create application if pet listing is unavailable
-        if not available:
-            return Response({"detail": "Cannot create application for an unavailable pet listing."}, status=400)
-        
-        # create application if available
-        return super().create(request, *args, **kwargs)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        application = self.perform_create(serializer)
+
+        return Response(serializer.data, status=201)
 
 
 class UpdateApplicationView(UpdateAPIView):

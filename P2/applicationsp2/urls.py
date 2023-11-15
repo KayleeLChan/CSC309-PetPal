@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import CreateApplicationView, UpdateApplicationView, ListApplicationView, GetApplicationView
 
-app_name='applications'
+app_name='applicationsp2'
 
 urlpatterns = [
     path('new/<int:pk>/', CreateApplicationView.as_view(), name='application-create'),
