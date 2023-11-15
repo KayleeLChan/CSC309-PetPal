@@ -30,13 +30,14 @@ class CreateApplicationView(CreateAPIView):
 
         # Set fields based on the pet_listing (pk)
         new_application.pet_listing = pet_listing
-        new_application.breed = pet_listing.breed
-        new_application.age = pet_listing.age
-        new_application.sex = pet_listing.sex
-        new_application.size = pet_listing.size
-        new_application.belongs_to_shelter = pet_listing.shelter
+        # new_application.breed = pet_listing.breed
+        # new_application.age = pet_listing.age
+        # new_application.sex = pet_listing.sex
+        # new_application.size = pet_listing.size
+        # new_application.belongs_to_shelter = pet_listing.shelter
         new_application.status = pet_listing.status
         
+
         # Call the super method to perform the actual creation
         return super().perform_create(new_application)
 
