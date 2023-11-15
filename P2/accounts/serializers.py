@@ -2,22 +2,21 @@ from rest_framework import serializers
 from accounts.models import Account, PetSeeker, PetShelter
 from .models import Account
 
-#for login
+###############LOGIN AND DELETE SERIALIZERS #############################
+#Account Serializer called in the login view. Works for either seeker or shelter
 class AccountSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
 
+#just used in the DestroyAPI view
 class DeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = '__all__'
 
+########################################################################
 
-class PetSeekerSignUpSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PetSeeker
-        fields = '__all__'
-
+##### GET serializers used in the RetrieveUpdate Profile view #########
 class PetSeekerGetSerializer(serializers.ModelSerializer):
     password = serializers.CharField(required=False)
     phonenumber = serializers.CharField(required=False)
@@ -37,22 +36,36 @@ class PetShelterGetSerializer(serializers.ModelSerializer):
         model = PetShelter
         fields = '__all__'
         # edit the fields
-            
+#######################################################################
 
+########### REGISTER SERIALIZERS #####################################
 class SeekerSerializer(serializers.ModelSerializer):
-    #email not required field
+    phonenumber = serializers.CharField(required=True)
     confirmpassword = serializers.CharField(write_only=True)
-    # username = serializers.CharField(validators=[UniqueValidator(queryset=Account.objects.all())])
+    
+    def validate_phone_number(self, phonenumber):
+        if phonenumber is not None:
+            return bool(re.match(r'^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$', phonenumber))
+        else:
+            return False
+
     class Meta:
         model = PetSeeker
         fields = '__all__'
         # fields = ['first_name', 'last_name', 'username', 'password','confirmpassword','phonenumber', 'profilepic', 'email', 'accounttype']
         
     def validate(self, attrs):
-        #TOdo add phone number valid
-        # display more than one error at a time
+        phonenumber = attrs['phonenumber']
+        errors = {}
         if attrs['password'] != attrs['confirmpassword']:
-            raise serializers.ValidationError("The two passwords do not match.")
+            errors['password'] = "The two passwords do not match."
+
+        if not (self.validate_phone_number(phonenumber)):
+            errors['phonenumber'] = 'Enter a valid Phone Number'
+
+        if errors:
+            raise serializers.ValidationError(errors)
+
         return attrs
 
     def create(self, validated_data):
@@ -60,29 +73,52 @@ class SeekerSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 class ShelterSerializer(serializers.ModelSerializer):
-    # sheltername = serializers.CharField(write_only=True, max_length=50,required=True)
-    # companyaddress = serializers.CharField(max_length=150,required=True)
-    # city = serializers.CharField(max_length=50,required=True)
-    # postal = serializers.CharField(max_length=6,required=True)
+    email = serializers.EmailField(required=True)
     website = serializers.URLField(max_length=200,required=False)
     mission = serializers.CharField(required=False)
     policy = serializers.CharField(required=False)
     confirmpassword = serializers.CharField(write_only=True)
+    phonenumber = serializers.CharField(required=True)
 
     class Meta:
         model = PetShelter
         fields = '__all__'
 
+    def validate_phone_number(self, phonenumber):
+        if phonenumber is not None:
+            return bool(re.match(r'^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$', phonenumber))
+        else:
+            return False
+
+    # def validatepostal(self, postal):
+    #     if postal is not None:
+    #         return bool(re.match(r'^[ABCEGHJKLMNPRSTVXY]\\d [ABCEGHJ-NPRSTV-Z] [ -]?\\d [ABCEGHJ-NPRSTV-Z]\\d$', postal))
+    #     else:
+    #         return False
+
     def validate(self, attrs):
-        #TOdo add phone number valid
-        # display more than one error at a time
+        phonenumber = attrs['phonenumber']
+        # postal = attrs['postal']
+        errors = {}
         if attrs['password'] != attrs['confirmpassword']:
-            raise serializers.ValidationError("The two passwords do not match.")
+            errors['password'] = "The two passwords do not match."
+
+        if not (self.validate_phone_number(phonenumber)):
+            errors['phonenumber'] = 'Invalid Phone Number'
+
+        # if not (self.validatepostal(postal)):
+        #     errors['postal'] = 'Invalid Postal Code'
+
+        if errors:
+            raise serializers.ValidationError(errors)
+
         return attrs
 
     def create(self, validated_data):
         validated_data.pop('confirmpassword')
         return super().create(validated_data)
+
+############ ADDITIONAL SHELTER SERIALIZERS FOR LIST OF SHELTER AND SHELTER PROFILES ####################
 
 class ShelterDetailsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -94,27 +130,4 @@ class ShelterListSerializer(serializers.ModelSerializer):
         model = PetShelter
         fields = ['sheltername']  
 
-# class AccountSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Account
-#         fields = '__all__'
 
-
-class PetSeekerRetrieveSerializer(serializers.ModelSerializer):
-    user = AccountSerializer()
-
-    class Meta:
-        model = PetSeeker
-        fields = ['firstname','lastname', 'user']
-
-class AccountUpdateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Account
-        fields = ['password','phonenumber', 'address', 'email', 'profilepic']
-
-
-class PetSeekerUpdateSerializer(serializers.ModelSerializer):
-    user = AccountUpdateSerializer()
-    class Meta: 
-        model = PetSeeker
-        fields = ['firstname','lastname', 'user']

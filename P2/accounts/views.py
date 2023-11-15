@@ -8,8 +8,8 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import PetSeeker, Account, PetShelter
-from .serializers import PetSeekerRetrieveSerializer, SeekerSerializer, PetSeekerUpdateSerializer, AccountSerializer, DeleteSerializer, \
-ShelterSerializer, ShelterDetailsSerializer, ShelterListSerializer, PetSeekerSignUpSerializer, PetSeekerGetSerializer, PetShelterGetSerializer
+from .serializers import SeekerSerializer, ShelterSerializer, AccountSerializer, DeleteSerializer, \
+ShelterDetailsSerializer, ShelterListSerializer, PetSeekerGetSerializer, PetShelterGetSerializer
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView, RetrieveUpdateAPIView, RetrieveAPIView, ListAPIView, DestroyAPIView
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import PermissionDenied
@@ -40,7 +40,7 @@ class PetShelterRegisterView(CreateAPIView):
 
 #NOT EdITING THIs
 
-class PetSeekerLoginView(views.APIView):
+class LoginView(views.APIView):
     serializer_class = AccountSerializer
     permission_classes = [permissions.AllowAny]
 
