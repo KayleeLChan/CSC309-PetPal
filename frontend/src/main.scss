@@ -24,6 +24,7 @@ $brand-colours: (
 $theme-colors: map-merge($brand-colours, $theme-colors);
 
 // override bootstrap default colours for various items that do not use the theme-colors
+@import '~bootstrap/scss/bootstrap';
 
 // Shadow items
 $box-shadow: 0 .5rem 1rem rgba($primary-brown, .25);
@@ -56,6 +57,7 @@ $grid-breakpoints: (
     --bs-tertiary-bg: #{$primary-cream};
     --bs-border-color: #{$primary-brown};
     --bs-secondary-bg: #ffcc99;
+    --bs-link-color-rgb: #{$primary-brown}; 
     --bs-link-hover-color-rgb: #{$primary-cream};
 
     // Custom borders
@@ -182,7 +184,7 @@ $grid-breakpoints: (
 
     // Styling
     .font-plain {
-        font-family: var(--bs-font-sans-serif);
+        font-family: var(--bs-font-sans-serif) !important;
     }
 
     .bg-none {
@@ -197,6 +199,11 @@ $grid-breakpoints: (
 
     .search-tab-link {
         font-size: 1rem;
+        border-bottom: none !important;
+    }
+
+    .nav-tabs {
+        flex-direction: row !important;
     }
 
     .shelter-header-text {
@@ -285,20 +292,24 @@ $grid-breakpoints: (
         border: none;
     }
 
-    .btn-xl,
-    .btn-group-xl>.btn {
-        --bs-btn-padding-y: 0.5rem;
-        --bs-btn-padding-x: 2rem;
-        --bs-btn-font-size: 2.5rem;
-        --bs-btn-border-radius: var(--bs-border-radius-lg);
-    }
-
     .btn-cream {
         color: $primary-cream !important;
     }
 
     .btn-cream:hover {
         color: $primary-brown !important;
+    }
+
+    .btn-brown {
+        color: $primary-cream !important;
+    }
+
+    .btn-xl,
+    .btn-group-xl>.btn {
+        --bs-btn-padding-y: 0.5rem;
+        --bs-btn-padding-x: 2rem;
+        --bs-btn-font-size: 2.5rem;
+        --bs-btn-border-radius: var(--bs-border-radius-lg);
     }
 
     .btn-primary-cream {
@@ -314,6 +325,12 @@ $grid-breakpoints: (
         --bs-btn-hover-color: #{$primary-brown};
         --bs-btn-hover-bg: #{$primary-orange};
         --bs-btn-active-bg: #d87410;
+    }
+
+    .search-btn {
+        border-color: #{$primary-brown} !important;
+        border-style: solid !important;
+        border-width: 1.5px;
     }
 
     .summary-text {
@@ -388,6 +405,22 @@ $grid-breakpoints: (
     .smallpar{
         font-size: small;
         color:#F99129
+    }
+
+    #adopt-dropdown {
+        color: $primary-cream !important;
+    }
+
+    #adopt-dropdown:hover {
+        color: $primary-brown !important;
+    }
+
+    #shelter-dropdown {
+        color: $primary-cream !important;
+    }
+
+    #shelter-dropdown:hover {
+        color: $primary-brown !important;
     }
 
     // Breakpoint classes
