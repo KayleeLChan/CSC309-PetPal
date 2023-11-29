@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Concert+One&family=Didact+Gothic&display=swap");
 [data-bs-theme=petpal] {
+  --bs-body-bg: #FFEFD0;
   --bs-body-color: #2E1400;
   --bs-body-color-rgb: 78, 51, 17;
   --bs-body-bg: #FFEFD0;
@@ -8,12 +9,16 @@
   --bs-tertiary-bg: #FFEFD0;
   --bs-border-color: #2E1400;
   --bs-secondary-bg: #ffcc99;
+  --bs-link-color-rgb: #2E1400;
   --bs-link-hover-color-rgb: #FFEFD0;
   --bs-border-width: 1.5px;
 }
 [data-bs-theme=petpal] main {
   min-height: calc(100vh - 87.833px);
   margin: 0px 5.3rem 0px 5.3rem;
+}
+[data-bs-theme=petpal] body {
+  background-color: #FFEFD0 !important;
 }
 [data-bs-theme=petpal] p {
   font-size: larger;
@@ -24,6 +29,9 @@
 [data-bs-theme=petpal] img {
   -o-object-fit: cover;
      object-fit: cover;
+}
+[data-bs-theme=petpal] .default-bg {
+  background: #FFEFD0;
 }
 [data-bs-theme=petpal] .profile-pic {
   min-width: 50px;
@@ -103,7 +111,7 @@
   font-size: 0.9rem !important;
 }
 [data-bs-theme=petpal] .font-plain {
-  font-family: var(--bs-font-sans-serif);
+  font-family: var(--bs-font-sans-serif) !important;
 }
 [data-bs-theme=petpal] .bg-none {
   background-color: rgba(0, 0, 0, 0);
@@ -115,6 +123,10 @@
 }
 [data-bs-theme=petpal] .search-tab-link {
   font-size: 1rem;
+  border-bottom: none !important;
+}
+[data-bs-theme=petpal] .nav-tabs {
+  flex-direction: row !important;
 }
 [data-bs-theme=petpal] .shelter-header-text {
   font-size: calc(1.275rem + 0.3vw);
@@ -185,18 +197,21 @@
 [data-bs-theme=petpal] .btn {
   border: none;
 }
+[data-bs-theme=petpal] .btn-cream {
+  color: #FFEFD0 !important;
+}
+[data-bs-theme=petpal] .btn-cream:hover {
+  color: #2E1400 !important;
+}
+[data-bs-theme=petpal] .btn-brown {
+  color: #FFEFD0 !important;
+}
 [data-bs-theme=petpal] .btn-xl,
 [data-bs-theme=petpal] .btn-group-xl > .btn {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 2rem;
   --bs-btn-font-size: 2.5rem;
   --bs-btn-border-radius: var(--bs-border-radius-lg);
-}
-[data-bs-theme=petpal] .btn-cream {
-  color: #FFEFD0 !important;
-}
-[data-bs-theme=petpal] .btn-cream:hover {
-  color: #2E1400 !important;
 }
 [data-bs-theme=petpal] .btn-primary-cream {
   --bs-btn-color: #2E1400;
@@ -210,6 +225,11 @@
   --bs-btn-hover-color: #2E1400;
   --bs-btn-hover-bg: #F99129;
   --bs-btn-active-bg: #d87410;
+}
+[data-bs-theme=petpal] .search-btn {
+  border-color: #2E1400 !important;
+  border-style: solid !important;
+  border-width: 1.5px;
 }
 [data-bs-theme=petpal] .summary-text {
   font-size: calc(1.275rem + 0.3vw);
@@ -266,6 +286,18 @@
 [data-bs-theme=petpal] .smallpar {
   font-size: small;
   color: #F99129;
+}
+[data-bs-theme=petpal] #adopt-dropdown {
+  color: #FFEFD0 !important;
+}
+[data-bs-theme=petpal] #adopt-dropdown:hover {
+  color: #2E1400 !important;
+}
+[data-bs-theme=petpal] #shelter-dropdown {
+  color: #FFEFD0 !important;
+}
+[data-bs-theme=petpal] #shelter-dropdown:hover {
+  color: #2E1400 !important;
 }
 @media (max-width: 409.98px) {
   [data-bs-theme=petpal] .hide-xs {
@@ -551,8 +583,8 @@
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
   --bs-body-color-rgb: 33, 37, 41;
-  --bs-body-bg: #fff;
-  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-body-bg: #ffefd0;
+  --bs-body-bg-rgb: 255, 239, 208;
   --bs-emphasis-color: #000;
   --bs-emphasis-color-rgb: 0, 0, 0;
   --bs-secondary-color: rgba(33, 37, 41, 0.75);

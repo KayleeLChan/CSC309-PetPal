@@ -1,5 +1,4 @@
 // import functions and variables
-// @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "../node_modules/bootstrap/scss/_functions";
 @import "../node_modules/bootstrap/scss/_variables";
 @import '../node_modules/bootstrap/scss/mixins';
@@ -23,9 +22,6 @@ $brand-colours: (
 );
 $theme-colors: map-merge($brand-colours, $theme-colors);
 
-// override bootstrap default colours for various items that do not use the theme-colors
-@import '~bootstrap/scss/bootstrap';
-
 // Shadow items
 $box-shadow: 0 .5rem 1rem rgba($primary-brown, .25);
 $box-shadow-sm: 0 .125rem .25rem rgba($primary-brown, .075);
@@ -33,6 +29,7 @@ $box-shadow-lg: 0 1rem 3rem rgba($primary-brown, .4);
 $box-shadow-inset: inset 0 1px 2px rgba($primary-brown, .075);
 
 // Misc. items
+$body-bg: rgba($primary-cream, 1);
 $body-tertiary-bg: rgba($primary-cream, 1);
 $grid-breakpoints: (
     xxs: 0,
@@ -50,6 +47,7 @@ $grid-breakpoints: (
 // If anything in main.css needs to be changed, change it inside this theme
 [data-bs-theme="petpal"] {
     // Custom Colours
+    --bs-body-bg: #{$primary-cream};
     --bs-body-color: #{$primary-brown};
     --bs-body-color-rgb: #{to-rgb($dark-brown)};
     --bs-body-bg: #{$primary-cream};
@@ -69,6 +67,10 @@ $grid-breakpoints: (
         margin: 0px 5.3rem 0px 5.3rem;
     }
 
+    body {
+        background-color: #{$primary-cream} !important;
+    }
+
     p {
         font-size: larger;
     }
@@ -79,6 +81,10 @@ $grid-breakpoints: (
 
     img {
         object-fit: cover;
+    }
+
+    .default-bg {
+        background: #{$primary-cream};
     }
 
     .profile-pic {
