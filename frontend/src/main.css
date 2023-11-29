@@ -13,12 +13,9 @@
   --bs-link-hover-color-rgb: #FFEFD0;
   --bs-border-width: 1.5px;
 }
-[data-bs-theme=petpal] main {
+[data-bs-theme=petpal] .main {
   min-height: calc(100vh - 87.833px);
   margin: 0px 5.3rem 0px 5.3rem;
-}
-[data-bs-theme=petpal] body {
-  background-color: #FFEFD0 !important;
 }
 [data-bs-theme=petpal] p {
   font-size: larger;
@@ -30,8 +27,11 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
-[data-bs-theme=petpal] .default-bg {
-  background: #FFEFD0;
+[data-bs-theme=petpal] .error {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 [data-bs-theme=petpal] .profile-pic {
   min-width: 50px;

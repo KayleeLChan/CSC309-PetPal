@@ -1,13 +1,15 @@
 import React from 'react';
 
 function Error404() {
-  return (
-    <>
-    <div>
-        <h3>Page not Found</h3>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div data-bs-theme="petpal">
+                <div className="main error">
+                    <h1>Page Not Found</h1>
+                </div>
+            </div>
+        </>
+    );
 }
 
 export default Error404;

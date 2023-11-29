@@ -1,16 +1,6 @@
-// import React from "react";
-// import Header from "./components/header-files/header";
-
-// const App = () => {
-//   return (
-//     <div data-bs-theme="petpal">
-//       <Header></Header>
-//     </div>
-//   );
-// };
-// export default App;
-
+import React from "react";
 import ReactDOM from "react-dom/client";
+import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout";
 import Home from "./pages/Home/Index";

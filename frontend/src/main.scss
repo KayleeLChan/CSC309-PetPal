@@ -62,13 +62,9 @@ $grid-breakpoints: (
     --bs-border-width: 1.5px;
 
     // Custom CSS
-    main {
+    .main {
         min-height: calc(100vh - 87.833px);
         margin: 0px 5.3rem 0px 5.3rem;
-    }
-
-    body {
-        background-color: #{$primary-cream} !important;
     }
 
     p {
@@ -83,8 +79,11 @@ $grid-breakpoints: (
         object-fit: cover;
     }
 
-    .default-bg {
-        background: #{$primary-cream};
+    .error {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
     }
 
     .profile-pic {
