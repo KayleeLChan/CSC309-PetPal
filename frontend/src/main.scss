@@ -1,0 +1,702 @@
+// import functions and variables
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+@import '../node_modules/bootstrap/scss/mixins';
+
+// custom colours
+$primary-brown: #2E1400;
+$dark-brown: #4E3311;
+$brown: #6E502C;
+$cream: #C5A97C;
+$primary-cream: #FFEFD0;
+$primary-orange: #F99129;
+
+// merge custom colours into bootstrap's default theme colours
+$brand-colours: (
+    "primary-brown": rgba($primary-brown, 1),
+    "dark-brown": rgba($dark-brown, 1),
+    "brown": rgba($brown, 1),
+    "cream": rgba($cream, 1),
+    "primary-cream": rgba($primary-cream, 1),
+    "primary-orange": rgba($primary-orange, 1),
+);
+$theme-colors: map-merge($brand-colours, $theme-colors);
+
+// Shadow items
+$box-shadow: 0 .5rem 1rem rgba($primary-brown, .25);
+$box-shadow-sm: 0 .125rem .25rem rgba($primary-brown, .075);
+$box-shadow-lg: 0 1rem 3rem rgba($primary-brown, .4);
+$box-shadow-inset: inset 0 1px 2px rgba($primary-brown, .075);
+
+// Misc. items
+$body-bg: rgba($primary-cream, 1);
+$body-tertiary-bg: rgba($primary-cream, 1);
+$grid-breakpoints: (
+    xxs: 0,
+    xs: 410px,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+    xxxl: 1536px,
+    xxxxl: 2150px,
+);
+
+// IMPORT DATA-BS-THEME="PETPAL" INTO BODY TAG OF EVERY PAGE!
+// If anything in main.css needs to be changed, change it inside this theme
+[data-bs-theme="petpal"] {
+    // Custom Colours
+    --bs-body-bg: #{$primary-cream};
+    --bs-body-color: #{$primary-brown};
+    --bs-body-color-rgb: #{to-rgb($dark-brown)};
+    --bs-body-bg: #{$primary-cream};
+    --bs-body-bg-rgb: #{to-rgb($cream)};
+    --bs-tertiary-bg: #{$primary-cream};
+    --bs-border-color: #{$primary-brown};
+    --bs-secondary-bg: #ffcc99;
+    --bs-link-color-rgb: #{$primary-brown}; 
+    --bs-link-hover-color-rgb: #{$primary-cream};
+
+    // Custom borders
+    --bs-border-width: 1.5px;
+
+    // Custom CSS
+    main {
+        min-height: calc(100vh - 87.833px);
+        margin: 0px 5.3rem 0px 5.3rem;
+    }
+
+    body {
+        background-color: #{$primary-cream} !important;
+    }
+
+    p {
+        font-size: larger;
+    }
+
+    h3 {
+        white-space: nowrap !important;
+    }
+
+    img {
+        object-fit: cover;
+    }
+
+    .default-bg {
+        background: #{$primary-cream};
+    }
+
+    .profile-pic {
+        min-width: 50px;
+        min-height: 50px;
+        width: 50px;
+        height: 50px;
+        max-width: 50px;
+        max-height: 50px;
+    }
+
+    .profile-pic:hover {
+        border-color: #{$primary-cream} !important;
+    }
+
+    .user-pic {
+        width: 170px;
+        height: 170px;
+        max-width: 170px;
+    }
+
+    .notif-dot {
+        background-color: #c63030;
+    }
+
+    .start-60 {
+        left: 60% !important;
+    }
+
+    .start-65 {
+        left: 65% !important;
+    }
+
+    .start-75 {
+        left: 75% !important;
+    }
+
+    .navbar-collapse .dropstart .dropdown-menu[data-bs-popper]{
+        top: 100% !important;
+        right: 20% !important;
+    }
+
+    .swappable-pic:hover {
+        opacity: 70%
+    }
+
+    .empty-star {
+        opacity: 30%
+    }
+
+    // Sizing
+    .min-vh-50 {
+        min-height: 50vh !important;
+    }
+
+    .vw-25 {
+        height: 25vw !important;
+    }
+
+    .vw-50 {
+        width: 50vw !important;
+    }
+
+    .w-7 {
+        width: 7% !important;
+    }
+
+    .w-10 {
+        width: 10% !important;
+    }
+
+    .w-15 {
+        width: 15% !important;
+    }
+
+    .w-20 {
+        width: 20% !important;
+    }
+
+    .w-40 {
+        width: 40% !important;
+    }
+
+    .w-60 {
+        width: 60% !important;
+    }
+
+    .w-70 {
+        width: 70% !important;
+    }
+
+    .w-90 {
+        width: 90% !important;
+    }
+
+    .fs-0 {
+        font-size: calc(1.4rem + 1.5vw) !important;
+    }
+
+    .fs-7 {
+        font-size: 0.9rem !important;
+    }
+
+    // Styling
+    .font-plain {
+        font-family: var(--bs-font-sans-serif) !important;
+    }
+
+    .bg-none {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .dropdown-menu {
+        --bs-dropdown-link-hover-bg: #{$cream};
+        --bs-dropdown-link-active-color: #{$primary-cream};
+        --bs-dropdown-link-active-bg: #{$primary-orange};
+    }
+
+    .search-tab-link {
+        font-size: 1rem;
+        border-bottom: none !important;
+    }
+
+    .nav-tabs {
+        flex-direction: row !important;
+    }
+
+    .shelter-header-text {
+        font-size: calc(1.275rem + 0.3vw);
+      }
+
+    .form-control:focus {
+        // Change glow around search bar to orange
+        color: #{$primary-brown};
+        background-color: #{$primary-cream};
+        border-color: #{$primary-orange};
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
+    }
+
+    .form-select:focus {
+        border-color: #{$primary-brown};
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
+    }
+
+    .form-check-input:checked {
+        background-color: #{$primary-orange};
+        border-color: #{$primary-orange};
+    }
+
+    .form-check-input:focus {
+        border-color: #{$primary-brown};
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba($primary-orange, 0.25);
+    }
+
+    .form-check-label {
+        padding-top: 0;
+    }
+
+    .card {
+        --bs-card-border-width: 0;
+        --bs-card-box-shadow: 0 0 0 0.25rem rgba($primary-brown, 0.25);
+        --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
+        --bs-card-bg: #{$cream};
+    }
+
+    .card-click:hover {
+        opacity: 70%;
+    }
+
+    .card-click:active {
+        opacity: 90%;
+    }
+
+    .card-img-top {
+        padding: 1.5rem;
+        height: 10vw;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .card-text {
+        margin-bottom: 0.5rem;
+    }
+
+    .carousel-control-prev-icon {
+        background-image: url(../public/imgs/leftArrow.svg);
+    }
+
+    .carousel-control-next-icon {
+        background-image: url(../public/imgs/rightArrow.svg);
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        position: static;
+        height: 5vh;
+    }
+
+    .carousel-indicators [data-bs-target] {
+        background-color: #{$dark-brown};
+    }
+
+    .carousel-indicators .active {
+        background-color: #{$primary-orange};
+    }
+
+    .btn {
+        border: none;
+    }
+
+    .btn-cream {
+        color: $primary-cream !important;
+    }
+
+    .btn-cream:hover {
+        color: $primary-brown !important;
+    }
+
+    .btn-brown {
+        color: $primary-cream !important;
+    }
+
+    .btn-xl,
+    .btn-group-xl>.btn {
+        --bs-btn-padding-y: 0.5rem;
+        --bs-btn-padding-x: 2rem;
+        --bs-btn-font-size: 2.5rem;
+        --bs-btn-border-radius: var(--bs-border-radius-lg);
+    }
+
+    .btn-primary-cream {
+        --bs-btn-color: #{$primary-brown};
+        --bs-btn-hover-color: #{$primary-orange};
+        --bs-btn-hover-bg: #{$primary-cream};
+        --bs-btn-active-color: #{$primary-orange};
+        --bs-btn-active-bg: #eed8ac;
+    }
+
+    .btn-primary-orange {
+        --bs-btn-color: #{$primary-cream};
+        --bs-btn-hover-color: #{$primary-brown};
+        --bs-btn-hover-bg: #{$primary-orange};
+        --bs-btn-active-bg: #d87410;
+    }
+
+    .search-btn {
+        border-color: #{$primary-brown} !important;
+        border-style: solid !important;
+        border-width: 1.5px;
+    }
+
+    .summary-text {
+        font-size: calc(1.275rem + 0.3vw);
+    }
+
+    .detail-carousel {
+        width: 90%;
+    }
+
+    .two-col {
+        justify-content: space-evenly;
+    }
+
+    .one-col-child {
+        width: 50%;
+    }
+
+    .responsive-col {
+        width: 75%;
+    }
+
+    .small-img {
+        width: 50vw;
+    }
+
+    .notif-col {
+        width: 75%;
+        margin: 3rem;
+    }
+
+    .radio_gap {
+        margin-right: 10px;
+    }
+
+    .nav-tabs {
+        --bs-nav-tabs-border-color: #{$cream};
+        --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
+        --bs-nav-tabs-link-active-border-color: #{$cream};
+    }
+
+    .nav-tabs .nav-link:hover,
+    .nav-tabs .nav-link:focus {
+        border-color: #{$primary-orange};
+    }
+
+    .nav-link {
+        color: #{$primary-brown};
+    }
+
+    .nav-link:hover, .nav-link:focus {
+        color: #{$primary-brown};
+    }
+
+    .chat{
+        max-width: 400px;
+    }
+
+    .signupcontainer{
+        margin-top:20px;
+    }
+
+    .signupcontainer p{
+        margin: 0px;
+    }
+
+
+    .paddingify{
+        padding: 30px;
+    }
+
+    .smallpar{
+        font-size: small;
+        color:#F99129
+    }
+
+    #adopt-dropdown {
+        color: $primary-cream !important;
+    }
+
+    #adopt-dropdown:hover {
+        color: $primary-brown !important;
+    }
+
+    #shelter-dropdown {
+        color: $primary-cream !important;
+    }
+
+    #shelter-dropdown:hover {
+        color: $primary-brown !important;
+    }
+
+    // Breakpoint classes
+    @include media-breakpoint-down(xs) {
+        .hide-xs {
+            // Don't show element on screen-sizes xs and under
+            display: none !important;
+        }
+
+        .responsive-tab {
+            font-size: small;
+        }
+    }
+    @include media-breakpoint-down(sm) {
+        .hide-sm {
+            // Don't show element on screen-sizes small and under
+            display: none !important;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .hide-md {
+            // Don't show element on screen-sizes md and under
+            display: none !important;
+        }
+
+        main {
+            margin: 0px 2rem 0px 2rem;
+        }
+
+
+        .small-title {
+            flex-direction: column;
+            align-items: start !important;
+        }
+
+        .small-img {
+            width: 30vw;
+        }
+
+        .small-title-input {
+            flex-direction: column;
+            align-items: start !important;
+            row-gap: 0.5rem;
+        }
+
+        .notif-col {
+            width: 100%;
+        }
+
+        .search_card { 
+            width: 100% !important
+        }   
+    }
+
+    @include media-breakpoint-down(lg) {
+        .hide-lg {
+            // Don't show element on screen-sizes lg and under
+            display: none !important;
+        }
+
+        .modal-div {
+            flex-direction: column !important;
+        }
+
+        .notif-col {
+            margin: 3rem 0.5rem 3rem 0.5rem;
+        }
+
+        .notif-title {
+            font-size: medium;
+        }
+
+        .notif-msg {
+            padding-top: 0 !important;
+        }
+
+        .text-truncate {
+            font-size: small;
+        }
+
+        .responsive-heading {
+            font-size: medium !important;
+        }
+
+        .user-pic {
+            width: 80px !important;
+            height: 80px !important;
+            max-width: 80px !important;
+        }
+    }
+
+    @include media-breakpoint-down(xl) {
+        .hide-xl {
+            // Don't show element on screen-sizes lg and under
+            display: none !important;
+        }
+
+        .main-carousel {
+            width: 75vw !important;
+        }
+
+        .two-col {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .two-col-child {
+            width: 100% !important;
+            margin-bottom: 0 !important;
+        }
+
+        .two-col-form {
+            align-items: center;
+        }
+
+        .search-card { 
+            width: 50%
+        }
+
+        .search-tab-link {
+            font-size: 0.73rem;
+        }
+
+        .shelter-header-text {
+            font-size: 1.25rem !important;
+        }
+
+        .responsive-col {
+            width: 100% !important;
+        }
+    }
+
+    @include media-breakpoint-down(xxl) {
+        .hide-xxl {
+            // Don't show element on screen-sizes xxl and under
+            display: none !important;
+        }
+
+        .summary-text {
+            font-size: smaller !important;
+        }
+
+        .detail-carousel {
+            width: 100% !important;
+        }
+    }
+
+    @include media-breakpoint-down(xxxl) {
+        .hide-xxxl {
+            // Don't show element on screen-sizes xxxl and under
+            display: none !important;
+        }
+
+        .summary-text {
+            font-size: small !important;
+        }
+
+        .detail-img {
+            padding: 0.5rem !important;
+        }
+
+        .one-col-child {
+            width: 90% !important;
+        }
+    }
+
+    @include media-breakpoint-down(xxxxl) {
+        .hide-xxxxl {
+            // Don't show element on screen-sizes xxxxl and under
+            display: none !important;
+        }
+
+        .summary-text {
+            font-size: medium;
+        }
+
+        .cta-btn-xl {
+            --bs-btn-font-size: 1.5rem;
+        }
+
+        .detail-img {
+            padding: 0.75rem;
+        }
+
+        .responsive-heading {
+            font-size: larger;
+        }
+    }
+
+    @include media-breakpoint-up(xs) {
+        .show-xxs {
+            // Don't show element on screen-sizes xs and over
+            display: none !important;
+        }
+    }
+
+    @include media-breakpoint-up(sm) {
+        .show-xs {
+            // Don't show element on screen-sizes small and over
+            display: none !important;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        .show-sm {
+            // Don't show element on screen-sizes md and over
+            display: none !important;
+        }
+
+        .title-separate {
+            width: 25% !important;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        .show-md {
+            // Don't show element on screen-sizes lg and over
+            display: none !important;
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        .show-lg {
+            // Don't show element on screen-sizes xl and over
+            display: none !important;
+        }
+    }
+
+    @include media-breakpoint-up(xxl) {
+        .show-xl {
+            // Don't show element on screen-sizes xxl and over
+            display: none !important;
+        }
+    }
+
+    @include media-breakpoint-up(xxxl) {
+        .show-xxl {
+            // Don't show element on screen-sizes xxxl and over
+            display: none !important;
+        }
+    }
+    form{
+        padding-left: 30px;
+        padding-right: 30px;
+        align-self: center;
+    }
+
+    input[type=file]::file-selector-button {
+        background-color: $primary-orange;
+      }
+    
+    label{
+        padding-top: 16px;
+    }
+
+}
+
+
+// custom fonts
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Didact+Gothic&display=swap');
+
+$font-family-sans-serif: "Didact Gothic";
+$headings-font-family: "Concert One";
+$input-btn-font-family: "Concert One";
+$form-text-font-style: "Concert One";
+
+// custom card adjustments
+$card-height: 100%; // Make every card equal height
+
+// import bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
