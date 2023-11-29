@@ -166,10 +166,10 @@
   margin-bottom: 0.5rem;
 }
 [data-bs-theme=petpal] .carousel-control-prev-icon {
-  background-image: url(./imgs/leftArrow.svg);
+  background-image: url(../public/imgs/leftArrow.svg);
 }
 [data-bs-theme=petpal] .carousel-control-next-icon {
-  background-image: url(./imgs/rightArrow.svg);
+  background-image: url(../public/imgs/rightArrow.svg);
 }
 [data-bs-theme=petpal] .carousel-control-prev,
 [data-bs-theme=petpal] .carousel-control-next {
@@ -237,7 +237,8 @@
   margin-right: 10px;
 }
 [data-bs-theme=petpal] .nav-tabs {
-  --bs-nav-tabs-border-color: #C5A97C --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
+  --bs-nav-tabs-border-color: #C5A97C;
+  --bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
   --bs-nav-tabs-link-active-border-color: #C5A97C;
 }
 [data-bs-theme=petpal] .nav-tabs .nav-link:hover,
