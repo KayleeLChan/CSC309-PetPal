@@ -27,8 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -161,8 +159,7 @@ SIMPLE_JWT = {
 AUTH_USER_MODEL = "accounts.Account"
 
 CORS_ALLOWED_ORIGINS = [
-    # "https://example.com",
-    "https://twizzy-petpal.vercel.app/",
+    "https://twizzy-petpal.vercel.app",
     "http://localhost:8080",
     "http://127.0.0.1:3000",
 ]
