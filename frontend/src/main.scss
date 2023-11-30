@@ -37,7 +37,7 @@ $grid-breakpoints: (
     sm: 576px,
     md: 768px,
     lg: 992px,
-    xl: 1200px,
+    xl: 1248px,
     xxl: 1400px,
     xxxl: 1536px,
     xxxxl: 2150px,
@@ -243,6 +243,20 @@ $grid-breakpoints: (
 
     .form-check-label {
         padding-top: 0;
+    }
+
+    .carousel-card {
+        width: 28%;
+    }
+
+    .carousel-indicators {
+        position: inherit;
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .card-link {
+        text-decoration: none;
     }
 
     .card {
