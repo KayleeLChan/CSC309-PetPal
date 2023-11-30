@@ -1,5 +1,6 @@
 import React from 'react';
 import PetCarousel from '../../components/carousels/pet-carousel';
+import PetCarouselSmall from '../../components/carousels/pat-carousel-small';
 
 function Home() {
     return (
@@ -10,6 +11,7 @@ function Home() {
                         <h1 className="text-center mt-5">Every Pet Deserves A Pal</h1>
                         <p className="text-center">Find a pal from our network of over 11,500 shelters and rescues</p>
                         <PetCarousel></PetCarousel>
+                        <PetCarouselSmall></PetCarouselSmall>
 
                         <div class="text-primary-brown">
                             <button class="btn btn-lg btn-primary-orange m-3 shadow-sm" type="">Meet More Pals!</button>

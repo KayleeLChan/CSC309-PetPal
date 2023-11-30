@@ -37,7 +37,7 @@ $grid-breakpoints: (
     sm: 576px,
     md: 768px,
     lg: 992px,
-    xl: 1200px,
+    xl: 1248px,
     xxl: 1400px,
     xxxl: 1536px,
     xxxxl: 2150px,
@@ -250,10 +250,12 @@ $grid-breakpoints: (
     }
 
     .carousel-indicators {
-        bottom: -15%;
+        position: inherit;
+        margin-bottom: 0;
+        width: 100%;
     }
 
-    .pet-card {
+    .card-link {
         text-decoration: none;
     }
 
