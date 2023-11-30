@@ -245,6 +245,18 @@ $grid-breakpoints: (
         padding-top: 0;
     }
 
+    .carousel-card {
+        width: 28%;
+    }
+
+    .carousel-indicators {
+        bottom: -15%;
+    }
+
+    .pet-card {
+        text-decoration: none;
+    }
+
     .card {
         --bs-card-border-width: 0;
         --bs-card-box-shadow: 0 0 0 0.25rem rgba($primary-brown, 0.25);
