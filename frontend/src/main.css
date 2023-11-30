@@ -327,7 +327,7 @@
   [data-bs-theme=petpal] .hide-md {
     display: none !important;
   }
-  [data-bs-theme=petpal] main {
+  [data-bs-theme=petpal] .main {
     margin: 0px 2rem 0px 2rem;
   }
   [data-bs-theme=petpal] .small-title {
