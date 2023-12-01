@@ -14,6 +14,6 @@ pip install django-multiselectfield
 pip install django-cors-headers
 
 chmod +x manage.py
-./manage.py flush
-./manage.py makemigrations
-./manage.py migrate
+./manage.py flush or python manage.py flush
+./manage.py makemigrations or python manage.py makemigrations
+./manage.py migrate or python manage.py migrate
