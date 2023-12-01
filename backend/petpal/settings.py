@@ -153,13 +153,13 @@ REST_FRAMEWORK = {
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=14),
 }
 
 AUTH_USER_MODEL = "accounts.Account"
 
 CORS_ALLOWED_ORIGINS = [
     "https://twizzy-petpal.vercel.app",
-    "http://localhost:8080",
+    "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
