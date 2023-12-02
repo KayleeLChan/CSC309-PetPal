@@ -47,8 +47,8 @@ const NotificationItem = ({ notification, onDelete }) => {
         onClick={handleModalShow}
       >
         <div className="d-flex flex-row align-items-center">
-          <h3 className="m-0 notif-title">{notification.notifier_username}</h3>
-          <p className="font-plain fs-6 m-0 ps-3 pt-2 text-truncate notif-msg">
+          <h3 className="m-0 notif-title fs-1">{notification.notifier_username}</h3>
+          <p className="font-plain fs-5 m-0 ps-3 pt-2 text-truncate notif-msg">
             {notification.content}
           </p>
         </div>

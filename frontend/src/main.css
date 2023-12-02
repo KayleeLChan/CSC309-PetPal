@@ -110,6 +110,10 @@
 [data-bs-theme=petpal] .fs-7 {
   font-size: 0.9rem !important;
 }
+[data-bs-theme=petpal] .my-10 {
+  margin-top: 10rem !important;
+  margin-bottom: 10rem !important;
+}
 [data-bs-theme=petpal] .font-plain {
   font-family: var(--bs-font-sans-serif) !important;
 }
