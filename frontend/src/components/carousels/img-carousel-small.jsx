@@ -2,77 +2,31 @@ import React, { useState } from 'react';
 import { Carousel, Button, CardGroup } from 'react-bootstrap';
 import ImgCard from '../custom-cards/img-card';
 
-const ImgCarouselSmall = () => {
-    const [index, setIndex] = useState(0);
+const ImgCarouselSmall = (images) => {
+  const [index, setIndex] = useState(0);
 
-    const handleSelect = (selectedIndex) => {
-      setIndex(selectedIndex);
-    };
-  
-    const handlePrev = () => {
-      setIndex(index - 1 < 0 ? 2 : index - 1);
-    };
-  
-    const handleNext = () => {
-      setIndex((index + 1) % 3);
-    };
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
+
+  const handlePrev = () => {
+    setIndex(index - 1 < 0 ? 2 : index - 1);
+  };
+
+  const handleNext = () => {
+    setIndex((index + 1) % 3);
+  };
 
   return (
     <div className="container vw-50 show-lg">
       <Carousel id="petSmallCarousel" activeIndex={index} onSelect={handleSelect} ride={false} interval={null} keyboard={false} controls={false} indicators={false}>
-        <Carousel.Item>
-          <CardGroup className="d-flex justify-content-evenly">
-            <ImgCard></ImgCard>
-          </CardGroup>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <CardGroup className="d-flex justify-content-evenly">
-          <ImgCard></ImgCard>
-          </CardGroup>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <CardGroup className="d-flex justify-content-evenly">
-          <ImgCard></ImgCard>
-          </CardGroup>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <CardGroup className="d-flex justify-content-evenly">
-          <ImgCard></ImgCard>
-          </CardGroup>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <CardGroup className="d-flex justify-content-evenly">
-          <ImgCard></ImgCard>
-          </CardGroup>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <CardGroup className="d-flex justify-content-evenly">
-          <ImgCard></ImgCard>
-          </CardGroup>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <CardGroup className="d-flex justify-content-evenly">
-          <ImgCard></ImgCard>
-          </CardGroup>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <CardGroup className="d-flex justify-content-evenly">
-          <ImgCard></ImgCard>
-          </CardGroup>
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <CardGroup className="d-flex justify-content-evenly">
-          <ImgCard></ImgCard>
-          </CardGroup>
-        </Carousel.Item>
+        {images.map((image) => (
+          <Carousel.Item>
+            <CardGroup className="d-flex justify-content-evenly">
+              <ImgCard image={image}></ImgCard>
+            </CardGroup>
+          </Carousel.Item>
+        ))}
       </Carousel>
 
       <div className="d-flex flex-row h-100 w-100 justify-content-evenly align-items-end">
@@ -81,7 +35,7 @@ const ImgCarouselSmall = () => {
           <span className="visually-hidden">Previous</span>
         </Button>
         <div className="carousel-indicators">
-          {[...Array(9).keys()].map((item) => (
+          {images.map((_, item) => (
             <button
               key={item}
               type="button"

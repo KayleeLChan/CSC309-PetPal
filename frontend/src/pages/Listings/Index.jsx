@@ -1,51 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { Nav, Tab, Row, Col } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import DetailsTab from '../../components/listings/details-tab/details-tab';
 import ApplicationsTab from '../../components/listings/applications-tab';
 import CompatabilityTab from '../../components/listings/compatability-tab';
 import ApplicationStatus from '../../components/listings/application-status';
 
 const ListingPage = () => {
+    const { listingID } = useParams();
     const [loading, setLoading] = useState(true);
     const [key, setKey] = useState("#nav-details");
+    const [listing, setListing] = useState(null);
 
-    // useEffect(() => {
-    //     // Fetch the list of notifications when the component mounts
-    //     createListing();
-    // }, []);
+    useEffect(() => {
+        // Fetch the list of notifications when the component mounts
+        if (listingID) {
+            fetchListing();
+        }
+    }, []);
 
-    // const createListing = async () => {
-    //     try {
-    //         setLoading(true);
-    //         // Set queryParams to pass into request
-    //         const queryParams = new URLSearchParams({
-    //             page: query.page,
-    //             filter: query.filter,
-    //         });
+    const fetchListing = async () => {
+        try {
+            setLoading(true);
 
-    //         // Make request to backend
-    //         const response = await fetch(`http://localhost:8000/notifications/?${queryParams}`,
-    //             {
-    //                 headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNjc2NTAzLCJpYXQiOjE3MDE0NjY5MDMsImp0aSI6ImEyMDA4OWY2NzY3ZTRjYmNiYjdhYzRhNTU1NWViMzdiIiwidXNlcl9pZCI6MX0.Em63InqkhayO9AFzGVAy1Y7B-FvPysNxG7--1yWFPJ4", }
-    //             }); //TODO: Make authorization better later
-    //         const data = await response.json();
-    //         setNotifications(data.results); 
-    //         setTotalPages(
-    //             Math.ceil(Number(data.count) / 10)
-    //         );
-    //         setLoading(false);
-    //     } catch (error) {
-    //         setLoading(false);
-    //         console.error('Error fetching notifications:', error);
-    //     }
-    // };
-
-    // const handleDeleteNotification = (deletedNotificationId) => {
-    //     // Remove the deleted notification from the list
-    //     setNotifications((prevNotifications) =>
-    //         prevNotifications.filter((notification) => notification.id !== deletedNotificationId)
-    //     );
-    // };
+            // Make request to backend
+            const response = await fetch(`http://localhost:8000/listings/${listingID}`,
+                {
+                    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNjc2NTAzLCJpYXQiOjE3MDE0NjY5MDMsImp0aSI6ImEyMDA4OWY2NzY3ZTRjYmNiYjdhYzRhNTU1NWViMzdiIiwidXNlcl9pZCI6MX0.Em63InqkhayO9AFzGVAy1Y7B-FvPysNxG7--1yWFPJ4", }
+                }); //TODO: Make authorization better later
+            const data = await response.json();
+            setListing(data); 
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.error('Error fetching listing:', error);
+        }
+    };
 
     return (
         <>
@@ -70,27 +60,29 @@ const ListingPage = () => {
                             <Tab.Content className="w-100">
                                 <Tab.Pane eventKey={"#nav-details"}>
                                     <div className="tab-content w-100" id="nav-tabContent">
-                                        <DetailsTab></DetailsTab>
+                                        <DetailsTab listing={listing}></DetailsTab>
                                     </div>
                                 </Tab.Pane>
                             </Tab.Content>
+
                             <Tab.Content className="w-100">
                                 <Tab.Pane eventKey={"#nav-compatability"}>
                                     <div className="tab-content w-100" id="nav-tabContent">
-                                        <CompatabilityTab></CompatabilityTab>
+                                        <CompatabilityTab listing={listing}></CompatabilityTab>
                                     </div>
                                 </Tab.Pane>
                             </Tab.Content>
+                            
                             <Tab.Content className="w-100">
                                 <Tab.Pane eventKey={"#nav-applicants"}>
                                     <div className="tab-content w-100" id="nav-tabContent">
-                                        <ApplicationsTab></ApplicationsTab>
+                                        <ApplicationsTab listing={listing}></ApplicationsTab>
                                     </div>
                                 </Tab.Pane>
                             </Tab.Content>
                         </div>
                     </Tab.Container>
-<ApplicationStatus></ApplicationStatus>
+                    <ApplicationStatus listing={listing}></ApplicationStatus>
                 </div>
             </div>
         </>

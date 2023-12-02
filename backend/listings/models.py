@@ -31,10 +31,14 @@ class Listing(models.Model):
     colour = models.CharField(max_length=50)
     sex = models.CharField(max_length=1, choices=SEX_CHOICES)
     personality = models.CharField(max_length=50)
+    training = models.CharField(max_length=50)
     health = MultiSelectField(max_length=28, choices=HEALTH_CHOICES)
     good_with = models.CharField(max_length=50)
     good_without = models.CharField(max_length=50)
     description = models.TextField()
+    deadline = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.name}"

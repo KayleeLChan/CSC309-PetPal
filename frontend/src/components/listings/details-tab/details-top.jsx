@@ -1,23 +1,46 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsTop = () => {
+const DetailsTop = ({ listing }) => {
     const [showModal, setShowModal] = useState(false);
+    const [formData, setFormData] = useState({
+        breed: '',
+        age: '',
+        gender: '',
+        size: '',
+        traits: '',
+    });
+
+    useEffect(() => {
+        // Check if modelInstance prop is provided
+        if (listing) {
+            // If yes, update the formData state with the values from the modelInstance
+            setFormData({
+                animal: listing.animal,
+                age: listing.age,
+                sex: listing.sex,
+                size: listing.size,
+                breed: listing.breed,
+            });
+        }
+    }, [listing]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Here you can submit the form data to your Django backend
+        if (props.onSubmit) {
+            props.onSubmit(formData);
+        }
+    };
+
 
     const handleModalShow = async () => {
-    //   try {
-    //     const response = await fetch(`http://localhost:8000/notifications/${notification.id}/`,
-    //     {
-    //         headers: {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNjc2NTAzLCJpYXQiOjE3MDE0NjY5MDMsImp0aSI6ImEyMDA4OWY2NzY3ZTRjYmNiYjdhYzRhNTU1NWViMzdiIiwidXNlcl9pZCI6MX0.Em63InqkhayO9AFzGVAy1Y7B-FvPysNxG7--1yWFPJ4",}
-    //     });  //TODO: Make authorization better later
-    //   } catch (error) {
-    //     console.error('Error fetching detailed notification:', error);
-    //   }
-      setShowModal(true);
+        setShowModal(true);
     };
-  
+
     const handleModalHide = () => {
-      setShowModal(false);
+        setShowModal(false);
     };
 
     return (
@@ -30,6 +53,7 @@ const DetailsTop = () => {
             <div className="d-flex flex-column justify-content-center align-items-center bg-primary-cream rounded p-3">
                 <img src="./imgs/gallery.svg" width="70%" alt="Gallery" />
                 <Form className="d-flex flex-column justify-content-center align-items-center" encType="multipart/form-data">
+                    {/* TODO: Figure out how to upload images */}
                     <Form.Label htmlFor="formFile" className="form-label">Upload images</Form.Label>
                     <Form.Control type="file" id="formFile" multiple />
                 </Form>
@@ -40,11 +64,25 @@ const DetailsTop = () => {
                     <h1 className="fs-0">Summary</h1>
                 </div>
                 <div className="w-100 d-flex flex-row align-items-center justify-content-evenly m-0 bg-brown text-primary-cream rounded-2 hide-lg">
-                    <p className="fs-6 mb-0">Summary</p>
+                    {listing ? (
+                        <>
+                            <p className="summary-text mb-0">{listing.animal}</p>
+                            <p className="summary-text mb-0">|</p>
+                            <p className="summary-text mb-0"> {listing.age}</p>
+                            <p className="summary-text mb-0">|</p>
+                            <p className="summary-text mb-0"> {listing.sex}</p>
+                            <p className="summary-text mb-0">|</p>
+                            <p className="summary-text mb-0"> {listing.size}</p>
+                            <p className="summary-text mb-0">|</p>
+                            <p className="summary-text mb-0"> {listing.breed}</p>
+                        </>
+                    ) : (
+                        <p className="fs-6 mb-0">Summary</p>
+                    )}
                 </div>
                 <a type="button"
-                className="btn btn-sm border border-0 position-absolute top-0 start-100 bg-none"
-                onClick={handleModalShow}>
+                    className="btn btn-sm border border-0 position-absolute top-0 start-100 bg-none"
+                    onClick={handleModalShow}>
                     <img src="imgs/edit.png" height="20" width="20" alt="Edit Summary" />
                 </a>
                 <Modal data-bs-theme="petpal" show={showModal} onHide={handleModalHide} centered>
@@ -53,24 +91,37 @@ const DetailsTop = () => {
                     </Modal.Header>
                     <Modal.Body>
                         <Form.Floating className="mb-3">
-                            <Form.Control type="text" id="breed" placeholder="Breed" />
-                            <label className="text-primary-brown fs-5" htmlFor="breed">Breed</label>
+                            <Form.Control
+                                type="text"
+                                id="animal"
+                                placeholder="Animal"
+                                value={formData.animal}
+                                onChange={(e) => setFormData({ ...formData, animal: e.target.value })} />
+                            <label className="text-primary-brown fs-5" htmlFor="animal">Breed</label>
                         </Form.Floating>
                         <Form.Floating className="mb-3">
-                            <Form.Control type="text" id="age" placeholder="Age" />
+                            <Form.Control type="text" id="age" placeholder="Age"
+                                value={formData.age}
+                                onChange={(e) => setFormData({ ...formData, age: e.target.value })} />
                             <label className="text-primary-brown fs-5" htmlFor="age">Age</label>
                         </Form.Floating>
                         <Form.Floating className="mb-3">
-                            <Form.Control type="text" id="gender" placeholder="Gender" />
-                            <label className="text-primary-brown fs-5" htmlFor="gender">Gender</label>
+                            <Form.Control type="text" id="sex" placeholder="Sex"
+                                value={formData.sex}
+                                onChange={(e) => setFormData({ ...formData, sex: e.target.value })} />
+                            <label className="text-primary-brown fs-5" htmlFor="sex">Gender</label>
                         </Form.Floating>
                         <Form.Floating className="mb-3">
-                            <Form.Control type="text" id="size" placeholder="Size" />
+                            <Form.Control type="text" id="size" placeholder="Size"
+                                value={formData.size}
+                                onChange={(e) => setFormData({ ...formData, size: e.target.value })} />
                             <label className="text-primary-brown fs-5" htmlFor="size">Size</label>
                         </Form.Floating>
                         <Form.Floating className="mb-3">
-                            <Form.Control type="text" id="traits" placeholder="Traits" />
-                            <label className="text-primary-brown fs-5" htmlFor="traits">Traits</label>
+                            <Form.Control type="text" id="breed" placeholder="Breed"
+                                value={formData.breed}
+                                onChange={(e) => setFormData({ ...formData, breed: e.target.value })} />
+                            <label className="text-primary-brown fs-5" htmlFor="breed">Traits</label>
                         </Form.Floating>
                     </Modal.Body>
                     <Modal.Footer>

@@ -16,6 +16,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="notifications" element={<Notification />} />
+          <Route path="listing/:id/update" element={<ListingPage />} />
           <Route path="listing/:id" element={<Listing />} />
           <Route path="listing" element={<ListingPage />}>
           </Route>
