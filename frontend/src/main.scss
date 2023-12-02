@@ -187,6 +187,11 @@ $grid-breakpoints: (
         font-size: 0.9rem !important;
     }
 
+    .my-10 {
+        margin-top: ($spacer * 10) !important;
+        margin-bottom: ($spacer * 10) !important;
+    }
+
     // Styling
     .font-plain {
         font-family: var(--bs-font-sans-serif) !important;

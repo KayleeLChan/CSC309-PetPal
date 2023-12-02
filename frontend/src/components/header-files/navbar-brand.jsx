@@ -3,7 +3,7 @@ import { Navbar } from 'react-bootstrap';
 
 const NavbarBrand = () => {
     return (
-        <Navbar.Brand href="./index.html" className="h1 fs-1 btn-cream mb-1 px-3 mx-0">
+        <Navbar.Brand href="/" className="h1 fs-1 btn-cream mb-0 px-3 mx-0">
         <img
           src="./imgs/Logo.svg"
           alt="Logo"

@@ -6,3 +6,15 @@
     border-color: #2E1400 !important;
     border-width: 1.5px !important;
 }
+
+.notification-link {
+    color: #F99129 !important;
+}
+
+.notification-link:hover {
+    color: #d46a1a !important;
+}
+
+.notification-link:active {
+    color: #ffae6f !important;
+}
