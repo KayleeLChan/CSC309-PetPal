@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Carousel, Button, CardGroup } from 'react-bootstrap';
-import PetCardSmall from '../custom-cards/pet-card-small';
+import ImgCard from '../custom-cards/img-card';
 
-const PetCarouselSmall = () => {
+const ImgCarouselSmall = () => {
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex) => {
@@ -18,59 +18,59 @@ const PetCarouselSmall = () => {
     };
 
   return (
-    <div className="container vw-50 show-md">
+    <div className="container vw-50 show-lg">
       <Carousel id="petSmallCarousel" activeIndex={index} onSelect={handleSelect} ride={false} interval={null} keyboard={false} controls={false} indicators={false}>
         <Carousel.Item>
           <CardGroup className="d-flex justify-content-evenly">
-            <PetCardSmall></PetCardSmall>
+            <ImgCard></ImgCard>
           </CardGroup>
         </Carousel.Item>
 
         <Carousel.Item>
           <CardGroup className="d-flex justify-content-evenly">
-          <PetCardSmall></PetCardSmall>
+          <ImgCard></ImgCard>
           </CardGroup>
         </Carousel.Item>
 
         <Carousel.Item>
           <CardGroup className="d-flex justify-content-evenly">
-          <PetCardSmall></PetCardSmall>
+          <ImgCard></ImgCard>
           </CardGroup>
         </Carousel.Item>
 
         <Carousel.Item>
           <CardGroup className="d-flex justify-content-evenly">
-          <PetCardSmall></PetCardSmall>
+          <ImgCard></ImgCard>
           </CardGroup>
         </Carousel.Item>
 
         <Carousel.Item>
           <CardGroup className="d-flex justify-content-evenly">
-          <PetCardSmall></PetCardSmall>
+          <ImgCard></ImgCard>
           </CardGroup>
         </Carousel.Item>
 
         <Carousel.Item>
           <CardGroup className="d-flex justify-content-evenly">
-          <PetCardSmall></PetCardSmall>
+          <ImgCard></ImgCard>
           </CardGroup>
         </Carousel.Item>
 
         <Carousel.Item>
           <CardGroup className="d-flex justify-content-evenly">
-          <PetCardSmall></PetCardSmall>
+          <ImgCard></ImgCard>
           </CardGroup>
         </Carousel.Item>
 
         <Carousel.Item>
           <CardGroup className="d-flex justify-content-evenly">
-          <PetCardSmall></PetCardSmall>
+          <ImgCard></ImgCard>
           </CardGroup>
         </Carousel.Item>
 
         <Carousel.Item>
           <CardGroup className="d-flex justify-content-evenly">
-          <PetCardSmall></PetCardSmall>
+          <ImgCard></ImgCard>
           </CardGroup>
         </Carousel.Item>
       </Carousel>
@@ -102,4 +102,4 @@ const PetCarouselSmall = () => {
   );
 }
 
-export default PetCarouselSmall;
+export default ImgCarouselSmall;

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ListingLeftCol from '../../components/listings/view/view-left-col/listing-left-col';
+import ListingRightCol from '../../components/listings/view/view-right-col/listing-right-col';
 
 const Listing = () => {
     const [loading, setLoading] = useState(true);
@@ -46,8 +48,9 @@ const Listing = () => {
     return (
         <>
             <div data-bs-theme="petpal">
-                <div className="main d-flex justify-content-center">
-                
+                <div className="main d-flex two-col mt-5">
+                <ListingLeftCol></ListingLeftCol>
+                <ListingRightCol></ListingRightCol>
                 </div>
             </div>
         </>
