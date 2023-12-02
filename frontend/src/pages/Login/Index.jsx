@@ -79,7 +79,7 @@ function Login() {
                     </div>
 
                     <div className="align-self-end justify-content-right w-25 hide-md">
-                        <img src="/imgs/bunny.png" class="bunny" width="100%" height="100%"></img>
+                        <img src="/imgs/bunny.png" class="bunny" width="100%" height="100%" alt=""></img>
                     </div>
                     </div>
                 </div>

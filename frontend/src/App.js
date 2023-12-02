@@ -7,6 +7,7 @@ import Home from "./pages/Home/Index";
 import Notification from "./pages/Notification/Index";
 import Login from "./pages/Login/Index";
 import Error404 from "./pages/404/Index";
+import RegisterSeeker from "./pages/RegisterSeeker/Index";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="notifications" element={<Notification />} />
           <Route path="login" element={<Login />} />
+          <Route path="seekerregister" element={<RegisterSeeker />} />
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>
