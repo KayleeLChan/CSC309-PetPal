@@ -4,6 +4,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout";
 import Home from "./pages/Home/Index";
+import Notification from "./pages/Notification/Index";
 import Error404 from "./pages/404/Index";
 
 export default function App() {
@@ -12,8 +13,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          {/* <Route path="blogs" element={<Blogs />} />
-          <Route path="contact" element={<Contact />} /> */}
+          <Route path="notifications" element={<Notification />} />
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>

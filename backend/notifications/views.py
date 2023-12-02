@@ -11,7 +11,7 @@ from .models import Notification
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = 'page_size'
-    max_page_size = 30
+    max_page_size = 10
 
 class UserNotificationsList(ListAPIView):
     permission_classes = [IsAuthenticated]

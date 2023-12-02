@@ -20,14 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+zmj6(6kqy@g97j+^7*tt060t33#7j7)u5omes%4-usbe-kgto'
+SECRET_KEY = 'django-insecure-9xopgm!cdlf^ne-(mme52$&7m3)-e04$ku(vpp@8q_%df$$)rr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
-
-
 
 # Application definition
 
@@ -39,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'multiselectfield',
     'accounts',
     'notifications',
@@ -48,6 +47,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -152,7 +153,13 @@ REST_FRAMEWORK = {
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=14),
 }
 
 AUTH_USER_MODEL = "accounts.Account"
+
+CORS_ALLOWED_ORIGINS = [
+    "https://twizzy-petpal.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
