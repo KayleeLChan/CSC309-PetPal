@@ -1,6 +1,6 @@
 import React from 'react';
 import PetCarousel from '../../components/carousels/pet-carousel';
-import PetCarouselSmall from '../../components/carousels/pat-carousel-small';
+import PetCarouselSmall from '../../components/carousels/pet-carousel-small';
 
 function Home() {
     return (

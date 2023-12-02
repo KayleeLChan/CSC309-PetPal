@@ -71,6 +71,10 @@ $grid-breakpoints: (
         font-size: larger;
     }
 
+    h1 {
+        color: #{$primary-brown};
+    }
+
     h3 {
         white-space: nowrap !important;
     }
@@ -214,6 +218,7 @@ $grid-breakpoints: (
 
     .nav-tabs {
         flex-direction: row !important;
+        border-bottom: none !important;
     }
 
     .shelter-header-text {
@@ -429,6 +434,11 @@ $grid-breakpoints: (
     .smallpar{
         font-size: small;
         color:#F99129
+    }
+
+    .modal-footer {
+        border-width: 1.5px;
+        border-color: #{$primary-brown};
     }
 
     #adopt-dropdown {

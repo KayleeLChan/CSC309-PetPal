@@ -20,6 +20,9 @@
 [data-bs-theme=petpal] p {
   font-size: larger;
 }
+[data-bs-theme=petpal] h1, [data-bs-theme=petpal] .h1 {
+  color: #2E1400;
+}
 [data-bs-theme=petpal] h3, [data-bs-theme=petpal] .h3 {
   white-space: nowrap !important;
 }
@@ -131,6 +134,7 @@
 }
 [data-bs-theme=petpal] .nav-tabs {
   flex-direction: row !important;
+  border-bottom: none !important;
 }
 [data-bs-theme=petpal] .shelter-header-text {
   font-size: calc(1.275rem + 0.3vw);
@@ -301,6 +305,10 @@
 [data-bs-theme=petpal] .smallpar {
   font-size: small;
   color: #F99129;
+}
+[data-bs-theme=petpal] .modal-footer {
+  border-width: 1.5px;
+  border-color: #2E1400;
 }
 [data-bs-theme=petpal] #adopt-dropdown {
   color: #FFEFD0 !important;
