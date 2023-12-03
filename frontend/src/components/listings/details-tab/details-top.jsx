@@ -71,12 +71,13 @@ const DetailsTop = ({listing, formData, setFormData}) => {
                     <Modal.Body>
                         <Form.Floating className="mb-3">
                             <Form.Control
+                                className="pb-2"
                                 type="text"
                                 id="animal"
                                 placeholder="Animal"
                                 value={formData.animal}
                                 onChange={(e) => setFormData({ ...formData, animal: e.target.value })} />
-                            <label className="text-primary-brown fs-5" htmlFor="animal">Breed</label>
+                            <label className="text-primary-brown fs-5" htmlFor="animal">Animal</label>
                         </Form.Floating>
                         {/* <Form.Floating className="mb-3">
                             <Form.Control type="text" id="age" placeholder="Age"
@@ -98,9 +99,18 @@ const DetailsTop = ({listing, formData, setFormData}) => {
                         </Form.Floating> */}
                         <Form.Floating className="mb-3">
                             <Form.Control type="text" id="breed" placeholder="Breed"
+                            className="pb-2"
                                 value={formData.breed}
                                 onChange={(e) => setFormData({ ...formData, breed: e.target.value })} />
-                            <label className="text-primary-brown fs-5" htmlFor="breed">Traits</label>
+                            <label className="text-primary-brown fs-5" htmlFor="breed">Breed</label>
+                        </Form.Floating>
+
+                        <Form.Floating className="mb-3">
+                            <Form.Control type="text" id="breed" placeholder="Colour"
+                            className="pb-2"
+                                value={formData.colour}
+                                onChange={(e) => setFormData({ ...formData, colour: e.target.value })} />
+                            <label className="text-primary-brown fs-5" htmlFor="colour">Colour</label>
                         </Form.Floating>
                     </Modal.Body>
                     <Modal.Footer>

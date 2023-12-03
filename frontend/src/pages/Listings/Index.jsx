@@ -9,7 +9,7 @@ import ApplicationStatus from '../../components/listings/application-status';
 const ListingPage = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [key, setKey] = useState("#nav-details");
     const [listing, setListing] = useState(null);
 
@@ -55,13 +55,13 @@ const ListingPage = () => {
                 sex: listing.sex,
                 description: listing.description,
             });
-            setLoading(false);
+            // setLoading(false);
         }
     }, [listing]);
 
     const fetchListing = async () => {
         try {
-            setLoading(true);
+            // setLoading(true);
 
             // Make request to backend
             const response = await fetch(`http://localhost:8000/listings/${id}/`,
@@ -71,7 +71,7 @@ const ListingPage = () => {
             const data = await response.json();
             setListing(data);
         } catch (error) {
-            setLoading(false);
+            // setLoading(false);
             console.error('Error fetching listing:', error);
         }
     };
@@ -85,12 +85,13 @@ const ListingPage = () => {
 
     const updateListing = async () => {
         try {
-            // setLoading(true);
+            const url = id ? `http://localhost:8000/listings/${id}/` : 'http://localhost:8000/listings/';
+            const method = id ? 'PUT' : 'POST';
 
             // Make request to backend
-            const response = await fetch(`http://localhost:8000/listings/${id}/`,
+            const response = await fetch(url,
                 {
-                    method: 'PUT',
+                    method: method,
                     body: JSON.stringify(formData),
                     // contenttype: 'application/json',
                     headers: {
@@ -101,16 +102,19 @@ const ListingPage = () => {
                 }); //TODO: Make authorization better later
             // const data = await response.json();
             // setListing(data);
-            // setLoading(false);
             if (response.ok) {
                 // Update successful, navigate to the new URL
-                navigate(`/listings/view/${id}`);
+                const newData = await response.json();
+                if (!id) {
+                    // If it was a POST request, update the id with the new id
+                    setListing({ ...newData, id: newData.id });
+                }
+                navigate(`/listings/view/${id || newData.id}`)
             } else {
                 // Handle the case where the update was not successful
                 console.error('Listing update failed.');
             }
         } catch (error) {
-            // setLoading(false);
             console.error('Error updating listing:', error);
         }
     };
