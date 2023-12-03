@@ -1,9 +1,17 @@
-import React, { useState, props } from 'react';
+import React, { useState, useEffect, props } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 const DetailsAbout = ({listing}) => {
     const [showAboutModal, setShowModal] = useState(false);
     const [description, setDescription] = useState();
+
+    useEffect(() => {
+        // Check if modelInstance prop is provided
+        if (listing) {
+            // If yes, update the formData state with the values from the modelInstance
+            setDescription(listing.description);
+        }
+    }, [listing]);
 
     const handleModalShow = async () => {
         setShowModal(true);

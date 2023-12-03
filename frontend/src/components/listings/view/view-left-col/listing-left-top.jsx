@@ -22,8 +22,6 @@ const ListingLeftTop = ({ listing }) => {
         <p className="summary-text mb-0">|</p>
         <p className="summary-text mb-0"> {listing.sex}</p>
         <p className="summary-text mb-0">|</p>
-        <p className="summary-text mb-0"> {listing.size}</p>
-        <p className="summary-text mb-0">|</p>
         <p className="summary-text mb-0"> {listing.breed}</p>
       </div>
       {/* Summary */}

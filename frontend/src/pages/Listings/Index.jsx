@@ -12,25 +12,26 @@ const ListingPage = () => {
     const [key, setKey] = useState("#nav-details");
     const [listing, setListing] = useState(null);
 
+    console.log("id: ", id);
+
     useEffect(() => {
         // Fetch the list of notifications when the component mounts
         if (id) {
             fetchListing();
         }
-    }, []);
+    }, [id]);
 
     const fetchListing = async () => {
         try {
             setLoading(true);
 
             // Make request to backend
-            const method = id ? 'PUT' : 'POST';
-            const response = await fetch(`http://localhost:8000/listings/${id}`,
+            const response = await fetch(`http://localhost:8000/listings/${id}/`,
                 {
-                    method: method,
                     headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk0OTgxLCJpYXQiOjE3MDE1ODUzODEsImp0aSI6Ijg2NTgzN2I0NjNkMzQ5MWM5M2FmMTBlZmI2ODAzN2NjIiwidXNlcl9pZCI6MX0.PPHuhQqkpaGuF7wv2FEqbY9B8dVd5izi6n0KBfFs3wQ", }
                 }); //TODO: Make authorization better later
             const data = await response.json();
+            console.log(data);
             setListing(data);
             setLoading(false);
         } catch (error) {
@@ -38,6 +39,7 @@ const ListingPage = () => {
             console.error('Error fetching listing:', error);
         }
     };
+    console.log("listing: ", listing);
 
     return (
         <>
