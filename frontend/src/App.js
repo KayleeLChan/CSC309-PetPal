@@ -18,10 +18,12 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="notifications" element={<Notification />} />
-          <Route path="login" element={<Login />} />
-          <Route path="seekerregister" element={<RegisterSeeker />} />
-          <Route path="shelterregister" element={<RegisterShelter />} />
-          <Route path="allshelters" element={<ShelterList />} />
+          <Route path="accounts" element={<Login />} />
+          <Route path="accounts/registration/seeker" element={<RegisterSeeker />} />
+          <Route path="accounts/registration/seeker" element={<RegisterShelter />} />
+          <Route path="accounts/shelters/all" element={<ShelterList />} />
+          {/* need to add in the id */}
+          <Route path="accounts/shelter/:id/details" element={<ShelterDetails />} />
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>

@@ -17,7 +17,7 @@ function RegisterSeeker(){
             setAccountType(event.target.value);
         }
         else{
-            navigate('/shelterregister')
+            navigate('/accounts/registration/shelter')
         }
     }
   

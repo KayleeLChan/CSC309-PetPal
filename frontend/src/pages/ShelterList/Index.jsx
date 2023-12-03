@@ -21,7 +21,7 @@ function ShelterList() {
                     {data.map(shelter =>(
                         <>
                         <div className="d-flex flex-row pt-5 pb-5">
-                        <p className="pe-5 fs-2">{shelter.sheltername}</p>
+                        <p className="pe-5 fs-2"key={shelter.id}>{shelter.sheltername}</p>
                         <p className="fs-2">id:{shelter.id}</p>
                         </div>
 

@@ -8,7 +8,7 @@ function Login() {
     const navigate = useNavigate();
 
     const handleClick = (event) =>
-        navigate("/seekerregister")
+        navigate("/accounts/registration/seeker")
     
 
     function handle_login(event){
