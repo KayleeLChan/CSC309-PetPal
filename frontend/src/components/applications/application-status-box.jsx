@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const StatusBox = () => {
+const StatusBox = ({ application }) => {
     const [status, setStatus] = useState('');
 
     useEffect(() => {
