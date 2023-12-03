@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, props } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 const DetailsTop = ({ listing }) => {
@@ -32,6 +32,7 @@ const DetailsTop = ({ listing }) => {
         if (props.onSubmit) {
             props.onSubmit(formData);
         }
+        setShowModal(false);
     };
 
 
@@ -125,7 +126,7 @@ const DetailsTop = ({ listing }) => {
                         </Form.Floating>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary-orange" onClick={handleModalHide}>
+                        <Button variant="primary-orange" onClick={(e) => {handleSubmit(e)}} >
                             Save
                         </Button>
                     </Modal.Footer>

@@ -155,6 +155,13 @@ class ListApplicationView(ListAPIView):
                 applications = applications.filter(application_status=status)
             else:
                 applications = applications
+
+            # filter applications by listing id
+            listing = self.request.query_params.get('listing_id')
+            if listing:
+                applications = applications.filter(pet_listing=listing)
+            else:
+                applications = applications
             
             # # when an application receives a new comment ...
             # for application in application_querysets:

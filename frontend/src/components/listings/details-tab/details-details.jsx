@@ -1,22 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, props } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsDetails = () => {
+const DetailsDetails = ({listing}) => {
     const [showModal, setShowModal] = useState(false);
+    const [formData, setFormData] = useState({
+        breed: '',
+        age: '',
+        gender: '',
+        size: '',
+        traits: '',
+    });
+
+    useEffect(() => {
+        // Check if modelInstance prop is provided
+        if (listing) {
+            // If yes, update the formData state with the values from the modelInstance
+            setFormData({
+                personality: listing.personality,
+                size: listing.size,
+                training: listing.training,
+                health: listing.health,
+                good_with: listing.good_with,
+                good_without: listing.good_without,
+            });
+        }
+    }, [listing]);
 
     const handleModalShow = async () => {
-        //   try {
-        //     const response = await fetch(`http://localhost:8000/notifications/${notification.id}/`,
-        //     {
-        //         headers: {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNjc2NTAzLCJpYXQiOjE3MDE0NjY5MDMsImp0aSI6ImEyMDA4OWY2NzY3ZTRjYmNiYjdhYzRhNTU1NWViMzdiIiwidXNlcl9pZCI6MX0.Em63InqkhayO9AFzGVAy1Y7B-FvPysNxG7--1yWFPJ4",}
-        //     });  //TODO: Make authorization better later
-        //   } catch (error) {
-        //     console.error('Error fetching detailed notification:', error);
-        //   }
         setShowModal(true);
     };
 
     const handleModalHide = () => {
+        setShowModal(false);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Here you can submit the form data to your Django backend
+        if (props.onSubmit) {
+            props.onSubmit(formData);
+        }
         setShowModal(false);
     };
 
@@ -45,37 +69,49 @@ const DetailsDetails = () => {
                     <Modal.Body>
                         <Form>
                             <Form.Floating className="mb-3">
-                                <Form.Control type="text" id="floatingInput" placeholder="Personality" />
+                                <Form.Control type="text" id="floatingInput" placeholder="Personality"
+                                value={formData.personality} 
+                                onChange={(e) => setFormData({ ...formData, personality: e.target.value })}/>
                                 <label className="text-primary-brown fs-5" htmlFor="floatingInput">
                                     Personality
                                 </label>
                             </Form.Floating>
                             <Form.Floating className="mb-3">
-                                <Form.Control type="text" id="floatingInput" placeholder="Size" />
+                                <Form.Control type="text" id="floatingInput" placeholder="Size"
+                                value={formData.size}
+                                onChange={(e) => setFormData({ ...formData, size: e.target.value })} />
                                 <label className="text-primary-brown fs-5" htmlFor="floatingInput">
                                 Size
                                 </label>
                             </Form.Floating>
                             <Form.Floating className="mb-3">
-                                <Form.Control type="text" id="floatingInput" placeholder="Training" />
+                                <Form.Control type="text" id="floatingInput" placeholder="Training" 
+                                value={formData.training}
+                                onChange={(e) => setFormData({ ...formData, training: e.target.value })}/>
                                 <label className="text-primary-brown fs-5" htmlFor="floatingInput">
                                     Training
                                 </label>
                             </Form.Floating>
                             <Form.Floating className="mb-3">
-                                <Form.Control type="text" id="floatingInput" placeholder="Health" />
+                                <Form.Control type="text" id="floatingInput" placeholder="Health"
+                                value={formData.health}
+                                onChange={(e) => setFormData({ ...formData, health: e.target.value })} />
                                 <label className="text-primary-brown fs-5" htmlFor="floatingInput">
                                 Health
                                 </label>
                             </Form.Floating>
                             <Form.Floating className="mb-3">
-                                <Form.Control type="text" id="floatingInput" placeholder="Good In a Home With" />
+                                <Form.Control type="text" id="floatingInput" placeholder="Good In a Home With"
+                                value={formData.good_with}
+                                onChange={(e) => setFormData({ ...formData, good_with: e.target.value })} />
                                 <label className="text-primary-brown fs-5" htmlFor="floatingInput">
                                 Good In a Home With
                                 </label>
                             </Form.Floating>
                             <Form.Floating className="mb-3">
-                                <Form.Control type="text" id="floatingInput" placeholder="Prefers a Home Without" />
+                                <Form.Control type="text" id="floatingInput" placeholder="Prefers a Home Without"
+                                value={formData.good_without}
+                                onChange={(e) => setFormData({ ...formData, good_without: e.target.value })} />
                                 <label className="text-primary-brown fs-5" htmlFor="floatingInput">
                                 Prefers a Home Without
                                 </label>
@@ -84,7 +120,7 @@ const DetailsDetails = () => {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary-orange" onClick={handleModalHide}>
+                        <Button variant="primary-orange" onClick={(e) => {handleSubmit(e)}} >
                             Save
                         </Button>
                     </Modal.Footer>

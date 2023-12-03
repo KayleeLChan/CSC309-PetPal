@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, props } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsAbout = () => {
+const DetailsAbout = ({listing}) => {
     const [showAboutModal, setShowModal] = useState(false);
+    const [description, setDescription] = useState();
 
     const handleModalShow = async () => {
         setShowModal(true);
@@ -12,10 +13,20 @@ const DetailsAbout = () => {
         setShowModal(false);
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Here you can submit the form data to your Django backend
+        if (props.onSubmit) {
+            props.onSubmit(description);
+        }
+        setShowModal(false);
+    };
+
     return (
         <>
             <div className="w-100 text-start">
-                <div className="d-flex flex-row align-items-center modal-div">
+                <div className="d-flex flex-column modal-div">
                     <h1 className="fs-0">
                         Description
                         {/* Button trigger modal */}
@@ -27,6 +38,7 @@ const DetailsAbout = () => {
                             <img src="imgs/edit.png" height="20" width="20" alt="Edit" />
                         </a>
                     </h1>
+                    {listing ? (<p>{listing.description}</p>) : <></>}
                 </div>
 
                 {/* Modal */}
@@ -36,11 +48,16 @@ const DetailsAbout = () => {
                     </Modal.Header>
                     <Modal.Body>
                         <Form.Group className="mb-3" controlId="description">
-                            <Form.Control as="textarea" placeholder="Add a description here" className="font-plain" rows={9} />
+                            <Form.Control as="textarea"
+                            placeholder="Add a description here"
+                            className="font-plain"
+                            rows={9}
+                            value={ description }
+                            onChange={(e) => setDescription({ e })}/>
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary-orange" onClick={handleModalHide}>
+                        <Button variant="primary-orange" onClick={(e) => {handleSubmit(e)}} >
                             Save
                         </Button>
                     </Modal.Footer>
