@@ -166,6 +166,6 @@ class ShelterDetailsSerializer(serializers.ModelSerializer):
 class ShelterListSerializer(serializers.ModelSerializer):
     class Meta:
         model = PetShelter
-        fields = ['sheltername']  
+        fields = ['sheltername', 'id']  
 
 

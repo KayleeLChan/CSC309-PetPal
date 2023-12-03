@@ -8,6 +8,8 @@ import Notification from "./pages/Notification/Index";
 import Login from "./pages/Login/Index";
 import Error404 from "./pages/404/Index";
 import RegisterSeeker from "./pages/RegisterSeeker/Index";
+import RegisterShelter from "./pages/RegisterShelter/Index";
+import ShelterList from "./pages/ShelterList/Index";
 
 export default function App() {
   return (
@@ -18,6 +20,8 @@ export default function App() {
           <Route path="notifications" element={<Notification />} />
           <Route path="login" element={<Login />} />
           <Route path="seekerregister" element={<RegisterSeeker />} />
+          <Route path="shelterregister" element={<RegisterShelter />} />
+          <Route path="allshelters" element={<ShelterList />} />
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>

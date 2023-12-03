@@ -2,22 +2,17 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom/';
 
-function RegisterSeeker(){
-    const [pref_sex, setPrefSex] = useState('');
+function RegisterShelter(){
     const [account_type, setAccountType] = useState('')
     const [error, setError] = useState("")
     const navigate = useNavigate();
 
-    const handleRadio = (event) =>{
-        setPrefSex(event.target.value);
-    }
-
     const handleAccountRadio = (event) =>{
-        if(event.target.value === "petseeker"){
+        if(event.target.value === "petshelter"){
             setAccountType(event.target.value);
         }
         else{
-            navigate('/shelterregister')
+            navigate('/seekerregister')
         }
     }
   
@@ -26,7 +21,6 @@ function RegisterSeeker(){
       console.log(event.target)
       const userData = new FormData(event.target)
       console.log(userData)
-      userData.set('pref_sex', pref_sex);
       userData.set('account_type', account_type);
   
       fetch('http://localhost:8000/accounts/registration/seeker/',{
@@ -38,8 +32,7 @@ function RegisterSeeker(){
         console.log(response);
         return response.json();
       })
-    //   add in proper error displays
-      .then(userData => console.log(userData)) 
+      .then(userData => console.log(userData))
       .catch(error => {
         console.error(error);
         setError('An error occurred while submitting the form.');
@@ -67,18 +60,6 @@ function RegisterSeeker(){
                             <input className="form-check-input bg-primary-orange" type="radio" name="radio" id="petshelterradio" value="petshelter" checked={account_type === 'petshelter'} onChange={handleAccountRadio}required/>
                             <label className="form-check-label text-primary-cream font-family-sans-serif" htmlFor="petshelterradio">Pet Shelter</label>
                         </div>
-                        <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="first_name">First Name</label>
-                            <div className="col-sm-10">
-                            <input type="text" name="first_name" className="form-control bg-primary-cream font-plain" id="first_name" placeholder="John" required />
-                            </div>
-                        </div> 
-                        <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="last_name">Last Name</label>
-                            <div className="col-sm-10">
-                            <input type="text" name="last_name" className="form-control bg-primary-cream font-plain" id="last_name" placeholder="Doe" required />
-                            </div>
-                        </div> 
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="username">Username</label>
                             <div className="col-sm-10">
@@ -109,58 +90,47 @@ function RegisterSeeker(){
                             <input type="text" name="phonenumber" className="form-control bg-primary-cream font-plain" id="phonenumber" required />
                             </div>
                         </div>
-                        <h4 className="text-primary-cream pt-5 pb-0">Pet Preferences</h4>
                         <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="location">Preferred Location</label>
+                            <label className="row-form-label h5" htmlFor="animal">Shelter Name</label>
                             <div className="col-sm-10">
-                            <input type="text" name="pref_location" className="form-control bg-primary-cream font-plain" id="location" required />
+                            <input type="text" name="sheltername" className="form-control bg-primary-cream font-plain" id="animal" required />
                             </div>
                         </div>
                         <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="animal">Preferred Animal</label>
+                            <label className="row-form-label h5" htmlFor="location">Shelter Address</label>
                             <div className="col-sm-10">
-                            <input type="text" name="pref_animal" className="form-control bg-primary-cream font-plain" id="animal" required />
+                            <input type="text" name="companyaddress" className="form-control bg-primary-cream font-plain" id="location" required />
                             </div>
                         </div>
                         <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="breed">Preferred Breed</label>
+                            <label className="row-form-label h5" htmlFor="city">City</label>
                             <div className="col-sm-10">
-                            <input type="text" name="pref_breed" className="form-control bg-primary-cream font-plain" id="breed" required />
+                            <input type="text" name="city" className="form-control bg-primary-cream font-plain" id="city" required />
                             </div>
                         </div>
                         <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="age">Preferred Age</label>
+                            <label className="row-form-label h5" htmlFor="postal">Postal Code</label>
                             <div className="col-sm-10">
-                            <input type="text" name="pref_age" className="form-control bg-primary-cream font-plain" id="age" required />
+                            <input type="text" name="postal" className="form-control bg-primary-cream font-plain" id="postal" required />
                             </div>
                         </div>
                         <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="size">Preferred Size</label>
+                            <label className="row-form-label h5" htmlFor="website">Website</label>
                             <div className="col-sm-10">
-                            <input type="text" name="pref_size" className="form-control bg-primary-cream font-plain" id="size" required />
+                            <input type="url" name="website" className="form-control bg-primary-cream font-plain" id="website" required />
                             </div>
                         </div>
                         <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="colour">Preferred Colour</label>
+                            <label className="row-form-label h5" htmlFor="mission">Mission</label>
                             <div className="col-sm-10">
-                            <input type="text" name="pref_colour" className="form-control bg-primary-cream font-plain" id="colour" required />
+                            <input type="text" name="mission" className="form-control bg-primary-cream font-plain" id="mission" required />
                             </div>
                         </div>
-                        <label className="row-form-label text-primary-cream h5" htmlFor="pref_sex">Preferred Sex</label>
-                        <div className="form-check" id="pref_sex"> 
-                            <input className="form-check-input bg-primary-orange" type="radio" name="radio2" id="M" value="M" checked={pref_sex === 'M'}onChange={handleRadio} required />
-                            <label className="form-check-label text-primary-cream font-family-sans-serif" htmlFor="M">Male</label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input bg-primary-orange" type="radio" name="radio2" id="F" value="F" checked={pref_sex === 'F'} required onChange={handleRadio} />
-                            <label className="form-check-label text-primary-cream font-family-sans-serif" htmlFor="F">Female</label>
-                        </div>
                         <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="personality">Preferred Personality</label>
+                            <label className="row-form-label h5" htmlFor="policy">Policy</label>
                             <div className="col-sm-10">
-                            <input type="text" name="pref_personality"className="form-control bg-primary-cream font-plain" id="personality" required />
-                        </div>
-                        <p className="small par">{error}</p>
+                            <input type="text" name="policy" className="form-control bg-primary-cream font-plain" id="policy" required />
+                            </div>
                         </div>
                         <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Register</button>
                         </form>
@@ -176,4 +146,4 @@ function RegisterSeeker(){
     );
 }
 
-export default RegisterSeeker;
+export default RegisterShelter;

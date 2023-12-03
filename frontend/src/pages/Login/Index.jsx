@@ -7,6 +7,10 @@ function Login() {
     const [error, setError] = useState("")
     const navigate = useNavigate();
 
+    const handleClick = (event) =>
+        navigate("/seekerregister")
+    
+
     function handle_login(event){
         let data = new FormData(event.target);
         console.log(event.target)
@@ -73,7 +77,7 @@ function Login() {
                             <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Login</button>
                                 <div className="signupcontainer">
                                     <p className="h6 font-plain text-primary-cream">Don't have an account?</p>
-                                    <button type="button" className="btn btn-lg btn-primary-cream m-3 shadow-sm">Sign Up</button>
+                                    <button type="button" className="btn btn-lg btn-primary-cream m-3 shadow-sm" onClick={handleClick}>Sign Up</button>
                                 </div>
                         </form> 
                     </div>
