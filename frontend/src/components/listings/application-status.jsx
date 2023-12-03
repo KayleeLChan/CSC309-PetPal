@@ -1,9 +1,12 @@
-import React, { useEffect, props } from 'react';
+import React, { useEffect, useState, props } from 'react';
 import { Container, Button, Modal, Form } from 'react-bootstrap';
 
 const ApplicationStatus = ({ listing }) => {
     const [showModal, setShowModal] = React.useState(false);
-    const [formData, setFormData] = React.useState();
+    const [formData, setFormData] = useState({
+        deadline: '',
+        status: '',
+    });
 
     useEffect(() => {
         // Check if modelInstance prop is provided

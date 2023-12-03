@@ -16,9 +16,9 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="notifications" element={<Notification />} />
-          <Route path="listing/:id/update" element={<ListingPage />} />
-          <Route path="listing/:id" element={<Listing />} />
-          <Route path="listing" element={<ListingPage />}>
+          <Route path="listings/update/:id" element={<ListingPage />} />
+          <Route path="listings/view/:id" element={<Listing />} />
+          <Route path="listings/create" element={<ListingPage />}>
           </Route>
 
 

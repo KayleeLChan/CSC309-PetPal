@@ -4,11 +4,11 @@ import { Modal, Button, Form } from 'react-bootstrap';
 const DetailsTop = ({ listing }) => {
     const [showModal, setShowModal] = useState(false);
     const [formData, setFormData] = useState({
+        name: '',
+        location: '',
+        animal: '',
         breed: '',
-        age: '',
-        gender: '',
-        size: '',
-        traits: '',
+        colour: '',
     });
 
     useEffect(() => {
@@ -16,11 +16,11 @@ const DetailsTop = ({ listing }) => {
         if (listing) {
             // If yes, update the formData state with the values from the modelInstance
             setFormData({
+                name: listing.name,
+                location: listing.location,
                 animal: listing.animal,
-                age: listing.age,
-                sex: listing.sex,
-                size: listing.size,
                 breed: listing.breed,
+                colour: listing.colour,
             });
         }
     }, [listing]);
@@ -47,8 +47,18 @@ const DetailsTop = ({ listing }) => {
     return (
         <>
             <div className="d-flex w-90 py-3 justify-content-between align-items-end small-title-input">
-                <input className="form-control form-control-lg border border-0 title-separate" type="text" placeholder="Pet Name" aria-label="Pet Name Input" />
-                <input className="form-control form-control-lg border border-0 text-end title-separate" type="text" placeholder="Location" aria-label="Location Input" />
+                <input className="form-control form-control-lg border border-0 title-separate"
+                type="text"
+                placeholder="Pet Name"
+                aria-label="Pet Name Input"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                <input className="form-control form-control-lg border border-0 text-end title-separate" 
+                type="text" 
+                placeholder="Location" 
+                aria-label="Location Input"
+                value={formData.location}
+                onChange={(e) => setFormData({ ...formData, location: e.target.value })} />
             </div>
 
             <div className="d-flex flex-column justify-content-center align-items-center bg-primary-cream rounded p-3">
@@ -68,12 +78,12 @@ const DetailsTop = ({ listing }) => {
                     {listing ? (
                         <>
                             <p className="summary-text mb-0">{listing.animal}</p>
-                            <p className="summary-text mb-0">|</p>
+                            {/* <p className="summary-text mb-0">|</p>
                             <p className="summary-text mb-0"> {listing.age}</p>
                             <p className="summary-text mb-0">|</p>
                             <p className="summary-text mb-0"> {listing.sex}</p>
                             <p className="summary-text mb-0">|</p>
-                            <p className="summary-text mb-0"> {listing.size}</p>
+                            <p className="summary-text mb-0"> {listing.size}</p> */}
                             <p className="summary-text mb-0">|</p>
                             <p className="summary-text mb-0"> {listing.breed}</p>
                         </>
@@ -100,7 +110,7 @@ const DetailsTop = ({ listing }) => {
                                 onChange={(e) => setFormData({ ...formData, animal: e.target.value })} />
                             <label className="text-primary-brown fs-5" htmlFor="animal">Breed</label>
                         </Form.Floating>
-                        <Form.Floating className="mb-3">
+                        {/* <Form.Floating className="mb-3">
                             <Form.Control type="text" id="age" placeholder="Age"
                                 value={formData.age}
                                 onChange={(e) => setFormData({ ...formData, age: e.target.value })} />
@@ -117,7 +127,7 @@ const DetailsTop = ({ listing }) => {
                                 value={formData.size}
                                 onChange={(e) => setFormData({ ...formData, size: e.target.value })} />
                             <label className="text-primary-brown fs-5" htmlFor="size">Size</label>
-                        </Form.Floating>
+                        </Form.Floating> */}
                         <Form.Floating className="mb-3">
                             <Form.Control type="text" id="breed" placeholder="Breed"
                                 value={formData.breed}

@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { Form, Col, Container } from 'react-bootstrap';
 
-const CompatibilityTab = () => {
+const CompatibilityTab = ({ listing }) => {
+    const [formData, setFormData] = useState({
+        breed: '',
+        age: '',
+        gender: '',
+        size: '',
+        traits: '',
+    });
+
+    useEffect(() => {
+        // Check if modelInstance prop is provided
+        if (listing) {
+            // If yes, update the formData state with the values from the modelInstance
+            setFormData({
+                personality: listing.personality,
+                size: listing.size,
+                training: listing.training,
+                health: listing.health,
+                good_with: listing.good_with,
+                good_without: listing.good_without,
+            });
+        }
+    }, [listing]);
     return (
         <Container fluid>
             <div className="d-flex flex-column w-100">
-                <Form className="row row-cols-xs-auto gx-3 gy-1 pt-4 align-items-center">
+                {/* <Form className="row row-cols-xs-auto gx-3 gy-1 pt-4 align-items-center">
                     <Col xs={12}>
                         <p className="mb-0 fs-4">My pet prefers</p>
                     </Col>
@@ -48,7 +70,7 @@ const CompatibilityTab = () => {
                     <Col xs={12}>
                         <p className="mb-0 fs-4">pet owner</p>
                     </Col>
-                </Form>
+                </Form> */}
 
                 <Form className="row row-cols-xs-auto gx-3 gy-1 pt-4 align-items-center">
                     <Col xs={12}>
@@ -124,7 +146,7 @@ const CompatibilityTab = () => {
                     </Col>
                 </Form>
 
-                <Form className="row row-cols-xs-auto gx-3 gy-1 pt-4 align-items-center">
+                {/* <Form className="row row-cols-xs-auto gx-3 gy-1 pt-4 align-items-center">
                     <Form.Label htmlFor="age" className="form-label mb-0 fs-4 p-0">
                         My pet has special needs
                     </Form.Label>
@@ -144,9 +166,9 @@ const CompatibilityTab = () => {
                             label="No"
                         />
                     </div>
-                </Form>
+                </Form> */}
 
-                <Form className="row row-cols-xs-auto gx-3 gy-1 pt-4 align-items-center">
+                {/* <Form className="row row-cols-xs-auto gx-3 gy-1 pt-4 align-items-center">
                     <Col xs={12}>
                         <p className="mb-0 fs-4">My pet prefers living in a(n)</p>
                     </Col>
@@ -209,7 +231,7 @@ const CompatibilityTab = () => {
                     <Col xs={12}>
                         <p className="mb-0 fs-4">yard</p>
                     </Col>
-                </Form>
+                </Form> */}
             </div>
         </Container>
     );

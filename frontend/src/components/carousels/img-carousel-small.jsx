@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Carousel, Button, CardGroup } from 'react-bootstrap';
 import ImgCard from '../custom-cards/img-card';
 
-const ImgCarouselSmall = (images) => {
+const ImgCarouselSmall = ({images}) => {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex) => {
@@ -10,16 +10,16 @@ const ImgCarouselSmall = (images) => {
   };
 
   const handlePrev = () => {
-    setIndex(index - 1 < 0 ? 2 : index - 1);
+    setIndex(index - 1 < 0 ? images.length-1 : index - 1);
   };
 
   const handleNext = () => {
-    setIndex((index + 1) % 3);
+    setIndex((index + 1) % images.length);
   };
 
   return (
     <div className="container vw-50 show-lg">
-      <Carousel id="petSmallCarousel" activeIndex={index} onSelect={handleSelect} ride={false} interval={null} keyboard={false} controls={false} indicators={false}>
+      <Carousel id="petSmallCarousel" activeIndex={index} onSelect={handleSelect} interval={null} keyboard={false} controls={false} indicators={false}>
         {images.map((image) => (
           <Carousel.Item>
             <CardGroup className="d-flex justify-content-evenly">

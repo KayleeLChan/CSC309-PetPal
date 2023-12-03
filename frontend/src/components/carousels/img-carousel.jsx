@@ -2,19 +2,11 @@ import React, { useState } from 'react';
 import { Container, Carousel, Button, CardGroup } from 'react-bootstrap';
 import ImgCard from '../custom-cards/img-card';
 
-const ImgCarousel = (images) => {
+const ImgCarousel = ({images}) => {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
-  };
-
-  const handlePrev = () => {
-    setIndex(index - 1 < 0 ? 2 : index - 1);
-  };
-
-  const handleNext = () => {
-    setIndex((index + 1) % 3);
   };
 
   const groupedImages = [];
@@ -26,23 +18,32 @@ const ImgCarousel = (images) => {
     groupedImages.push(group);
   }
 
-  // Check if the last group has less than three images
-  const lastGroup = groupedImages[groupedImages.length - 1];
-  const remainingImages = lastGroup.length % groupSize;
+  const filteredGroupedImages = groupedImages.filter(list => list.length === 3);
 
-  // If not evenly divisible by three, create additional groups of four
-  if (remainingImages > 0) {
-    const remainingGroup = images.slice(
-      groupedImages.length * groupSize,
-      groupedImages.length * groupSize + remainingImages
-    );
-    groupedImages.push(remainingGroup);
-  }
+  const handlePrev = () => {
+    setIndex(index - 1 < 0 ? filteredGroupedImages.length-1 : index - 1);
+  };
 
+  const handleNext = () => {
+    setIndex((index + 1) % filteredGroupedImages.length);
+  };
+
+//   // Check if the last group has less than three images
+//   const lastGroup = groupedImages[groupedImages.length - 1];
+//   const remainingImages = lastGroup.length % groupSize;
+// console.log(remainingImages);
+//   // If not evenly divisible by three, create additional groups of four
+//   if (remainingImages > 0) {
+//     const remainingGroup = images.slice(
+//       groupedImages.length * groupSize,
+//       groupedImages.length * groupSize + remainingImages
+//     );
+//     groupedImages.push(remainingGroup);
+//   }
   return (
     <Container className="container detail-carousel hide-xl">
       <Carousel id="petCarousel" className="d-flex flex-column" activeIndex={index} onSelect={handleSelect} interval={null} keyboard={false} controls={false} indicators={false}>
-        {groupedImages.map((group) => (
+        {filteredGroupedImages.map((group) => (
           <Carousel.Item>
             <CardGroup className="d-flex justify-content-evenly">
               {group.map((image) => (
@@ -59,7 +60,7 @@ const ImgCarousel = (images) => {
           <span className="visually-hidden">Previous</span>
         </Button>
         <div className="carousel-indicators">
-          {images.map((_, item) => (
+          {filteredGroupedImages.map((_, item) => (
             <button
               key={item}
               type="button"
