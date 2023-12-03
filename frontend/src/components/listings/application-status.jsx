@@ -78,13 +78,6 @@ const ApplicationStatus = ({ listing }) => {
                     </Modal.Footer>
                 </Modal>
             </div>
-
-            <Button
-                className="btn btn-xl cta-btn-xl bg-primary-orange text-primary-cream mb-5 shadow-sm"
-                type="button"
-            >
-                Upload Details
-            </Button>
         </Container>
     );
 };

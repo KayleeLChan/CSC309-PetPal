@@ -1,15 +1,8 @@
-import React, { useState, useEffect, props } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsTop = ({ listing }) => {
+const DetailsTop = ({listing, formData, setFormData}) => {
     const [showModal, setShowModal] = useState(false);
-    const [formData, setFormData] = useState({
-        name: '',
-        location: '',
-        animal: '',
-        breed: '',
-        colour: '',
-    });
 
     useEffect(() => {
         // Check if modelInstance prop is provided
@@ -29,9 +22,7 @@ const DetailsTop = ({ listing }) => {
         e.preventDefault();
 
         // Here you can submit the form data to your Django backend
-        if (props.onSubmit) {
-            props.onSubmit(formData);
-        }
+        updateListing();
         setShowModal(false);
     };
 
@@ -42,6 +33,33 @@ const DetailsTop = ({ listing }) => {
 
     const handleModalHide = () => {
         setShowModal(false);
+    };
+
+    const updateListing = async () => {
+        try {
+            // setLoading(true);
+            const id = listing.id;
+
+            // Make request to backend
+            const response = await fetch(`http://localhost:8000/listings/${id}/`,
+                {
+                    method: 'PUT',
+                    body: JSON.stringify(formData),
+                    // contenttype: 'application/json',
+                    headers: {
+                        'Content-Type': 'application/json',  // Set content type to JSON
+                        'Accept': 'application/json',  // Specify that your client can handle JSON responses
+                        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk1MDQ4LCJpYXQiOjE3MDE1ODU0NDgsImp0aSI6IjM4ODg4MWU5OTk0MjQ2MWQ4YzUxNjQ1NzZjNDE5ZGQ2IiwidXNlcl9pZCI6Mn0.PvJxLtuV3J4_3XMRSCi40pPqDdKlnQ9PFzZzGi_tjTI",
+                    }
+                }); //TODO: Make authorization better later
+            // const data = await response.json();
+            // console.log(data);
+            // setListing(data);
+            // setLoading(false);
+        } catch (error) {
+            // setLoading(false);
+            console.error('Error updating listing:', error);
+        }
     };
 
     return (
@@ -77,7 +95,7 @@ const DetailsTop = ({ listing }) => {
                 <div className="w-100 d-flex flex-row align-items-center justify-content-evenly m-0 bg-brown text-primary-cream rounded-2 hide-lg">
                     {listing ? (
                         <>
-                            <p className="summary-text mb-0">{listing.animal}</p>
+                            <p className="summary-text mb-0">{formData.animal}</p>
                             {/* <p className="summary-text mb-0">|</p>
                             <p className="summary-text mb-0"> {listing.age}</p>
                             <p className="summary-text mb-0">|</p>
@@ -85,7 +103,7 @@ const DetailsTop = ({ listing }) => {
                             <p className="summary-text mb-0">|</p>
                             <p className="summary-text mb-0"> {listing.size}</p> */}
                             <p className="summary-text mb-0">|</p>
-                            <p className="summary-text mb-0"> {listing.breed}</p>
+                            <p className="summary-text mb-0"> {formData.breed}</p>
                         </>
                     ) : (
                         <p className="fs-6 mb-0">Summary</p>
