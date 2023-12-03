@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import DetailsTop from '../../components/shelterdetails/shelterTop';
+import Mission from '../../components/shelterdetails/missionPolicy';
 
 function ShelterDetails() {
     const [shelterData, setData] = useState([]);
@@ -23,6 +24,7 @@ function ShelterDetails() {
             <div data-bs-theme="petpal">
                 <div className="main">
                     <DetailsTop shelterData={shelterData}/>
+                    <Mission shelterData={shelterData}/>
                 </div>
             </div>
         </>

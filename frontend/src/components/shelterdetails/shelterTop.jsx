@@ -16,11 +16,11 @@ function DetailsTop(props) {
                         <h1 className="text-primary-cream text-decoration-underline mb-1">{props.shelterData.sheltername}</h1>
                         <h5 className="text-primary-cream mb-1">{props.shelterData.companyaddress}, {props.shelterData.city}</h5>
                         <div className="d-flex flex-row w-20 mb-3">
-                        <img src="./imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
-                        <img src="./imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
-                        <img src="./imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
-                        <img src="./imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
-                        <img src="./imgs/reviewstar.png" width="30%" height="30%" className="m-1 empty-star" />
+                        <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
+                        <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
+                        <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
+                        <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
+                        <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1 empty-star" />
                         </div>
                         {/* link properly later */}
                         <a href="shelterreview.html" className="text-primary-cream mb-1 h5">
@@ -31,6 +31,7 @@ function DetailsTop(props) {
                     {/* shelter contact details */}
                     <div className="d-flex two-col-child flex-column align-items-center align-self-center justify-content-start w-50 mb-2 mt-1">
                         <a href="sheltermanagement.html" className="text-primary-cream mb-1 h5">
+                            {/* link properly later */}
                         EDIT
                         </a>
                         <p className="text-primary-cream mb-1">Account published on: {props.shelterData.date_joined}</p>
