@@ -1,19 +1,8 @@
-import React, { useState, useEffect, props } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsAbout = ({listing}) => {
+const DetailsAbout = ({listing, formData, setFormData}) => {
     const [showAboutModal, setShowModal] = useState(false);
-    const [formData, setFormData] = useState({
-        description: ""
-    });
-
-    useEffect(() => {
-        // Check if modelInstance prop is provided
-        if (listing) {
-            // If yes, update the formData state with the values from the modelInstance
-            setFormData({ description: listing.description });
-        }
-    }, [listing]);
 
     const handleModalShow = async () => {
         setShowModal(true);
@@ -21,41 +10,6 @@ const DetailsAbout = ({listing}) => {
 
     const handleModalHide = () => {
         setShowModal(false);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Here you can submit the form data to your Django backend
-        updateListing();
-        setShowModal(false);
-    };
-
-    const updateListing = async () => {
-        try {
-            // setLoading(true);
-            const id = listing.id;
-
-            // Make request to backend
-            const response = await fetch(`http://localhost:8000/listings/${id}/`,
-                {
-                    method: 'PUT',
-                    body: JSON.stringify(formData),
-                    // contenttype: 'application/json',
-                    headers: {
-                        'Content-Type': 'application/json',  // Set content type to JSON
-                        'Accept': 'application/json',  // Specify that your client can handle JSON responses
-                        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk1MDQ4LCJpYXQiOjE3MDE1ODU0NDgsImp0aSI6IjM4ODg4MWU5OTk0MjQ2MWQ4YzUxNjQ1NzZjNDE5ZGQ2IiwidXNlcl9pZCI6Mn0.PvJxLtuV3J4_3XMRSCi40pPqDdKlnQ9PFzZzGi_tjTI",
-                    }
-                }); //TODO: Make authorization better later
-            // const data = await response.json();
-            // console.log(data);
-            // setListing(data);
-            // setLoading(false);
-        } catch (error) {
-            // setLoading(false);
-            console.error('Error updating listing:', error);
-        }
     };
 
     return (
@@ -92,7 +46,7 @@ const DetailsAbout = ({listing}) => {
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary-orange" onClick={(e) => {handleSubmit(e)}} >
+                        <Button variant="primary-orange" onClick={handleModalHide} >
                             Save
                         </Button>
                     </Modal.Footer>

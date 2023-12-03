@@ -1,30 +1,9 @@
 import React, { useState, useEffect, props } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsDetails = ({ listing }) => {
+const DetailsDetails = ({listing, formData, setFormData}) => {
     // const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
-    const [formData, setFormData] = useState({
-        personality: '',
-        age: '',
-        size: '',
-        good_with: '',
-        sex: '',
-    });
-
-    useEffect(() => {
-        // Check if modelInstance prop is provided
-        if (listing) {
-            // If yes, update the formData state with the values from the modelInstance
-            setFormData({
-                personality: listing.personality,
-                age: listing.age,
-                size: listing.size,
-                good_with: listing.good_with,
-                sex: listing.sex,
-            });
-        }
-    }, [listing]);
 
     const handleModalShow = async () => {
         setShowModal(true);
@@ -34,51 +13,6 @@ const DetailsDetails = ({ listing }) => {
         setShowModal(false);
     };
 
-    const handleSubmit = (e) => {
-        console.log("event", e);
-        e.preventDefault();
-
-        // Here you can submit the form data to your Django backend
-        // if (props.onSubmit) {
-        //     props.onSubmit(formData);
-        // }
-        updateListing();
-        setShowModal(false);
-    };
-
-    const updateListing = async () => {
-        console.log("stringified:", JSON.stringify(formData));
-        try {
-            // setLoading(true);
-            const id = listing.id;
-
-            // Make request to backend
-            const response = await fetch(`http://localhost:8000/listings/${id}/`,
-                {
-                    method: 'PUT',
-                    body: JSON.stringify(formData),
-                    // contenttype: 'application/json',
-                    headers: {
-                        'Content-Type': 'application/json',  // Set content type to JSON
-                        'Accept': 'application/json',  // Specify that your client can handle JSON responses
-                        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk1MDQ4LCJpYXQiOjE3MDE1ODU0NDgsImp0aSI6IjM4ODg4MWU5OTk0MjQ2MWQ4YzUxNjQ1NzZjNDE5ZGQ2IiwidXNlcl9pZCI6Mn0.PvJxLtuV3J4_3XMRSCi40pPqDdKlnQ9PFzZzGi_tjTI",
-                    }
-                }); //TODO: Make authorization better later
-            // const data = await response.json();
-            // console.log(data);
-            // setListing(data);
-            // setLoading(false);
-        } catch (error) {
-            // setLoading(false);
-            console.error('Error updating listing:', error);
-        }
-    };
-
-    // if (loading) {
-    //     return <p className="text-center">Loading...</p>
-    // }
-
-    console.log("data:", formData);
     return (
         <>
             <div className="w-100 text-start">
@@ -168,10 +102,10 @@ const DetailsDetails = ({ listing }) => {
                                 value={formData.size}
                                 onChange={(e) => setFormData({ ...formData, size: e.target.value })} required>
                                 <option value="" disabled>(required)</option>
-                                <option value="small">small</option>
-                                <option value="medium">medium</option>
-                                <option value="large">large</option>
-                                <option value="extra large">extra large</option>
+                                <option value="S">small</option>
+                                <option value="M">medium</option>
+                                <option value="L">large</option>
+                                <option value="XL">extra large</option>
                             </Form.Select>
 
                             <label className="text-primary-brown fs-5" htmlFor="personality">
@@ -192,7 +126,7 @@ const DetailsDetails = ({ listing }) => {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary-orange" onClick={(e) => { handleSubmit(e) }} >
+                        <Button variant="primary-orange" onClick={handleModalHide} >
                             Save
                         </Button>
                     </Modal.Footer>

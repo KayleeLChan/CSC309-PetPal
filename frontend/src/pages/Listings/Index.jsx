@@ -19,9 +19,16 @@ const ListingPage = () => {
         animal: '',
         breed: '',
         colour: '',
+        deadline: '',
+        status: '',
+        personality: '',
+        age: '',
+        size: '',
+        good_with: '',
+        sex: '',
+        description: '',
     });
 
-    console.log("id: ", id);
 
     useEffect(() => {
         // Fetch the list of notifications when the component mounts
@@ -29,6 +36,28 @@ const ListingPage = () => {
             fetchListing();
         }
     }, [id]);
+
+    useEffect(() => {
+        // Fetch the list of notifications when the component mounts
+        if (listing) {
+            setFormData({
+                name: listing.name,
+                location: listing.location,
+                animal: listing.animal,
+                breed: listing.breed,
+                colour: listing.colour,
+                deadline: listing.deadline,
+                status: listing.status,
+                personality: listing.personality,
+                age: listing.age,
+                size: listing.size,
+                good_with: listing.good_with,
+                sex: listing.sex,
+                description: listing.description,
+            });
+            setLoading(false);
+        }
+    }, [listing]);
 
     const fetchListing = async () => {
         try {
@@ -40,19 +69,16 @@ const ListingPage = () => {
                     headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk0OTgxLCJpYXQiOjE3MDE1ODUzODEsImp0aSI6Ijg2NTgzN2I0NjNkMzQ5MWM5M2FmMTBlZmI2ODAzN2NjIiwidXNlcl9pZCI6MX0.PPHuhQqkpaGuF7wv2FEqbY9B8dVd5izi6n0KBfFs3wQ", }
                 }); //TODO: Make authorization better later
             const data = await response.json();
-            console.log(data);
             setListing(data);
-            setLoading(false);
         } catch (error) {
             setLoading(false);
             console.error('Error fetching listing:', error);
         }
     };
-    console.log("listing: ", listing);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log("formData:", formData);
         // Here you can submit the form data to your Django backend
         updateListing();
     };
@@ -74,7 +100,6 @@ const ListingPage = () => {
                     }
                 }); //TODO: Make authorization better later
             // const data = await response.json();
-            // console.log(data);
             // setListing(data);
             // setLoading(false);
             if (response.ok) {
@@ -137,7 +162,7 @@ const ListingPage = () => {
                                     </Tab.Content>
                                 </div>
                             </Tab.Container>
-                            <ApplicationStatus listing={listing}></ApplicationStatus>
+                            <ApplicationStatus listing={listing} formData={formData} setFormData={setFormData}></ApplicationStatus>
                             <Button
                                 className="btn btn-xl cta-btn-xl bg-primary-orange text-primary-cream mb-5 shadow-sm"
                                 type="button"

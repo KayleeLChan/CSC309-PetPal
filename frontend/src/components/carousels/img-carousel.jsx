@@ -31,7 +31,6 @@ const ImgCarousel = ({images}) => {
 //   // Check if the last group has less than three images
 //   const lastGroup = groupedImages[groupedImages.length - 1];
 //   const remainingImages = lastGroup.length % groupSize;
-// console.log(remainingImages);
 //   // If not evenly divisible by three, create additional groups of four
 //   if (remainingImages > 0) {
 //     const remainingGroup = images.slice(

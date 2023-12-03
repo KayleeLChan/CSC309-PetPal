@@ -24,7 +24,6 @@ const ApplicationsTab = ({ listing }) => {
         fetchApplications();
     }, [listing]);
 
-    console.log("applications: ", applications);
     return (
         <div className="d-flex flex-column align-items-center">
             <div className="d-flex flex-column py-2 justify-content-center">
