@@ -3,16 +3,21 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import DetailsTop from '../../components/shelterdetails/shelterTop';
 
-const [shelterData, setData] = useState([]);
-const { id } = useParams();
-
-useEffect(() => {
-    fetch(`http://localhost:8000/accounts/shelter/${id}/details/`)
-      .then(response => response.json())
-      .then(data => setData(data));
-  }, [id]);
-
 function ShelterDetails() {
+    const [shelterData, setData] = useState([]);
+    const { id } = useParams();
+    const accessToken = localStorage.getItem('access_token');
+  
+    useEffect(() => {
+      fetch(`http://localhost:8000/accounts/shelter/${id}/details/`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      })
+        .then(response => response.json())
+        .then(data => setData(data));
+    }, [id, accessToken]);
+
     return (
         <>
             <div data-bs-theme="petpal">

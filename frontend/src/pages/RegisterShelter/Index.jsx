@@ -23,7 +23,7 @@ function RegisterShelter(){
       console.log(userData)
       userData.set('account_type', account_type);
   
-      fetch('http://localhost:8000/accounts/registration/seeker/',{
+      fetch('http://localhost:8000/accounts/registration/shelter/',{
         method: 'POST',
         body: userData
 

@@ -10,6 +10,7 @@ import Error404 from "./pages/404/Index";
 import RegisterSeeker from "./pages/RegisterSeeker/Index";
 import RegisterShelter from "./pages/RegisterShelter/Index";
 import ShelterList from "./pages/ShelterList/Index";
+import ShelterDetails from "./pages/ShelterDetails/Index";
 
 export default function App() {
   return (
@@ -20,7 +21,7 @@ export default function App() {
           <Route path="notifications" element={<Notification />} />
           <Route path="accounts" element={<Login />} />
           <Route path="accounts/registration/seeker" element={<RegisterSeeker />} />
-          <Route path="accounts/registration/seeker" element={<RegisterShelter />} />
+          <Route path="accounts/registration/shelter" element={<RegisterShelter />} />
           <Route path="accounts/shelters/all" element={<ShelterList />} />
           {/* need to add in the id */}
           <Route path="accounts/shelter/:id/details" element={<ShelterDetails />} />
