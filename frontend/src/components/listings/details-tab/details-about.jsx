@@ -3,13 +3,15 @@ import { Modal, Button, Form } from 'react-bootstrap';
 
 const DetailsAbout = ({listing}) => {
     const [showAboutModal, setShowModal] = useState(false);
-    const [description, setDescription] = useState();
+    const [formData, setFormData] = useState({
+        description: ""
+    });
 
     useEffect(() => {
         // Check if modelInstance prop is provided
         if (listing) {
             // If yes, update the formData state with the values from the modelInstance
-            setDescription(listing.description);
+            setFormData({ description: listing.description });
         }
     }, [listing]);
 
@@ -25,10 +27,35 @@ const DetailsAbout = ({listing}) => {
         e.preventDefault();
 
         // Here you can submit the form data to your Django backend
-        if (props.onSubmit) {
-            props.onSubmit(description);
-        }
+        updateListing();
         setShowModal(false);
+    };
+
+    const updateListing = async () => {
+        try {
+            // setLoading(true);
+            const id = listing.id;
+
+            // Make request to backend
+            const response = await fetch(`http://localhost:8000/listings/${id}/`,
+                {
+                    method: 'PUT',
+                    body: JSON.stringify(formData),
+                    // contenttype: 'application/json',
+                    headers: {
+                        'Content-Type': 'application/json',  // Set content type to JSON
+                        'Accept': 'application/json',  // Specify that your client can handle JSON responses
+                        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk1MDQ4LCJpYXQiOjE3MDE1ODU0NDgsImp0aSI6IjM4ODg4MWU5OTk0MjQ2MWQ4YzUxNjQ1NzZjNDE5ZGQ2IiwidXNlcl9pZCI6Mn0.PvJxLtuV3J4_3XMRSCi40pPqDdKlnQ9PFzZzGi_tjTI",
+                    }
+                }); //TODO: Make authorization better later
+            // const data = await response.json();
+            // console.log(data);
+            // setListing(data);
+            // setLoading(false);
+        } catch (error) {
+            // setLoading(false);
+            console.error('Error updating listing:', error);
+        }
     };
 
     return (
@@ -46,7 +73,7 @@ const DetailsAbout = ({listing}) => {
                             <img src="imgs/edit.png" height="20" width="20" alt="Edit" />
                         </a>
                     </h1>
-                    {listing ? (<p>{listing.description}</p>) : <></>}
+                    {listing ? (<p>{formData.description}</p>) : <></>}
                 </div>
 
                 {/* Modal */}
@@ -60,8 +87,8 @@ const DetailsAbout = ({listing}) => {
                             placeholder="Add a description here"
                             className="font-plain"
                             rows={9}
-                            value={ description }
-                            onChange={(e) => setDescription({ e })}/>
+                            value={formData.description}
+                            onChange={(e) => setFormData({ ...formData, description: e.target.value })} required />
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
