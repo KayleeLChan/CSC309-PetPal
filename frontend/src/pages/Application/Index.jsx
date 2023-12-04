@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import StatusBox from './StatusBox';
-
+import ChatComponent from '../../components/applications/application-comments-box';
 
 function Application() {
     // when doing get request to application, pass in name 
     const { id } = useParams();
     const [application, setApplication] = useState({});
     const [userAccountType, setUserAccountType] = useState('');  // Set the actual user account type
+    const [userName, setUserName] = useState(''); // Set the actual user information
+    const [userLocation, setUserLocation] = useState(''); // Set the actual user information
 
     useEffect(() => {
         // Fetch application data based on the ID
@@ -38,12 +40,17 @@ function Application() {
         }
     };
 
-    // Call both data-fetching functions
+    // Fetch the comments based on the Application 
+    fetchUserInformation = async () => {
+
+
+    }
+
+    // Call all data-fetching functions
     fetchApplicationData();
     fetchUserAccountType();
-
-    // Re-fetch data when the ID changes
-    }, [id]); 
+    fetchUserInformation();
+    }, [id]);       // Re-fetch data when the ID changes
 
     return ( <>
         <div data-bs-theme="petpal">
@@ -63,7 +70,8 @@ function Application() {
                 <div className="d-flex flex-column m-5 p-5 justify-content-start align-items-center w-40 text-primary-brown two-col-child">
                 
                     <StatusBox>application={id} userAccountType={userAccountType}</StatusBox>
-                    <MessageBox></MessageBox>
+
+                    <ChatComponent>userName={} userLocation={} userImage={} </ChatComponent>
                 
                 </div>
                 {/* RIght Column End */}

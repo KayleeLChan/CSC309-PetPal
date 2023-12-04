@@ -151,6 +151,13 @@ class ListApplicationView(ListAPIView):
             else:
                 applications = applications
 
+            # NEW: filter applications by listing_id:
+            listing = self.request.query_params.get('listing_id')
+            if listing:
+                applications = applications.filter(pet_listing=listing)
+            else:
+                applications = applications
+
             # sort application by creation time and last update time
             return applications.order_by('-created_at', '-last_updated_at')
 

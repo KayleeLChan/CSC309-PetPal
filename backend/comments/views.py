@@ -78,32 +78,3 @@ class CommentListCreateView(ListCreateAPIView):
             return comments
         else:
             raise PermissionDenied("You do not have permission to access this view.")
-
-# class ApplicationCommentListCreateView(ListCreateAPIView):
-#     queryset = Comment.objects.filter(content_type='application')
-#     serializer_class = CommentSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     def perform_create(self, serializer):
-#         application_id = self.kwargs.get('application_id')
-#         application = get_object_or_404(Application, id=application_id)
-#         serializer.save(author=self.request.user, content_object=application)
-
-# class ApplicationCommentListCreateView(ListCreateAPIView):
-#     serializer_class = CommentSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     # making a comment for given shelter
-#     def perform_create(self, serializer):
-#         application_id = self.kwargs['application_id']
-#         shelter = get_object_or_404(ContentType, id=object_id)
-#         print(object_id)
-#         print(shelter)
-#         serializer.save(author=self.request.user, object_id=object_id, content_type=shelter)
-
-#     def get_queryset(self):
-#         object_id = self.kwargs['object_id']
-#         # print(object_id)
-#         account_content_type = ContentType.objects.get_for_model(PetShelter)
-#         petshelter_comments = Comment.objects.filter(content_type=account_content_type, object_id=object_id)
-#         return petshelter_comments
