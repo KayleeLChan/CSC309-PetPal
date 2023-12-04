@@ -75,6 +75,10 @@ class ProfileUpdateView(RetrieveUpdateAPIView):
         instance = get_object_or_404(Account, pk=self.kwargs['pk'])
         if instance != self.request.user:
             raise PermissionDenied('You do not have permission to view this profile')
+        elif instance.accounttype == "petseeker":
+            return get_object_or_404(PetSeeker, pk=self.kwargs['pk'])
+        elif instance.accounttype == "petshelter":
+            return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
         else:
             return instance
 

@@ -2,11 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom/';
 
+
 function RegisterSeeker(){
     const [pref_sex, setPrefSex] = useState('');
     const [account_type, setAccountType] = useState('')
     const [error, setError] = useState("")
     const navigate = useNavigate();
+    const [photo, setPhoto] = useState(null);
 
     const handleRadio = (event) =>{
         setPrefSex(event.target.value);
@@ -20,6 +22,11 @@ function RegisterSeeker(){
             navigate('/accounts/registration/shelter')
         }
     }
+
+    const handlePhotoChange = (event) => {
+        setPhoto(event.target.files[0]);
+      };
+
   
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -27,7 +34,8 @@ function RegisterSeeker(){
       const userData = new FormData(event.target)
       console.log(userData)
       userData.set('pref_sex', pref_sex);
-      userData.set('account_type', account_type);
+      userData.set('accounttype', account_type);
+      userData.set("profilepic", photo)
   
       fetch('http://localhost:8000/accounts/registration/seeker/',{
         method: 'POST',
@@ -42,7 +50,7 @@ function RegisterSeeker(){
       .then(userData => console.log(userData)) 
       .catch(error => {
         console.error(error);
-        setError('An error occurred while submitting the form.');
+        setError(error.toString());
       });
     };
 
@@ -100,7 +108,7 @@ function RegisterSeeker(){
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="email">Email</label>
                             <div className="col-sm-10">
-                            <input type="text" name="email" className="form-control bg-primary-cream font-plain" id="email" required />
+                            <input type="email" name="email" className="form-control bg-primary-cream font-plain" id="email" required />
                             </div>
                         </div>
                         <div className="form-group row text-primary-cream">
@@ -160,7 +168,15 @@ function RegisterSeeker(){
                             <div className="col-sm-10">
                             <input type="text" name="pref_personality"className="form-control bg-primary-cream font-plain" id="personality" required />
                         </div>
-                        <p className="small par">{error}</p>
+                        <div className="col-sm-10">
+                            <input
+                                type="file"
+                                className="form-control bg-primary-cream font-plain"
+                                id="profilepic"
+                                onChange={handlePhotoChange}
+                            />
+                        </div>                        
+                        <p className="smallpar">{error}</p>
                         </div>
                         <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Register</button>
                         </form>

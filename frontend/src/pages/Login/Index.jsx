@@ -56,7 +56,7 @@ function Login() {
         <>
             <div data-bs-theme="petpal">
                 <div className="main">
-                    <div className="mh-100 d-flex justify-content-center mx-0">
+                <div className="mh-100 d-flex justify-content-center mx-0">
                     <div className="d-flex w-75 justify-center align-items-center bg-primary-brown mx-5">
                         {/* <LoginForm handle_login={handle_login} error={error}/> */}
                         <form className="w-100 align-items-center" id="login" onSubmit={handle_login}>

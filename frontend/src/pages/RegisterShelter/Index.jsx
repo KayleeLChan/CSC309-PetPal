@@ -6,6 +6,7 @@ function RegisterShelter(){
     const [account_type, setAccountType] = useState('')
     const [error, setError] = useState("")
     const navigate = useNavigate();
+    const [photo, setPhoto] = useState(null);
 
     const handleAccountRadio = (event) =>{
         if(event.target.value === "petshelter"){
@@ -15,13 +16,19 @@ function RegisterShelter(){
             navigate('/accounts/registration/seeker')
         }
     }
+
+    const handlePhotoChange = (event) => {
+        setPhoto(event.target.files[0]);
+      };
+
   
     const handleSubmit = (event) => {
       event.preventDefault();
       console.log(event.target)
       const userData = new FormData(event.target)
       console.log(userData)
-      userData.set('account_type', account_type);
+      userData.set('accounttype', account_type);
+      userData.set("profilepic", photo)
   
       fetch('http://localhost:8000/accounts/registration/shelter/',{
         method: 'POST',
@@ -35,7 +42,7 @@ function RegisterShelter(){
       .then(userData => console.log(userData))
       .catch(error => {
         console.error(error);
-        setError('An error occurred while submitting the form.');
+        setError(error.toString());
       });
     };
 
@@ -81,7 +88,7 @@ function RegisterShelter(){
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="email">Email</label>
                             <div className="col-sm-10">
-                            <input type="text" name="email" className="form-control bg-primary-cream font-plain" id="email" required />
+                            <input type="email" name="email" className="form-control bg-primary-cream font-plain" id="email" required />
                             </div>
                         </div>
                         <div className="form-group row text-primary-cream">
@@ -132,6 +139,20 @@ function RegisterShelter(){
                             <input type="text" name="policy" className="form-control bg-primary-cream font-plain" id="policy" required />
                             </div>
                         </div>
+                        <div className="form-group row text-primary-cream">
+                        <label className="row-form-label h5" htmlFor="profilepic">
+                            Add a Profile Photo!
+                        </label>
+                        <div className="col-sm-10">
+                            <input
+                                type="file"
+                                className="form-control bg-primary-cream font-plain"
+                                id="profilepic"
+                                onChange={handlePhotoChange}
+                            />
+                        </div>
+                        </div>
+                        <p className="smallpar">{error}</p>
                         <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Register</button>
                         </form>
                     </div>

@@ -11,6 +11,8 @@ import RegisterSeeker from "./pages/RegisterSeeker/Index";
 import RegisterShelter from "./pages/RegisterShelter/Index";
 import ShelterList from "./pages/ShelterList/Index";
 import ShelterDetails from "./pages/ShelterDetails/Index";
+import UpdateSeeker from "./pages/Update/Index";
+
 
 export default function App() {
   return (
@@ -25,6 +27,7 @@ export default function App() {
           <Route path="accounts/shelters/all" element={<ShelterList />} />
           {/* need to add in the id */}
           <Route path="accounts/shelter/:id/details" element={<ShelterDetails />} />
+          <Route path="accounts/seeker/:id/profile" element={<UpdateSeeker />} />
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>

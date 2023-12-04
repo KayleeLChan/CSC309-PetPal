@@ -7,7 +7,7 @@ function DetailsTop(props) {
                 <div className="main">
                 <div className="d-flex two-col p-4 align-self-center align-items-center mt-4 w-100 justify-content-left bg-brown rounded-2" style={{ height: '100vh' }}>
       {/* shelter logo */}
-      <img src="./imgs/torontocatrelief.png" className="user-pic two-col-child align-self-center rounded-circle m-5 mt-3 mb-3" />
+      <img src={props.shelterData.profilepic} className="user-pic two-col-child align-self-center rounded-circle m-5 mt-3 mb-3" />
 
 
       {/* fields = ['profilepic','sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy', 'date_joined'] */}
@@ -15,13 +15,6 @@ function DetailsTop(props) {
                     <div className="two-col-child align-self-center justify-content-center w-50 mt-2 mb-3">
                         <h1 className="text-primary-cream text-decoration-underline mb-1">{props.shelterData.sheltername}</h1>
                         <h5 className="text-primary-cream mb-1">{props.shelterData.companyaddress}, {props.shelterData.city}</h5>
-                        <div className="d-flex flex-row w-20 mb-3">
-                        <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
-                        <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
-                        <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
-                        <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
-                        <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1 empty-star" />
-                        </div>
                         {/* link properly later */}
                         <a href="shelterreview.html" className="text-primary-cream mb-1 h5">
                         REVIEWS
