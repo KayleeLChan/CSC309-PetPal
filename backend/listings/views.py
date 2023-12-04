@@ -9,6 +9,10 @@ from django.core.exceptions import PermissionDenied
 from rest_framework.pagination import PageNumberPagination
 import django_filters
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 10
 
 class IsShelterOrReadOnly(BasePermission):
     """
@@ -29,18 +33,28 @@ class IsShelterOrReadOnly(BasePermission):
         
 class ListingFilter(django_filters.FilterSet):
     FILTER_STATUS_CHOICES = Listing.STATUS_CHOICES + [("all", "all")]
+    FILTER_AGE_CHOICES = Listing.AGE_CHOICES + [("all", "all")]
+    FILTER_SIZE_CHOICES = Listing.SIZE_CHOICES + [("all", "all")]
+    # Search params
     name = django_filters.CharFilter(lookup_expr='icontains')
     location = django_filters.CharFilter(lookup_expr='icontains')
+    colour = django_filters.CharFilter(lookup_expr='icontains')
+    breed = django_filters.CharFilter(lookup_expr='icontains')
+    animal = django_filters.CharFilter(lookup_expr='icontains')
+    # Filters
     status = django_filters.ChoiceFilter(choices=FILTER_STATUS_CHOICES, initial='available', method='filter_status')
+    age = django_filters.ChoiceFilter(choices=FILTER_AGE_CHOICES, initial='all', method='filter_age')
+    size = django_filters.ChoiceFilter(choices=FILTER_SIZE_CHOICES, initial='all', method='filter_size')
     shelter = django_filters.NumberFilter()
+    # Sorts
     sort_by = django_filters.OrderingFilter(
         fields=(
             ('name', 'name'),
-            ('age', 'age'),
+            ('created_at', 'created_at'),
         ),
         field_labels={
             'name': 'Name',
-            'age': 'Age',
+            'created_at': 'Newest',
         }
     )
 
@@ -70,6 +84,18 @@ class ListingFilter(django_filters.FilterSet):
             return queryset
         else:
             return queryset.filter(status=value)
+        
+    def filter_age(self, queryset, name, value):
+        if value in Listing.AGE_CHOICES:
+            return queryset.filter(age=value)
+        else:
+            return queryset
+        
+    def filter_size(self, queryset, name, value):
+        if value in Listing.SIZE_CHOICES:
+            return queryset.filter(size=value)
+        else:
+            return queryset
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
@@ -82,7 +108,7 @@ class PetListingsListCreate(ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_class = ListingFilter
-    sort_by_fields = ['name', 'age']
+    sort_by_fields = ['name', 'created_at']
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):

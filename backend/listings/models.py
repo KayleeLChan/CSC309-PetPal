@@ -15,6 +15,9 @@ class Listing(models.Model):
         ("M", "Male"),
     ]
 
+    AGE_CHOICES = [("new", "newborn"), ("young", "young"), ("adult", "adult"), ("senior", "senior")]
+
+    SIZE_CHOICES = [("S", "small"), ("M", "medium"), ("L", "large"), ("XL", "extra large")]
 
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
@@ -22,8 +25,8 @@ class Listing(models.Model):
     shelter = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listings", null=True)
     animal = models.CharField(max_length=50)
     breed = models.CharField(max_length=50)
-    age = models.CharField(max_length=10, choices=[("new", "newborn"), ("young", "young"), ("adult", "adult"), ("senior", "senior")])
-    size = models.CharField(max_length=5, choices=[("S", "small"), ("M", "medium"), ("L", "large"), ("XL", "extra large")])
+    age = models.CharField(max_length=10, choices=AGE_CHOICES)
+    size = models.CharField(max_length=5, choices=SIZE_CHOICES)
     colour = models.CharField(max_length=50)
     sex = models.CharField(max_length=1, choices=SEX_CHOICES)
     personality = models.CharField(max_length=15, choices=[("very active", "very active"), ("active", "active"), ("laid-back", "laid-back"), ("lap", "lap-pet")])
