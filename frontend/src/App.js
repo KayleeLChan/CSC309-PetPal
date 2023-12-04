@@ -13,6 +13,8 @@ import ShelterList from "./pages/ShelterList/Index";
 import ShelterDetails from "./pages/ShelterDetails/Index";
 import UpdateSeeker from "./pages/Update/Index";
 
+import ListingPage from "./pages/Listings/Index";
+import Listing from "./pages/Listings/Listing";
 
 export default function App() {
   return (
@@ -28,6 +30,13 @@ export default function App() {
           {/* need to add in the id */}
           <Route path="accounts/shelter/:id/details" element={<ShelterDetails />} />
           <Route path="accounts/seeker/:id/profile" element={<UpdateSeeker />} />
+          <Route path="listings/update/:id" element={<ListingPage />} />
+          <Route path="listings/view/:id" element={<Listing />} />
+          <Route path="listings/create" element={<ListingPage />}>
+          </Route>
+
+
+          {/* ERROR404 MUST BE THE LAST ROUTE!!! PUT ALL OF YOUR ROUTES ABOVE THIS!!! */}
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>

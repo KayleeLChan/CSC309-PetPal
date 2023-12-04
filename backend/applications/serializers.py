@@ -6,6 +6,7 @@ from .models import Application
 #
 
 class ApplicationSerializer(serializers.ModelSerializer):
+    pet_seeker_username = serializers.ReadOnlyField(source='pet_seeker_user.username')
     class Meta:
         model = Application
         fields = '__all__'

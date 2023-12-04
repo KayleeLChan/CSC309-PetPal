@@ -98,7 +98,7 @@ class ProfileUpdateView(RetrieveUpdateAPIView):
                     new_field = {field: getattr(shelter_instance, field)}
                     data.update(new_field)
         else:
-            additional_fields = ["pref_location", "pref_animal", "pref_breed", "pref_age", "pref_size", "pref_colour", "pref_sex", "pref_personality"]
+            additional_fields = ["pref_animal", "pref_breed", "pref_age", "pref_size", "pref_colour", "pref_sex", "pref_personality"]
             seeker_instance = PetSeeker.objects.get(pk=instance.pk)
             for field in additional_fields:
                 if not request.data.get(field):
