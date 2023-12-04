@@ -144,26 +144,12 @@ class ListApplicationView(ListAPIView):
             
             applications = Application.objects.filter(pet_listing__shelter=user)
 
-            # # Combine the QuerySets using the | operator (or union method)
-            # all_applications = Application.objects.none()  # Create an empty queryset as the initial value
-            # for queryset in application_querysets:
-            #     all_applications |= queryset
-
             # filter applications by status
             status = self.request.query_params.get('application_status')
             if status:
                 applications = applications.filter(application_status=status)
             else:
                 applications = applications
-            
-            # # when an application receives a new comment ...
-            # for application in application_querysets:
-            #     # update last update time when a new comment is added
-            #     comments_added = application.Comments_set.all().order_by("creation_time")
-            #     # update last update time of application (creation time of comment)
-            #     new_comment_creation_time = comments_added.last().creation_time
-            #     application.last_updated_at = new_comment_creation_time
-            #     application.save()
 
             # sort application by creation time and last update time
             return applications.order_by('-created_at', '-last_updated_at')
