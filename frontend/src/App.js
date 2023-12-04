@@ -8,6 +8,8 @@ import Notification from "./pages/Notification/Index";
 import Error404 from "./pages/404/Index";
 import ListingPage from "./pages/Listings/Index";
 import Listing from "./pages/Listings/Listing";
+import Search from "./pages/Search/Index";
+import SearchResults from "./pages/Search/Results";
 
 export default function App() {
   return (
@@ -18,9 +20,9 @@ export default function App() {
           <Route path="notifications" element={<Notification />} />
           <Route path="listings/update/:id" element={<ListingPage />} />
           <Route path="listings/view/:id" element={<Listing />} />
-          <Route path="listings/create" element={<ListingPage />}>
-          </Route>
-
+          <Route path="listings/create" element={<ListingPage />} />
+          <Route path="search" element={<Search />} />
+          <Route path="search/results" element={<SearchResults />} />
 
           {/* ERROR404 MUST BE THE LAST ROUTE!!! PUT ALL OF YOUR ROUTES ABOVE THIS!!! */}
           <Route path="*" element={<Error404 />} />

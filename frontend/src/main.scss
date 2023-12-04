@@ -441,6 +441,10 @@ $grid-breakpoints: (
         border-color: #{$primary-brown};
     }
 
+    .search-col {
+        width: 50%;
+    }
+
     #adopt-dropdown {
         color: $primary-cream !important;
     }
@@ -505,6 +509,10 @@ $grid-breakpoints: (
             width: 100%;
         }
 
+        .search-col {
+            width: 100%;
+        }
+        
         .search_card { 
             width: 100% !important
         }   

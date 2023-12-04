@@ -77,25 +77,29 @@ class ListingFilter(django_filters.FilterSet):
 
         super().__init__(data, *args, **kwargs)
 
-    def filter_status(self, queryset, name, value):
-        if not value:
+    def filter_status(self, queryset, name, values):
+        valid_values = [value for value in values if value in Listing.STATUS_CHOICES]
+
+        if not valid_values:
             return queryset.filter(status="available")
-        elif value == "all":
-            return queryset
-        else:
-            return queryset.filter(status=value)
+
+        return queryset.filter(status__in=valid_values)
         
-    def filter_age(self, queryset, name, value):
-        if value in Listing.AGE_CHOICES:
-            return queryset.filter(age=value)
-        else:
+    def filter_age(self, queryset, name, values):
+        valid_values = [value for value in values if value in Listing.AGE_CHOICES]
+
+        if not valid_values:
             return queryset
+
+        return queryset.filter(age__in=valid_values)
         
-    def filter_size(self, queryset, name, value):
-        if value in Listing.SIZE_CHOICES:
-            return queryset.filter(size=value)
-        else:
+    def filter_size(self, queryset, name, values):
+        valid_values = [value for value in values if value in Listing.SIZE_CHOICES]
+
+        if not valid_values:
             return queryset
+
+        return queryset.filter(size__in=valid_values)
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
