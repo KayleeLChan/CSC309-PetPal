@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import NotificationItem from '../../components/notifications/notification-item';
 import { useSearchParams } from "react-router-dom";
-import { Button } from 'react-bootstrap';
+import PaginationButtons from '../../components/pagination-buttons';
 
 const Notification = () => {
     const [loading, setLoading] = useState(true);
     const [notifications, setNotifications] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [searchParams, setSearchParams] = useSearchParams();
-    const pageButtons = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     // useMemo to store search parameters
     const query = useMemo(
         () => ({
             page: parseInt(searchParams.get("page") ?? 1),
             filter : searchParams.get("filter") ?? "all",
+            //TODO: Make filter button
         }),
         [searchParams]
     );
@@ -78,65 +78,7 @@ const Notification = () => {
                             </>
                         )}
 
-                        <div className="text-center h-100 d-flex justify-content-center">
-                            <div className="d-flex flex-row justify-content-between align-self-end">
-                                {query.page > 1 && query.page <= totalPages ? (
-                                    <Button
-                                        variant="primary-cream"
-                                        onClick={() =>
-                                            setSearchParams({ ...query, page: query.page - 1 })
-                                        }
-                                        className="mx-1"
-                                    >
-                                        &lt;
-                                    </Button>
-                                ) : (
-                                    <Button
-                                        variant="primary-cream"
-                                        onClick={() =>
-                                            setSearchParams({ ...query, page: query.page - 1 })
-                                        }
-                                        className="mx-1"
-                                        disabled
-                                    >
-                                        &lt;
-                                    </Button>
-                                )}
-                                
-                                {pageButtons.map((pageNumber) => (
-                                    <Button
-                                        variant="primary-cream"
-                                        onClick={() => setSearchParams({ ...query, page: pageNumber })}
-                                        className="mx-1"
-                                    >
-                                        {pageNumber}
-                                    </Button>
-                                ))}
-
-                                {query.page < totalPages ? (
-                                    <Button
-                                        variant="primary-cream"
-                                        onClick={() =>
-                                            setSearchParams({ ...query, page: query.page + 1 })
-                                        }
-                                        className="mx-1"
-                                    >
-                                        &gt;
-                                    </Button>
-                                ) : (
-                                    <Button
-                                        variant="primary-cream"
-                                        onClick={() =>
-                                            setSearchParams({ ...query, page: query.page + 1 })
-                                        }
-                                        className="mx-1"
-                                        disabled
-                                    >
-                                        &gt;
-                                    </Button>
-                                )}
-                            </div>
-                        </div>
+                        <PaginationButtons query={query} setSearchParams={setSearchParams} totalPages={totalPages} />
                     </div>
                 </div>
             </div>

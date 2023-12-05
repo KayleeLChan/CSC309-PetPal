@@ -8,6 +8,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 from django.core.exceptions import PermissionDenied
 from rest_framework.pagination import PageNumberPagination
 import django_filters
+from django.db.models.functions import Lower
+from django.db.models import F
+from django.db import connection
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
@@ -35,6 +38,7 @@ class ListingFilter(django_filters.FilterSet):
     FILTER_STATUS_CHOICES = Listing.STATUS_CHOICES + [("all", "all")]
     FILTER_AGE_CHOICES = Listing.AGE_CHOICES + [("all", "all")]
     FILTER_SIZE_CHOICES = Listing.SIZE_CHOICES + [("all", "all")]
+    FILTER_SEX_CHOICES = Listing.SEX_CHOICES + [("all", "all")]
     # Search params
     name = django_filters.CharFilter(lookup_expr='icontains')
     location = django_filters.CharFilter(lookup_expr='icontains')
@@ -43,9 +47,13 @@ class ListingFilter(django_filters.FilterSet):
     animal = django_filters.CharFilter(lookup_expr='icontains')
     # Filters
     status = django_filters.ChoiceFilter(choices=FILTER_STATUS_CHOICES, initial='available', method='filter_status')
+    sex = django_filters.ChoiceFilter(choices=FILTER_SEX_CHOICES, initial='all', method='filter_sex')
     age = django_filters.ChoiceFilter(choices=FILTER_AGE_CHOICES, initial='all', method='filter_age')
     size = django_filters.ChoiceFilter(choices=FILTER_SIZE_CHOICES, initial='all', method='filter_size')
-    shelter = django_filters.NumberFilter()
+    shelter = django_filters.CharFilter(
+        field_name='shelter__petshelter__sheltername',
+        lookup_expr='icontains'
+    )
     # Sorts
     sort_by = django_filters.OrderingFilter(
         fields=(
@@ -55,7 +63,8 @@ class ListingFilter(django_filters.FilterSet):
         field_labels={
             'name': 'Name',
             'created_at': 'Newest',
-        }
+        },
+        method='filter_name_case_insensitive'
     )
 
     class Meta:
@@ -77,29 +86,39 @@ class ListingFilter(django_filters.FilterSet):
 
         super().__init__(data, *args, **kwargs)
 
-    def filter_status(self, queryset, name, values):
-        valid_values = [value for value in values if value in Listing.STATUS_CHOICES]
-
-        if not valid_values:
+    def filter_status(self, queryset, name, value):
+        if value == "all":
+            return queryset
+        elif value in [choice[0] for choice in Listing.STATUS_CHOICES]:
+            return queryset.filter(status=value)
+        else:
             return queryset.filter(status="available")
-
-        return queryset.filter(status__in=valid_values)
         
-    def filter_age(self, queryset, name, values):
-        valid_values = [value for value in values if value in Listing.AGE_CHOICES]
-
-        if not valid_values:
+    def filter_age(self, queryset, name, value):
+        if value in [choice[0] for choice in Listing.AGE_CHOICES]:
+            return queryset.filter(age=value)
+        else:
             return queryset
-
-        return queryset.filter(age__in=valid_values)
         
-    def filter_size(self, queryset, name, values):
-        valid_values = [value for value in values if value in Listing.SIZE_CHOICES]
-
-        if not valid_values:
+    def filter_size(self, queryset, name, value):
+        if value in [choice[0] for choice in Listing.SIZE_CHOICES]:
+            return queryset.filter(size=value)
+        else:
             return queryset
-
-        return queryset.filter(size__in=valid_values)
+    
+    def filter_sex(self, queryset, name, value):
+        if value in [choice[0] for choice in Listing.SEX_CHOICES]:
+            return queryset.filter(sex=value)
+        else:
+            return queryset
+        
+    # TODO: Make this work
+    def filter_name_case_insensitive(self, queryset, name, value):
+        if "name" in value:
+            return queryset.order_by(Lower('name').asc() if value == 'asc' else Lower('name').asc().reverse())
+        elif "created_at" in value:
+            return queryset.order_by('created_at' if value == 'asc' else '-created_at')
+        return queryset
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
