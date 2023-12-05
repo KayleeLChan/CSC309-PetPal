@@ -1,18 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom/';
+import { Form } from 'react-bootstrap';
 
 
 function RegisterSeeker(){
-    const [pref_sex, setPrefSex] = useState('');
+    const [sex, setSex] = useState('F');
+    const [personality, setPersonality] = useState('very active');
+    const [age, setAge] = useState('new');
+    const [size, setSize] = useState('S');
     const [account_type, setAccountType] = useState('')
     const [error, setError] = useState("")
     const navigate = useNavigate();
     const [photo, setPhoto] = useState(null);
-
-    const handleRadio = (event) =>{
-        setPrefSex(event.target.value);
-    }
 
     const handleAccountRadio = (event) =>{
         if(event.target.value === "petseeker"){
@@ -33,7 +33,10 @@ function RegisterSeeker(){
       console.log(event.target)
       const userData = new FormData(event.target)
       console.log(userData)
-      userData.set('pref_sex', pref_sex);
+      userData.set('pref_sex', sex);
+      userData.set('pref_size', size);
+      userData.set('pref_personality', personality);
+      userData.set('pref_age', age);
       userData.set('accounttype', account_type);
       userData.set("profilepic", photo)
   
@@ -47,7 +50,18 @@ function RegisterSeeker(){
         return response.json();
       })
     //   add in proper error displays
-      .then(userData => console.log(userData)) 
+      .then(userData => {
+        console.log(userData)
+        if ('message' in userData) {
+            setError(userData.message.toString());
+            console.log(userData.message.toString())
+        }
+        if ('errors' in userData) {
+            setError(userData.errors.toString());
+            console.log(userData.errors.toString())
+        }
+
+      }) 
       .catch(error => {
         console.error(error);
         setError(error.toString());
@@ -137,36 +151,58 @@ function RegisterSeeker(){
                             </div>
                         </div>
                         <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="age">Preferred Age</label>
-                            <div className="col-sm-10">
-                            <input type="text" name="pref_age" className="form-control bg-primary-cream font-plain" id="age" required />
-                            </div>
-                        </div>
-                        <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="size">Preferred Size</label>
-                            <div className="col-sm-10">
-                            <input type="text" name="pref_size" className="form-control bg-primary-cream font-plain" id="size" required />
-                            </div>
-                        </div>
-                        <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="colour">Preferred Colour</label>
                             <div className="col-sm-10">
                             <input type="text" name="pref_colour" className="form-control bg-primary-cream font-plain" id="colour" required />
                             </div>
                         </div>
-                        <label className="row-form-label text-primary-cream h5" htmlFor="pref_sex">Preferred Sex</label>
-                        <div className="form-check" id="pref_sex"> 
-                            <input className="form-check-input bg-primary-orange" type="radio" name="radio2" id="M" value="M" checked={pref_sex === 'M'}onChange={handleRadio} required />
-                            <label className="form-check-label text-primary-cream font-family-sans-serif" htmlFor="M">Male</label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input bg-primary-orange" type="radio" name="radio2" id="F" value="F" checked={pref_sex === 'F'} required onChange={handleRadio} />
-                            <label className="form-check-label text-primary-cream font-family-sans-serif" htmlFor="F">Female</label>
+                        <div className="form-group row text-primary-cream">
+                            <label className="row-form-label h5" htmlFor="age">Preferred Age</label>
+                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                                aria-label="age"
+                                id="age"
+                                onChange={(e) => setAge(e.target.value)} required>
+                                <option value="" disabled>(required)</option>
+                                <option value="newborn">newborn</option>
+                                <option value="young">young</option>
+                                <option value="adult">adult</option>
+                                <option value="senior">senior</option>
+                            </Form.Select>
                         </div>
                         <div className="form-group row text-primary-cream">
+                            <label className="row-form-label h5" htmlFor="size">Preferred Size</label>
+                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                                aria-label="size"
+                                id="size"
+                                onChange={(e) => setSize(e.target.value)} required>
+                                <option value="" disabled>(required)</option>
+                                <option value="S">small</option>
+                                <option value="M">medium</option>
+                                <option value="L">large</option>
+                                <option value="XL">extra large</option>
+                            </Form.Select>
+                        </div>
+                        <label className="row-form-label text-primary-cream h5" htmlFor="sex">Preferred Sex</label>
+                        <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                                aria-label="sex"
+                                id="sex"
+                                onChange={(e) => setSex(e.target.value)} required>
+                                <option value="" disabled>(required)</option>
+                                <option value="F">Female</option>
+                                <option value="M">Male</option>
+                            </Form.Select>
+                        <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="personality">Preferred Personality</label>
-                            <div className="col-sm-10">
-                            <input type="text" name="pref_personality"className="form-control bg-primary-cream font-plain" id="personality" required />
+                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                                aria-label="personality"
+                                id="personality"
+                                onChange={(e) => setPersonality(e.target.value)} required>
+                                <option value="" disabled>(required)</option>
+                                <option value="very active">very active</option>
+                                <option value="active">active</option>
+                                <option value="laid-back">laid-back</option>
+                                <option value="lap">lap-pet</option>
+                            </Form.Select>
                         </div>
                         <div className="col-sm-10">
                             <input
@@ -177,7 +213,6 @@ function RegisterSeeker(){
                             />
                         </div>                        
                         <p className="smallpar">{error}</p>
-                        </div>
                         <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Register</button>
                         </form>
                     </div>
