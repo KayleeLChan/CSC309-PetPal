@@ -8,6 +8,7 @@ import CommentBar from '../../components/reviews/commentBar';
 function ShelterReviews() {
     const [shelterData, setShelterData] = useState([]);
     const [commentsData, setComments] = useState([]);
+    const [totalPages, setTotalPages] = useState([]);
     const [ query, setQuery ] = useState({page: 1});
     const { id } = useParams();
     const accessToken = localStorage.getItem('access_token');
@@ -36,15 +37,25 @@ function ShelterReviews() {
 
     const handleCommentSubmit = () => {
         // fetch updated comments and update state
+        
+        // const { page } = query;
+        // const queryString = new URLSearchParams({ page }).toString(); // Create a query string with only the 'page' parameter
+        // fetch(`http://localhost:8000/comments/shelter/${id}/?${queryString}`, {
+        //     headers: {
+        //         'Authorization': `Bearer ${accessToken}`
+        //     }
+        // })
+        //     .then(response => response.json())
+        //     .then(data => setComments(data));
         const { page } = query;
-        const queryString = new URLSearchParams({ page }).toString(); // Create a query string with only the 'page' parameter
-        fetch(`http://localhost:8000/comments/shelter/${id}/?${queryString}`, {
+        setQuery({ ...query, page: 1 });
+        fetch(`http://localhost:8000/comments/shelter/${id}/?${page}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
             .then(response => response.json())
-            .then(data => setComments(data));
+            .then(data => setComments(data))
     };
 
     return (
@@ -52,8 +63,8 @@ function ShelterReviews() {
             <div data-bs-theme="petpal">
                 <div className="main">
                     <DetailsTop shelterData={shelterData} />
-                    {console.log(commentsData)}
-                    <ShelterReviewsSection commentsData={commentsData} shelterID={id} onCommentSubmit={handleCommentSubmit} setQuery={setQuery} query={query}/>
+                    {/* {console.log(commentsData)} */}
+                    <ShelterReviewsSection commentsData={commentsData} shelterID={id} onCommentSubmit={handleCommentSubmit} setQuery={setQuery} query={query} totalPages={totalPages}/>
                 </div>
             </div>
         </>
