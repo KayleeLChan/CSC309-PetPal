@@ -3,7 +3,7 @@ import Comment from './comment';
 import CommentBar from './commentBar';
 
 function ShelterReviewsSection(props) {
-    const { commentsData, shelterID, onCommentSubmit, setQuery, query} = props;
+    const { commentsData, shelterID, onCommentSubmit, setQuery, query, totalPages} = props;
 
     // Check if commentsData is undefined or commentsData.results is undefined
     if (!commentsData || !commentsData.results) {
@@ -16,13 +16,17 @@ function ShelterReviewsSection(props) {
 
     const handlePageChangePrev = () => {
         // Increment the current page number
-        const nextPage = query.page - 1;
-        setQuery({ ...query, page: nextPage });
+        if(query.page != 1){
+            const nextPage = query.page - 1;
+            setQuery({ ...query, page: nextPage });
+        }
     };
     const handlePageChangeNext = () => {
         // Increment the current page number
-        const nextPage = query.page + 1;
-        setQuery({ ...query, page: nextPage });
+        if(query.page != Math.ceil(totalPages / 5)){
+            const nextPage = query.page + 1;
+            setQuery({ ...query, page: nextPage });
+        }
     };
 
     return (
@@ -40,7 +44,8 @@ function ShelterReviewsSection(props) {
                     </div>
                     <button type="button" className="btn btn-lg btn-primary-cream m-3 shadow-sm" onClick={handlePageChangePrev}>Prev</button>
                     <button type="button" className="btn btn-lg btn-primary-cream m-3 shadow-sm" onClick={handlePageChangeNext}>Next</button>
-                    <p className="mb-1 text-primary-brown">Page: {query.page}</p>
+                    <p className="mb-1 text-primary-brown">Page: {query.page} / {Math.ceil(totalPages / 5)}</p>
+
             </div>
         </>
     );

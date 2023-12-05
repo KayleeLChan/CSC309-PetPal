@@ -8,7 +8,7 @@ import CommentBar from '../../components/reviews/commentBar';
 function ShelterReviews() {
     const [shelterData, setShelterData] = useState([]);
     const [commentsData, setComments] = useState([]);
-    const [totalPages, setTotalPages] = useState([]);
+    const [totalPages, setTotalPages] = useState(1);
     const [ query, setQuery ] = useState({page: 1});
     const { id } = useParams();
     const accessToken = localStorage.getItem('access_token');
@@ -32,7 +32,10 @@ function ShelterReviews() {
         })
             .then(response => response.json())
             // .then(data => console.log(data))
-            .then(data => setComments(data));
+            .then(data => {
+                setComments(data)
+                setTotalPages(data.count)
+            });
     }, [id, accessToken, query]);
 
     const handleCommentSubmit = () => {
@@ -55,7 +58,10 @@ function ShelterReviews() {
             }
         })
             .then(response => response.json())
-            .then(data => setComments(data))
+            .then(data => {
+                setComments(data)
+                setTotalPages(totalPages + 1)
+            })
     };
 
     return (
