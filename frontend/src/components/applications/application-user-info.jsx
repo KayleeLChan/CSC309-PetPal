@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { Form } from 'react-bootstrap';
 
 const UserInfoComponent = ({ user_id }) => {
 
     // Information given from user account
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [preferredAnimal, setPreferredAnimal] = useState('');
-    const [preferredBreed, setPreferredBreed] = useState('');
-    const [preferredAge, setPreferredAge] = useState('');
-    const [preferredSize, setPreferredSize] = useState('');
-    const [preferredSex, setPreferredSex] = useState('');
-    const [preferredPersonality, setPreferredPersonality] = useState('');
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+    });
+ 
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -20,31 +18,35 @@ const UserInfoComponent = ({ user_id }) => {
             // fetch the information of the user
             const userInfo = await fetch(`accounts/${user_id}/profile/`);
             
-            // to pre-populate fields on application
-            setFirstName(userInfo.first_ame);
-            setLastName(userInfo.last_name);
-            setEmail(userInfo.email);
-            setPhoneNumber(userInfo.phonenumber);
-            setPreferredAnimal(userInfo.pref_animal);
-            setPreferredBreed(userInfo.pref_breed);
-            setPreferredAge(userInfo.pref_age);
-            setPreferredSize(userInfo.pref_size);
-            setPreferredSex(userInfo.pref_sex);
-            setPreferredPersonality(userInfo.pref_personality);
-
+            // to pre-populate fields on application         
+            if (userInfo) {
+                setFormData ({
+                    firstName : userInfo.first_name,
+                    lastName : userInfo.last_name,
+                    email : userInfo.email,
+                    phoneNumber : userInfo.phonenumber
+                });
+            }
           } catch (error) {
             console.error('Error fetching user information:', error);
           }
         };
-    
         // Call the function to fetch user information
         fetchUserInfo();
       }, [user_id]);
     
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Here you can submit the form data to your Django backend
+        if (props.onSubmit) {
+            props.onSubmit(formData);
+        }
+    };
+ 
 
     return ( 
         <div>
-            <form className="ps-0 mt-3 w-100">
+            <Form className="ps-0 mt-3 w-100">
 
             <div className="mb-3">
             <label htmlFor="firstName" className="form-label"> First Name </label>
@@ -52,9 +54,8 @@ const UserInfoComponent = ({ user_id }) => {
                 type="text"
                 className="form-control"
                 id="firstName"
-                required=""
-                value={firstName}
-                readOnly
+                value={formData.firstName}
+                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} required
                 />
             </div>
 
@@ -65,9 +66,8 @@ const UserInfoComponent = ({ user_id }) => {
                     type="text" 
                     className="form-control" 
                     id="lastName" 
-                    required=""
-                    value={lastName}
-                    readOnly 
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} required
                     />
             </div>
 
@@ -92,9 +92,8 @@ const UserInfoComponent = ({ user_id }) => {
                 className="form-control"
                 id="email"
                 aria-describedby="emailHelp"
-                required=""
-                value={email}
-                readOnly
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })} required
                 />
                 <div id="emailHelp" className="form-text"> We'll never share your email with anyone other than the shelter. </div>
             </div>
@@ -107,9 +106,8 @@ const UserInfoComponent = ({ user_id }) => {
                 className="form-control"
                 id="phoneNumber"
                 aria-describedby="phoneNumberHelp"
-                required=""
-                value={phoneNumber}
-                readOnly
+                value={formData.phoneNumber}
+                onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })} required
                 />
             <div id="phoneNumberHelp" className="form-text"> We'll never share your phone number with anyone other than the shelter.</div>
             </div>
@@ -179,7 +177,7 @@ const UserInfoComponent = ({ user_id }) => {
                 </select>
             </div>
 
-            </form>
+            </Form>
         </div>
     );
 };

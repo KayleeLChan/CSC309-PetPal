@@ -10,7 +10,7 @@ function ApplicationDetails() {
     const [application, setApplication] = useState({});
     const [userAccountType, setUserAccountType] = useState({});
     const [userName, setUserName] = useState({});
-    const [userImage, setUserImage] = useState({});
+    // const [userImage, setUserImage] = useState({});
     console.log({id})
 
     // Fetch application data and user details based on the ID
@@ -20,27 +20,27 @@ function ApplicationDetails() {
                 // Fetch application data
                 const applicationResponse = await fetch(`applications/details/${id}/`);
                 const applicationData = await applicationResponse.json();
-                console.log(applicationData)
+                console.log(applicationData);
                 setApplication(applicationData);
-
+    
                 // Fetch user details if application data is available
                 if (applicationData.pet_seeker_user) {
                     const userId = applicationData.pet_seeker_user;
-
+    
                     // Fetch user details from Django backend
                     const userResponse = await fetch(`accounts/${userId}/profile/`);
                     const userData = await userResponse.json();
-
+    
                     // Set user details
                     setUserAccountType(userData.accounttype);
                     setUserName(userData.first_name);
-                    setUserImage(userData.profilepic);
+                    // setUserImage(userData.profilepic);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
-
+    
         fetchData();
     }, [id]);
 
@@ -64,7 +64,7 @@ function ApplicationDetails() {
                 <div className="d-flex flex-column m-5 p-5 justify-content-start align-items-center w-40 text-primary-brown two-col-child">
                 
                     <StatusBoxComponent>application={application} userAccountType={userAccountType}</StatusBoxComponent>
-                    <ChatComponent>userName={userName} userImage={userImage} </ChatComponent>
+                    {/* <ChatComponent>userName={userName} userImage={userImage}</ChatComponent> */}
 
                     {/* All Comments inside the Chat Component go here */}
                 
