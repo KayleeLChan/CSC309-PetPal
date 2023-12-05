@@ -22,11 +22,19 @@ function UpdateSeekerProfile(props) {
         formData.set('pref_size', size);
         formData.set('pref_personality', personality);
         formData.set('pref_age', age);
+        if (formData.first_name === "") {
+            formData.set('first_name', props.data.first_name);
+        }
+        if (formData.last_name === "") {
+            formData.set('last_name', props.data.last_name);
+        }
+        if (formData.email === "") {
+            formData.set('email', props.data.email);
+          }
         for (var pair of formData.entries()) {
             console.log(pair[0]+ ', ' + pair[1]); 
         }
         console.log(`http://127.0.0.1:8000/accounts/${id}/profile/`)
-        // formData.set("profilepic", photo)
     
     
         fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
@@ -55,7 +63,7 @@ function UpdateSeekerProfile(props) {
             <div data-bs-theme="petpal">
                 <div className="main">
                     <div className="mh-100 d-flex flex-row mx-0 justify-content-center">
-                    <div className="d-flex w-50 flex-column pt-5 align-items-center justify-center bg-primary-brown">
+                    <div className="d-flex w-75 flex-column pt-5 align-items-center justify-center bg-primary-brown">
                         <form onSubmit={handleSave}>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="first_name">First Name</label>
@@ -172,17 +180,9 @@ function UpdateSeekerProfile(props) {
                                 <option value="lap">lap-pet</option>
                             </Form.Select>
                         </div>
-                        {/* <div className="col-sm-10">
-                            <input
-                                type="file"
-                                className="form-control bg-primary-cream font-plain"
-                                id="profilepic"
-                                onChange={handlePhotoChange}
-                            />
-                        </div>                         */}
                         <p className="smallpar">{error}</p>
                         <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Save</button>
-                        <button className="btn-primary-orange" onClick={props.displayUpdate}>Cancel</button>
+                        <button className="btn btn-lg btn-primary-cream m-3 shadow-sm" onClick={props.displayUpdate}>Back</button>
                         </form>
                     </div>
                 </div>   
