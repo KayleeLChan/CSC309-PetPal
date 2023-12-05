@@ -32,10 +32,6 @@ function CommentBar(props) {
 
         event.preventDefault();
     }
-
-    function handlePageChange(event){
-        
-    }
     
     return (
         <>

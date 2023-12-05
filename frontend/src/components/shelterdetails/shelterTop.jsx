@@ -1,6 +1,7 @@
 import React from 'react';
 
 function DetailsTop(props) {
+
     return (
         <>
             <div data-bs-theme="petpal">
@@ -22,9 +23,6 @@ function DetailsTop(props) {
                             <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1 empty-star" />
                         </div> */}
                         {/* link properly later */}
-                        <a href="shelterreview.html" className="text-primary-cream mb-1 h5">
-                            REVIEWS
-                        </a>
                     </div>
 
                     {/* shelter contact details */}
