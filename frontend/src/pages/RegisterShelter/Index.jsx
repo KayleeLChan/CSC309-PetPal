@@ -18,7 +18,9 @@ function RegisterShelter(){
     }
 
     const handlePhotoChange = (event) => {
-        setPhoto(event.target.files[0]);
+        if(event.target.files[0]){
+            setPhoto(event.target.files[0]);
+        }
       };
 
   

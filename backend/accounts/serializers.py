@@ -44,7 +44,7 @@ class PetSeekerGetSerializer(serializers.ModelSerializer):
         if errors:
             raise serializers.ValidationError(errors)
 
-        return attrs, errors
+        return attrs
 
 class PetShelterGetSerializer(serializers.ModelSerializer):
     password = serializers.CharField(required=False)

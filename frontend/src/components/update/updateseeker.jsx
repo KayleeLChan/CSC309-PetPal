@@ -15,6 +15,7 @@ function UpdateSeekerProfile(props) {
     const [size, setSize] = useState('');
     
     function handleSave(event){
+        event.preventDefault();
         console.log("save")
         const formData = new FormData(event.target);
         formData.set('pref_sex', sex);
@@ -24,10 +25,11 @@ function UpdateSeekerProfile(props) {
         for (var pair of formData.entries()) {
             console.log(pair[0]+ ', ' + pair[1]); 
         }
+        console.log(`http://127.0.0.1:8000/accounts/${id}/profile/`)
         // formData.set("profilepic", photo)
     
-        setTimeout(() => {
-            fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
+    
+        fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`},
@@ -44,8 +46,7 @@ function UpdateSeekerProfile(props) {
                 console.error(error);
                 setError(error.toString());
             });
-        }, 50000);
-    }
+        }
     
     
 
@@ -128,7 +129,7 @@ function UpdateSeekerProfile(props) {
                             <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
                                 aria-label="age"
                                 id="age"
-                                onChange={(e) => setAge(e.target.value)} required>
+                                onChange={(e) => setAge(e.target.value)}>
                                 <option value=""></option>
                                 <option value="newborn">newborn</option>
                                 <option value="young">young</option>
@@ -141,7 +142,7 @@ function UpdateSeekerProfile(props) {
                             <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
                                 aria-label="size"
                                 id="size"
-                                onChange={(e) => setSize(e.target.value)} required>
+                                onChange={(e) => setSize(e.target.value)}>
                                 <option value=""></option>
                                 <option value="S">small</option>
                                 <option value="M">medium</option>
@@ -153,7 +154,7 @@ function UpdateSeekerProfile(props) {
                         <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
                                 aria-label="sex"
                                 id="sex"
-                                onChange={(e) => setSex(e.target.value)} required>
+                                onChange={(e) => setSex(e.target.value)}>
                                 <option value=""></option>
                                 <option value="F">Female</option>
                                 <option value="M">Male</option>
@@ -163,7 +164,7 @@ function UpdateSeekerProfile(props) {
                             <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
                                 aria-label="personality"
                                 id="personality"
-                                onChange={(e) => setPersonality(e.target.value)} required>
+                                onChange={(e) => setPersonality(e.target.value)}>
                                 <option value=""></option>
                                 <option value="very active">very active</option>
                                 <option value="active">active</option>

@@ -43,33 +43,6 @@ function UpdateSeeker(){
           });
       }, [id, accessToken, isComponentVisible]);
 
-
-    //   function handleSave(event){
-    //     console.log("save")
-    //     const formData = new FormData(event.target);
-    //     formData.set('pref_sex', sex);
-    //     formData.set('pref_size', size);
-    //     formData.set('pref_personality', personality);
-    //     formData.set('pref_age', age);
-    //     formData.set('accounttype', account_type);
-    //     formData.set("profilepic", photo)
-        
-    //     fetch(`http://localhost:8000/accounts/${id}/profile/`, {
-    //         method: 'PUT',
-    //         body: formData
-    //         })
-    
-    //     .then(response => {
-    //         console.log(response);
-    //         return response.json();
-    //     })
-    //     // add in proper error displays
-    //     .catch(error => {
-    //         console.error(error);
-    //         setError(error.toString());
-    //     });
-    // }
-      
     return (
         <>
             <div data-bs-theme="petpal">
