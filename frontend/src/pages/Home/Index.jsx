@@ -13,8 +13,8 @@ function Home() {
                         <PetCarousel></PetCarousel>
                         <PetCarouselSmall></PetCarouselSmall>
 
-                        <div class="text-primary-brown">
-                            <button class="btn btn-lg btn-primary-orange m-3 shadow-sm" type="">Meet More Pals!</button>
+                        <div className="text-primary-brown">
+                            <button className="btn btn-lg btn-primary-orange m-3 shadow-sm" type="">Meet More Pals!</button>
                         </div>
                     </div>
                     <div className="align-self-end text-end w-50 hide-xl">

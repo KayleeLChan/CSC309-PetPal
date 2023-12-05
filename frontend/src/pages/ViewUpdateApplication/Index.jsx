@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import StatusBox from './StatusBox';
+import StatusBox from '../../components/applications/application-status-box';
 import ChatComponent from '../../components/applications/application-comments-box';
 import ApplicationSheetComponent from '../../components/applications/application-details';
 import PetDetailsComponent from '../../components/applications/application-pet-details';
@@ -104,8 +104,6 @@ function Application() {
                 
                 </div>
                 {/* Right Column End */}
-
-
 
             </div>
         </div> 
