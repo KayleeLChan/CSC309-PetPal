@@ -100,7 +100,7 @@ function Application() {
                     <StatusBox>application={id} userAccountType={userAccountType}</StatusBox>
                     <ChatComponent>userName={userName} userImage={userImage} </ChatComponent>
 
-                    {/* All Comments inside the Chat Component go here - may have to create */}
+                    {/* All Comments inside the Chat Component go here */}
                 
                 </div>
                 {/* Right Column End */}

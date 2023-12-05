@@ -4,7 +4,7 @@ const PetDetailsComponent = ({ application }) => {
 
     const imageSrc = application.pet_listing.images.length > 0
     ? application.pet_listing.images[0].image
-    : 'Zawg.jpg';  // Replace with your default image path
+    : 'Zawg.jpg';  // Replace with default image path
 
     return (
         <div className="d-flex flex-column w-50 m-5 bg-cream flex-column align-items-center two-col-child">
