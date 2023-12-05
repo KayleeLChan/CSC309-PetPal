@@ -35,6 +35,7 @@ class PetShelter(Account):
     mission = models.TextField(null=True)
     policy = models.TextField(null=True)
     # listings and applications will have a foreign key
+    
 
     def __str__(self):
         return f"{self.sheltername}"
@@ -43,5 +44,13 @@ class PetSeeker(Account):
     # user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True, related_name='seekers')
     # first_name = models.CharField(max_length=30)
     # last_name = models.CharField(max_length=30)
+    pref_animal = models.CharField(max_length=50)
+    pref_breed = models.CharField(max_length=50)
+    pref_age = models.CharField(max_length=10, choices=[("none", "none"), ("new", "newborn"), ("young", "young"), ("adult", "adult"), ("senior", "senior")], default="none")
+    pref_size = models.CharField(max_length=5, choices=[("none", "no size preference"), ("S", "small"), ("M", "medium"), ("L", "large"), ("XL", "extra large")], default="none")
+    pref_colour = models.CharField(max_length=50)
+    pref_sex = models.CharField(max_length=5, choices=[("none", "no gender preference"), ("F", "female"), ("M", "male")], default="none")
+    pref_personality = models.CharField(max_length=15, choices=[("none", "no behaviour preference"), ("very active", "very active"), ("active", "active"), ("laid-back", "laid-back"), ("lap", "lap-pet")], default="none")
+    
     def __str__(self):
         return f"{self.first_name}"
