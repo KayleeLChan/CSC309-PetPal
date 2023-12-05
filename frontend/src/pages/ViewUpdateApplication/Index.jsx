@@ -28,7 +28,7 @@ function ApplicationDetails() {
                     const userId = applicationData.pet_seeker_user;
 
                     // Fetch user details from Django backend
-                    const userResponse = await fetch(`${userId}/profile/`);
+                    const userResponse = await fetch(`accounts/${userId}/profile/`);
                     const userData = await userResponse.json();
 
                     // Set user details
