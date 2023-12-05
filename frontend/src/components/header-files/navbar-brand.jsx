@@ -5,7 +5,7 @@ const NavbarBrand = () => {
     return (
         <Navbar.Brand href="/" className="h1 fs-1 btn-cream mb-0 px-3 mx-0">
         <img
-          src="./imgs/Logo.svg"
+          src="/imgs/Logo.svg"
           alt="Logo"
           width="50"
           height="50"

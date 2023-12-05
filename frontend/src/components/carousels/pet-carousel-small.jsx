@@ -76,7 +76,7 @@ const PetCarouselSmall = () => {
       </Carousel>
 
       <div className="d-flex flex-row h-100 w-100 justify-content-evenly align-items-end">
-        <Button className="carousel-control-prev" variant="link" data-bs-target="#petSmallCarousel" data-bs-slide="prev">
+        <Button className="carousel-control-prev" variant="link" onClick={handlePrev}>
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Previous</span>
         </Button>
@@ -86,13 +86,13 @@ const PetCarouselSmall = () => {
               key={item}
               type="button"
               data-bs-target="#petSmallCarousel"
-              data-bs-slide-to={item}
+              onClick={() => handleSelect(item)}
               className={index === item ? 'active' : ''}
               aria-label={`Slide ${item + 1}`}
             ></button>
           ))}
         </div>
-        <Button className="carousel-control-next" variant="link" data-bs-target="#petSmallCarousel" data-bs-slide="next">
+        <Button className="carousel-control-next" variant="link" onClick={handleNext}>
           <span className="carousel-control-next-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Next</span>
         </Button>

@@ -25,6 +25,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
     pet_listing_breed = serializers.ReadOnlyField(source='pet_listing.breed')
 
 
+    pet_seeker_username = serializers.ReadOnlyField(source='pet_seeker_user.username')
     class Meta:
         model = Application
         fields = '__all__'
