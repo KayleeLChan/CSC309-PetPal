@@ -1,83 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import StatusBox from '../../components/applications/application-status-box';
+import StatusBoxComponent from '../../components/applications/application-status-box';
 import ChatComponent from '../../components/applications/application-comments-box';
 import ApplicationSheetComponent from '../../components/applications/application-details';
 import PetDetailsComponent from '../../components/applications/application-pet-details';
 
-function Application() {
+function ApplicationDetails() {
     const { id } = useParams();
     const [application, setApplication] = useState({});
-    const [userAccountType, setUserAccountType] = useState({});  // Set the actual user account type
-    const [userName, setUserName] = useState({}); // Set the actual user information
-    const [userImage, setUserImage] = useState({}); // Set the actual user image
+    const [userAccountType, setUserAccountType] = useState({});
+    const [userName, setUserName] = useState({});
+    const [userImage, setUserImage] = useState({});
+    console.log({id})
 
-    // Fetch application data based on the ID
+    // Fetch application data and user details based on the ID
     useEffect(() => {
-        const fetchApplicationData = async () => {
-        try {
-            const response = await fetch(`/applications/${id}/`);
-            const data = await response.json();
-            setApplication(data);
-        } catch (error) {
-            console.error('Error fetching application data:', error);
-        }
-    };
+        const fetchData = async () => {
+            try {
+                // Fetch application data
+                const applicationResponse = await fetch(`applications/details/${id}/`);
+                const applicationData = await applicationResponse.json();
+                console.log(applicationData)
+                setApplication(applicationData);
 
-    // Fetch user account type data based on the associated user in the Application model
-    const fetchUserAccount = async () => {
-        try {
-            // Access the associated user from the Application model
-            const userId = application.pet_seeker_user;
-            if (userId) {
-                // Fetch user details from Django backend
-                const userResponse = await fetch(`/profile/`);
-                const userData = await userResponse.json();
-                setUserAccountType(userData.accounttype);
+                // Fetch user details if application data is available
+                if (applicationData.pet_seeker_user) {
+                    const userId = applicationData.pet_seeker_user;
+
+                    // Fetch user details from Django backend
+                    const userResponse = await fetch(`${userId}/profile/`);
+                    const userData = await userResponse.json();
+
+                    // Set user details
+                    setUserAccountType(userData.accounttype);
+                    setUserName(userData.first_name);
+                    setUserImage(userData.profilepic);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
             }
-        } catch (error) {
-            console.error('Error fetching user account type:', error);
-        }
-    };
+        };
 
-    // Retrieve User Name
-    const fetchUserName = async () => {
-        try {
-            // Access the associated user from the Application model
-            const userId = application.pet_seeker_user;
-            if (userId) {
-                // Fetch user details from Django backend
-                const userResponse = await fetch(`/profile/`);
-                const userData = await userResponse.json();
-                setUserName(userData.first_name);
-            }
-        } catch (error) {
-            console.error('Error fetching user name:', error);
-        }
-    };
+        fetchData();
+    }, [id]);
 
-    // Retrieve User Profile Picture
-    const fetchUserImage = async () => {
-        try {
-            // Access the associated user from the Application model
-            const userId = application.pet_seeker_user;
-            if (userId) {
-                // Fetch user details from Django backend
-                const userResponse = await fetch(`/profile/`);
-                const userData = await userResponse.json();
-                setUserImage(userData.profilepic);
-            }
-        } catch (error) {
-            console.error('Error fetching user profile picture:', error);
-        }
-    };
-
-    // Call all data-fetching functions
-    fetchApplicationData();
-    fetchUserAccount();
-    fetchUserName();
-    fetchUserImage();
-    }, [id, application, userAccountType, userName, userImage]);   // Re-fetch data when the ID changes
 
     return ( <>
         <div data-bs-theme="petpal">
@@ -87,8 +53,8 @@ function Application() {
                 {/* Left Column Start */}
                 <div className="d-flex flex-column w-50 m-5 bg-cream flex-column align-items-center two-col-child">
 
-                    <PetDetailsComponent>application={id}</PetDetailsComponent>
-                    <ApplicationSheetComponent>application={id}</ApplicationSheetComponent>
+                    <PetDetailsComponent>application={application}</PetDetailsComponent>
+                    <ApplicationSheetComponent>application={application} </ApplicationSheetComponent>
                 
                 </div>
                 {/* Left Column End */}
@@ -97,7 +63,7 @@ function Application() {
                 {/* Right Column Start */}
                 <div className="d-flex flex-column m-5 p-5 justify-content-start align-items-center w-40 text-primary-brown two-col-child">
                 
-                    <StatusBox>application={id} userAccountType={userAccountType}</StatusBox>
+                    <StatusBoxComponent>application={application} userAccountType={userAccountType}</StatusBoxComponent>
                     <ChatComponent>userName={userName} userImage={userImage} </ChatComponent>
 
                     {/* All Comments inside the Chat Component go here */}
@@ -110,4 +76,4 @@ function Application() {
     </> );
 }
 
-export default Application;
+export default ApplicationDetails;

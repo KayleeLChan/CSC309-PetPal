@@ -9,7 +9,6 @@ const ApplicationSheetComponent = ({ application }) => {
         <p className="d-flex w-100">FIRST NAME: <span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{application.applicant_first_name}</span></p>
         <p className="d-flex w-100">LAST NAME: <span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{application.applicant_last_name}</span></p>
         <p className="d-flex w-100">ADDRESS: <span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{application.address}</span></p>
-        <p className="d-flex w-100">CITY: <span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{/* Add city data here */}</span></p>
         <p className="d-flex w-100">POSTAL CODE: <span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{application.postal_code}</span></p>
         <p className="d-flex w-100">EMAIL: <span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{application.applicant_email}</span></p>
         <p className="d-flex w-100">PHONE: <span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{application.applicant_phone_number}</span></p>

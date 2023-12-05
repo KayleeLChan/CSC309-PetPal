@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 // Pass in user account type (?)
-const StatusBox = ({ application, userAccountType }) => {
+const StatusBoxComponent = ({ application, userAccountType }) => {
     // Keep track of application status
     const [status, setStatus] = useState(application.application_status);
 
     // Send a PATCH request to backend to update the application status
     const updateStatus = async (newStatus) => {
     try {
-        const response = await fetch(`/applications/${application.id}/`, {
+        const response = await fetch(`/applications/details/${application.id}/`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify({ application_status: newStatus }),
@@ -31,7 +31,7 @@ const StatusBox = ({ application, userAccountType }) => {
     // Fetch the status from the Django backend
         const fetchData = async () => {
             try {
-                const response = await fetch(`/applications/${application.id}/`);
+                const response = await fetch(`/applications/details/${application.id}/`);
                 const data = await response.json();
                 setStatus(data.application_status || 'PENDING');
             } catch (error) {
@@ -82,4 +82,4 @@ const StatusBox = ({ application, userAccountType }) => {
     
 };
 
-export default StatusBox;
+export default StatusBoxComponent;
