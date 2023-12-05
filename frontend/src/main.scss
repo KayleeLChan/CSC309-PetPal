@@ -55,7 +55,7 @@ $grid-breakpoints: (
     --bs-tertiary-bg: #{$primary-cream};
     --bs-border-color: #{$primary-brown};
     --bs-secondary-bg: #ffcc99;
-    --bs-link-color-rgb: #{$primary-brown}; 
+    --bs-link-color-rgb: #{$primary-brown};
     --bs-link-hover-color-rgb: #{$primary-cream};
 
     // Custom borders
@@ -125,7 +125,7 @@ $grid-breakpoints: (
         left: 75% !important;
     }
 
-    .navbar-collapse .dropstart .dropdown-menu[data-bs-popper]{
+    .navbar-collapse .dropstart .dropdown-menu[data-bs-popper] {
         top: 100% !important;
         right: 20% !important;
     }
@@ -223,7 +223,7 @@ $grid-breakpoints: (
 
     .shelter-header-text {
         font-size: calc(1.275rem + 0.3vw);
-      }
+    }
 
     .form-control:focus {
         // Change glow around search bar to orange
@@ -259,6 +259,10 @@ $grid-breakpoints: (
         width: 28%;
     }
 
+    .listing-grid .carousel-card {
+        width: 100%;
+    }
+
     .carousel-indicators {
         position: inherit;
         margin-bottom: 0;
@@ -276,11 +280,11 @@ $grid-breakpoints: (
         --bs-card-bg: #{$cream};
     }
 
-    .card-click:hover {
+    .card:hover {
         opacity: 70%;
     }
 
-    .card-click:active {
+    .card:active {
         opacity: 90%;
     }
 
@@ -410,30 +414,31 @@ $grid-breakpoints: (
         color: #{$primary-brown};
     }
 
-    .nav-link:hover, .nav-link:focus {
+    .nav-link:hover,
+    .nav-link:focus {
         color: #{$primary-brown};
     }
 
-    .chat{
+    .chat {
         max-width: 400px;
     }
 
-    .signupcontainer{
-        margin-top:20px;
+    .signupcontainer {
+        margin-top: 20px;
     }
 
-    .signupcontainer p{
+    .signupcontainer p {
         margin: 0px;
     }
 
 
-    .paddingify{
+    .paddingify {
         padding: 30px;
     }
 
-    .smallpar{
+    .smallpar {
         font-size: small;
-        color:#F99129
+        color: #F99129
     }
 
     .modal-footer {
@@ -443,6 +448,20 @@ $grid-breakpoints: (
 
     .search-col {
         width: 50%;
+    }
+
+    .filter-sidebar {
+        width: 15%;
+    }
+
+    .row-to-column {
+        flex-direction: row;
+    }
+
+    .listing-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
     }
 
     #adopt-dropdown {
@@ -472,10 +491,17 @@ $grid-breakpoints: (
             font-size: small;
         }
     }
+
     @include media-breakpoint-down(sm) {
         .hide-sm {
             // Don't show element on screen-sizes small and under
             display: none !important;
+        }
+
+        .listing-grid {
+            display: grid;
+            grid-template-columns: 1fr !important;
+            gap: 16px;
         }
     }
 
@@ -512,10 +538,16 @@ $grid-breakpoints: (
         .search-col {
             width: 100%;
         }
-        
-        .search_card { 
-            width: 100% !important
-        }   
+
+        .search_card {
+            width: 100% !important;
+        }
+
+        .listing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
     }
 
     @include media-breakpoint-down(lg) {
@@ -580,7 +612,7 @@ $grid-breakpoints: (
             align-items: center;
         }
 
-        .search-card { 
+        .search-card {
             width: 50%
         }
 
@@ -593,6 +625,15 @@ $grid-breakpoints: (
         }
 
         .responsive-col {
+            width: 100% !important;
+        }
+
+        .row-to-column {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .filter-sidebar {
             width: 100% !important;
         }
     }
@@ -652,6 +693,10 @@ $grid-breakpoints: (
         .responsive-heading {
             font-size: larger;
         }
+
+        .filter-sidebar {
+            width: 40%;
+        }
     }
 
     @include media-breakpoint-up(xs) {
@@ -706,7 +751,8 @@ $grid-breakpoints: (
             display: none !important;
         }
     }
-    form{
+
+    form {
         padding-left: 30px;
         padding-right: 30px;
         align-self: center;
@@ -714,9 +760,9 @@ $grid-breakpoints: (
 
     input[type=file]::file-selector-button {
         background-color: $primary-orange;
-      }
-    
-    label{
+    }
+
+    label {
         padding-top: 16px;
     }
 

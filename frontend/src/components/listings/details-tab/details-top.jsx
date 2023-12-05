@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 const DetailsTop = ({listing, formData, setFormData}) => {
@@ -30,7 +30,7 @@ const DetailsTop = ({listing, formData, setFormData}) => {
             </div>
 
             <div className="d-flex flex-column justify-content-center align-items-center bg-primary-cream rounded p-3">
-                <img src="./imgs/gallery.svg" width="70%" alt="Gallery" />
+                <img src="/imgs/gallery.svg" width="70%" alt="Gallery" />
                 <Form className="d-flex flex-column justify-content-center align-items-center" encType="multipart/form-data">
                     {/* TODO: Figure out how to upload images */}
                     <Form.Label htmlFor="formFile" className="form-label">Upload images</Form.Label>

@@ -5,7 +5,7 @@ const PaginationButtons = ({ query, totalPages, setSearchParams }) => {
     const pageButtons = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     return (
-        <div className="text-center h-100 d-flex justify-content-center">
+        <div className="text-center h-100 d-flex justify-content-center pb-5">
                             <div className="d-flex flex-row justify-content-between align-self-end">
                                 {query.page > 1 && query.page <= totalPages ? (
                                     <Button
@@ -32,9 +32,9 @@ const PaginationButtons = ({ query, totalPages, setSearchParams }) => {
                                 
                                 {pageButtons.map((pageNumber) => (
                                     <Button
-                                        variant="primary-cream"
+                                        variant={`${query.page === pageNumber ? "primary-orange" : "primary-cream"}`}
                                         onClick={() => setSearchParams({ ...query, page: pageNumber })}
-                                        className="mx-1"
+                                        className={`mx-1 ${query.page === pageNumber ? 'text-decoration-underline' : ''}`}
                                     >
                                         {pageNumber}
                                     </Button>

@@ -12,11 +12,6 @@ from django.db.models.functions import Lower
 from django.db.models import F
 from django.db import connection
 
-class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 10
-    page_size_query_param = 'page_size'
-    max_page_size = 10
-
 class IsShelterOrReadOnly(BasePermission):
     """
     Object-level permission to only allow shelters of a listing to edit it.
@@ -63,8 +58,7 @@ class ListingFilter(django_filters.FilterSet):
         field_labels={
             'name': 'Name',
             'created_at': 'Newest',
-        },
-        method='filter_name_case_insensitive'
+        }
     )
 
     class Meta:
@@ -111,19 +105,11 @@ class ListingFilter(django_filters.FilterSet):
             return queryset.filter(sex=value)
         else:
             return queryset
-        
-    # TODO: Make this work
-    def filter_name_case_insensitive(self, queryset, name, value):
-        if "name" in value:
-            return queryset.order_by(Lower('name').asc() if value == 'asc' else Lower('name').asc().reverse())
-        elif "created_at" in value:
-            return queryset.order_by('created_at' if value == 'asc' else '-created_at')
-        return queryset
 
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 10
+    page_size = 15
     page_size_query_param = 'page_size'
-    max_page_size = 30
+    max_page_size = 15
 
 # Create your views here.
 class PetListingsListCreate(ListCreateAPIView):

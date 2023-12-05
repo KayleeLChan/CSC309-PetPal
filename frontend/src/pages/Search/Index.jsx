@@ -26,11 +26,10 @@ const Search = () => {
         });
     };
 
-    const handleRadioChange = (e, field) => {
-        const value = e.target.checked ? e.target.id : '';
+    const handleFilterChange = (e, field) => {
         setSearchParams({
             ...searchParams,
-            [field]: value,
+            [field]: e,
         });
     }
 
@@ -96,7 +95,7 @@ const Search = () => {
                             </Button>
 
                             {additionalFiltersVisible ? (
-                                <AdditionalFilters searchParams={searchParams} handleInputChange={handleInputChange} handleRadioChange={handleRadioChange}></AdditionalFilters>
+                                <AdditionalFilters searchParams={searchParams} handleInputChange={handleInputChange} handleFilterChange={handleFilterChange}></AdditionalFilters>
                             ) : (<></>)}
 
                             <div className="text-primary-brown">

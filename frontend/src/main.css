@@ -166,6 +166,9 @@
 [data-bs-theme=petpal] .carousel-card {
   width: 28%;
 }
+[data-bs-theme=petpal] .listing-grid .carousel-card {
+  width: 100%;
+}
 [data-bs-theme=petpal] .carousel-indicators {
   position: inherit;
   margin-bottom: 0;
@@ -180,10 +183,10 @@
   --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
   --bs-card-bg: #C5A97C;
 }
-[data-bs-theme=petpal] .card-click:hover {
+[data-bs-theme=petpal] .card:hover {
   opacity: 70%;
 }
-[data-bs-theme=petpal] .card-click:active {
+[data-bs-theme=petpal] .card:active {
   opacity: 90%;
 }
 [data-bs-theme=petpal] .card-img-top {
@@ -287,7 +290,8 @@
 [data-bs-theme=petpal] .nav-link {
   color: #2E1400;
 }
-[data-bs-theme=petpal] .nav-link:hover, [data-bs-theme=petpal] .nav-link:focus {
+[data-bs-theme=petpal] .nav-link:hover,
+[data-bs-theme=petpal] .nav-link:focus {
   color: #2E1400;
 }
 [data-bs-theme=petpal] .chat {
@@ -309,6 +313,20 @@
 [data-bs-theme=petpal] .modal-footer {
   border-width: 1.5px;
   border-color: #2E1400;
+}
+[data-bs-theme=petpal] .search-col {
+  width: 50%;
+}
+[data-bs-theme=petpal] .filter-sidebar {
+  width: 15%;
+}
+[data-bs-theme=petpal] .row-to-column {
+  flex-direction: row;
+}
+[data-bs-theme=petpal] .listing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
 }
 [data-bs-theme=petpal] #adopt-dropdown {
   color: #FFEFD0 !important;
@@ -334,6 +352,11 @@
   [data-bs-theme=petpal] .hide-sm {
     display: none !important;
   }
+  [data-bs-theme=petpal] .listing-grid {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
 }
 @media (max-width: 767.98px) {
   [data-bs-theme=petpal] .hide-md {
@@ -357,8 +380,16 @@
   [data-bs-theme=petpal] .notif-col {
     width: 100%;
   }
+  [data-bs-theme=petpal] .search-col {
+    width: 100%;
+  }
   [data-bs-theme=petpal] .search_card {
     width: 100% !important;
+  }
+  [data-bs-theme=petpal] .listing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 }
 @media (max-width: 991.98px) {
@@ -420,6 +451,13 @@
   [data-bs-theme=petpal] .responsive-col {
     width: 100% !important;
   }
+  [data-bs-theme=petpal] .row-to-column {
+    flex-direction: column;
+    justify-content: center;
+  }
+  [data-bs-theme=petpal] .filter-sidebar {
+    width: 100% !important;
+  }
 }
 @media (max-width: 1399.98px) {
   [data-bs-theme=petpal] .hide-xxl {
@@ -461,6 +499,9 @@
   }
   [data-bs-theme=petpal] .responsive-heading {
     font-size: larger;
+  }
+  [data-bs-theme=petpal] .filter-sidebar {
+    width: 40%;
   }
 }
 @media (min-width: 410px) {
