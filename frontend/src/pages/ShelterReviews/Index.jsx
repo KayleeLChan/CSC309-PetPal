@@ -30,13 +30,24 @@ function ShelterReviews() {
             .then(response => response.json())
             .then(data => setComments(data));
     }, [id, accessToken]);
-    
+
+    const handleCommentSubmit = () => {
+        // fetch updated comments and update state
+        fetch(`http://localhost:8000/comments/shelter/${id}/`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => setComments(data));
+    };
+
     return (
         <>
             <div data-bs-theme="petpal">
                 <div className="main">
                     <DetailsTop shelterData={shelterData} />
-                    <ShelterReviewsSection commentsData={commentsData} shelterID={id}/>
+                    <ShelterReviewsSection commentsData={commentsData} shelterID={id} onCommentSubmit={handleCommentSubmit}/>
                 </div>
             </div>
         </>

@@ -14,13 +14,13 @@ function DetailsTop(props) {
                     <div className="two-col-child align-self-center justify-content-center w-50 mt-2 mb-3">
                         <h1 className="text-primary-cream text-decoration-underline mb-1">{props.shelterData.sheltername}</h1>
                         <h5 className="text-primary-cream mb-1">{props.shelterData.companyaddress}, {props.shelterData.city}</h5>
-                        <div className="d-flex flex-row w-20 mb-3">
+                        {/* <div className="d-flex flex-row w-20 mb-3">
                             <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
                             <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
                             <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
                             <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1" />
                             <img src="/imgs/reviewstar.png" width="30%" height="30%" className="m-1 empty-star" />
-                        </div>
+                        </div> */}
                         {/* link properly later */}
                         <a href="shelterreview.html" className="text-primary-cream mb-1 h5">
                             REVIEWS
