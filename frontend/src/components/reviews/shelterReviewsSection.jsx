@@ -3,7 +3,7 @@ import Comment from './comment';
 import CommentBar from './commentBar';
 
 function ShelterReviewsSection(props) {
-    const { commentsData, shelterID, onCommentSubmit } = props;
+    const { commentsData, shelterID, onCommentSubmit, setQuery, query} = props;
 
     // Check if commentsData is undefined or commentsData.results is undefined
     if (!commentsData || !commentsData.results) {
@@ -13,6 +13,12 @@ function ShelterReviewsSection(props) {
     // // console.log(sortedComments);
     // const sortedComments = (commentsData.results).sort((a, b) => b.creation_field - a.creation_time)
     // console.log(sortedComments)
+
+    const handlePageChange = () => {
+        // Increment the current page number
+        const nextPage = query.page + 1;
+        setQuery({ ...query, page: nextPage });
+    };
 
     return (
         <>
@@ -27,6 +33,7 @@ function ShelterReviewsSection(props) {
                             ))}
                         </div>
                     </div>
+                    <button type="button" className="btn btn-lg btn-primary-cream m-3 shadow-sm" onClick={handlePageChange}>Next</button>
             </div>
         </>
     );

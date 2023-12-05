@@ -8,6 +8,7 @@ import CommentBar from '../../components/reviews/commentBar';
 function ShelterReviews() {
     const [shelterData, setShelterData] = useState([]);
     const [commentsData, setComments] = useState([]);
+    const [ query, setQuery ] = useState({page: 1});
     const { id } = useParams();
     const accessToken = localStorage.getItem('access_token');
 
@@ -22,18 +23,22 @@ function ShelterReviews() {
             .then(data => setShelterData(data));
 
         // Fetch comments for the shelter
-        fetch(`http://localhost:8000/comments/shelter/${id}/`, {
+        const { page } = query;
+        fetch(`http://localhost:8000/comments/shelter/${id}/?page=${page}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
             .then(response => response.json())
+            // .then(data => console.log(data))
             .then(data => setComments(data));
-    }, [id, accessToken]);
+    }, [id, accessToken, query]);
 
     const handleCommentSubmit = () => {
         // fetch updated comments and update state
-        fetch(`http://localhost:8000/comments/shelter/${id}/`, {
+        const { page } = query;
+        const queryString = new URLSearchParams({ page }).toString(); // Create a query string with only the 'page' parameter
+        fetch(`http://localhost:8000/comments/shelter/${id}/?${queryString}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
@@ -47,7 +52,8 @@ function ShelterReviews() {
             <div data-bs-theme="petpal">
                 <div className="main">
                     <DetailsTop shelterData={shelterData} />
-                    <ShelterReviewsSection commentsData={commentsData} shelterID={id} onCommentSubmit={handleCommentSubmit}/>
+                    {console.log(commentsData)}
+                    <ShelterReviewsSection commentsData={commentsData} shelterID={id} onCommentSubmit={handleCommentSubmit} setQuery={setQuery} query={query}/>
                 </div>
             </div>
         </>
