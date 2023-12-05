@@ -11,7 +11,7 @@ function CreateApplication() {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`${userId}/profile/`);
+                const response = await fetch(`accounts/${userId}/profile/`);
                 const data = await response.json();
                 setUserInfo(data);
             } catch (error) {
@@ -74,12 +74,14 @@ function CreateApplication() {
                     {/* CONTENT STARTS HERE */}
                     <main className="d-flex two-col">
                         <div className="d-flex flex-column m-5 p-5 justify-content-start two-col-form two-col-child">
-                            <h1 className="fs-0">Adopt {petName}</h1>
                             {/* Left Column */}
+                            <h1 className="fs-0">Adopt {petName}</h1>
                             <UserInfoComponent user_id={userId} />
                             {/* Left Column */}
 
                             {/* Right Column */}
+                            <div className="d-flex w-40 h-auto m-5 p-3 pb-5 px-5 bg-cream flex-column align-items-center rounded two-col-child">
+                            <h1 className="fs-0">Compatability Quiz</h1>
                             <CompatibilityQuizComponent user_id={userId} />
                             {/* Right Column */}
 
@@ -90,6 +92,8 @@ function CreateApplication() {
                             >
                                 Submit Application
                             </button>
+                            
+                            </div>
                         </div>
                     </main>
                 </div>

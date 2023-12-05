@@ -1,8 +1,47 @@
 import React, { useState, useEffect } from 'react';
 
 const UserInfoComponent = ({ user_id }) => {
- 
- 
+
+    // Information given from user account
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [preferredAnimal, setPreferredAnimal] = useState('');
+    const [preferredBreed, setPreferredBreed] = useState('');
+    const [preferredAge, setPreferredAge] = useState('');
+    const [preferredSize, setPreferredSize] = useState('');
+    const [preferredSex, setPreferredSex] = useState('');
+    const [preferredPersonality, setPreferredPersonality] = useState('');
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+          try {
+            // fetch the information of the user
+            const userInfo = await fetch(`accounts/${user_id}/profile/`);
+            
+            // to pre-populate fields on application
+            setFirstName(userInfo.first_ame);
+            setLastName(userInfo.last_name);
+            setEmail(userInfo.email);
+            setPhoneNumber(userInfo.phonenumber);
+            setPreferredAnimal(userInfo.pref_animal);
+            setPreferredBreed(userInfo.pref_breed);
+            setPreferredAge(userInfo.pref_age);
+            setPreferredSize(userInfo.pref_size);
+            setPreferredSex(userInfo.pref_sex);
+            setPreferredPersonality(userInfo.pref_personality);
+
+          } catch (error) {
+            console.error('Error fetching user information:', error);
+          }
+        };
+    
+        // Call the function to fetch user information
+        fetchUserInfo();
+      }, [user_id]);
+    
+
     return ( 
         <div>
             <form className="ps-0 mt-3 w-100">
@@ -14,16 +53,25 @@ const UserInfoComponent = ({ user_id }) => {
                 className="form-control"
                 id="firstName"
                 required=""
+                value={firstName}
+                readOnly
                 />
             </div>
 
 
             <div className="mb-3">
                 <label htmlFor="lastName" className="form-label"> Last Name </label>
-                <input type="text" className="form-control" id="lastName" required="" />
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    id="lastName" 
+                    required=""
+                    value={lastName}
+                    readOnly 
+                    />
             </div>
 
-
+            {/* Save this information */}
             <div className="mb-3">
             <label htmlFor="address" className="form-label"> Home Address </label>
             <input
@@ -45,6 +93,8 @@ const UserInfoComponent = ({ user_id }) => {
                 id="email"
                 aria-describedby="emailHelp"
                 required=""
+                value={email}
+                readOnly
                 />
                 <div id="emailHelp" className="form-text"> We'll never share your email with anyone other than the shelter. </div>
             </div>
@@ -58,21 +108,10 @@ const UserInfoComponent = ({ user_id }) => {
                 id="phoneNumber"
                 aria-describedby="phoneNumberHelp"
                 required=""
+                value={phoneNumber}
+                readOnly
                 />
             <div id="phoneNumberHelp" className="form-text"> We'll never share your phone number with anyone other than the shelter.</div>
-            </div>
-
-
-            <div className="mb-3">
-            <label htmlFor="postalCode" className="form-label"> Postal Code </label>
-            <input
-                type="text"
-                className="form-control"
-                id="postalCode"
-                aria-describedby="postalCodeHelp"
-                required=""
-                />
-            <div id="postalCodeHelp" className="form-text">We'll never share your postal code with anyone other than the shelter.</div>
             </div>
 
 
@@ -139,7 +178,7 @@ const UserInfoComponent = ({ user_id }) => {
                     <option value="paypal">Paypal</option>
                 </select>
             </div>
-            
+
             </form>
         </div>
     );

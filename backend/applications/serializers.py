@@ -2,9 +2,6 @@ from rest_framework import serializers
 from rest_framework import ReadOnlyField
 from .models import Application
 
-# read only for display
-# treat fields in serializer as form 
-#
 
 class ApplicationSerializer(serializers.ModelSerializer):
     applicant_first_name = ReadOnlyField(source='pet_seeker_user.first_name')
