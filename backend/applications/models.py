@@ -42,10 +42,10 @@ class Application(models.Model):
     above_twentyone = models.BooleanField()
 
     # section 2: application details
-    # adopting_for = models.CharField(max_length=10, choices=[("myself", "myself"),("family", "my family")])
-    # children = models.CharField(max_length=5, choices=[("kids", "kids"),("none", "no kids")])
-    # pet_owner_history = models.CharField(max_length=10, choices=[("previous", "previous"),("first", "first-time")])
-    # current_pets = models.CharField(max_length=10, choices=[("none", "no pet(s)"),("cat", "cat(s)"),("dog", "dog(s)"), ("both", "dog(s) and cat(s)"), ("other", "other pet(s)")])
+    adopting_for = models.CharField(max_length=10, choices=[("myself", "myself"),("family", "my family")])
+    children = models.CharField(max_length=5, choices=[("kids", "kids"),("none", "no kids")])
+    pet_owner_history = models.CharField(max_length=10, choices=[("previous", "previous"),("first", "first-time")])
+    current_pets = models.CharField(max_length=10, choices=[("none", "no pet(s)"),("cat", "cat(s)"),("dog", "dog(s)"), ("both", "dog(s) and cat(s)"), ("other", "other pet(s)")])
     ideal_pet_age = models.CharField(max_length=10, choices=[("none", "none"), ("new", "newborn"), ("young", "young"), ("adult", "adult"), ("senior", "senior")], default="none")
     ideal_pet_sex = models.CharField(max_length=5, choices=[("none", "no gender preference"), ("F", "female"), ("M", "male")], default="none")
     ideal_pet_size = models.CharField(max_length=5, choices=[("none", "no size preference"), ("S", "small"), ("M", "medium"), ("L", "large"), ("XL", "extra large")], default="none")
