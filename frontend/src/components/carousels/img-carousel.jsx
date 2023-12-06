@@ -46,7 +46,7 @@ const ImgCarousel = ({images}) => {
           <Carousel.Item>
             <CardGroup className="d-flex justify-content-evenly">
               {group.map((image) => (
-                <ImgCard image={image}></ImgCard>
+                <ImgCard source={image.image}></ImgCard>
               ))}
             </CardGroup>
           </Carousel.Item>
