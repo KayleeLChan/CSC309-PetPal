@@ -1,4 +1,3 @@
-// ApplicationSheet.jsx
 import React from 'react';
 
 const ApplicationSheetComponent = ({ application }) => {

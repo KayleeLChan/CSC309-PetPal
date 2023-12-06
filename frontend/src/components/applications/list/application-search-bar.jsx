@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Form, Dropdown } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 const ApplicationSearch = ({ query, handleSearch, handleInputChange }) => {
     const [searchTerm, setSearchTerm] = useState('');
