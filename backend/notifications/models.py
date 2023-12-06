@@ -9,7 +9,8 @@ from django.db.models import Q
 class Notification(models.Model):
     NOTIF_TYPE_CHOICES = [
         ("comment", "Someone has commented on your shelter."),
-        ("application", "Someone has commented on your application"),
+        ("application", "Someone has commented on your application."),
+        ("match", "A new listing matches your preferences!")
     ]
 
     # Associated users that have access to the notification

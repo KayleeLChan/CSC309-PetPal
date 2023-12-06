@@ -14,8 +14,7 @@ const Notification = () => {
     const query = useMemo(
         () => ({
             page: parseInt(searchParams.get("page") ?? 1),
-            filter : searchParams.get("filter") ?? "all",
-            //TODO: Make filter button
+            filter: searchParams.get("filter") ?? "all",
             //TODO: Make errors on Put and Create
         }),
         [searchParams]
@@ -26,7 +25,14 @@ const Notification = () => {
         fetchNotifications();
     }, [query]);
 
-    const handleFilter = (e) => {query.filter = e.target.id}
+    const handleFilter = (e) => {
+        console.log(e.target.id);
+        setSearchParams((prevSearchParams) => {
+            const newSearchParams = new URLSearchParams(prevSearchParams);
+            newSearchParams.set("filter", e.target.id);
+            return newSearchParams;
+        });
+    }
 
     const fetchNotifications = async () => {
         try {
@@ -43,7 +49,7 @@ const Notification = () => {
                     headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk0OTgxLCJpYXQiOjE3MDE1ODUzODEsImp0aSI6Ijg2NTgzN2I0NjNkMzQ5MWM5M2FmMTBlZmI2ODAzN2NjIiwidXNlcl9pZCI6MX0.PPHuhQqkpaGuF7wv2FEqbY9B8dVd5izi6n0KBfFs3wQ", }
                 }); //TODO: Make authorization better later
             const data = await response.json();
-            setNotifications(data.results); 
+            setNotifications(data.results);
             setTotalPages(
                 Math.ceil(Number(data.count) / 10)
             );
@@ -69,17 +75,16 @@ const Notification = () => {
                         <h1 className="fs-0 w-75 pb-2 align-self-center border-bottom border-3 text-center hide-md">Notifications</h1>
                         <h1 className="fs-0 w-100 pb-2 align-self-center border-bottom border-3 text-center show-sm">Notifications</h1>
                         <Dropdown className="mt-3 mt-md-0">
-                        <Dropdown.Toggle variant="primary-cream" id="dropdown-basic">
-                            FILTER NOTIFICATIONS BY
-                            <br className="show-md" />
-                            <span className="ms-2 text-decoration-underline">{query.filter}</span>
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="all">All</Dropdown.Item>
-                            <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="read">Read</Dropdown.Item>
-                            <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="unread">Unread</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                            <Dropdown.Toggle variant="primary-cream" id="dropdown-basic">
+                                FILTER BY
+                                <span className="ms-2 text-decoration-underline">{query.filter}</span>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="all">All</Dropdown.Item>
+                                <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="read">Read</Dropdown.Item>
+                                <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="unread">Unread</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
 
                         {/* If fetching from database, show Loading..., otherwise, list notifications */}
                         {loading ? (<p className="text-center">Loading...</p>) : (
