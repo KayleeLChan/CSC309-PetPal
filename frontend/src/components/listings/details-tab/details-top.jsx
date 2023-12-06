@@ -30,6 +30,7 @@ const DetailsTop = ({listing, formData, setFormData}) => {
             </div>
 
             <div className="d-flex flex-column justify-content-center align-items-center bg-primary-cream rounded p-3">
+                {/* TODO: add default image if no images are uploaded, otherwise show all existing images in the listing and add buttons to delete */}
                 <img src="/imgs/gallery.svg" width="70%" alt="Gallery" />
                 <Form className="d-flex flex-column justify-content-center align-items-center" encType="multipart/form-data">
                     {/* TODO: Figure out how to upload images */}
