@@ -14,6 +14,13 @@ function RegisterSeeker(){
     const navigate = useNavigate();
     const [photo, setPhoto] = useState(null);
 
+    // Val errors
+    const [userError, setUserError] = useState()
+    const [passError, setPassError] = useState()
+    const [confirmPassError, setConfirmError] = useState()
+    const [emailError, setEmailError] = useState()
+    const [isValError, setisValError] = useState(false)
+
     const handleAccountRadio = (event) =>{
         if(event.target.value === "petseeker"){
             setAccountType(event.target.value);
@@ -29,7 +36,7 @@ function RegisterSeeker(){
         }
       };
 
-  
+    
     const handleSubmit = (event) => {
       event.preventDefault();
       console.log(event.target)
@@ -40,7 +47,9 @@ function RegisterSeeker(){
       userData.set('pref_personality', personality);
       userData.set('pref_age', age);
       userData.set('accounttype', account_type);
-      userData.set("profilepic", photo)
+      if(photo){
+        userData.set("profilepic", photo)
+      }
   
       fetch('http://localhost:8000/accounts/registration/seeker/',{
         method: 'POST',
@@ -49,20 +58,42 @@ function RegisterSeeker(){
       })
       .then(response => {
         console.log(response);
-        return response.json();
+        console.log(response.status)
+        if (response.status == 400) {
+            console.log("response is 400")
+            setisValError(true)
+        }
+        return response.json()
+
       })
     //   add in proper error displays
       .then(userData => {
         console.log(userData)
-        if ('message' in userData) {
-            setError(userData.message.toString());
-            console.log(userData.message.toString())
+        if ('username' in userData && isValError) {
+            setUserError(userData.username[0])
+            console.log(userError)
         }
-        if ('errors' in userData) {
-            setError(userData.errors.toString());
-            console.log(userData.errors.toString())
+        else{
+            setUserError("")
         }
-
+        if ('password' in userData && isValError) {
+            setPassError(userData.password[0])
+        }
+        else{
+            setPassError("")
+        }
+        if ('confirmpassword' in userData && isValError) {
+            setConfirmError(userData.confirmpassword[0])
+        }
+        else{
+            setConfirmError("")
+        }
+        if ('email' in userData && isValError) {
+            setEmailError(userData.email[0])
+        }
+        else{
+            setEmailError("")
+        }
       }) 
       .catch(error => {
         console.error(error);
@@ -108,24 +139,28 @@ function RegisterSeeker(){
                             <div className="col-sm-10">
                             <input type="text" name="username" className="form-control bg-primary-cream font-plain" id="username" placeholder="username123" required />
                             </div>
+                            <p className="smallpar">{userError}</p>
                         </div> 
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="password">Password</label>
                             <div className="col-sm-10">
                             <input type="password" name="password" className="form-control bg-primary-cream font-plain" id="password" required />
                             </div>
+                            <p className="smallpar">{passError}</p>
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="verifypassword">Verify Password</label>
                             <div className="col-sm-10">
                             <input type="password" name="confirmpassword" className="form-control bg-primary-cream font-plain" id="verifypassword" required />
                             </div>
+                            <p className="smallpar">{confirmPassError}</p>
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="email">Email</label>
                             <div className="col-sm-10">
                             <input type="email" name="email" className="form-control bg-primary-cream font-plain" id="email" required />
                             </div>
+                            <p className="smallpar">{emailError}</p>
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="phonenumber">Phone Number</label>
@@ -212,9 +247,13 @@ function RegisterSeeker(){
                                 className="form-control bg-primary-cream font-plain"
                                 id="profilepic"
                                 onChange={handlePhotoChange}
+                                required={false}
                             />
                         </div>                        
                         <p className="smallpar">{error}</p>
+                        {isValError &&
+                        <p className="smallpar">One or more fields are invalid. Please review your entries</p>
+}
                         <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Register</button>
                         </form>
                     </div>

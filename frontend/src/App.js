@@ -15,6 +15,7 @@ import UpdateSeeker from "./pages/Update/Index";
 
 import ListingPage from "./pages/Listings/Index";
 import Listing from "./pages/Listings/Listing";
+import UpdateShelter from "./pages/UpdateShelter/Index";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           {/* need to add in the id */}
           <Route path="accounts/shelter/:id/details" element={<ShelterDetails />} />
           <Route path="accounts/seeker/:id/profile" element={<UpdateSeeker />} />
+          <Route path="accounts/shelter/:id/profile" element={<UpdateShelter />} />
           <Route path="listings/update/:id" element={<ListingPage />} />
           <Route path="listings/view/:id" element={<Listing />} />
           <Route path="listings/create" element={<ListingPage />}>
