@@ -31,7 +31,6 @@ class Listing(models.Model):
     sex = models.CharField(max_length=1, choices=SEX_CHOICES)
     personality = models.CharField(max_length=15, choices=[("very active", "very active"), ("active", "active"), ("laid-back", "laid-back"), ("lap", "lap-pet")])
     good_with = models.CharField(max_length=50)
-    # good_without = models.CharField(max_length=50)
     description = models.TextField()
     deadline = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -41,7 +40,7 @@ class Listing(models.Model):
         return f"{self.name}"
 
 class ListingImage(models.Model):
-    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='images')
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='images', blank=True, null=True)
     image = models.ImageField(upload_to="listing_images/")
 
     def __str__(self):

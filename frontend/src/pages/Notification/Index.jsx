@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import NotificationItem from '../../components/notifications/notification-item';
 import { useSearchParams } from "react-router-dom";
 import PaginationButtons from '../../components/pagination-buttons';
+import { Dropdown } from 'react-bootstrap';
 
 const Notification = () => {
     const [loading, setLoading] = useState(true);
@@ -24,6 +25,8 @@ const Notification = () => {
         // Fetch the list of notifications when the component mounts
         fetchNotifications();
     }, [query]);
+
+    const handleFilter = (e) => {query.filter = e.target.id}
 
     const fetchNotifications = async () => {
         try {
@@ -65,6 +68,18 @@ const Notification = () => {
                     <div className="d-flex p-3 px-5 my-10 bg-cream flex-column rounded shadow notif-col">
                         <h1 className="fs-0 w-75 pb-2 align-self-center border-bottom border-3 text-center hide-md">Notifications</h1>
                         <h1 className="fs-0 w-100 pb-2 align-self-center border-bottom border-3 text-center show-sm">Notifications</h1>
+                        <Dropdown className="mt-3 mt-md-0">
+                        <Dropdown.Toggle variant="primary-cream" id="dropdown-basic">
+                            FILTER NOTIFICATIONS BY
+                            <br className="show-md" />
+                            <span className="ms-2 text-decoration-underline">{query.filter}</span>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="all">All</Dropdown.Item>
+                            <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="read">Read</Dropdown.Item>
+                            <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="unread">Unread</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
 
                         {/* If fetching from database, show Loading..., otherwise, list notifications */}
                         {loading ? (<p className="text-center">Loading...</p>) : (

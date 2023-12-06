@@ -38,7 +38,7 @@ const ListingPage = () => {
     }, [id]);
 
     useEffect(() => {
-        // Fetch the list of notifications when the component mounts
+        // Set the formdata with the listing after it's fetched
         if (listing) {
             setFormData({
                 name: listing.name,
