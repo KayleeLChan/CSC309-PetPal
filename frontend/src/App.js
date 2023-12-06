@@ -12,6 +12,7 @@ import RegisterShelter from "./pages/RegisterShelter/Index";
 import ShelterList from "./pages/ShelterList/Index";
 import ShelterDetails from "./pages/ShelterDetails/Index";
 import ShelterReviews from "./pages/ShelterReviews/Index";
+import BlogList from "./pages/BlogList/Index";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           {/* need to add in the id */}
           <Route path="accounts/shelter/:id/details" element={<ShelterDetails />} />
           <Route path="accounts/shelter/:id/reviews" element={<ShelterReviews />} />
+          <Route path="accounts/blogs/all" element={<BlogList />} />
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>
