@@ -9,23 +9,26 @@ const UserInfoComponent = ({ user_id }) => {
         lastName: '',
         email: '',
         phoneNumber: '',
+        postalCode: '',
+        address: '', 
+        aboveTwentyOne: '',
+        currentlyInsured: '',
+        insuranceName: '',
     });
  
 
     useEffect(() => {
         const fetchUserInfo = async () => {
-          try {
-            // fetch the information of the user
-            const userInfo = await fetch(`accounts/${user_id}/profile/`);
-            
-            // to pre-populate fields on application         
-            if (userInfo) {
-                setFormData ({
-                    firstName : userInfo.first_name,
-                    lastName : userInfo.last_name,
-                    email : userInfo.email,
-                    phoneNumber : userInfo.phonenumber
-                });
+            try {
+                const userInfoResponse = await fetch(`accounts/${user_id}/profile/`);
+                if (userInfoResponse.ok) {
+                    const userInfo = await userInfoResponse.json();
+                    setFormData({
+                        firstName: userInfo.first_name,
+                        lastName: userInfo.last_name,
+                        email: userInfo.email,
+                        phoneNumber: userInfo.phonenumber,
+                    });
             }
           } catch (error) {
             console.error('Error fetching user information:', error);
@@ -71,7 +74,7 @@ const UserInfoComponent = ({ user_id }) => {
                     />
             </div>
 
-            {/* Save this information */}
+
             <div className="mb-3">
             <label htmlFor="address" className="form-label"> Home Address </label>
             <input
@@ -79,11 +82,24 @@ const UserInfoComponent = ({ user_id }) => {
                 className="form-control"
                 id="address"
                 aria-describedby="addressHelp"
-                required=""
+                value={formData.address}
+                onChange={(e) => setFormData({ ...formData, address: e.target.value })} required
                 />
                 <div id="addressHelp" className="form-text"> We'll never share your address with anyone other than the shelter. </div>
             </div>
 
+            <div className="mb-3">
+            <label htmlFor="postalCode" className="form-label"> Home Address </label>
+            <input
+                type="postalCode"
+                className="form-control"
+                id="postalCode"
+                aria-describedby="addressHelp"
+                value={formData.postalCode}
+                onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })} required
+                />
+                <div id="addressHelp" className="form-text"> We'll never share your address with anyone other than the shelter. </div>
+            </div>
 
             <div className="mb-3">
             <label htmlFor="email" className="form-label"> Email Address </label>
@@ -121,6 +137,8 @@ const UserInfoComponent = ({ user_id }) => {
                     type="radio"
                     name="age"
                     id="ageYes"
+                    checked={formData.aboveTwentyOne === 'Yes'}
+                    onChange={(e) => handleRadioChange(e, 'aboveTwentyOne')}
                     />
                 <label className="form-check-label" htmlFor="ageYes"> Yes </label>
                 </div>
@@ -131,6 +149,8 @@ const UserInfoComponent = ({ user_id }) => {
                     type="radio"
                     name="age"
                     id="ageNo"
+                    checked={formData.aboveTwentyOne === 'No'}
+                    onChange={(e) => handleRadioChange(e, 'aboveTwentyOne')}
                     />
                 <label className="form-check-label" htmlFor="ageNo"> No </label>
                 </div>
@@ -145,28 +165,31 @@ const UserInfoComponent = ({ user_id }) => {
                     type="radio"
                     name="insurance"
                     id="insuranceYes"
+                    checked={formData.currentlyInsured === 'Yes'}
+                    onChange={(e) => handleRadioChange(e, 'currentlyInsured')}
                     />
                 <label className="form-check-label" htmlFor="insuranceYes">Yes</label>
             </div>
-
             <div className="form-check">
                 <input
                     className="form-check-input"
                     type="radio"
                     name="insurance"
                     id="insuranceNo"
+                    checked={formData.currentlyInsured === 'No'}
+                    onChange={(e) => handleRadioChange(e, 'currentlyInsured')}
                     />
                 <label className="form-check-label" htmlFor="insuranceNo">No</label>
             </div>
 
+
             <label htmlFor="insuranceName" className="form-label">Name of Insurance</label>
-            <input type="text" className="form-control mb-2" id="insuranceName" />
-            <label htmlFor="payment" className="form-label">Method of Payment</label>
-                <select
+                <Form.select
                     className="form-select form-select-sm font-plain w-auto"
                     aria-label="Default select example"
                     id="payment"
-                    required=""
+                    value={formData.insuranceName}
+                    onChange={(e) => setFormData({ ...formData, insuranceName: e.target.value })} required
                     >
                     <option selected="">(required)</option>
                     <option value="visa">Visa</option>
@@ -174,7 +197,9 @@ const UserInfoComponent = ({ user_id }) => {
                     <option value="amex">American Express</option>
                     <option value="interac">Interac E-transfer</option>
                     <option value="paypal">Paypal</option>
-                </select>
+
+                </Form.select>
+                    
             </div>
 
             </Form>

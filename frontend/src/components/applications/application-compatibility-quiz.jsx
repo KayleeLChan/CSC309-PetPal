@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { Form } from 'react-bootstrap';
+
 
 const CompatibilityQuizComponent = ({ user_id }) => {
 
-    const [preferredAnimal, setPreferredAnimal] = useState('');
-    const [preferredBreed, setPreferredBreed] = useState('');
-    const [preferredAge, setPreferredAge] = useState('');
-    const [preferredSize, setPreferredSize] = useState('');
-    const [preferredSex, setPreferredSex] = useState('');
-    const [preferredPersonality, setPreferredPersonality] = useState('');
+    const[formData, setFormData] = useState ({
+        adoptingFor: '',
+        children: '',
+        petOwnerHistory: '',
+        currentPets: '',
+        preferedAnimal: '',
+        preferredBreed: '',
+        preferredAge: '',
+        preferredSize: '',
+        preferredSex: '',
+        preferredPersonality: ''
+    });
+    
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -15,30 +24,39 @@ const CompatibilityQuizComponent = ({ user_id }) => {
             // fetch the information of the user
             const userInfo = await fetch(`accounts/${user_id}/profile/`);
             
-            // to pre-populate fields on application
-            setPreferredAnimal(userInfo.pref_animal);
-            setPreferredBreed(userInfo.pref_breed);
-            setPreferredAge(userInfo.pref_age);
-            setPreferredSize(userInfo.pref_size);
-            setPreferredSex(userInfo.pref_sex);
-            setPreferredPersonality(userInfo.pref_personality);
-
+            if (userInfo) {
+                setFormData({
+                    preferredAnimal: userInfo.pref_animal,
+                    preferredBreed: userInfo.pref_breed,
+                    preferredAge: userInfo.pref_age,
+                    preferredSize: userInfo.pref_size,
+                    preferredSex: userInfo.pref_sex,
+                    preferredPersonality: userInfo.pref_personality
+                });
+            }
           } catch (error) {
             console.error('Error fetching user information:', error);
           }
         };
-    
+        
         // Call the function to fetch user information
         fetchUserInfo();
       }, [user_id]);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Here you can submit the form data to your Django backend
+        if (props.onSubmit) {
+            props.onSubmit(formData);
+        }
+    };
 
     return (
         <div>
         {/* Questions */}
 
         {/* I am looking to adopt for ____ */}
-        <form className="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
+        <Form className="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
         <div className="col-12">
             <p className="mb-0">I am looking to adopt for</p>
         </div>
@@ -46,13 +64,15 @@ const CompatibilityQuizComponent = ({ user_id }) => {
             <select
                 className="form-select form-select-sm font-plain w-auto border border-0"
                 aria-label="Default select example"
+                value={formData.adoptingFor}
+                onChange={(e) => setFormData({ ...formData, adoptingFor: e.target.value })} required
                 >
                 <option selected="">(required)</option>
                 <option value="myself">myself</option>
                 <option value="my family">my family</option>
             </select>
         </div>
-        </form>
+        </Form>
         
 
         {/* I have ___ at home */}
@@ -64,6 +84,8 @@ const CompatibilityQuizComponent = ({ user_id }) => {
             <select
                 className="form-select form-select-sm font-plain w-auto border border-0"
                 aria-label="Default select example"
+                value={formData.children}
+                onChange={(e) => setFormData({ ...formData, children: e.target.value })} required
                 >
                 <option selected="">(required)</option>
                 <option value="kids">kids</option>
@@ -85,6 +107,8 @@ const CompatibilityQuizComponent = ({ user_id }) => {
             <select
                 className="form-select form-select-sm font-plain w-auto border border-0"
                 aria-label="Default select example"
+                value={formData.petOwnerHistory}
+                onChange={(e) => setFormData({ ...formData, petOwnerHistory: e.target.value })} required
                 >
                 <option selected="">(required)</option>
                 <option value="previous">previous</option>
@@ -105,6 +129,8 @@ const CompatibilityQuizComponent = ({ user_id }) => {
             <select
                 className="form-select form-select-sm font-plain w-auto border border-0"
                 aria-label="Default select example"
+                value={formData.currentPets}
+                onChange={(e) => setFormData({ ...formData, currentPets: e.target.value })} required
                 >
                 <option selected="">(required)</option>
                 <option value="none">no pet(s)</option>
@@ -126,6 +152,8 @@ const CompatibilityQuizComponent = ({ user_id }) => {
             <select
                 className="form-select form-select-sm font-plain w-auto border border-0"
                 aria-label="Default select example"
+                value={formData.preferredAge}
+                onChange={(e) => setFormData({ ...formData, preferredAge: e.target.value })} required
                 >
                 <option selected="">(no age preference)</option>
                 <option value="newborn">newborn</option>
@@ -146,6 +174,8 @@ const CompatibilityQuizComponent = ({ user_id }) => {
             <select
                 className="form-select form-select-sm font-plain w-auto border border-0"
                 aria-label="Default select example"
+                value={formData.preferedAnimal}
+                onChange={(e) => setFormData({ ...formData, preferedAnimal: e.target.value })} required
                 >
                 <option selected="">(no gender preference)</option>
                 <option value="female">female</option>
@@ -163,6 +193,8 @@ const CompatibilityQuizComponent = ({ user_id }) => {
             <select
                 className="form-select form-select-sm font-plain w-auto border border-0"
                 aria-label="Default select example"
+                value={formData.preferredSize}
+                onChange={(e) => setFormData({ ...formData, preferredSize: e.target.value })} required
                 >
                 <option selected="">(no size preference)</option>
                 <option value="small">small</option>
@@ -183,6 +215,8 @@ const CompatibilityQuizComponent = ({ user_id }) => {
             <select
                 className="form-select form-select-sm font-plain w-auto border border-0"
                 aria-label="Default select example"
+                value={formData.preferredPersonality}
+                onChange={(e) => setFormData({ ...formData, preferredPersonality: e.target.value })} required
                 >
                 <option selected="">(no behaviour preference)</option>
                 <option value="very active">very active</option>
@@ -202,6 +236,8 @@ const CompatibilityQuizComponent = ({ user_id }) => {
             <select
                 className="form-select form-select-sm font-plain w-auto border border-0"
                 aria-label="Default select example"
+                value={formData.preferredSex}
+                onChange={(e) => setFormData({ ...formData, preferredSex: e.target.value })} required
                 >
                 <option selected="">(no behaviour preference)</option>
                 <option value="male">male</option>
