@@ -18,7 +18,7 @@ function Home() {
                         </div>
                     </div>
                     <div className="align-self-end text-end w-50 hide-xl">
-                        <img src="./imgs/dogCat.svg" width="100%"/>
+                        <img src="/imgs/dogCat.svg" width="100%"/>
                     </div>
                 </div>
             </div>

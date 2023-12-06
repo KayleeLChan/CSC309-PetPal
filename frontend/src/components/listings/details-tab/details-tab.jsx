@@ -2,11 +2,11 @@ import React from 'react';
 import DetailsTop from './details-top';
 import DetailsBody from './details-body';
 
-const DetailsTab = ({listing}) => {
+const DetailsTab = ({listing, formData, setFormData}) => {
     return (
         <div className="d-flex flex-column align-items-center">
-            <DetailsTop listing={listing}></DetailsTop>
-            <DetailsBody listing={listing}></DetailsBody>
+            <DetailsTop listing={listing} formData={formData} setFormData={setFormData}></DetailsTop>
+            <DetailsBody listing={listing} formData={formData} setFormData={setFormData}></DetailsBody>
         </div>
     );
 }

@@ -1,25 +1,14 @@
-import React, { useState, props } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsAbout = ({listing}) => {
+const DetailsAbout = ({listing, formData, setFormData}) => {
     const [showAboutModal, setShowModal] = useState(false);
-    const [description, setDescription] = useState();
 
     const handleModalShow = async () => {
         setShowModal(true);
     };
 
     const handleModalHide = () => {
-        setShowModal(false);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Here you can submit the form data to your Django backend
-        if (props.onSubmit) {
-            props.onSubmit(description);
-        }
         setShowModal(false);
     };
 
@@ -38,7 +27,7 @@ const DetailsAbout = ({listing}) => {
                             <img src="imgs/edit.png" height="20" width="20" alt="Edit" />
                         </a>
                     </h1>
-                    {listing ? (<p>{listing.description}</p>) : <></>}
+                    {listing ? (<p>{formData.description}</p>) : <></>}
                 </div>
 
                 {/* Modal */}
@@ -52,12 +41,12 @@ const DetailsAbout = ({listing}) => {
                             placeholder="Add a description here"
                             className="font-plain"
                             rows={9}
-                            value={ description }
-                            onChange={(e) => setDescription({ e })}/>
+                            value={formData.description}
+                            onChange={(e) => setFormData({ ...formData, description: e.target.value })} required />
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary-orange" onClick={(e) => {handleSubmit(e)}} >
+                        <Button variant="primary-orange" onClick={handleModalHide} >
                             Save
                         </Button>
                     </Modal.Footer>

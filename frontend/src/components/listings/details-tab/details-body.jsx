@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import DetailsDetails from './details-details';
 import DetailsAbout from './details-about';
 
-const DetailsBody = ({listing}) => {
+const DetailsBody = ({listing, formData, setFormData}) => {
     return (
         <>
-            <DetailsDetails listing={listing}></DetailsDetails>
-            <DetailsAbout listing={listing}></DetailsAbout>
+            <DetailsDetails listing={listing} formData={formData} setFormData={setFormData}></DetailsDetails>
+            <DetailsAbout listing={listing} formData={formData} setFormData={setFormData}></DetailsAbout>
         </>
     );
 }

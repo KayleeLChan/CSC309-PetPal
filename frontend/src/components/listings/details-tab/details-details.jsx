@@ -1,29 +1,9 @@
 import React, { useState, useEffect, props } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsDetails = ({ listing }) => {
+const DetailsDetails = ({listing, formData, setFormData}) => {
+    // const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
-    const [formData, setFormData] = useState({
-        personality: '',
-        age: '',
-        size: '',
-        good_with: '',
-        sex: '',
-    });
-
-    useEffect(() => {
-        // Check if modelInstance prop is provided
-        if (listing) {
-            // If yes, update the formData state with the values from the modelInstance
-            setFormData({
-                personality: listing.personality,
-                age: listing.age,
-                size: listing.size,
-                good_with: listing.good_with,
-                sex: listing.sex,
-            });
-        }
-    }, [listing]);
 
     const handleModalShow = async () => {
         setShowModal(true);
@@ -33,20 +13,10 @@ const DetailsDetails = ({ listing }) => {
         setShowModal(false);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Here you can submit the form data to your Django backend
-        if (props.onSubmit) {
-            props.onSubmit(formData);
-        }
-        setShowModal(false);
-    };
-
     return (
         <>
             <div className="w-100 text-start">
-                <div className="d-flex flex-row align-items-center modal-div">
+                <div className="d-flex flex-column modal-div">
                     <h1 className="fs-0">
                         About
                         {/* Button trigger modal */}
@@ -58,6 +28,19 @@ const DetailsDetails = ({ listing }) => {
                             <img src="imgs/edit.png" height="20" width="20" alt="Edit" />
                         </a>
                     </h1>
+                    <div className="w-90 text-start">
+                        <p className="fs-3 mb-0">Personality</p>
+                        {formData.personality ? (<p className="fs-5">{formData.personality}</p>) : (<></>)}
+                        <p className="fs-3 mb-0">Sex</p>
+                        {formData.sex ? (<p className="fs-5">{formData.sex}</p>) : (<></>)}
+                        <p className="fs-3 mb-0">Age</p>
+                        {formData.age ? (<p className="fs-5">{formData.age}</p>) : (<></>)}
+                        <p className="fs-3 mb-0">Size</p>
+                        {formData.size ? (<p className="fs-5">{formData.size}</p>) : (<></>)}
+                        <p className="fs-3 mb-0">Good In a Home With</p>
+                        {formData.good_with ? (<p className="fs-5">{formData.good_with}</p>) : (<></>)}
+
+                    </div>
                 </div>
 
                 {/* Modal */}
@@ -71,25 +54,25 @@ const DetailsDetails = ({ listing }) => {
                                 Personality
                             </label>
                             <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
-                            aria-label="personality"
-                            id="personality"
-                            value={formData.personality}
-                            onChange={(e) => setFormData({ ...formData, personality: e.target.value })} required>
-                               <option value="" disabled>(required)</option>
+                                aria-label="personality"
+                                id="personality"
+                                value={formData.personality}
+                                onChange={(e) => setFormData({ ...formData, personality: e.target.value })} required>
+                                <option value="" disabled>(required)</option>
                                 <option value="very active">very active</option>
                                 <option value="active">active</option>
                                 <option value="laid-back">laid-back</option>
-                                <option value="lap-pet">lap-pet</option>
+                                <option value="lap">lap-pet</option>
                             </Form.Select>
 
                             <label className="text-primary-brown fs-5" htmlFor="personality">
                                 Sex
                             </label>
                             <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
-                            aria-label="sex"
-                            id="sex"
-                            value={formData.sex}
-                            onChange={(e) => setFormData({ ...formData, sex: e.target.value })} required>
+                                aria-label="sex"
+                                id="sex"
+                                value={formData.sex}
+                                onChange={(e) => setFormData({ ...formData, sex: e.target.value })} required>
                                 <option value="" disabled>(required)</option>
                                 <option value="F">Female</option>
                                 <option value="M">Male</option>
@@ -99,10 +82,10 @@ const DetailsDetails = ({ listing }) => {
                                 Age
                             </label>
                             <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
-                            aria-label="age"
-                            id="age"
-                            value={formData.age}
-                            onChange={(e) => setFormData({ ...formData, age: e.target.value })} required>
+                                aria-label="age"
+                                id="age"
+                                value={formData.age}
+                                onChange={(e) => setFormData({ ...formData, age: e.target.value })} required>
                                 <option value="" disabled>(required)</option>
                                 <option value="newborn">newborn</option>
                                 <option value="young">young</option>
@@ -114,25 +97,25 @@ const DetailsDetails = ({ listing }) => {
                                 Size
                             </label>
                             <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
-                            aria-label="size"
-                            id="size"
-                            value={formData.size}
-                            onChange={(e) => setFormData({ ...formData, size: e.target.value })} required>
+                                aria-label="size"
+                                id="size"
+                                value={formData.size}
+                                onChange={(e) => setFormData({ ...formData, size: e.target.value })} required>
                                 <option value="" disabled>(required)</option>
-                                <option value="small">small</option>
-                                <option value="medium">medium</option>
-                                <option value="large">large</option>
-                                <option value="extra large">extra large</option>
+                                <option value="S">small</option>
+                                <option value="M">medium</option>
+                                <option value="L">large</option>
+                                <option value="XL">extra large</option>
                             </Form.Select>
 
                             <label className="text-primary-brown fs-5" htmlFor="personality">
                                 Good In a Home With
                             </label>
                             <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
-                            aria-label="good_with"
-                            id="good_with"
-                            value={formData.good_with}
-                            onChange={(e) => setFormData({ ...formData, good_with: e.target.value })} required>
+                                aria-label="good_with"
+                                id="good_with"
+                                value={formData.good_with}
+                                onChange={(e) => setFormData({ ...formData, good_with: e.target.value })} required>
                                 <option value="" disabled>(required)</option>
                                 <option value="none">no pet(s)</option>
                                 <option value="cat">cat(s)</option>
@@ -140,36 +123,10 @@ const DetailsDetails = ({ listing }) => {
                                 <option value="both">dog(s) and cat(s)</option>
                                 <option value="other">other pet(s)</option>
                             </Form.Select>
-
-                            {/* <Form.Floating className="mb-3">
-                                <Form.Control type="text" id="floatingInput" placeholder="Health"
-                                    value={formData.health}
-                                    onChange={(e) => setFormData({ ...formData, health: e.target.value })} />
-                                <label className="text-primary-brown fs-5" htmlFor="floatingInput">
-                                    Health
-                                </label>
-                            </Form.Floating>
-                            <Form.Floating className="mb-3">
-                                <Form.Control type="text" id="floatingInput" placeholder="Good In a Home With"
-                                    value={formData.good_with}
-                                    onChange={(e) => setFormData({ ...formData, good_with: e.target.value })} />
-                                <label className="text-primary-brown fs-5" htmlFor="floatingInput">
-                                    Good In a Home With
-                                </label>
-                            </Form.Floating> */}
-                            {/* <Form.Floating className="mb-3">
-                                <Form.Control type="text" id="floatingInput" placeholder="Prefers a Home Without"
-                                    value={formData.good_without}
-                                    onChange={(e) => setFormData({ ...formData, good_without: e.target.value })} />
-                                <label className="text-primary-brown fs-5" htmlFor="floatingInput">
-                                    Prefers a Home Without
-                                </label>
-                            </Form.Floating> */}
-
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary-orange" onClick={(e) => { handleSubmit(e) }} >
+                        <Button variant="primary-orange" onClick={handleModalHide} >
                             Save
                         </Button>
                     </Modal.Footer>

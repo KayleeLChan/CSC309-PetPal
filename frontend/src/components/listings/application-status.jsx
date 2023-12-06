@@ -1,36 +1,11 @@
 import React, { useEffect, useState, props } from 'react';
 import { Container, Button, Modal, Form } from 'react-bootstrap';
 
-const ApplicationStatus = ({ listing }) => {
+const ApplicationStatus = ({listing, formData, setFormData}) => {
     const [showModal, setShowModal] = React.useState(false);
-    const [formData, setFormData] = useState({
-        deadline: '',
-        status: '',
-    });
-
-    useEffect(() => {
-        // Check if modelInstance prop is provided
-        if (listing) {
-            // If yes, update the formData state with the values from the modelInstance
-            setFormData({
-                deadline: listing.deadline,
-                status: listing.status,
-            });
-        }
-    }, [listing]);
 
     const handleModalClose = () => setShowModal(false);
     const handleModalShow = () => setShowModal(true);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Here you can submit the form data to your Django backend
-        if (props.onSubmit) {
-            props.onSubmit(formData);
-        }
-        setShowModal(false);
-    };
 
     return (
         <Container className="w-50 d-flex flex-column justify-content-center align-items-center">
@@ -57,9 +32,9 @@ const ApplicationStatus = ({ listing }) => {
                                 value={formData.status}
                                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}>
                                 <option selected>(required)</option>
-                                <option value="visa">Available</option>
-                                <option value="mastercard">Adopted</option>
-                                <option value="amex">Withdrawn</option>
+                                <option value="available">Available</option>
+                                <option value="adopted">Adopted</option>
+                                <option value="withdrawn">Withdrawn</option>
                             </Form.Select>
                         </Form.Group>
 
@@ -72,19 +47,12 @@ const ApplicationStatus = ({ listing }) => {
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" className="bg-primary-orange" onClick={handleSubmit}>
+                        <Button variant="primary" className="bg-primary-orange" onClick={handleModalClose}>
                             Save
                         </Button>
                     </Modal.Footer>
                 </Modal>
             </div>
-
-            <Button
-                className="btn btn-xl cta-btn-xl bg-primary-orange text-primary-cream mb-5 shadow-sm"
-                type="button"
-            >
-                Upload Details
-            </Button>
         </Container>
     );
 };

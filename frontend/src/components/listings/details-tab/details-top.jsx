@@ -1,40 +1,8 @@
-import React, { useState, useEffect, props } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsTop = ({ listing }) => {
+const DetailsTop = ({listing, formData, setFormData}) => {
     const [showModal, setShowModal] = useState(false);
-    const [formData, setFormData] = useState({
-        name: '',
-        location: '',
-        animal: '',
-        breed: '',
-        colour: '',
-    });
-
-    useEffect(() => {
-        // Check if modelInstance prop is provided
-        if (listing) {
-            // If yes, update the formData state with the values from the modelInstance
-            setFormData({
-                name: listing.name,
-                location: listing.location,
-                animal: listing.animal,
-                breed: listing.breed,
-                colour: listing.colour,
-            });
-        }
-    }, [listing]);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Here you can submit the form data to your Django backend
-        if (props.onSubmit) {
-            props.onSubmit(formData);
-        }
-        setShowModal(false);
-    };
-
 
     const handleModalShow = async () => {
         setShowModal(true);
@@ -62,7 +30,7 @@ const DetailsTop = ({ listing }) => {
             </div>
 
             <div className="d-flex flex-column justify-content-center align-items-center bg-primary-cream rounded p-3">
-                <img src="./imgs/gallery.svg" width="70%" alt="Gallery" />
+                <img src="/imgs/gallery.svg" width="70%" alt="Gallery" />
                 <Form className="d-flex flex-column justify-content-center align-items-center" encType="multipart/form-data">
                     {/* TODO: Figure out how to upload images */}
                     <Form.Label htmlFor="formFile" className="form-label">Upload images</Form.Label>
@@ -77,7 +45,7 @@ const DetailsTop = ({ listing }) => {
                 <div className="w-100 d-flex flex-row align-items-center justify-content-evenly m-0 bg-brown text-primary-cream rounded-2 hide-lg">
                     {listing ? (
                         <>
-                            <p className="summary-text mb-0">{listing.animal}</p>
+                            <p className="summary-text mb-0">{formData.animal}</p>
                             {/* <p className="summary-text mb-0">|</p>
                             <p className="summary-text mb-0"> {listing.age}</p>
                             <p className="summary-text mb-0">|</p>
@@ -85,7 +53,7 @@ const DetailsTop = ({ listing }) => {
                             <p className="summary-text mb-0">|</p>
                             <p className="summary-text mb-0"> {listing.size}</p> */}
                             <p className="summary-text mb-0">|</p>
-                            <p className="summary-text mb-0"> {listing.breed}</p>
+                            <p className="summary-text mb-0"> {formData.breed}</p>
                         </>
                     ) : (
                         <p className="fs-6 mb-0">Summary</p>
@@ -103,12 +71,13 @@ const DetailsTop = ({ listing }) => {
                     <Modal.Body>
                         <Form.Floating className="mb-3">
                             <Form.Control
+                                className="pb-2"
                                 type="text"
                                 id="animal"
                                 placeholder="Animal"
                                 value={formData.animal}
                                 onChange={(e) => setFormData({ ...formData, animal: e.target.value })} />
-                            <label className="text-primary-brown fs-5" htmlFor="animal">Breed</label>
+                            <label className="text-primary-brown fs-5" htmlFor="animal">Animal</label>
                         </Form.Floating>
                         {/* <Form.Floating className="mb-3">
                             <Form.Control type="text" id="age" placeholder="Age"
@@ -130,13 +99,22 @@ const DetailsTop = ({ listing }) => {
                         </Form.Floating> */}
                         <Form.Floating className="mb-3">
                             <Form.Control type="text" id="breed" placeholder="Breed"
+                            className="pb-2"
                                 value={formData.breed}
                                 onChange={(e) => setFormData({ ...formData, breed: e.target.value })} />
-                            <label className="text-primary-brown fs-5" htmlFor="breed">Traits</label>
+                            <label className="text-primary-brown fs-5" htmlFor="breed">Breed</label>
+                        </Form.Floating>
+
+                        <Form.Floating className="mb-3">
+                            <Form.Control type="text" id="breed" placeholder="Colour"
+                            className="pb-2"
+                                value={formData.colour}
+                                onChange={(e) => setFormData({ ...formData, colour: e.target.value })} />
+                            <label className="text-primary-brown fs-5" htmlFor="colour">Colour</label>
                         </Form.Floating>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary-orange" onClick={(e) => {handleSubmit(e)}} >
+                        <Button variant="primary-orange" onClick={handleModalHide} >
                             Save
                         </Button>
                     </Modal.Footer>

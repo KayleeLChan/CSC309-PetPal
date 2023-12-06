@@ -8,7 +8,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 from django.core.exceptions import PermissionDenied
 from rest_framework.pagination import PageNumberPagination
 import django_filters
-
+from django.db.models.functions import Lower
+from django.db.models import F
+from django.db import connection
 
 class IsShelterOrReadOnly(BasePermission):
     """
@@ -29,18 +31,33 @@ class IsShelterOrReadOnly(BasePermission):
         
 class ListingFilter(django_filters.FilterSet):
     FILTER_STATUS_CHOICES = Listing.STATUS_CHOICES + [("all", "all")]
+    FILTER_AGE_CHOICES = Listing.AGE_CHOICES + [("all", "all")]
+    FILTER_SIZE_CHOICES = Listing.SIZE_CHOICES + [("all", "all")]
+    FILTER_SEX_CHOICES = Listing.SEX_CHOICES + [("all", "all")]
+    # Search params
     name = django_filters.CharFilter(lookup_expr='icontains')
     location = django_filters.CharFilter(lookup_expr='icontains')
+    colour = django_filters.CharFilter(lookup_expr='icontains')
+    breed = django_filters.CharFilter(lookup_expr='icontains')
+    animal = django_filters.CharFilter(lookup_expr='icontains')
+    # Filters
     status = django_filters.ChoiceFilter(choices=FILTER_STATUS_CHOICES, initial='available', method='filter_status')
-    shelter = django_filters.NumberFilter()
+    sex = django_filters.ChoiceFilter(choices=FILTER_SEX_CHOICES, initial='all', method='filter_sex')
+    age = django_filters.ChoiceFilter(choices=FILTER_AGE_CHOICES, initial='all', method='filter_age')
+    size = django_filters.ChoiceFilter(choices=FILTER_SIZE_CHOICES, initial='all', method='filter_size')
+    shelter = django_filters.CharFilter(
+        field_name='shelter__petshelter__sheltername',
+        lookup_expr='icontains'
+    )
+    # Sorts
     sort_by = django_filters.OrderingFilter(
         fields=(
             ('name', 'name'),
-            ('age', 'age'),
+            ('created_at', 'created_at'),
         ),
         field_labels={
             'name': 'Name',
-            'age': 'Age',
+            'created_at': 'Newest',
         }
     )
 
@@ -64,17 +81,35 @@ class ListingFilter(django_filters.FilterSet):
         super().__init__(data, *args, **kwargs)
 
     def filter_status(self, queryset, name, value):
-        if not value:
-            return queryset.filter(status="available")
-        elif value == "all":
+        if value == "all":
             return queryset
-        else:
+        elif value in [choice[0] for choice in Listing.STATUS_CHOICES]:
             return queryset.filter(status=value)
+        else:
+            return queryset.filter(status="available")
+        
+    def filter_age(self, queryset, name, value):
+        if value in [choice[0] for choice in Listing.AGE_CHOICES]:
+            return queryset.filter(age=value)
+        else:
+            return queryset
+        
+    def filter_size(self, queryset, name, value):
+        if value in [choice[0] for choice in Listing.SIZE_CHOICES]:
+            return queryset.filter(size=value)
+        else:
+            return queryset
+    
+    def filter_sex(self, queryset, name, value):
+        if value in [choice[0] for choice in Listing.SEX_CHOICES]:
+            return queryset.filter(sex=value)
+        else:
+            return queryset
 
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 10
+    page_size = 15
     page_size_query_param = 'page_size'
-    max_page_size = 30
+    max_page_size = 15
 
 # Create your views here.
 class PetListingsListCreate(ListCreateAPIView):
@@ -82,7 +117,7 @@ class PetListingsListCreate(ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_class = ListingFilter
-    sort_by_fields = ['name', 'age']
+    sort_by_fields = ['name', 'created_at']
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
