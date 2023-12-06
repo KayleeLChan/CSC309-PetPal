@@ -22,13 +22,6 @@ class Notification(models.Model):
     content = models.TextField()
     title = models.CharField(max_length=13, choices=NOTIF_TYPE_CHOICES)
     link = models.URLField()
-    # # Make a link that points to an associated model: either an application or a comment
-    # # content_type=<appliction or shelter instance>
-    # content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    # # object_id=<application or shelter instance>.id
-    # object_id = models.PositiveIntegerField()
-    # # Setting content_type and object_id will set associated model, so you do not need to set this in the creation
-    # associated_model = GenericForeignKey("content_type", "object_id")
 
     def __str__(self):
         return f"{self.notifier} to {self.recipient}: {self.title}"

@@ -22,7 +22,7 @@ export default function App() {
           <Route path="listings/view/:id" element={<Listing />} />
           <Route path="listings/create" element={<ListingPage />} />
           <Route path="search" element={<Search />} />
-          <Route path="search/results" element={<SearchResults />} />
+          <Route path="listings" element={<SearchResults />} />
 
           {/* ERROR404 MUST BE THE LAST ROUTE!!! PUT ALL OF YOUR ROUTES ABOVE THIS!!! */}
           <Route path="*" element={<Error404 />} />

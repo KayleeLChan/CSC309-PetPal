@@ -46,7 +46,7 @@ const Search = () => {
                 .join('&');
 
             // Make request to backend
-            navigate(`/search/results/?${queryString}`)
+            navigate(`/listings/?${queryString}`)
         } catch (error) {
             console.error('Error searching listings:', error);
         }
