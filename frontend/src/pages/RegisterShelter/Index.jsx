@@ -8,6 +8,13 @@ function RegisterShelter(){
     const navigate = useNavigate();
     const [photo, setPhoto] = useState(null);
 
+    const [userError, setUserError] = useState()
+    const [passError, setPassError] = useState()
+    const [confirmPassError, setConfirmError] = useState()
+    const [emailError, setEmailError] = useState()
+    const [isValError, setisValError] = useState(false)
+
+
     const handleAccountRadio = (event) =>{
         if(event.target.value === "petshelter"){
             setAccountType(event.target.value);
@@ -30,7 +37,9 @@ function RegisterShelter(){
       const userData = new FormData(event.target)
       console.log(userData)
       userData.set('accounttype', account_type);
-      userData.set("profilepic", photo)
+      if(photo){
+        userData.set("profilepic", photo)
+      }
   
       fetch('http://localhost:8000/accounts/registration/shelter/',{
         method: 'POST',
@@ -39,8 +48,46 @@ function RegisterShelter(){
       })
       .then(response => {
         console.log(response);
+        if (response.status == 400) {
+            console.log("response is 400")
+            setisValError(true)
+        }
+        else{
+            setisValError(false)
+            if(response.ok){
+            navigate('/accounts');
+            console.log("registration successful")
+            }
+        }
         return response.json();
       })
+      .then(userData => {
+        console.log(userData)
+        if ('username' in userData && isValError) {
+            setUserError(userData.username[0])
+        }
+        else{
+            setUserError("")
+        }
+        if ('password' in userData && isValError) {
+            setPassError(userData.password[0])
+        }
+        else{
+            setPassError("")
+        }
+        if ('confirmpassword' in userData && isValError) {
+            setConfirmError(userData.confirmpassword[0])
+        }
+        else{
+            setConfirmError("")
+        }
+        if ('email' in userData && isValError) {
+            setEmailError(userData.email[0])
+        }
+        else{
+            setEmailError("")
+        }
+      }) 
       .then(userData => console.log(userData))
       .catch(error => {
         console.error(error);
@@ -74,24 +121,36 @@ function RegisterShelter(){
                             <div className="col-sm-10">
                             <input type="text" name="username" className="form-control bg-primary-cream font-plain" id="username" placeholder="username123" required />
                             </div>
+                            {isValError &&
+                            <p className="smallpar">{userError}</p>
+                            }
                         </div> 
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="password">Password</label>
                             <div className="col-sm-10">
                             <input type="password" name="password" className="form-control bg-primary-cream font-plain" id="password" required />
                             </div>
+                            {isValError &&
+                            <p className="smallpar">{passError}</p>
+                            }
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="verifypassword">Verify Password</label>
                             <div className="col-sm-10">
                             <input type="password" name="confirmpassword" className="form-control bg-primary-cream font-plain" id="verifypassword" required />
                             </div>
+                            {isValError &&
+                            <p className="smallpar">{confirmPassError}</p>
+                            }
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="email">Email</label>
                             <div className="col-sm-10">
                             <input type="email" name="email" className="form-control bg-primary-cream font-plain" id="email" required />
                             </div>
+                            {isValError &&
+                            <p className="smallpar">{emailError}</p>
+                            }
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="phonenumber">Phone Number</label>
@@ -155,6 +214,9 @@ function RegisterShelter(){
                         </div>
                         </div>
                         <p className="smallpar">{error}</p>
+                        {isValError &&
+                        <p className="smallpar">One or more fields are invalid. Please click 'register' to review your errors</p>
+                        }
                         <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Register</button>
                         </form>
                     </div>

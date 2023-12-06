@@ -52,12 +52,17 @@ class LoginView(views.APIView):
         user = Account.objects.filter(username=username).first()
         
         if user is None or not (user.password == password):
+
             return Response({'message': 'Invalid credentials'})
+        
+
         
         refresh = RefreshToken.for_user(user)
         response_data = {
             'refresh_token': str(refresh),
             'access_token': str(refresh.access_token),
+            'user_id': user.pk,
+            'accounttype': user.accounttype
         }
         return Response(response_data)
 

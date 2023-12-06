@@ -4,8 +4,17 @@ import NavbarBrand from './navbar-brand';
 import NavbarDropdowns from './navbar-dropdowns';
 import NavbarMainSearch from './navbar-main-search';
 import NavbarToggleSearch from './navbar-toggle-search';
+import { useNavigate } from 'react-router-dom';
+
 
 const Header = () => {
+  const navigate = useNavigate() 
+
+  function handleLoginCLick(){
+    navigate(`/accounts`)
+  }
+  
+
     return (
         <Navbar expand="lg" sticky="top" bg="cream" className="shadow">
           <NavbarBrand></NavbarBrand>
@@ -26,7 +35,7 @@ const Header = () => {
             </div>
             <div className="text-primary-brown pe-3">
               <a href="seekersignup.html">
-                <Button variant="primary-orange" className="m-3 ms-0 shadow-sm" type="button">
+                <Button variant="primary-orange" className="m-3 ms-0 shadow-sm" type="button" onClick={handleLoginCLick}>
                   Sign Up
                 </Button>
               </a>

@@ -15,6 +15,20 @@ function UpdateShelter(){
     const [error, setError] = useState();
     const [isComponentVisible, setIsComponentVisible] = useState(true);
     
+    function handleDelete(){
+      fetch(`http://localhost:8000/accounts/${id}/deletion/`, {
+      method: 'DELETE',
+      })
+      .then((response) => {
+      console.log(response);
+      if (response.ok) {
+      console.log('Item deleted successfully');
+      }
+      })
+      .catch((error) => {
+      console.error(error);
+      });
+    };
 
 
 
@@ -51,7 +65,7 @@ function UpdateShelter(){
             <div data-bs-theme="petpal">
                 <div className="main">
                 <div>
-                    {isComponentVisible ? <ViewShelterProfile data={data} displayUpdate={displayUpdate} /> : <UpdateShelterProfile data={data} displayUpdate={displayUpdate}/>}
+                    {isComponentVisible ? <ViewShelterProfile data={data} displayUpdate={displayUpdate} handleDelete={handleDelete} /> : <UpdateShelterProfile data={data} displayUpdate={displayUpdate}/>}
                 </div>
                 </div>
             </div>

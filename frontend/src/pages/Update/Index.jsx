@@ -14,7 +14,24 @@ function UpdateSeeker(){
     const [isComponentVisible, setIsComponentVisible] = useState(true);
     
 
-
+function handleDelete(){
+      fetch(`http://localhost:8000/accounts/${id}/deletion/`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+      })
+      .then((response) => {
+      console.log(response);
+      if (response.ok) {
+      console.log('Item deleted successfully');
+      navigate('/accounts')
+      }
+      })
+      .catch((error) => {
+      console.error(error);
+      });
+    };
 
     const displayUpdate = () => {
         setIsComponentVisible(!isComponentVisible);
@@ -49,7 +66,7 @@ function UpdateSeeker(){
             <div data-bs-theme="petpal">
                 <div className="main">
                 <div>
-                    {isComponentVisible ? <ViewSeekerProfile data={data} displayUpdate={displayUpdate} /> : <UpdateSeekerProfile data={data} displayUpdate={displayUpdate}/>}
+                    {isComponentVisible ? <ViewSeekerProfile data={data} displayUpdate={displayUpdate} handleDelete={handleDelete}/> : <UpdateSeekerProfile data={data} displayUpdate={displayUpdate}/>}
                 </div>
                 </div>
             </div>

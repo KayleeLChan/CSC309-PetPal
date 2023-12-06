@@ -31,6 +31,7 @@ function ViewShelterProfile(props) {
                     <UpdatePhoto data={props.data}/>
                 </div>
                 </div>
+                <button className="btn btn-lg btn-primary-orange m-3 shadow-sm" onClick={props.handleDelete}>Delete Account</button>
             </div>
         </>
     );

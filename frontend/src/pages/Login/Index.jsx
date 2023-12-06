@@ -30,6 +30,8 @@ function Login() {
             if ('access_token' in json) {
                 localStorage.setItem('access_token', json.access_token);
                 localStorage.setItem('username', data.get('username'));
+                localStorage.setItem('accounttype', json.accountype);
+                localStorage.setItem('user_id', json.user_id);
                 navigate('/');
                 console.log("successful login")
                 // navigate to the landing page

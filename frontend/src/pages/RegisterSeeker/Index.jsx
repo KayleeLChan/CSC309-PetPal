@@ -36,7 +36,7 @@ function RegisterSeeker(){
         }
       };
 
-    
+  
     const handleSubmit = (event) => {
       event.preventDefault();
       console.log(event.target)
@@ -63,15 +63,20 @@ function RegisterSeeker(){
             console.log("response is 400")
             setisValError(true)
         }
-        return response.json()
-
+        else{
+            setisValError(false)
+            if(response.ok){
+            navigate('/accounts');
+            console.log("registration successful")
+            }
+        }
+        return response.json();
       })
     //   add in proper error displays
       .then(userData => {
         console.log(userData)
         if ('username' in userData && isValError) {
             setUserError(userData.username[0])
-            console.log(userError)
         }
         else{
             setUserError("")
@@ -139,28 +144,36 @@ function RegisterSeeker(){
                             <div className="col-sm-10">
                             <input type="text" name="username" className="form-control bg-primary-cream font-plain" id="username" placeholder="username123" required />
                             </div>
+                            {isValError &&
                             <p className="smallpar">{userError}</p>
+                            }
                         </div> 
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="password">Password</label>
                             <div className="col-sm-10">
                             <input type="password" name="password" className="form-control bg-primary-cream font-plain" id="password" required />
                             </div>
+                            {isValError &&
                             <p className="smallpar">{passError}</p>
+                            }
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="verifypassword">Verify Password</label>
                             <div className="col-sm-10">
                             <input type="password" name="confirmpassword" className="form-control bg-primary-cream font-plain" id="verifypassword" required />
                             </div>
+                            {isValError &&
                             <p className="smallpar">{confirmPassError}</p>
+                            }
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="email">Email</label>
                             <div className="col-sm-10">
                             <input type="email" name="email" className="form-control bg-primary-cream font-plain" id="email" required />
                             </div>
+                            {isValError &&
                             <p className="smallpar">{emailError}</p>
+                            }
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="phonenumber">Phone Number</label>
@@ -241,19 +254,23 @@ function RegisterSeeker(){
                                 <option value="lap">lap-pet</option>
                             </Form.Select>
                         </div>
+                        <div className="form-group row text-primary-cream">
+                        <label className="row-form-label h5" htmlFor="profilepic">
+                            Add a Profile Photo!
+                        </label>
                         <div className="col-sm-10">
                             <input
                                 type="file"
                                 className="form-control bg-primary-cream font-plain"
                                 id="profilepic"
                                 onChange={handlePhotoChange}
-                                required={false}
                             />
-                        </div>                        
+                        </div>
+                        </div>                      
                         <p className="smallpar">{error}</p>
                         {isValError &&
-                        <p className="smallpar">One or more fields are invalid. Please review your entries</p>
-}
+                        <p className="smallpar">One or more fields are invalid. Please click 'register' to review your errors</p>
+                        }
                         <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Register</button>
                         </form>
                     </div>
