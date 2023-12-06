@@ -1,70 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import StatusFilter from '../../components/listings/application-status-filter';
+import ApplicationSearch from '../../components/listings/application-status-filter';
+import ApplicationSorter from '../../components/listings/application-sort';
+import ApplicationPetCard from '../../components/listings/application-pet-cards';
 
-const SearchResults = () => {
+const ListApplications = () => {
     const navigate = useNavigate();
     const [applications, setApplications] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [query, setQuery] = useSearchParams();
 
-    const handleInputChange = (e) => {
-        setSearchParams({
+    const handleFilterChange = (e, status) => {
+        // Update the query parameter
+        setQuery({
             ...query,
-            [e.target.id]: e.target.value,
-        });
-    };
-
-    const handleFilterChange = (e, field) => {
-        setSearchParams({
-            ...query,
-            [field]: e,
+            application_status: status
         });
     }
 
     const handleSort = (e) => {
-        setSearchParams({
+        // Update the query parameter
+        setQuery({
             ...query,
             ['sort_by']: e.target.id,
         });
-    fetchApplications();
     };
 
-    // Filter applications based on the terms that are serached
-    const updateApplications = (searchTerm) => {
-        const filteredApplications = filterFunction(applications, searchTerm);
-        setApplications(filteredApplications);
+    const handleInputChange = (e) => {
+        const { id, value } = e.target;
+        // Update the query parameter
+        setQuery({
+            ...query,
+            [id]: value,
+        });
+        handleSearch(value); // Trigger the search function with each keystroke
     };
 
-    // Filter applications if they include the term that is searched
-    const filterFunction = (applications, term) => {
-        return apps.filter(applications => applications.pet_listing_name.toLowerCase().includes(term.toLowerCase()));
-    };
-    
-    // Fetch the list of Applications when the component mounts
-    useEffect(() => {
-        fetchApplications();
-    }, [query]);
-
-    const fetchApplications = async () => {
+    const handleSearch = async (searchTerm) => {
         try {
-            // Make request to backend
-            console.log(`applications/`);
-            const response = await fetch(`applications/`)
+            // Make request to backend with the searchTerm
+            const response = await fetch(`applications/?search=${searchTerm}`);
             const data = await response.json();
-            
-            setApplications(data.results);
-            console.log(data.count)
 
-            setTotalPages(
-                Math.ceil(Number(data.count) / 15)
-            );
+            setApplications(data.results);
+            setTotalPages(Math.ceil(Number(data.count) / 15));
 
         } catch (error) {
-            setLoading(false);
             console.error('Error fetching applications:', error);
         }
     };
 
+    const fetchApplications = async () => {
+        try {
+            // Make request to backend
+            const response = await fetch(`applications/`);
+            const data = await response.json();
+
+            setApplications(data.results);
+            setTotalPages(Math.ceil(Number(data.count) / 15));
+
+        } catch (error) {
+            console.error('Error fetching applications:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchApplications(); // Fetch the list of Applications when the component mounts
+    }, [query]);
 
     return (
         <>
@@ -76,24 +79,21 @@ const SearchResults = () => {
                 <div className="d-flex flex-row align-self-start align-items-center mt-4 w-100 justify-content-between px-3 bg-cream rounded-2">
             
                     {/* search bar */}
-                    <ApplicationSearch> query handleSort </ApplicationSearch>
+                    <ApplicationSearch query={query} handleSearch={handleSearch} handleInputChange={handleInputChange}/>
+
+                    {/* filter dropdown */}
+                    <StatusFilter query={query} handleFilterChange={handleFilterChange} />
 
                     {/* sort dropdown */}
-                    <ApplicationSorter>query handleSort</ApplicationSorter>
+                    <ApplicationSorter query={query} handleSort={handleSort} />
 
-                    {/* application collection */}
+                    {/* list application collection */}
                     <div className="d-flex flex-column m-3">
                         <div className="col-md-12">
                             <div className="row align-self-center">
-                                <ApplicationPetCard> </ApplicationPetCard>
-                                <ApplicationPetCard> </ApplicationPetCard>
-                                <ApplicationPetCard> </ApplicationPetCard>
-                                <ApplicationPetCard> </ApplicationPetCard>
-                                <ApplicationPetCard> </ApplicationPetCard>
-                                <ApplicationPetCard> </ApplicationPetCard>
-                                <ApplicationPetCard> </ApplicationPetCard>
-                                <ApplicationPetCard> </ApplicationPetCard>
-                                <ApplicationPetCard> </ApplicationPetCard>
+                                {applications.map(app => (
+                                        <ApplicationPetCard key={app.id} application={app} />
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -101,10 +101,7 @@ const SearchResults = () => {
             </div>
         </main>
         </>
-        
     );
-
 };
-
 
 export default ListApplications;

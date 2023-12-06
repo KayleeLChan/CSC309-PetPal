@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-const ApplicationPetCard = () => {
+const ApplicationPetCard = ({ application }) => {
   return (
     <div className="card card-click shadow vh-50 m-3 rounded overflow-auto">
     <Card.Link href="./MrNewdles.html">

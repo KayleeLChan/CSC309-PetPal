@@ -10,6 +10,7 @@ from accounts.models import Account
 from notifications.models import Notification
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
+from rest_framework.pagination import PageNumberPagination
 
 
 # Create your views here.
@@ -118,6 +119,10 @@ class UpdateApplicationView(UpdateAPIView):
         # else return error
         return Response({'error': 'Unauthorized to update this application.'}, status=401)
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 30
 
 class ListApplicationView(ListAPIView):
     """ Shelters can only view their own applications, not that of other shelters.

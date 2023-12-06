@@ -1,13 +1,14 @@
 import React from 'react';
 import { Container, Form, Dropdown } from 'react-bootstrap';
 
-const ApplicationSearch = ({ query, handleSort }) => {
+const ApplicationSearch = ({ query, handleSearch, handleInputChange }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleInputChange = (event) => {
         const { value } = event.target;
         setSearchTerm(value);
-        handleSearch(value); // Pass the search term to index.jsx for filtering
+        // Trigger search function dynamically as the user types
+        handleSearch(value);
     };
 
     return (
