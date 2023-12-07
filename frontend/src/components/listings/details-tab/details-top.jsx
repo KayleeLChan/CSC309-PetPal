@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsTop = ({listing, formData, setFormData}) => {
+const DetailsTop = ({listing, formData, setFormData, images, setImages}) => {
     const [showModal, setShowModal] = useState(false);
 
     const handleModalShow = async () => {
@@ -11,6 +11,14 @@ const DetailsTop = ({listing, formData, setFormData}) => {
     const handleModalHide = () => {
         setShowModal(false);
     };
+
+    const handlePhotoChange = (event) => {
+        const images = event.target.files
+        console.log("images from event", images);
+        if(images){
+            setImages(images);
+        }
+      };
 
     return (
         <>
@@ -35,7 +43,13 @@ const DetailsTop = ({listing, formData, setFormData}) => {
                 <Form className="d-flex flex-column justify-content-center align-items-center" encType="multipart/form-data">
                     {/* TODO: Figure out how to upload images */}
                     <Form.Label htmlFor="formFile" className="form-label">Upload images</Form.Label>
-                    <Form.Control type="file" id="formFile" multiple />
+                    <input
+                                type="file"
+                                className="form-control bg-primary-cream font-plain"
+                                id="profilepic"
+                                onChange={handlePhotoChange}
+                                multiple
+                            />
                 </Form>
             </div>
 
@@ -44,21 +58,13 @@ const DetailsTop = ({listing, formData, setFormData}) => {
                     <h1 className="fs-0">Summary</h1>
                 </div>
                 <div className="w-100 d-flex flex-row align-items-center justify-content-evenly m-0 bg-brown text-primary-cream rounded-2 hide-lg">
-                    {listing ? (
-                        <>
-                            <p className="summary-text mb-0">{formData.animal}</p>
-                            {/* <p className="summary-text mb-0">|</p>
-                            <p className="summary-text mb-0"> {listing.age}</p>
-                            <p className="summary-text mb-0">|</p>
-                            <p className="summary-text mb-0"> {listing.sex}</p>
-                            <p className="summary-text mb-0">|</p>
-                            <p className="summary-text mb-0"> {listing.size}</p> */}
-                            <p className="summary-text mb-0">|</p>
-                            <p className="summary-text mb-0"> {formData.breed}</p>
-                        </>
-                    ) : (
-                        <p className="fs-6 mb-0">Summary</p>
-                    )}
+                    {formData.animal ? (<p className="summary-text mb-0">{formData.animal}</p>) : (<p className="summary-text mb-0">Animal</p>)}
+                    <p className="summary-text mb-0">|</p>
+                    {formData.breed ? (
+                            <p className="summary-text mb-0"> {formData.breed}</p>) : (<p className="summary-text mb-0"> Breed</p>)}
+                    <p className="summary-text mb-0">|</p>
+                    {formData.colour ? (
+                            <p className="summary-text mb-0"> {formData.colour}</p>) : (<p className="summary-text mb-0"> Colour</p>)}
                 </div>
                 <a type="button"
                     className="btn btn-sm border border-0 position-absolute top-0 start-100 bg-none"
@@ -80,24 +86,6 @@ const DetailsTop = ({listing, formData, setFormData}) => {
                                 onChange={(e) => setFormData({ ...formData, animal: e.target.value })} />
                             <label className="text-primary-brown fs-5" htmlFor="animal">Animal</label>
                         </Form.Floating>
-                        {/* <Form.Floating className="mb-3">
-                            <Form.Control type="text" id="age" placeholder="Age"
-                                value={formData.age}
-                                onChange={(e) => setFormData({ ...formData, age: e.target.value })} />
-                            <label className="text-primary-brown fs-5" htmlFor="age">Age</label>
-                        </Form.Floating>
-                        <Form.Floating className="mb-3">
-                            <Form.Control type="text" id="sex" placeholder="Sex"
-                                value={formData.sex}
-                                onChange={(e) => setFormData({ ...formData, sex: e.target.value })} />
-                            <label className="text-primary-brown fs-5" htmlFor="sex">Gender</label>
-                        </Form.Floating>
-                        <Form.Floating className="mb-3">
-                            <Form.Control type="text" id="size" placeholder="Size"
-                                value={formData.size}
-                                onChange={(e) => setFormData({ ...formData, size: e.target.value })} />
-                            <label className="text-primary-brown fs-5" htmlFor="size">Size</label>
-                        </Form.Floating> */}
                         <Form.Floating className="mb-3">
                             <Form.Control type="text" id="breed" placeholder="Breed"
                             className="pb-2"

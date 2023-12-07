@@ -87,7 +87,7 @@ const DetailsDetails = ({listing, formData, setFormData}) => {
                                 value={formData.age}
                                 onChange={(e) => setFormData({ ...formData, age: e.target.value })} required>
                                 <option value="" disabled>(required)</option>
-                                <option value="newborn">newborn</option>
+                                <option value="new">newborn</option>
                                 <option value="young">young</option>
                                 <option value="adult">adult</option>
                                 <option value="senior">senior</option>

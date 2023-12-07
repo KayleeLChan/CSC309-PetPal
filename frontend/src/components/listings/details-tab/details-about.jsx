@@ -27,7 +27,7 @@ const DetailsAbout = ({listing, formData, setFormData}) => {
                             <img src="imgs/edit.png" height="20" width="20" alt="Edit" />
                         </a>
                     </h1>
-                    {listing ? (<p>{formData.description}</p>) : <></>}
+                    {formData.description ? (<p>{formData.description}</p>) : <></>}
                 </div>
 
                 {/* Modal */}

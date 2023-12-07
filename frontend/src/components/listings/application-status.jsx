@@ -31,7 +31,7 @@ const ApplicationStatus = ({listing, formData, setFormData}) => {
                             <Form.Select aria-label="Default select example"
                                 value={formData.status}
                                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}>
-                                <option selected>(required)</option>
+                                <option value="" disabled>(required)</option>
                                 <option value="available">Available</option>
                                 <option value="adopted">Adopted</option>
                                 <option value="withdrawn">Withdrawn</option>

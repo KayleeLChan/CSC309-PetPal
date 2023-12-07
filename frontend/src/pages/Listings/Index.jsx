@@ -12,6 +12,7 @@ const ListingPage = () => {
     const [loading, setLoading] = useState(false);
     const [key, setKey] = useState("#nav-details");
     const [listing, setListing] = useState(null);
+    const [images, setImages] = useState([]);
     const accessToken = localStorage.getItem('access_token');
 
     const [formData, setFormData] = useState({
@@ -62,8 +63,6 @@ const ListingPage = () => {
 
     const fetchListing = async () => {
         try {
-            // setLoading(true);
-
             // Make request to backend
             const response = await fetch(`http://localhost:8000/listings/${id}/`,
                 {
@@ -79,7 +78,6 @@ const ListingPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("formData:", formData);
         // Here you can submit the form data to your Django backend
         updateListing();
     };
@@ -88,12 +86,14 @@ const ListingPage = () => {
         try {
             const url = id ? `http://localhost:8000/listings/${id}/` : 'http://localhost:8000/listings/';
             const method = id ? 'PUT' : 'POST';
+            const dataBody = JSON.stringify(formData)
+            console.log("dataBody", dataBody)
 
             // Make request to backend
             const response = await fetch(url,
                 {
                     method: method,
-                    body: JSON.stringify(formData),
+                    body: dataBody,
                     // contenttype: 'application/json',
                     headers: {
                         'Content-Type': 'application/json',  // Set content type to JSON
@@ -101,22 +101,78 @@ const ListingPage = () => {
                         'Authorization': `Bearer ${accessToken}`,
                     }
                 });
-            // const data = await response.json();
-            // setListing(data);
+
             if (response.ok) {
                 // Update successful, navigate to the new URL
                 const newData = await response.json();
                 if (!id) {
                     // If it was a POST request, update the id with the new id
                     setListing({ ...newData, id: newData.id });
+                    await uploadImages(newData.id);
                 }
-                navigate(`/listings/view/${id || newData.id}`)
+                else {
+                    await uploadImages(id);
+                }
+
+                // navigate(`/listings/view/${id || newData.id}`)
             } else {
                 // Handle the case where the update was not successful
                 console.error('Listing update failed.');
             }
         } catch (error) {
             console.error('Error updating listing:', error);
+        }
+    };
+
+    const uploadImages = async (newID) => {
+        console.log(images);
+        if (images.length === 0 && !id) {
+            const formData = new FormData();
+            formData.append('image', await fetch("/imgs/Logo.png").then((res) => res.blob()), 'default-image.jpg');
+
+            try {
+                const response = await fetch(`http://localhost:8000/listings/${newID}/image/`, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                    }
+                });
+
+                if (response.ok) {
+                    console.log('Default file uploaded successfully');
+                } else {
+                    console.error('Failed to upload default file');
+                }
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            }
+        }
+        else {
+            for (const file of images) {
+                const formData = new FormData();
+                formData.append('image', file);
+                const listingID = id ? id : newID
+    
+                try {
+                    console.log(accessToken);
+                    const response = await fetch(`http://localhost:8000/listings/${listingID}/image/`, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Authorization': `Bearer ${accessToken}`,
+                        }
+                    });
+    
+                    if (response.ok) {
+                        console.log(`File ${file.name} uploaded successfully`);
+                    } else {
+                        console.error(`Failed to upload file ${file.name}`);
+                    }
+                } catch (error) {
+                    console.error('Error uploading file:', error);
+                }
+            }
         }
     };
 
@@ -145,7 +201,7 @@ const ListingPage = () => {
                                     <Tab.Content className="w-100">
                                         <Tab.Pane eventKey={"#nav-details"}>
                                             <div className="tab-content w-100" id="nav-tabContent">
-                                                <DetailsTab listing={listing} formData={formData} setFormData={setFormData}></DetailsTab>
+                                                <DetailsTab listing={listing} formData={formData} setFormData={setFormData} images={images} setImages={setImages}></DetailsTab>
                                             </div>
                                         </Tab.Pane>
                                     </Tab.Content>
