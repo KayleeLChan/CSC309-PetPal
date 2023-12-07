@@ -15,17 +15,10 @@ function UpdateShelterProfile(props) {
         event.preventDefault();
         console.log("save")
         const formData = new FormData(event.target);
-        if (formData.first_name === "") {
-            formData.set('first_name', props.data.first_name);
-        }
-        if (formData.last_name === "") {
-            formData.set('last_name', props.data.last_name);
-        }
-        if (formData.email === "") {
-            formData.set('email', props.data.email);
-          }
-        for (var pair of formData.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]); 
+        for (const [key, value] of formData.entries()) {
+            if (!value) {
+              formData.delete(key);
+            }
         }
         console.log(`http://127.0.0.1:8000/accounts/${id}/profile/`)
     

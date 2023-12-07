@@ -27,13 +27,16 @@ function Login() {
         )
         .then(json => {
             console.log("then json")
+            console.log(json)
             if ('access_token' in json) {
                 localStorage.setItem('access_token', json.access_token);
                 localStorage.setItem('username', data.get('username'));
-                localStorage.setItem('accounttype', json.accountype);
+                localStorage.setItem('accounttype', json.accounttype);
                 localStorage.setItem('user_id', json.user_id);
                 navigate('/');
                 console.log("successful login")
+                console.log(localStorage.getItem("accounttype"))
+                console.log(localStorage.getItem("user_id"))
                 // navigate to the landing page
             }
             else if ('message' in json) {

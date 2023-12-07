@@ -5,16 +5,80 @@ import NavbarDropdowns from './navbar-dropdowns';
 import NavbarMainSearch from './navbar-main-search';
 import NavbarToggleSearch from './navbar-toggle-search';
 import { useNavigate } from 'react-router-dom';
+import AnonCorner from './anon_corner';
+import UserCorner from './userCorner';
+import { useEffect, useState } from 'react';
+
+
+
 
 
 const Header = () => {
   const navigate = useNavigate() 
+  const accessToken = localStorage.getItem('access_token');
+  const user_id = localStorage.getItem('user_id');
+  const profilepic = localStorage.getItem('profilepic');
+  const accounttype = localStorage.getItem('accounttype');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSeeker, setIsSeeker] = useState(false);
+  const [isShelter, setIsShelter] = useState(false);
+  const [profilePic, setProfilePic] = useState();
 
-  function handleLoginCLick(){
+
+  function handleLogout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('accounttype');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('profilepic');
+    setIsLoggedIn(false)
     navigate(`/accounts`)
+    // other logout logic
   }
-  
 
+  function fetchProfilePic(){
+    fetch(`http://127.0.0.1:8000/accounts/${user_id}/profile/`, {
+      method: 'GET',  
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("data", data)
+        if(data.profilepic){
+          setProfilePic(data.profilepic);
+          localStorage.setItem("profilepic", profilepic)
+        }
+        else{
+          setProfilePic('/imgs/pfp.jpg')
+        }
+        console.log(data);
+      })
+  }
+
+      useEffect(() => {
+        console.log("useffect")
+        console.log(accounttype)
+        if(accessToken){
+          console.log("isloggedin")
+          setIsLoggedIn(true)
+          if(accounttype === "petseeker"){
+            console.log("isloggedinseeker")
+            setIsSeeker(true)
+          }
+          else{
+            setIsShelter(true)
+          }
+        }
+
+        if(isLoggedIn){
+          fetchProfilePic()
+        }
+
+      },[isLoggedIn, isSeeker, isShelter, profilePic])
+
+  
     return (
         <Navbar expand="lg" sticky="top" bg="cream" className="shadow">
           <NavbarBrand></NavbarBrand>
@@ -25,21 +89,8 @@ const Header = () => {
 
             <NavbarMainSearch></NavbarMainSearch>
             <NavbarToggleSearch></NavbarToggleSearch>
-
-            <div className="text-primary-orange">
-              <a href="login.html">
-                <Button variant="primary-cream" className="m-3 ms-0 shadow-sm" type="button">
-                  Log In
-                </Button>
-              </a>
-            </div>
-            <div className="text-primary-brown pe-3">
-              <a href="seekersignup.html">
-                <Button variant="primary-orange" className="m-3 ms-0 shadow-sm" type="button" onClick={handleLoginCLick}>
-                  Sign Up
-                </Button>
-              </a>
-            </div>
+              {isLoggedIn && isSeeker && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout}/>}
+              {!isLoggedIn && <AnonCorner />}
           </Navbar.Collapse>
         </Navbar>
     );
