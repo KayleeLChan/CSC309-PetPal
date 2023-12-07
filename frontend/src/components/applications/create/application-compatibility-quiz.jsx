@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 
 
-const CompatibilityQuizComponent = ({ user_id }) => {
+const CompatibilityQuizComponent = ({ user_id, handleFormSubmit }) => {
 
     const[formData, setFormData] = useState ({
         adoptingFor: '',
@@ -43,13 +43,14 @@ const CompatibilityQuizComponent = ({ user_id }) => {
         fetchUserInfo();
       }, [user_id]);
 
-    const handleSubmit = (e) => {
+      const handleSubmit = (e) => {
         e.preventDefault();
         // Here you can submit the form data to your Django backend
-        if (props.onSubmit) {
-            props.onSubmit(formData);
+        if (onSubmit) {
+          onSubmit(formData);
         }
-    };
+      };
+    
 
     return (
         <div>

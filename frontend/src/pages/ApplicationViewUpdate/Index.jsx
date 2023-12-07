@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import StatusBoxComponent from '../../components/applications/application-status-box';
-import ChatComponent from '../../components/applications/application-comments-box';
-import ApplicationSheetComponent from '../../components/applications/application-details';
-import PetDetailsComponent from '../../components/applications/application-pet-details';
+import StatusBoxComponent from '../../components/applications/viewupdate/application-status-box';
+import ChatComponent from '../../components/applications/viewupdate/application-comments-box';
+import ApplicationSheetComponent from '../../components/applications/viewupdate/application-details';
+import PetDetailsComponent from '../../components/applications/viewupdate/application-pet-details';
 
 function ApplicationDetails() {
     const { id } = useParams();

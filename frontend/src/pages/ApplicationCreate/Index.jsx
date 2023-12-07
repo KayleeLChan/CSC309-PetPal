@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import UserInfoComponent from '../../components/applications/application-user-info';
-import CompatibilityQuizComponent from '../../components/applications/compatibility-quiz';
+import UserInfoComponent from '../../components/applications/create/application-user-info';
+import CompatibilityQuizComponent from '../../components/applications/create/application-compatibility-quiz';
 
 function CreateApplication() {
     const { userId, petId } = useParams();
@@ -16,7 +16,7 @@ function CreateApplication() {
         setUserInfoFormData(formData);
     };
 
-    const handleCompatibilitySubmit = (formData) => {
+    const handleFormSubmit = (formData) => {
         setCompatibilityFormData(formData);
     };
 
@@ -110,7 +110,7 @@ function CreateApplication() {
                             {/* Right Column */}
                             <div className="d-flex w-40 h-auto m-5 p-3 pb-5 px-5 bg-cream flex-column align-items-center rounded two-col-child">
                                 <h1 className="fs-0">Compatability Quiz</h1>
-                                <CompatibilityQuizComponent user_id={userId} onSubmit={handleCompatibilitySubmit} />
+                                <CompatibilityQuizComponent user_id={userId} onSubmit={handleFormSubmit} />
                             {/* Right Column */}
 
                             {/* Submit */}

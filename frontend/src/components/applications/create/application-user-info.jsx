@@ -38,12 +38,16 @@ const UserInfoComponent = ({ user_id }) => {
         fetchUserInfo();
       }, [user_id]);
     
-    const handleSubmit = (e) => {
+      const handleSubmit = (e) => {
         e.preventDefault();
         // Here you can submit the form data to your Django backend
-        if (props.onSubmit) {
-            props.onSubmit(formData);
+        if (onSubmit) {
+            onSubmit(formData);
         }
+    };
+
+    const handleRadioChange = (e, key) => {
+        setFormData({ ...formData, [key]: e.target.value });
     };
  
 
