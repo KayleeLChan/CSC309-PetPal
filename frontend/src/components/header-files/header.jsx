@@ -63,7 +63,7 @@ const Header = () => {
           setProfilePic(data.profilepic);
           localStorage.setItem("profilepic", profilePic)
         }
-    } catch (error) {}
+    } catch (error) {
         console.error('Error fetching', error);
     }
 }
