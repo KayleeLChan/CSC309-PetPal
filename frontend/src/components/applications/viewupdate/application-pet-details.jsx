@@ -12,7 +12,7 @@ const PetDetailsComponent = ({ application }) => {
     // : 'Zawg.jpg';  // Replace with default image path
 
     return (
-        <div className="d-flex flex-column w-50 m-5 bg-cream flex-column align-items-center two-col-child">
+        <div>
         
             {/* Title & About */}
             <div className="w-100 d-flex flex-row align-items-center justify-content-evenly m-3 mb-3 py-2 px-3 bg-brown text-primary-cream">

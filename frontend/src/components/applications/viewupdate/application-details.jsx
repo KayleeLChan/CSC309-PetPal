@@ -34,7 +34,7 @@ const ApplicationSheetComponent = ({ application }) => {
         <p className="fst-italic d-flex w-100"> *Further payment information will be expected upon approval of the application.
           Please routinely check the chatbox or notifications for further instructions from the shelter.</p>
       </div>
-    </>
+      </>
   );
 };
 

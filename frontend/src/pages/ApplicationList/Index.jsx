@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import StatusFilter from '../../components/applications/list/application-status-filter';
-import ApplicationSearch from '../../components/applications/list/application-status-filter';
+import ApplicationSearch from '../../components/applications/list/application-search-bar';
 import ApplicationSorter from '../../components/applications/list/application-sort';
 import ApplicationPetCard from '../../components/applications/list/application-pet-cards';
 
@@ -91,9 +91,10 @@ const ListApplications = () => {
                     <div className="d-flex flex-column m-3">
                         <div className="col-md-12">
                             <div className="row align-self-center">
-                                {applications.map(app => (
+                                {/* {applications.map(app => (
                                         <ApplicationPetCard key={app.id} application={app} />
-                                ))}
+                                ))} */}
+                                <ApplicationPetCard></ApplicationPetCard>
                             </div>
                         </div>
                     </div>

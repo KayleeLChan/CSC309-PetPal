@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, onSubmit} from 'react';
 import { Form } from 'react-bootstrap';
 
-const UserInfoComponent = ({ user_id }) => {
+const UserInfoComponent = ({ user_id }) => { 
 
     // Information given from user account
     const [formData, setFormData] = useState({
@@ -20,7 +20,10 @@ const UserInfoComponent = ({ user_id }) => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                const userInfoResponse = await fetch(`accounts/${user_id}/profile/`);
+                const userInfoResponse = await fetch(`http://localhost:8000/accounts/${user_id}/profile/`,
+                {
+                    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMTMxNDA0LCJpYXQiOjE3MDE5MjE4MDQsImp0aSI6IjdmOTQ4YmZmODFiMjQzYmFiNjhiM2M4NGVmN2FlZThmIiwidXNlcl9pZCI6MX0.4eFhRDwAJWRC_uSC8gyYapbxx2s12-il08jacj7pBcI", }
+                });
                 if (userInfoResponse.ok) {
                     const userInfo = await userInfoResponse.json();
                     setFormData({
@@ -34,17 +37,15 @@ const UserInfoComponent = ({ user_id }) => {
             console.error('Error fetching user information:', error);
           }
         };
-        // Call the function to fetch user information
         fetchUserInfo();
       }, [user_id]);
     
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        // Here you can submit the form data to your Django backend
-        if (onSubmit) {
-            onSubmit(formData);
-        }
-    };
+    //   const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (onSubmit) {
+    //         onSubmit(formData);
+    //     }
+    // };
 
     const handleRadioChange = (e, key) => {
         setFormData({ ...formData, [key]: e.target.value });

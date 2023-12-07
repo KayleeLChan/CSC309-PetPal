@@ -6,17 +6,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('listings', '__first__'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ("listings", "0004_alter_listingimage_listing"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Application',
+            name="Application",
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
@@ -39,7 +38,7 @@ class Migration(migrations.Migration):
                 ('pet_seeker_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='pet_seeker_applicant', to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'ordering': ['-created_at', '-last_updated_at'],
+                "ordering": ["-created_at", "-last_updated_at"],
             },
         ),
     ]

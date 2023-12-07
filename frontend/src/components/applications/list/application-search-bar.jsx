@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
 
-const ApplicationSearch = ({ query, handleSearch, handleInputChange }) => {
+const ApplicationSearch = ({ query, handleSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleInputChange = (event) => {
@@ -12,7 +12,6 @@ const ApplicationSearch = ({ query, handleSearch, handleInputChange }) => {
     };
 
     return (
-        <Container fluid className="bg-brown text-primary-cream p-4 mb-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
         <div className="d-flex flex-column flex-md-row align-items-center">
             
             <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
@@ -29,7 +28,6 @@ const ApplicationSearch = ({ query, handleSearch, handleInputChange }) => {
                 onChange={handleInputChange}
             />
         </div>
-        </Container>
     );
 };
 

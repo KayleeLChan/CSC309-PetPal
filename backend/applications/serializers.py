@@ -7,7 +7,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
     applicant_first_name = serializers.ReadOnlyField(source='pet_seeker_user.first_name')
     applicant_last_name = serializers.ReadOnlyField(source='pet_seeker_user.last_name')
     applicant_phone_number= serializers.ReadOnlyField(source='pet_seeker_user.phonenumber')
-    applicant_profile_picture = serializers.ReadOnlyField(source='pet_seeker_user.profilepic')
+    # applicant_profile_picture = serializers.ReadOnlyField(source='pet_seeker_user.profilepic')
 
     applicant_pref_animal = serializers.ReadOnlyField(source='pet_seeker_user.pref_animal')
     applicant_pref_breed = serializers.ReadOnlyField(source='pet_seeker_user.pref_breed')
