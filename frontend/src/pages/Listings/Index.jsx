@@ -57,7 +57,6 @@ const ListingPage = () => {
                 sex: listing.sex,
                 description: listing.description,
             });
-            // setLoading(false);
         }
     }, [listing]);
 
@@ -114,7 +113,7 @@ const ListingPage = () => {
                     await uploadImages(id);
                 }
 
-                // navigate(`/listings/view/${id || newData.id}`)
+                navigate(`/listings/view/${id || newData.id}`)
             } else {
                 // Handle the case where the update was not successful
                 console.error('Listing update failed.');
@@ -125,7 +124,6 @@ const ListingPage = () => {
     };
 
     const uploadImages = async (newID) => {
-        console.log(images);
         if (images.length === 0 && !id) {
             const formData = new FormData();
             formData.append('image', await fetch("/imgs/Logo.png").then((res) => res.blob()), 'default-image.jpg');
@@ -201,7 +199,7 @@ const ListingPage = () => {
                                     <Tab.Content className="w-100">
                                         <Tab.Pane eventKey={"#nav-details"}>
                                             <div className="tab-content w-100" id="nav-tabContent">
-                                                <DetailsTab listing={listing} formData={formData} setFormData={setFormData} images={images} setImages={setImages}></DetailsTab>
+                                                <DetailsTab listing={listing} formData={formData} setFormData={setFormData} setImages={setImages}></DetailsTab>
                                             </div>
                                         </Tab.Pane>
                                     </Tab.Content>

@@ -11,6 +11,7 @@ const ListingLeftTop = ({ listing }) => {
         <h3>{listing.location}</h3>
       </div>
       {/* Title */}
+      {/* TODO: figure out how to make images appear in groups of three and then excess inside the carousels */}
       <ImgCarouselSmall images={listing.images}></ImgCarouselSmall>
       <ImgCarousel images={listing.images}></ImgCarousel>
 

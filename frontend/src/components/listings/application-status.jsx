@@ -17,7 +17,7 @@ const ApplicationStatus = ({listing, formData, setFormData}) => {
                         className="btn border border-0 h-25 position-absolute top-0 start-100"
                         onClick={handleModalShow}
                     >
-                        <img src="imgs/edit.png" height="20" width="20" alt="Edit Status"></img>
+                        <img src="/imgs/edit.png" height="20" width="20" alt="Edit Status"></img>
                     </a>
                 </div>
 
