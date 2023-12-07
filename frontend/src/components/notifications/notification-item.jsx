@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
 const NotificationItem = ({ notification, onDelete }) => {
+  const accessToken = localStorage.getItem('access_token');
     const [showModal, setShowModal] = useState(false);
 
     const handleModalShow = async () => {
       try {
         const response = await fetch(`http://localhost:8000/notifications/${notification.id}/`,
         {
-            headers: {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk0OTgxLCJpYXQiOjE3MDE1ODUzODEsImp0aSI6Ijg2NTgzN2I0NjNkMzQ5MWM5M2FmMTBlZmI2ODAzN2NjIiwidXNlcl9pZCI6MX0.PPHuhQqkpaGuF7wv2FEqbY9B8dVd5izi6n0KBfFs3wQ",}
-        });  //TODO: Make authorization better later
+            headers: {Authorization: `Bearer ${accessToken}`,}
+        });
       } catch (error) {
         console.error('Error fetching detailed notification:', error);
       }
@@ -25,8 +26,8 @@ const NotificationItem = ({ notification, onDelete }) => {
         const response = await fetch(`http://localhost:8000/notifications/${notification.id}/`,
         {
           method: 'DELETE',
-          headers: {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk0OTgxLCJpYXQiOjE3MDE1ODUzODEsImp0aSI6Ijg2NTgzN2I0NjNkMzQ5MWM5M2FmMTBlZmI2ODAzN2NjIiwidXNlcl9pZCI6MX0.PPHuhQqkpaGuF7wv2FEqbY9B8dVd5izi6n0KBfFs3wQ",}
-        });  //TODO: Make authorization better later
+          headers: {Authorization: `Bearer ${accessToken}`,}
+        });
 
         if (response.ok) {
           // If the deletion is successful, call the onDelete callback

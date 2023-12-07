@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from 'react-bootstrap';
 
 const NavbarBrand = () => {
+  
   //TODO: CHANGE NOTIFICATION ALERT TO BE RED DOT AND NOT TITLE CHANGE
   const [title, setTitle] = useState('PetPal');
 

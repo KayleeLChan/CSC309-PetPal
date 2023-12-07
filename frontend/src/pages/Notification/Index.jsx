@@ -5,6 +5,7 @@ import PaginationButtons from '../../components/pagination-buttons';
 import { Dropdown } from 'react-bootstrap';
 
 const Notification = () => {
+    const accessToken = localStorage.getItem('access_token');
     const [loading, setLoading] = useState(true);
     const [notifications, setNotifications] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
@@ -46,7 +47,7 @@ const Notification = () => {
             // Make request to backend
             const response = await fetch(`http://localhost:8000/notifications/?${queryParams}`,
                 {
-                    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk0OTgxLCJpYXQiOjE3MDE1ODUzODEsImp0aSI6Ijg2NTgzN2I0NjNkMzQ5MWM5M2FmMTBlZmI2ODAzN2NjIiwidXNlcl9pZCI6MX0.PPHuhQqkpaGuF7wv2FEqbY9B8dVd5izi6n0KBfFs3wQ", }
+                    headers: { Authorization: `Bearer ${accessToken}`, }
                 }); //TODO: Make authorization better later
             const data = await response.json();
             setNotifications(data.results);

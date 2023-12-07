@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const ApplicationsTab = ({ listing }) => {
+    const accessToken = localStorage.getItem('access_token');
     const [loading, setLoading] = useState(true);
     const [applications, setApplications] = useState([]);
 
@@ -10,7 +11,7 @@ const ApplicationsTab = ({ listing }) => {
                 setLoading(true);
                 const response = await fetch(`http://localhost:8000/applications/?listing_id=${listing.id}`,
                 {
-                    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk0OTgxLCJpYXQiOjE3MDE1ODUzODEsImp0aSI6Ijg2NTgzN2I0NjNkMzQ5MWM5M2FmMTBlZmI2ODAzN2NjIiwidXNlcl9pZCI6MX0.PPHuhQqkpaGuF7wv2FEqbY9B8dVd5izi6n0KBfFs3wQ", }
+                    headers: { Authorization: `Bearer ${accessToken}`, }
                 });
                 const data = await response.json();
                 setApplications(data);

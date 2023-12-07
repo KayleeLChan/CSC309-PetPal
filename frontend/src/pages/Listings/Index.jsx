@@ -12,6 +12,7 @@ const ListingPage = () => {
     const [loading, setLoading] = useState(false);
     const [key, setKey] = useState("#nav-details");
     const [listing, setListing] = useState(null);
+    const accessToken = localStorage.getItem('access_token');
 
     const [formData, setFormData] = useState({
         name: '',
@@ -66,8 +67,8 @@ const ListingPage = () => {
             // Make request to backend
             const response = await fetch(`http://localhost:8000/listings/${id}/`,
                 {
-                    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk0OTgxLCJpYXQiOjE3MDE1ODUzODEsImp0aSI6Ijg2NTgzN2I0NjNkMzQ5MWM5M2FmMTBlZmI2ODAzN2NjIiwidXNlcl9pZCI6MX0.PPHuhQqkpaGuF7wv2FEqbY9B8dVd5izi6n0KBfFs3wQ", }
-                }); //TODO: Make authorization better later
+                    headers: { Authorization: `Bearer ${accessToken}`, }
+                });
             const data = await response.json();
             setListing(data);
         } catch (error) {
@@ -97,9 +98,9 @@ const ListingPage = () => {
                     headers: {
                         'Content-Type': 'application/json',  // Set content type to JSON
                         'Accept': 'application/json',  // Specify that your client can handle JSON responses
-                        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk1MDQ4LCJpYXQiOjE3MDE1ODU0NDgsImp0aSI6IjM4ODg4MWU5OTk0MjQ2MWQ4YzUxNjQ1NzZjNDE5ZGQ2IiwidXNlcl9pZCI6Mn0.PvJxLtuV3J4_3XMRSCi40pPqDdKlnQ9PFzZzGi_tjTI",
+                        'Authorization': `Bearer ${accessToken}`,
                     }
-                }); //TODO: Make authorization better later
+                });
             // const data = await response.json();
             // setListing(data);
             if (response.ok) {
