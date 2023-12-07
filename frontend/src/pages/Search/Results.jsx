@@ -95,8 +95,6 @@ const SearchResults = () => {
         }
     };
 
-    console.log(listings);
-
     return (
         <>
             <div data-bs-theme="petpal">
@@ -108,7 +106,7 @@ const SearchResults = () => {
                             <div className="listing-grid">
                                 {listings.map((listing) => (
                                     <>
-                                        <PetCard></PetCard>
+                                        <PetCard listing={listing}></PetCard>
                                     </>
                                 ))}
                             </div>

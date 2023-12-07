@@ -25,7 +25,7 @@ const DetailsDetails = ({listing, formData, setFormData}) => {
                             className="btn border border-0 h-25 m-0 ps-0 translate-middle-y"
                             onClick={handleModalShow}
                         >
-                            <img src="imgs/edit.png" height="20" width="20" alt="Edit" />
+                            <img src="/imgs/edit.png" height="20" width="20" alt="Edit" />
                         </a>
                     </h1>
                     <div className="w-90 text-start">
@@ -87,7 +87,7 @@ const DetailsDetails = ({listing, formData, setFormData}) => {
                                 value={formData.age}
                                 onChange={(e) => setFormData({ ...formData, age: e.target.value })} required>
                                 <option value="" disabled>(required)</option>
-                                <option value="newborn">newborn</option>
+                                <option value="new">newborn</option>
                                 <option value="young">young</option>
                                 <option value="adult">adult</option>
                                 <option value="senior">senior</option>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Image } from 'react-bootstrap';
 
 const ShelterPreview = ({ shelterID }) => {
+    const accessToken = localStorage.getItem('access_token');
     const [loading, setLoading] = useState(true);
     const [shelter, setShelter] = useState(null);
 
@@ -18,8 +19,8 @@ const ShelterPreview = ({ shelterID }) => {
             // Make request to backend
             const response = await fetch(`http://localhost:8000/accounts/shelter/${shelterID}/details/`,
                 {
-                    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk0OTgxLCJpYXQiOjE3MDE1ODUzODEsImp0aSI6Ijg2NTgzN2I0NjNkMzQ5MWM5M2FmMTBlZmI2ODAzN2NjIiwidXNlcl9pZCI6MX0.PPHuhQqkpaGuF7wv2FEqbY9B8dVd5izi6n0KBfFs3wQ", }
-                }); //TODO: Make authorization better later
+                    headers: { Authorization: `Bearer ${accessToken}`, }
+                });
             const data = await response.json();
             setShelter(data);
             setLoading(false);
@@ -51,8 +52,7 @@ const ShelterPreview = ({ shelterID }) => {
                         </p>
                     </div>
 
-                    {/* TODO: Make href point to shelter details page */}
-                    <a className="align-self-center w-50 m-3 mt-0" href="shelterdetails.html">
+                    <a className="align-self-center w-50 m-3 mt-0" href={`http://localhost:3000/accounts/shelter/${shelterID}/details`}>
                         <Button variant="cream" className="btn btn-lg w-100 shadow-lg" type="button">
                             Learn More
                         </Button>

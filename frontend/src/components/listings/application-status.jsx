@@ -17,7 +17,7 @@ const ApplicationStatus = ({listing, formData, setFormData}) => {
                         className="btn border border-0 h-25 position-absolute top-0 start-100"
                         onClick={handleModalShow}
                     >
-                        <img src="imgs/edit.png" height="20" width="20" alt="Edit Status"></img>
+                        <img src="/imgs/edit.png" height="20" width="20" alt="Edit Status"></img>
                     </a>
                 </div>
 
@@ -31,7 +31,7 @@ const ApplicationStatus = ({listing, formData, setFormData}) => {
                             <Form.Select aria-label="Default select example"
                                 value={formData.status}
                                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}>
-                                <option selected>(required)</option>
+                                <option value="" disabled>(required)</option>
                                 <option value="available">Available</option>
                                 <option value="adopted">Adopted</option>
                                 <option value="withdrawn">Withdrawn</option>

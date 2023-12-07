@@ -4,6 +4,7 @@ import ListingRightCol from '../../components/listings/view/view-right-col/listi
 import { useParams } from 'react-router-dom';
 
 const Listing = () => {
+    const accessToken = localStorage.getItem('access_token');
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [listing, setListing] = useState(null);
@@ -20,8 +21,8 @@ const Listing = () => {
             // Make request to backend
             const response = await fetch(`http://localhost:8000/listings/${id}/`,
                 {
-                    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNzk0OTgxLCJpYXQiOjE3MDE1ODUzODEsImp0aSI6Ijg2NTgzN2I0NjNkMzQ5MWM5M2FmMTBlZmI2ODAzN2NjIiwidXNlcl9pZCI6MX0.PPHuhQqkpaGuF7wv2FEqbY9B8dVd5izi6n0KBfFs3wQ", }
-                }); //TODO: Make authorization better later
+                    headers: { Authorization: `Bearer ${accessToken}`, }
+                });
             const data = await response.json();
             setListing(data);
             setLoading(false);

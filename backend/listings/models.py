@@ -1,6 +1,5 @@
 from django.db import models
 from petpal.settings import AUTH_USER_MODEL as User
-from multiselectfield import MultiSelectField
 
 class Listing(models.Model):
     STATUS_CHOICES = [

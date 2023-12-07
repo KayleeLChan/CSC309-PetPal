@@ -328,6 +328,9 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
 }
+[data-bs-theme=petpal] .rounded-circle {
+  aspect-ratio: 1/1;
+}
 [data-bs-theme=petpal] #adopt-dropdown {
   color: #FFEFD0 !important;
 }
