@@ -33,7 +33,7 @@ const ShelterDropDowns = (props) => {
           <NavDropdown title="Shelter Management" id="shelter-dropdown" className="h1 fs-3 btn-cream m-0">
             {/* add link for this one */}
             <NavDropdown.Item className="font-plain">Your Reviews</NavDropdown.Item>
-            <NavDropdown.Item onClick={create}className="font-plain">Your Shelter</NavDropdown.Item>
+            <NavDropdown.Item onClick={shelter}className="font-plain">Your Shelter</NavDropdown.Item>
           </NavDropdown>
         </Nav>
     );

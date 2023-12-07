@@ -25,7 +25,6 @@ const Header = () => {
   const [isSeeker, setIsSeeker] = useState(false);
   const [isShelter, setIsShelter] = useState(false);
   const [profilePic, setProfilePic] = useState();
-  const [hasPic, sethasPic] = useState(false);
 
 
   function handleLogout() {
@@ -62,10 +61,9 @@ const Header = () => {
         const data = await fetchData.json();
         if(data.profilepic){
           setProfilePic(data.profilepic);
-          sethasPic(true)
           localStorage.setItem("profilepic", profilePic)
         }
-    } catch (error) {
+    } catch (error) {}
         console.error('Error fetching', error);
     }
 }
@@ -106,8 +104,7 @@ const Header = () => {
 
             <NavbarMainSearch></NavbarMainSearch>
             <NavbarToggleSearch></NavbarToggleSearch>
-              {isLoggedIn && isSeeker && <UserCorner user_id={user_id} hasPic={hasPic} 
-              profilepic={profilePic} handleLogout={handleLogout} handleProfile={handleProfile} isSeeker={isSeeker}/>}
+              {isLoggedIn && isSeeker && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout} handleProfile={handleProfile}/>}
               {!isLoggedIn && <AnonCorner />}
           </Navbar.Collapse>
         </Navbar>
