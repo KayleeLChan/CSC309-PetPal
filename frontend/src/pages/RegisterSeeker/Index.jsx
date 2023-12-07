@@ -34,6 +34,9 @@ function RegisterSeeker(){
         if(event.target.files[0]){
             setPhoto(event.target.files[0]);
         }
+        else{
+            setPhoto('/imgs/pfp.jpg')
+        }
       };
 
   

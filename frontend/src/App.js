@@ -28,7 +28,7 @@ export default function App() {
           <Route path="accounts/registration/seeker" element={<RegisterSeeker />} />
           <Route path="accounts/registration/shelter" element={<RegisterShelter />} />
           <Route path="accounts/shelters/all" element={<ShelterList />} />
-          {/* need to add in the id */}
+          
           <Route path="accounts/shelter/:id/details" element={<ShelterDetails />} />
           <Route path="accounts/seeker/:id/profile" element={<UpdateSeeker />} />
           <Route path="accounts/shelter/:id/profile" element={<UpdateShelter />} />

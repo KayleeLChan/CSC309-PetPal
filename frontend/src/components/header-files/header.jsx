@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import AnonCorner from './anon_corner';
 import UserCorner from './userCorner';
 import { useEffect, useState } from 'react';
+import ShelterDropDowns from './shelterdropdown';
+import SeekerDropDowns from './seekerdropdowns';
 
 
 
@@ -23,6 +25,7 @@ const Header = () => {
   const [isSeeker, setIsSeeker] = useState(false);
   const [isShelter, setIsShelter] = useState(false);
   const [profilePic, setProfilePic] = useState();
+  const [hasPic, sethasPic] = useState(false);
 
 
   function handleLogout() {
@@ -45,6 +48,10 @@ const Header = () => {
     }
   }
 
+  function handleNotifications(){
+    navigate(`/notifications`)
+  }
+
   const fetchProfilePic = async () => {
     try {
     const fetchData = await fetch(`http://127.0.0.1:8000/accounts/${user_id}/profile/`, {
@@ -55,10 +62,8 @@ const Header = () => {
         const data = await fetchData.json();
         if(data.profilepic){
           setProfilePic(data.profilepic);
+          sethasPic(true)
           localStorage.setItem("profilepic", profilePic)
-        }
-        else{
-          setProfilePic('/imgs/pfp.jpg')
         }
     } catch (error) {
         console.error('Error fetching', error);
@@ -69,6 +74,7 @@ const Header = () => {
       useEffect(() => {
         console.log("useffect")
         console.log(accounttype)
+        console.log(profilePic)
         if(accessToken){
           console.log("isloggedin")
           setIsLoggedIn(true)
@@ -94,11 +100,14 @@ const Header = () => {
 
           <Navbar.Toggle aria-controls="navbarSupportedContent" />
           <Navbar.Collapse id="navbarSupportedContent" className="ps-5">
-            <NavbarDropdowns></NavbarDropdowns>
+            {isLoggedIn && isSeeker && <SeekerDropDowns user_id={user_id}></SeekerDropDowns>}
+            {isLoggedIn && isShelter && <ShelterDropDowns user_id={user_id}></ShelterDropDowns>}
+            {!isLoggedIn && <NavbarDropdowns />}
 
             <NavbarMainSearch></NavbarMainSearch>
             <NavbarToggleSearch></NavbarToggleSearch>
-              {isLoggedIn && isSeeker && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout} handleProfile={handleProfile}/>}
+              {isLoggedIn && isSeeker && <UserCorner user_id={user_id} hasPic={hasPic} 
+              profilepic={profilePic} handleLogout={handleLogout} handleProfile={handleProfile} isSeeker={isSeeker}/>}
               {!isLoggedIn && <AnonCorner />}
           </Navbar.Collapse>
         </Navbar>

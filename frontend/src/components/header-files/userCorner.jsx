@@ -4,13 +4,20 @@ import { useState } from 'react';
 function UserCorner(props) {
     const [isOpen, setIsOpen] = useState(false);
     const toggleDropdown = () => setIsOpen(!isOpen);
+    const [hasPic, sethasPic] = useState(false)
+    
+    if(props.profilepic){
+        sethasPic(true)
+    }
+    console.log(props.hasPic)
+    console.log(props.isSeekergit)
 
     return (
         <>
-                <div className="pe-3 dropdown dropstart hide-lg" style={{left: 0}}>
+                <div className="pe-3 dropdown dropstart hide-lg">
                     <img
-                        src={props.profilepic}
-                        alt="pfp"
+                        src={props.hasPic ? props.profilepic : (props.isSeeker ? '/imgs/pfp.jpg' : '/img/shelterpfp.png')} 
+                        alt="Profile Picture"
                         className="p-0 profile-pic rounded-circle border btn btn-secondary dropdown-toggle"
                         type="button"
                         data-bs-toggle="dropdown"
@@ -28,7 +35,7 @@ function UserCorner(props) {
                         </a>
                         </li>
                         <li onClick={props.handleLogout}>
-                            <a className="dropdown-item text-primary-brown" href="#">
+                            <a className="dropdown-item text-primary-brown" >
                             Log Out
                             </a>
                         </li>
@@ -57,7 +64,7 @@ function UserCorner(props) {
                         </a>
                         </li>
                         <li onClick={props.handleLogout}>
-                            <a className="dropdown-item text-primary-brown" href="#">
+                            <a className="dropdown-item text-primary-brown">
                             Log Out
                             </a>
                         </li>
