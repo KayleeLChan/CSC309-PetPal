@@ -36,26 +36,35 @@ const Header = () => {
     // other logout logic
   }
 
-  function fetchProfilePic(){
-    fetch(`http://127.0.0.1:8000/accounts/${user_id}/profile/`, {
-      method: 'GET',  
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("data", data)
+  function handleProfile(){
+    if(isSeeker){
+    navigate(`/accounts/seeker/${user_id}/profile`)
+    }
+    else{
+      navigate(`/accounts/shelter/${user_id}/profile`)
+    }
+  }
+
+  const fetchProfilePic = async () => {
+    try {
+    const fetchData = await fetch(`http://127.0.0.1:8000/accounts/${user_id}/profile/`, {
+        method:"GET",
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        }});
+        const data = await fetchData.json();
         if(data.profilepic){
           setProfilePic(data.profilepic);
-          localStorage.setItem("profilepic", profilepic)
+          localStorage.setItem("profilepic", profilePic)
         }
         else{
           setProfilePic('/imgs/pfp.jpg')
         }
-        console.log(data);
-      })
-  }
+    } catch (error) {
+        console.error('Error fetching', error);
+    }
+}
+
 
       useEffect(() => {
         console.log("useffect")
@@ -89,7 +98,7 @@ const Header = () => {
 
             <NavbarMainSearch></NavbarMainSearch>
             <NavbarToggleSearch></NavbarToggleSearch>
-              {isLoggedIn && isSeeker && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout}/>}
+              {isLoggedIn && isSeeker && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout} handleProfile={handleProfile}/>}
               {!isLoggedIn && <AnonCorner />}
           </Navbar.Collapse>
         </Navbar>
