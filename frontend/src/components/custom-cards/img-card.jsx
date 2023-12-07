@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-//TODO: Change cards so that they are grabbed from the database
 const ImgCard = (source) => {
   const link = source.source;
   return (

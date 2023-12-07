@@ -464,6 +464,10 @@ $grid-breakpoints: (
         gap: 16px;
     }
 
+    .rounded-circle {
+        aspect-ratio: 1/1;
+    }
+
     #adopt-dropdown {
         color: $primary-cream !important;
     }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const DetailsTop = ({listing, formData, setFormData, images, setImages}) => {
+const DetailsTop = ({ listing, formData, setFormData, images, setImages }) => {
     const [showModal, setShowModal] = useState(false);
 
     const handleModalShow = async () => {
@@ -15,41 +15,39 @@ const DetailsTop = ({listing, formData, setFormData, images, setImages}) => {
     const handlePhotoChange = (event) => {
         const images = event.target.files
         console.log("images from event", images);
-        if(images){
+        if (images) {
             setImages(images);
         }
-      };
+    };
 
     return (
         <>
             <div className="d-flex w-90 py-3 justify-content-between align-items-end small-title-input">
                 <input className="form-control form-control-lg border border-0 title-separate"
-                type="text"
-                placeholder="Pet Name"
-                aria-label="Pet Name Input"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-                <input className="form-control form-control-lg border border-0 text-end title-separate" 
-                type="text" 
-                placeholder="Location" 
-                aria-label="Location Input"
-                value={formData.location}
-                onChange={(e) => setFormData({ ...formData, location: e.target.value })} />
+                    type="text"
+                    placeholder="Pet Name"
+                    aria-label="Pet Name Input"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                <input className="form-control form-control-lg border border-0 text-end title-separate"
+                    type="text"
+                    placeholder="Location"
+                    aria-label="Location Input"
+                    value={formData.location}
+                    onChange={(e) => setFormData({ ...formData, location: e.target.value })} />
             </div>
 
             <div className="d-flex flex-column justify-content-center align-items-center bg-primary-cream rounded p-3">
-                {/* TODO: add default image if no images are uploaded, otherwise show all existing images in the listing and add buttons to delete */}
                 <img src="/imgs/gallery.svg" width="70%" alt="Gallery" />
                 <Form className="d-flex flex-column justify-content-center align-items-center" encType="multipart/form-data">
-                    {/* TODO: Figure out how to upload images */}
                     <Form.Label htmlFor="formFile" className="form-label">Upload images</Form.Label>
                     <input
-                                type="file"
-                                className="form-control bg-primary-cream font-plain"
-                                id="profilepic"
-                                onChange={handlePhotoChange}
-                                multiple
-                            />
+                        type="file"
+                        className="form-control bg-primary-cream font-plain"
+                        id="profilepic"
+                        onChange={handlePhotoChange}
+                        multiple
+                    />
                 </Form>
             </div>
 
@@ -61,10 +59,10 @@ const DetailsTop = ({listing, formData, setFormData, images, setImages}) => {
                     {formData.animal ? (<p className="summary-text mb-0">{formData.animal}</p>) : (<p className="summary-text mb-0">Animal</p>)}
                     <p className="summary-text mb-0">|</p>
                     {formData.breed ? (
-                            <p className="summary-text mb-0"> {formData.breed}</p>) : (<p className="summary-text mb-0"> Breed</p>)}
+                        <p className="summary-text mb-0"> {formData.breed}</p>) : (<p className="summary-text mb-0"> Breed</p>)}
                     <p className="summary-text mb-0">|</p>
                     {formData.colour ? (
-                            <p className="summary-text mb-0"> {formData.colour}</p>) : (<p className="summary-text mb-0"> Colour</p>)}
+                        <p className="summary-text mb-0"> {formData.colour}</p>) : (<p className="summary-text mb-0"> Colour</p>)}
                 </div>
                 <a type="button"
                     className="btn btn-sm border border-0 position-absolute top-0 start-100 bg-none"
@@ -88,7 +86,7 @@ const DetailsTop = ({listing, formData, setFormData, images, setImages}) => {
                         </Form.Floating>
                         <Form.Floating className="mb-3">
                             <Form.Control type="text" id="breed" placeholder="Breed"
-                            className="pb-2"
+                                className="pb-2"
                                 value={formData.breed}
                                 onChange={(e) => setFormData({ ...formData, breed: e.target.value })} />
                             <label className="text-primary-brown fs-5" htmlFor="breed">Breed</label>
@@ -96,7 +94,7 @@ const DetailsTop = ({listing, formData, setFormData, images, setImages}) => {
 
                         <Form.Floating className="mb-3">
                             <Form.Control type="text" id="breed" placeholder="Colour"
-                            className="pb-2"
+                                className="pb-2"
                                 value={formData.colour}
                                 onChange={(e) => setFormData({ ...formData, colour: e.target.value })} />
                             <label className="text-primary-brown fs-5" htmlFor="colour">Colour</label>

@@ -52,8 +52,7 @@ const ShelterPreview = ({ shelterID }) => {
                         </p>
                     </div>
 
-                    {/* TODO: Make href point to shelter details page */}
-                    <a className="align-self-center w-50 m-3 mt-0" href="shelterdetails.html">
+                    <a className="align-self-center w-50 m-3 mt-0" href={`http://localhost:3000/accounts/shelter/${shelterID}/details`}>
                         <Button variant="cream" className="btn btn-lg w-100 shadow-lg" type="button">
                             Learn More
                         </Button>
