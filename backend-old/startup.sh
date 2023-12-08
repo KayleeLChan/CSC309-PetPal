@@ -5,6 +5,7 @@ source venv/bin/activate or venv/Scripts/activate
 
 python3 -m pip install --upgrade pip
 python3 -m pip install --upgrade Pillow
+pip install psycopg2
 pip install Django
 pip install djangorestframework
 pip install markdown
