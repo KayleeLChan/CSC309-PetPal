@@ -72,6 +72,7 @@ const DetailsTop = ({ listing, formData, setFormData, setImages }) => {
                     allImages.map((image, index) => {
                         const relativeImageUrl = image.image.replace('http://localhost:8000/media/listing_images/', '');
                         const imageID = image.id
+                        // TODO: MAKE SURE IF IMAGE IS DELETED AND THERE ARE NO IMAGES LEFT, FILL IN WITH DEFAULT IMAGE!!!
                         return (
                             <div className="d-flex w-100 flex-row justify-content-evenly my-1">
                                 <a href={image.image} target="_blank" rel="noopener noreferrer" aria-label={`${relativeImageUrl} opens in new tab`} className="w-75">

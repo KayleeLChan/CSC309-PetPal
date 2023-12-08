@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Form, Dropdown } from 'react-bootstrap';
+import { Container, Dropdown } from 'react-bootstrap';
 
 const SearchHeader = ({ query, handleSort }) => {
     let sort = "";
