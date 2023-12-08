@@ -48,7 +48,7 @@ const Notification = () => {
             const response = await fetch(`http://localhost:8000/notifications/?${queryParams}`,
                 {
                     headers: { Authorization: `Bearer ${accessToken}`, }
-                }); //TODO: Make authorization better later
+                });
             const data = await response.json();
             setNotifications(data.results);
             setTotalPages(

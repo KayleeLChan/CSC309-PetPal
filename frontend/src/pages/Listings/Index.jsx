@@ -86,7 +86,6 @@ const ListingPage = () => {
             const url = id ? `http://localhost:8000/listings/${id}/` : 'http://localhost:8000/listings/';
             const method = id ? 'PUT' : 'POST';
             const dataBody = JSON.stringify(formData)
-            console.log("dataBody", dataBody)
 
             // Make request to backend
             const response = await fetch(url,
@@ -180,15 +179,16 @@ const ListingPage = () => {
                 <div className="main d-flex flex-column justify-content-start align-items-center">
                     {loading ? (<p className="text-center">Loading...</p>) : (
                         <>
-                            <Tab.Container id="listing-tabs" defaultActiveKey={key}>
+                        <DetailsTab listing={listing} formData={formData} setFormData={setFormData} setImages={setImages}></DetailsTab>
+                            {/* <Tab.Container id="listing-tabs" defaultActiveKey={key}>
                                 <Nav variant="tabs" className="mt-5 fs-5">
                                     <Nav.Item>
                                         <Nav.Link eventKey={"#nav-details"}>Details</Nav.Link>
                                     </Nav.Item>
 
-                                    {/* <Nav.Item>
+                                    <Nav.Item>
                                 <Nav.Link eventKey={"#nav-compatability"}>Compatability</Nav.Link>
-                            </Nav.Item> */}
+                            </Nav.Item>
 
                                     <Nav.Item>
                                         <Nav.Link eventKey={"#nav-applicants"}>Applicants</Nav.Link>
@@ -204,13 +204,13 @@ const ListingPage = () => {
                                         </Tab.Pane>
                                     </Tab.Content>
 
-                                    {/* <Tab.Content className="w-100">
+                                    <Tab.Content className="w-100">
                                 <Tab.Pane eventKey={"#nav-compatability"}>
                                     <div className="tab-content w-100" id="nav-tabContent">
                                         <CompatabilityTab listing={listing}></CompatabilityTab>
                                     </div>
                                 </Tab.Pane>
-                            </Tab.Content> */}
+                            </Tab.Content>
 
                                     <Tab.Content className="w-100">
                                         <Tab.Pane eventKey={"#nav-applicants"}>
@@ -220,7 +220,7 @@ const ListingPage = () => {
                                         </Tab.Pane>
                                     </Tab.Content>
                                 </div>
-                            </Tab.Container>
+                            </Tab.Container> */}
                             <ApplicationStatus listing={listing} formData={formData} setFormData={setFormData}></ApplicationStatus>
                             <Button
                                 className="btn btn-xl cta-btn-xl bg-primary-orange text-primary-cream mb-5 shadow-sm"

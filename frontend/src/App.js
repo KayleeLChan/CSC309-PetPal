@@ -18,6 +18,7 @@ import Listing from "./pages/Listings/Listing";
 import Search from "./pages/Search/Index";
 import SearchResults from "./pages/Search/Results";
 import UpdateShelter from "./pages/UpdateShelter/Index";
+import Register from "./pages/Register/Index";
 
 export default function App() {
   return (
@@ -26,7 +27,9 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="notifications" element={<Notification />} />
+          
           <Route path="accounts" element={<Login />} />
+          <Route path="accounts/registration" element={<Register />} />
           <Route path="accounts/registration/seeker" element={<RegisterSeeker />} />
           <Route path="accounts/registration/shelter" element={<RegisterShelter />} />
           <Route path="accounts/shelters/all" element={<ShelterList />} />

@@ -14,7 +14,6 @@ const AdoptionStatus = ({ listing }) => {
                 <h3 className="mb-0 responsive-heading">{capitalizedStatus}</h3>
                 <p className="m-0 fs-7 pt-2">Deadline for applications is {formattedDeadline}</p>
             </div>
-            {/* TODO: Put edit listing button for shelter type */}
         </div>
     );
 };

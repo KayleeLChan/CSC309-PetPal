@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 
 const PetCard = ({listing}) => {
+
   return (
     <>
       <div class="hide-xxl m-3 shadow overflow-auto carousel-card rounded-1">

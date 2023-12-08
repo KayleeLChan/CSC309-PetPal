@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, ListField
+from rest_framework.serializers import ModelSerializer
 from .models import Listing, ListingImage
 
 class ListingImageSerializer(ModelSerializer):
@@ -9,6 +9,7 @@ class ListingImageSerializer(ModelSerializer):
 
 class ListingSerializer(ModelSerializer):
     images = ListingImageSerializer(many=True, required=False)
+
     class Meta:
         model = Listing
         fields = '__all__'

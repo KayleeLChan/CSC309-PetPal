@@ -17,7 +17,6 @@ const Listing = () => {
     const fetchListing = async () => {
         try {
             setLoading(true);
-
             // Make request to backend
             const response = await fetch(`http://localhost:8000/listings/${id}/`,
                 {
