@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9xopgm!cdlf^ne-(mme52$&7m3)-e04$ku(vpp@8q_%df$$)rr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.vercel.app','now.sh', '0.0.0.0', 'localhost', '127.0.0.1']
 
@@ -86,12 +86,8 @@ WSGI_APPLICATION = 'petpal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'GeAfdDe151*f1a342Ae4g2ab156dE*Bd',
-        'HOST': 'roundhouse.proxy.rlwy.net',
-        'PORT': '54248',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

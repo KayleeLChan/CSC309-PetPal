@@ -12,6 +12,14 @@ const ShelterDropDowns = (props) => {
     }
 
     //change if we need to
+    function blogs(){
+      navigate(`/accounts/blogs/`)
+    }
+
+    function createBlog(){
+      navigate(`/accounts/blogs/create`)
+    }
+
     function manage(){
         navigate(`/listings/?shelter=${username}`)
     }
@@ -43,6 +51,10 @@ const ShelterDropDowns = (props) => {
             <NavDropdown.Item onClick={handleViewAll} className="font-plain">View All Shelters</NavDropdown.Item>
             <NavDropdown.Item onClick={review} className="font-plain">Your Reviews</NavDropdown.Item>
             <NavDropdown.Item onClick={shelter}className="font-plain">Your Shelter</NavDropdown.Item>
+          </NavDropdown>
+          <NavDropdown title="Blogs" id="shelter-dropdown" className="h1 fs-3 btn-cream m-0">
+            <NavDropdown.Item onClick={blogs} className="font-plain">View All Blogs</NavDropdown.Item>
+            <NavDropdown.Item onClick={createBlog} className="font-plain">Create Blog</NavDropdown.Item>
           </NavDropdown>
         </Nav>
     );
