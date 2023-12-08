@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="notifications" element={<Notification />} />
-          <Route path="applications/new/:id" element={<CreateApplication />} />
+          <Route path="applications/new/:petId" element={<CreateApplication />} />
           <Route path="applications/details/:id" element={<ApplicationDetails />} />
           <Route path="applications/editor/:id" element={<ApplicationDetails />} />
           <Route path="applications/" element={<ListApplications />} />
