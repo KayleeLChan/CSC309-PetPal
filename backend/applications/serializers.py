@@ -19,6 +19,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
 
     pet_listing_name = serializers.ReadOnlyField(source='pet_listing.name')
     pet_listing_animal = serializers.ReadOnlyField(source='pet_listing.animal')
+    pet_listing_location = serializers.ReadOnlyField(source='pet_listing.location')
     pet_listing_age = serializers.ReadOnlyField(source='pet_listing.age')
     pet_listing_sex = serializers.ReadOnlyField(source='pet_listing.sex')
     pet_listing_size = serializers.ReadOnlyField(source='pet_listing.size')

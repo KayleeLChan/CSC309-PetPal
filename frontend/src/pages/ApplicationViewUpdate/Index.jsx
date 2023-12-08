@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom/';
 import StatusBoxComponent from '../../components/applications/viewupdate/application-status-box';
 import ChatComponent from '../../components/applications/viewupdate/application-comments-box';
 import ApplicationSheetComponent from '../../components/applications/viewupdate/application-details';
@@ -11,7 +12,9 @@ function ApplicationDetails() {
     const [userAccountType, setUserAccountType] = useState({});
     const [userName, setUserName] = useState({});
     const [user, setUser] = useState({});
-    // const [userImage, setUserImage] = useState({});
+    const accessToken = localStorage.getItem('access_token');
+    const FORBIDDEN_STATUS_CODE = 403;
+    const navigate = useNavigate();
 
     // Fetch application data and user details based on the ID
     useEffect(() => {
@@ -20,9 +23,15 @@ function ApplicationDetails() {
                 // Fetch application data
                 const applicationResponse = await fetch(`http://localhost:8000/applications/details/${id}/`,
                 {
-                    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMTMxNDA0LCJpYXQiOjE3MDE5MjE4MDQsImp0aSI6IjdmOTQ4YmZmODFiMjQzYmFiNjhiM2M4NGVmN2FlZThmIiwidXNlcl9pZCI6MX0.4eFhRDwAJWRC_uSC8gyYapbxx2s12-il08jacj7pBcI", }
+                    headers: { Authorization: `Bearer ${accessToken}`, }
                 });
+
                 const applicationData = await applicationResponse.json();
+
+                if (applicationResponse.status === FORBIDDEN_STATUS_CODE) {
+                    navigate("/unauthorized");
+                }
+
                 console.log('data', applicationData);
                 setApplication(applicationData);
     
@@ -33,20 +42,19 @@ function ApplicationDetails() {
                     // Fetch user details from Django backend
                     const userResponse = await fetch(`http://localhost:8000/accounts/${userId}/profile/`,
                     {
-                        headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMTMxNDA0LCJpYXQiOjE3MDE5MjE4MDQsImp0aSI6IjdmOTQ4YmZmODFiMjQzYmFiNjhiM2M4NGVmN2FlZThmIiwidXNlcl9pZCI6MX0.4eFhRDwAJWRC_uSC8gyYapbxx2s12-il08jacj7pBcI", }
+                        headers: { Authorization: `Bearer ${accessToken}`, }
                     });
                     const userData = await userResponse.json();
+
+                    if (userResponse.status === FORBIDDEN_STATUS_CODE) {
+                        navigate("/unauthorized");
+                    }
     
                     // Set user details
                     setUserAccountType(userData.accounttype);
-                    // console.log('user data', userData);
-                    // console.log('account type', userData.accounttype);
-    
                     setUserName(userData.first_name);
                     setUser(userData);
                     
-                    // console.log('user', user);
-                    // setUserImage(userData.profilepic);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);

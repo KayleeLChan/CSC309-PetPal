@@ -18,7 +18,7 @@ const ApplicationPetCard = ({ application }) => {
               <Card.Title className="fs-4">Status</Card.Title>
               <Card.Text>{application.application_status}</Card.Text>
             </Card.Body>
-            
+
           </Card.Link>
         </Card>
       </div>

@@ -5,12 +5,13 @@ import ApplicationSortHeader from '../../components/applications/list/applicatio
 import ApplicationPetCard from '../../components/applications/list/application-pet-cards';
 import PaginationButtons from '../../components/pagination-buttons';
 
+
 const ListApplications = () => {
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
     const [applications, setApplications] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [searchParams, setSearchParams] = useSearchParams();
+    const FORBIDDEN_STATUS_CODE = 403;
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         setSearchParams({
@@ -31,7 +32,6 @@ const ListApplications = () => {
             ...query,
             ['sort_by']: e.target.id,
         });
-
         fetchApplications();
     };
 
@@ -40,15 +40,15 @@ const ListApplications = () => {
         () => ({
             page: parseInt(searchParams.get("page") ?? 1),
 
-            name: searchParams.get("name") ?? "",
-            location: searchParams.get("location") ?? "",
-            animal: searchParams.get("animal") ?? "",
-            breed: searchParams.get("breed") ?? "",
+            pet_listing_name: searchParams.get("pet_listing_name") ?? "",
+            pet_listing_location: searchParams.get("pet_listing_location") ?? "",
+            pet_listing_animal: searchParams.get("pet_listing_animal") ?? "",
+            pet_listing_breed: searchParams.get("pet_listing_breed") ?? "",
 
-            status: searchParams.get("status") ?? "available",
+            application_status: searchParams.get("application_status") ?? "available",
             sort_by: searchParams.get("sort_by") ?? "",
         }),
-        [searchParams]
+        [searchParams],
     );
 
     useEffect(() => {
@@ -57,17 +57,16 @@ const ListApplications = () => {
 
     const fetchApplications = async () => {
         try {
-            setLoading(true);
             // Set queryParams to pass into request
             const queryParams = new URLSearchParams({
                 page: query.page,
 
-                name: query.name,
-                location: query.location,
-                animal: query.animal,
-                breed: query.breed,
+                pet_listing_name: query.pet_listing_name,
+                pet_listing_location: query.pet_listing_location,
+                pet_listing_animal: query.pet_listing_animal,
+                pet_listing_breed: query.pet_listing_breed,
 
-                status: query.status,
+                application_status: query.application_status,
                 sort_by: query.sort_by,
             });
 
@@ -75,18 +74,21 @@ const ListApplications = () => {
             console.log(`http://localhost:8000/applications/?${queryParams}`);
             const response = await fetch(`http://localhost:8000/applications/?${queryParams}`)
             const data = await response.json();
+
+            if (response.status === FORBIDDEN_STATUS_CODE) {
+                navigate("/unauthorized");
+            }
+
             setApplications(data.results);
+            console.log(applications)
             console.log(data.count)
 
             setTotalPages(
                 Math.ceil(Number(data.count) / 15)
             );
 
-            setLoading(false);
-
         } catch (error) {
-            setLoading(false);
-            console.error('Error fetching notifications:', error);
+            console.error('Error fetching applications:', error);
         }
     };
 
@@ -108,16 +110,14 @@ const ListApplications = () => {
 
                                 {applications.map((application) => (
                                     <>
-                                        <ApplicationPetCard application={application}></ApplicationPetCard>
+                                        <ApplicationPetCard key={application.id} application={application}></ApplicationPetCard>
                                     </>
                                 ))}
                             </div>
 
-
                             <div className="d-flex w-100 justify-content-center">
                                 <PaginationButtons query={query} totalPages={totalPages} setSearchParams={setSearchParams} />
                             </div>
-
 
                         </div>
                     </div>

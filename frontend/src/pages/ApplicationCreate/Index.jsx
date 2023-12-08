@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { Form, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom/';
 // import UserInfoComponent from '../../components/applications/create/application-user-info';
 // import CompatibilityQuizComponent from '../../components/applications/create/application-compatibility-quiz';
 
@@ -11,6 +12,9 @@ function CreateApplication() {
     const [petInfo, setPetInfo] = useState('');
     const accessToken = localStorage.getItem('access_token');
     const userId = localStorage.getItem('user_id');
+
+    const FORBIDDEN_STATUS_CODE = 403;
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -37,9 +41,14 @@ function CreateApplication() {
         const fetchUserData = async () => {
             try {
                 const response = await fetch(`http://localhost:8000/accounts/${userId}/profile/`,
-                { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMTMxNDA0LCJpYXQiOjE3MDE5MjE4MDQsImp0aSI6IjdmOTQ4YmZmODFiMjQzYmFiNjhiM2M4NGVmN2FlZThmIiwidXNlcl9pZCI6MX0.4eFhRDwAJWRC_uSC8gyYapbxx2s12-il08jacj7pBcI", }
+                { headers: { Authorization: `Bearer ${accessToken}`, }
                 });
                 const userData = await response.json();
+
+                if (response.status === FORBIDDEN_STATUS_CODE) {
+                    navigate("/unauthorized");
+                }
+
                 setUserInfo(userData);
 
                 console.log('userdata', userData);
@@ -63,8 +72,13 @@ function CreateApplication() {
         const fetchPetDetails = async () => {
             try {
                 const response = await fetch(`http://localhost:8000/listings/${petId}`,
-                { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMTMxNDA0LCJpYXQiOjE3MDE5MjE4MDQsImp0aSI6IjdmOTQ4YmZmODFiMjQzYmFiNjhiM2M4NGVmN2FlZThmIiwidXNlcl9pZCI6MX0.4eFhRDwAJWRC_uSC8gyYapbxx2s12-il08jacj7pBcI", }
+                { headers: { Authorization: `Bearer ${accessToken}`, }
                 });
+
+                if (response.status === FORBIDDEN_STATUS_CODE) {
+                    navigate("/unauthorized");
+                }
+
                 const petData = await response.json();
                 setPetInfo(petData);
                 setPetName(petData.name);
@@ -114,7 +128,7 @@ function CreateApplication() {
             const response = await fetch(`http://localhost:8000/applications/new/${petId}/`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json', 
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMTMxNDA0LCJpYXQiOjE3MDE5MjE4MDQsImp0aSI6IjdmOTQ4YmZmODFiMjQzYmFiNjhiM2M4NGVmN2FlZThmIiwidXNlcl9pZCI6MX0.4eFhRDwAJWRC_uSC8gyYapbxx2s12-il08jacj7pBcI"
+                    Authorization: `Bearer ${accessToken}`
                 },
                 body: JSON.stringify(applicationData),
             });
@@ -125,6 +139,7 @@ function CreateApplication() {
             } else {
                 const responseData = await response.json();
                 console.error('Failed to submit application:', responseData);
+                navigate("/unauthorized");
             }
         } catch (error) {
             console.error('Error submitting application:', error);

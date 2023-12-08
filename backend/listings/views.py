@@ -117,7 +117,7 @@ class PetListingsListCreate(ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_class = ListingFilter
-    sort_by_fields = ['name', 'created_at']
+    # sort_by_fields = ['name', 'created_at']
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
