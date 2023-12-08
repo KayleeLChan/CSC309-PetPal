@@ -1,14 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom/';
 import { useState } from 'react';
-import LoginForm from '../../components/loginform';
 
 function Login() {
     const [error, setError] = useState("")
     const navigate = useNavigate();
 
     const handleClick = (event) =>
-        navigate("/accounts/registration/seeker")
+        navigate("/accounts/registration")
 
 
     function handle_login(event) {

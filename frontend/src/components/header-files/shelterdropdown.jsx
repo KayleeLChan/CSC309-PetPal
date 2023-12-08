@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ShelterDropDowns = (props) => {
     const navigate = useNavigate()
+    const username = localStorage.getItem('username');
 
     //my branch doesnt have this url rn it will when we merge
     function listings(){
@@ -12,7 +13,7 @@ const ShelterDropDowns = (props) => {
 
     //change if we need to
     function manage(){
-        navigate(`/listings`)
+        navigate(`/listings/?shelter=${username}`)
     }
 
     function create(){
@@ -20,8 +21,16 @@ const ShelterDropDowns = (props) => {
     }
 
     function shelter(){
-        navigate(`/accounts/shelter/${props.user_id}/profile`)
+        navigate(`/accounts/shelters/${props.user_id}`)
     }
+
+    function review(){
+      navigate(`/accounts/shelters/${props.user_id}/reviews`)
+  }
+
+    function handleViewAll(){
+      navigate(`/accounts/shelters`)
+      }
 
     return (
         <Nav className="me-auto mb-2 mb-lg-0">
@@ -31,8 +40,8 @@ const ShelterDropDowns = (props) => {
             <NavDropdown.Item  onClick={create} className="font-plain">Create Listing</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Shelter Management" id="shelter-dropdown" className="h1 fs-3 btn-cream m-0">
-            {/* add link for this one */}
-            <NavDropdown.Item className="font-plain">Your Reviews</NavDropdown.Item>
+            <NavDropdown.Item onClick={handleViewAll} className="font-plain">View All Shelters</NavDropdown.Item>
+            <NavDropdown.Item onClick={review} className="font-plain">Your Reviews</NavDropdown.Item>
             <NavDropdown.Item onClick={shelter}className="font-plain">Your Shelter</NavDropdown.Item>
           </NavDropdown>
         </Nav>

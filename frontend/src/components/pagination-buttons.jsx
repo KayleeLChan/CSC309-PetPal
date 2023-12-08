@@ -5,7 +5,7 @@ const PaginationButtons = ({ query, totalPages, setSearchParams }) => {
     const pageButtons = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     return (
-        <div className="text-center h-100 d-flex justify-content-center pb-5">
+        <div className="text-center h-100 d-flex justify-content-center py-5">
                             <div className="d-flex flex-row justify-content-between align-self-end">
                                 {query.page > 1 && query.page <= totalPages ? (
                                     <Button

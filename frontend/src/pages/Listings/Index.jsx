@@ -13,7 +13,10 @@ const ListingPage = () => {
     const [key, setKey] = useState("#nav-details");
     const [listing, setListing] = useState(null);
     const [images, setImages] = useState([]);
+    const [error, setError] = useState('');
     const accessToken = localStorage.getItem('access_token');
+    const accountType = localStorage.getItem('accounttype');
+    const username = localStorage.getItem('username');
 
     const [formData, setFormData] = useState({
         name: '',
@@ -112,10 +115,11 @@ const ListingPage = () => {
                     await uploadImages(id);
                 }
 
-                navigate(`/listings/view/${id || newData.id}`)
+                navigate(`/listings/${id || newData.id}`)
             } else {
                 // Handle the case where the update was not successful
                 console.error('Listing update failed.');
+                setError("You are one or more fields");
             }
         } catch (error) {
             console.error('Error updating listing:', error);
@@ -123,7 +127,7 @@ const ListingPage = () => {
     };
 
     const uploadImages = async (newID) => {
-        if (images.length === 0 && !id) {
+        if (images.length === 0 && (!id || listing.images.length === 0)) {
             const formData = new FormData();
             formData.append('image', await fetch("/imgs/Logo.png").then((res) => res.blob()), 'default-image.jpg');
 
@@ -172,6 +176,21 @@ const ListingPage = () => {
             }
         }
     };
+
+    if (!accessToken) {
+        navigate("/accounts");
+        return;
+    }
+    
+    if (accountType != "petshelter") {
+        navigate("/unauthorized");
+        return;
+    }
+
+    if (listing && listing.shelter.username != username) {
+        navigate("/unauthorized");
+        return;
+    }
 
     return (
         <>
@@ -222,6 +241,7 @@ const ListingPage = () => {
                                 </div>
                             </Tab.Container> */}
                             <ApplicationStatus listing={listing} formData={formData} setFormData={setFormData}></ApplicationStatus>
+                            {error ? <p className="pb-0">{error}</p> : <></>}
                             <Button
                                 className="btn btn-xl cta-btn-xl bg-primary-orange text-primary-cream mb-5 shadow-sm"
                                 type="button"

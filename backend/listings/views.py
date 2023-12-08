@@ -46,7 +46,7 @@ class ListingFilter(django_filters.FilterSet):
     age = django_filters.ChoiceFilter(choices=FILTER_AGE_CHOICES, initial='all', method='filter_age')
     size = django_filters.ChoiceFilter(choices=FILTER_SIZE_CHOICES, initial='all', method='filter_size')
     shelter = django_filters.CharFilter(
-        field_name='shelter__petshelter__sheltername',
+        field_name='shelter__username',
         lookup_expr='icontains'
     )
     # Sorts

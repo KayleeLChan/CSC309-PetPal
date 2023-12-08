@@ -30,7 +30,7 @@ function ShelterDetails() {
     <>
       <div data-bs-theme="petpal">
         <div className="main">
-          <DetailsTop shelterData={shelterData} />
+          <DetailsTop shelterData={shelterData} id={id} />
           <Mission shelterData={shelterData} />
         </div>
       </div>

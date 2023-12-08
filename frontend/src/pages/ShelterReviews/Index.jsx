@@ -34,7 +34,7 @@ function ShelterReviews() {
             // .then(data => console.log(data))
             .then(data => {
                 setComments(data)
-                setTotalPages(data.count)
+                setTotalPages(Math.ceil(Number(data.count) / 10))
             });
     }, [id, accessToken, query]);
 
@@ -68,7 +68,7 @@ function ShelterReviews() {
         <>
             <div data-bs-theme="petpal">
                 <div className="main">
-                    <DetailsTop shelterData={shelterData} />
+                    <DetailsTop shelterData={shelterData} id={id} />
                     {/* {console.log(commentsData)} */}
                     <ShelterReviewsSection commentsData={commentsData} shelterID={id} onCommentSubmit={handleCommentSubmit} setQuery={setQuery} query={query} totalPages={totalPages}/>
                 </div>

@@ -38,18 +38,18 @@ const Header = () => {
     // other logout logic
   }
 
-  function handleProfile(){
-    if(isSeeker){
-    navigate(`/accounts/seeker/${user_id}/profile`)
-    }
-    else{
-      navigate(`/accounts/shelter/${user_id}/profile`)
-    }
-  }
+  // function handleProfile(){
+  //   if(isSeeker){
+  //   navigate(`/accounts/seeker/${user_id}/profile`)
+  //   }
+  //   else{
+  //     navigate(`/accounts/shelter/${user_id}/profile`)
+  //   }
+  // }
 
-  function handleNotifications(){
-    navigate(`/notifications`)
-  }
+  // function handleNotifications(){
+  //   navigate(`/notifications`)
+  // }
 
   const fetchProfilePic = async () => {
     try {
@@ -95,7 +95,7 @@ const Header = () => {
           fetchProfilePic()
         }
 
-      },[isLoggedIn, isSeeker, isShelter, profilePic])
+      },[isLoggedIn, isSeeker, isShelter, profilePic, navigate])
 
   
     return (
@@ -110,7 +110,7 @@ const Header = () => {
 
             <NavbarMainSearch></NavbarMainSearch>
             <NavbarToggleSearch></NavbarToggleSearch>
-              {isLoggedIn && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout} handleProfile={handleProfile}/>}
+              {isLoggedIn && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout} />}
               {!isLoggedIn && <AnonCorner />}
           </Navbar.Collapse>
         </Navbar>

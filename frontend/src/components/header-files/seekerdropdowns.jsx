@@ -39,7 +39,7 @@ const SeekerDropDowns = (props) => {
 
 
       function handleViewAll(){
-      navigate(`/accounts/shelters/all`)
+      navigate(`/accounts/shelters`)
       }
 
       function handleAdoptNow(){

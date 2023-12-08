@@ -29,9 +29,9 @@ function ViewSeekerProfile(props) {
                 </div>
                 <div className="d-flex flex-column bg-primary-brown align-items-center w-50 two-col-child justify-content-center">
                     <UpdatePhoto data={props.data}/>
+                    <button className="btn btn-lg btn-primary-orange m-3 shadow-sm" onClick={props.handleDelete}>Delete Account</button>
                 </div>
                 </div>
-                <button className="btn btn-lg btn-primary-orange m-3 shadow-sm" onClick={props.handleDelete}>Delete Account</button>
             </div>
         </>
     );

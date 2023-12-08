@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import NotificationItem from '../../components/notifications/notification-item';
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import PaginationButtons from '../../components/pagination-buttons';
 import { Dropdown } from 'react-bootstrap';
 
 const Notification = () => {
+    const navigate = useNavigate();
     const accessToken = localStorage.getItem('access_token');
     const [loading, setLoading] = useState(true);
     const [notifications, setNotifications] = useState([]);
@@ -67,6 +68,11 @@ const Notification = () => {
             prevNotifications.filter((notification) => notification.id !== deletedNotificationId)
         );
     };
+
+    if (!accessToken) {
+        navigate("/accounts");
+        return;
+    }
 
     return (
         <>

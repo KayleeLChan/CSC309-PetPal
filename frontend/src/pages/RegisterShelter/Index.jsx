@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom/';
+import { Form } from 'react-bootstrap';
 
 function RegisterShelter(){
     const [account_type, setAccountType] = useState('petshelter')
@@ -175,13 +176,25 @@ function RegisterShelter(){
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="mission">Mission</label>
                             <div className="col-sm-10">
-                            <input type="text" name="mission" className="form-control bg-primary-cream font-plain" id="mission" required />
+                            <Form.Control as="textarea"
+                            placeholder="Shelter mission statement"
+                            className="font-plain"
+                            rows={5}
+                            name="mission"
+                            id="mission" required />
+                            {/* <input type="textarea" name="mission" className="form-control bg-primary-cream font-plain" rows="5" id="mission" required /> */}
                             </div>
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="policy">Policy</label>
                             <div className="col-sm-10">
-                            <input type="text" name="policy" className="form-control bg-primary-cream font-plain" id="policy" required />
+                            <Form.Control as="textarea"
+                            placeholder="Shelter adoption policies"
+                            className="font-plain"
+                            rows={5}
+                            name="policy"
+                            id="policy" required />
+                            {/* <input type="textarea" name="policy" className="form-control bg-primary-cream font-plain" id="policy" required /> */}
                             </div>
                         </div>
                         <div className="form-group row text-primary-cream">

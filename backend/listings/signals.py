@@ -14,14 +14,6 @@ def notify_pet_seekers_on_listing_save(sender, instance, **kwargs):
 
     # Check for matches and send notifications
     for seeker in pet_seekers:
-        print("curr seeker: " + seeker.username)
-        print("listing: " + listing.animal + " seeker: " + seeker.pref_animal);
-        print("listing: " + listing.breed + " seeker: " + seeker.pref_breed);
-        print("listing: " + listing.age + " seeker: " + seeker.pref_age);
-        print("listing: " + listing.colour + " seeker: " + seeker.pref_colour);
-        print("listing: " + listing.size + " seeker: " + seeker.pref_size);
-        print("listing: " + listing.sex + " seeker: " + seeker.pref_sex);
-        print("listing: " + listing.personality + " seeker: " + seeker.pref_personality);
         if (
             (seeker.pref_animal == listing.animal) and
             (seeker.pref_breed == listing.breed) and

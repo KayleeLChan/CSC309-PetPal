@@ -474,14 +474,6 @@ $grid-breakpoints: (
         max-height: 15vw;
     }
 
-    .dropdown-toggle::after {
-        display: none !important;
-    }
-
-    .dropdown-toggle::before {
-        display: none !important;
-    }
-
     #adopt-dropdown {
         color: $primary-cream !important;
     }
@@ -492,6 +484,14 @@ $grid-breakpoints: (
 
     #dropdown-button-drop-end {
         background-color: rgba(0, 0, 0, 0);
+    }
+
+    #dropdown-button-drop-end::after {
+        display: none !important;
+    }
+
+    #dropdown-button-drop-start::before {
+        display: none !important;
     }
 
     #adopt-dropdown:hover {

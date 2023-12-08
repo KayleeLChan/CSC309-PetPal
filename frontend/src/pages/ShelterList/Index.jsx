@@ -14,7 +14,7 @@ function ShelterList() {
     }, []);
 
     function handleClick(id){
-        navigate(`/accounts/shelter/${id}/details`)
+        navigate(`/accounts/shelters/${id}`)
     }
 
 

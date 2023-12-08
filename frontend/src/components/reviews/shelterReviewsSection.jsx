@@ -1,6 +1,7 @@
 import React from 'react';
 import Comment from './comment';
 import CommentBar from './commentBar';
+import PaginationButtons from '../pagination-buttons';
 
 function ShelterReviewsSection(props) {
     const { commentsData, shelterID, onCommentSubmit, setQuery, query, totalPages} = props;
@@ -42,9 +43,7 @@ function ShelterReviewsSection(props) {
                             ))}
                         </div>
                     </div>
-                    <button type="button" className="btn btn-lg btn-primary-cream m-3 shadow-sm" onClick={handlePageChangePrev}>Prev</button>
-                    <button type="button" className="btn btn-lg btn-primary-cream m-3 shadow-sm" onClick={handlePageChangeNext}>Next</button>
-                    <p className="mb-1 text-primary-brown">Page: {query.page} / {Math.ceil(totalPages / 5)}</p>
+                    <PaginationButtons query={query} setSearchParams={setQuery} totalPages={totalPages} />
 
             </div>
         </>

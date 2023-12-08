@@ -5,6 +5,7 @@ import { DropdownButton, Dropdown, ButtonGroup } from 'react-bootstrap';
 function UserCorner(props) {
   const navigate = useNavigate();
   const user_id = localStorage.getItem('user_id');
+  const accessToken = localStorage.getItem('access_token');
   const [notifAlert, setNotifAlert] = useState(false);
 
   const handleViewProfile = () => {
@@ -21,7 +22,7 @@ function UserCorner(props) {
       try {
         const response = await fetch("http://localhost:8000/notifications/?filter=unread",
           {
-            headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMDk3NjE0LCJpYXQiOjE3MDE4ODgwMTQsImp0aSI6ImQ3ZWMxNjViNjEyYjQ5ZDc4NTkwMGQyM2EzMzI0M2Y2IiwidXNlcl9pZCI6MX0.Fv6GKpDQbb5GohtlAb1ukdA_RkOF4EMlvUX6FWCRqgY", }
+            headers: { Authorization: `Bearer ${accessToken}`, }
           });
         const data = await response.json();
         if (data.results && data.results.length > 0) {
@@ -61,7 +62,7 @@ function UserCorner(props) {
         }
       >
         <Dropdown.Item eventKey="1" onClick={handleViewProfile}>View Profile</Dropdown.Item>
-        <Dropdown.Item eventKey="2" onClick={handleNotifications}>Notifications {notifAlert ? <div class="ratio ratio-1x1 w-7 notif-dot rounded-circle position-absolute top-0 start-65"></div> : <></>}</Dropdown.Item>
+        <Dropdown.Item eventKey="2" onClick={handleNotifications}>Notifications {notifAlert ? <div class="ratio ratio-1x1 w-7 notif-dot rounded-circle position-absolute bottom-50 start-65"></div> : <></>}</Dropdown.Item>
         <Dropdown.Item eventKey="3" onClick={props.handleLogout}>Log Out</Dropdown.Item>
       </DropdownButton>
       <DropdownButton
@@ -81,7 +82,7 @@ function UserCorner(props) {
         </>}
       >
         <Dropdown.Item eventKey="1" onClick={handleViewProfile}>View Profile</Dropdown.Item>
-        <Dropdown.Item eventKey="2" onClick={handleNotifications}>Notifications {notifAlert ? <div class="ratio ratio-1x1 w-7 notif-dot rounded-circle position-absolute top-0 start-65"></div> : <></>}</Dropdown.Item>
+        <Dropdown.Item eventKey="2" onClick={handleNotifications}>Notifications {notifAlert ? <div class="ratio ratio-1x1 w-7 notif-dot rounded-circle position-absolute bottom-50 start-65"></div> : <></>}</Dropdown.Item>
         <Dropdown.Item eventKey="3" onClick={props.handleLogout}>Log Out</Dropdown.Item>
       </DropdownButton>
     </>

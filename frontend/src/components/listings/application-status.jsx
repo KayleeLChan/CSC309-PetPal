@@ -34,6 +34,7 @@ const ApplicationStatus = ({listing, formData, setFormData}) => {
                                 <option value="" disabled>(required)</option>
                                 <option value="available">Available</option>
                                 <option value="adopted">Adopted</option>
+                                <option value="pending">Pending</option>
                                 <option value="withdrawn">Withdrawn</option>
                             </Form.Select>
                         </Form.Group>
@@ -43,7 +44,6 @@ const ApplicationStatus = ({listing, formData, setFormData}) => {
                             <Form.Control type="date" placeholder="Application Deadline"
                             value={formData.deadline}
                             onChange={(e) => setFormData({ ...formData, deadline: e.target.value })}/>
-                            <p className="fs-7 text-start mb-0 mt-2">Application Status will automatically change to Pending once the application deadline passes.</p>
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>

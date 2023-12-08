@@ -19,16 +19,16 @@ function UpdatePhoto(props) {
 
     useEffect(() => {
         console.log("data on call", props.data.profilepic);
-        if(accounttype === 'petseeker'){
+        if (accounttype === 'petseeker') {
             setIsSeeker(true)
         }
         if (props.data.profilepic) {
             setPhotoPath(props.data.profilepic);
         }
-        else if(isSeeker){
+        else if (isSeeker) {
             setPhotoPath('/imgs/pfp.jpg')
         }
-        else{
+        else {
             setPhotoPath('/imgs/shelterpfp.png')
         }
     }, [props.data.profilepic]);
@@ -53,7 +53,7 @@ function UpdatePhoto(props) {
         if (!accessToken) {
             navigate(`/accounts`);
             return;
-          }
+        }
 
         fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
             method: 'PUT',
@@ -65,7 +65,7 @@ function UpdatePhoto(props) {
             .then(response => {
                 console.log(response);
                 if (response.ok) {
-                    getRequest();   
+                    getRequest();
                 }
                 return response.json();
             })
@@ -78,10 +78,11 @@ function UpdatePhoto(props) {
 
     const getRequest = async () => {
         try {
-        const profile = await fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }});
+            const profile = await fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
             const data = await profile.json();
             setPhotoPath(data.profilepic);
         } catch (error) {
@@ -90,27 +91,19 @@ function UpdatePhoto(props) {
     }
 
     return (
-        <>
-            <div data-bs-theme="petpal">
-                <div className="main">
-
-                    <div className="paddingify">
-                        <div className="w-100 h-100">
-                            <img src={photoPath} className="rounded-circle" width="300px" height="300px" alt="Profile Picture" />
-                        </div>
-                        <form>
-                            <div className="text-primary-cream">
-                                <label htmlFor="profilepic">Change Profile Photo</label>
-                                <div>
-                                    <input type="file" className="form-control bg-primary-cream font-plain" id="profilepic" onChange={handlePhotoChange} />
-                                </div>
-                            </div>
-                        </form>
+        <div className="d-flex flex-column justify-content-center align-items-center mb-5">
+            <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                <img src={photoPath} className="rounded-circle text-center" width="300px" height="300px" alt="Profile Picture" />
+            </div>
+            <form>
+                <div className="text-primary-cream">
+                    <label htmlFor="profilepic">Change Profile Photo</label>
+                    <div>
+                        <input type="file" className="form-control bg-primary-cream font-plain" id="profilepic" onChange={handlePhotoChange} />
                     </div>
                 </div>
-            </div>
-        </>
-    );
-}
+            </form>
+        </div>
+)};
 
 export default UpdatePhoto;
