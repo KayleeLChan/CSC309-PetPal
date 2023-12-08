@@ -12,6 +12,7 @@ import ShelterList from "./pages/ShelterList/Index";
 import ShelterDetails from "./pages/ShelterDetails/Index";
 import ShelterReviews from "./pages/ShelterReviews/Index";
 import BlogList from "./pages/BlogList/Index";
+import BlogDetails from "./pages/BlogDetails/Index";
 
 import ListingPage from "./pages/Listings/Index";
 import Listing from "./pages/Listings/Listing";
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="accounts/shelters/:id" element={<ShelterDetails />} />
           <Route path="accounts/shelters/:id/reviews" element={<ShelterReviews />} />
           <Route path="accounts/blogs" element={<BlogList />} />
+          <Route path="accounts/blogs/:id" element={<BlogDetails />} />
           {/* Accounts pages */}
 
           {/* Listings pages */}
