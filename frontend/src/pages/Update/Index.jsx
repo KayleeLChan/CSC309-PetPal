@@ -15,6 +15,11 @@ function UpdateSeeker(){
     
 
 function handleDelete(){
+      if (!accessToken) {
+        navigate(`/accounts`);
+        return;
+      }
+
       fetch(`http://localhost:8000/accounts/${id}/deletion/`, {
       method: 'DELETE',
       headers: {

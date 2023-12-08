@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom/';
 
 
 
@@ -11,6 +12,8 @@ function UpdatePhoto(props) {
     const accounttype = localStorage.getItem('accounttype');
     const [isSeeker, setIsSeeker] = useState(false)
     const [error, setError] = useState("")
+    const navigate = useNavigate()
+
 
 
 
@@ -46,6 +49,12 @@ function UpdatePhoto(props) {
     const putRequest = async () => {
         const formData = new FormData();
         formData.set("profilepic", photo)
+
+        if (!accessToken) {
+            navigate(`/accounts`);
+            return;
+          }
+
         fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
             method: 'PUT',
             headers: {

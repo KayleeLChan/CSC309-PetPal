@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom/';
 
 
 function UpdateShelterProfile(props) {
@@ -9,11 +10,17 @@ function UpdateShelterProfile(props) {
     console.log(id)
     const [error, setError] = useState("")
     const accessToken = localStorage.getItem('access_token');
+    const navigate = useNavigate()
 
     
     function handleSave(event){
         event.preventDefault();
-        console.log("save")
+
+        if (!accessToken) {
+            navigate(`/accounts`);
+            return;
+          }
+
         const formData = new FormData(event.target);
         for (const [key, value] of formData.entries()) {
             if (!value) {
