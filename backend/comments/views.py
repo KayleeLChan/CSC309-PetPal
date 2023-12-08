@@ -19,7 +19,7 @@ from django.core.exceptions import PermissionDenied
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = 'page_size'
-    max_page_size = 30
+    max_page_size = 10
 
 class CommentListCreateView(ListCreateAPIView):
     serializer_class = CommentSerializer
@@ -38,7 +38,15 @@ class CommentListCreateView(ListCreateAPIView):
             if self.request.user not in involved_users:
                 raise PermissionDenied("You do not have permission to access this view.")
         
-        new_comment = serializer.save(author=self.request.user, object_id=object_id, content_type=comment_object, content_model=model)
+        new_comment = serializer.save(
+            author=self.request.user, 
+            object_id=object_id, 
+            content_type=comment_object, 
+            content_model=model, 
+            author_name=self.request.user.username, 
+            profilepic=self.request.user.profilepic, 
+            accounttype=self.request.user.accounttype
+        )
 
         if model == "shelter":
             comment_content = "A new comment has been added to your shelter!"

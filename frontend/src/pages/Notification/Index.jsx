@@ -1,20 +1,23 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import NotificationItem from '../../components/notifications/notification-item';
-import { useSearchParams } from "react-router-dom";
-import { Button } from 'react-bootstrap';
+import { useSearchParams, useNavigate } from "react-router-dom";
+import PaginationButtons from '../../components/pagination-buttons';
+import { Dropdown } from 'react-bootstrap';
 
 const Notification = () => {
+    const navigate = useNavigate();
+    const accessToken = localStorage.getItem('access_token');
     const [loading, setLoading] = useState(true);
     const [notifications, setNotifications] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [searchParams, setSearchParams] = useSearchParams();
-    const pageButtons = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     // useMemo to store search parameters
     const query = useMemo(
         () => ({
             page: parseInt(searchParams.get("page") ?? 1),
-            filter : searchParams.get("filter") ?? "all",
+            filter: searchParams.get("filter") ?? "all",
+            //TODO: Make errors on Put and Create
         }),
         [searchParams]
     );
@@ -23,6 +26,15 @@ const Notification = () => {
         // Fetch the list of notifications when the component mounts
         fetchNotifications();
     }, [query]);
+
+    const handleFilter = (e) => {
+        console.log(e.target.id);
+        setSearchParams((prevSearchParams) => {
+            const newSearchParams = new URLSearchParams(prevSearchParams);
+            newSearchParams.set("filter", e.target.id);
+            return newSearchParams;
+        });
+    }
 
     const fetchNotifications = async () => {
         try {
@@ -36,10 +48,10 @@ const Notification = () => {
             // Make request to backend
             const response = await fetch(`http://localhost:8000/notifications/?${queryParams}`,
                 {
-                    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNjc2NTAzLCJpYXQiOjE3MDE0NjY5MDMsImp0aSI6ImEyMDA4OWY2NzY3ZTRjYmNiYjdhYzRhNTU1NWViMzdiIiwidXNlcl9pZCI6MX0.Em63InqkhayO9AFzGVAy1Y7B-FvPysNxG7--1yWFPJ4", }
-                }); //TODO: Make authorization better later
+                    headers: { Authorization: `Bearer ${accessToken}`, }
+                });
             const data = await response.json();
-            setNotifications(data.results); 
+            setNotifications(data.results);
             setTotalPages(
                 Math.ceil(Number(data.count) / 10)
             );
@@ -57,6 +69,11 @@ const Notification = () => {
         );
     };
 
+    if (!accessToken) {
+        navigate("/accounts");
+        return;
+    }
+
     return (
         <>
             <div data-bs-theme="petpal">
@@ -64,6 +81,17 @@ const Notification = () => {
                     <div className="d-flex p-3 px-5 my-10 bg-cream flex-column rounded shadow notif-col">
                         <h1 className="fs-0 w-75 pb-2 align-self-center border-bottom border-3 text-center hide-md">Notifications</h1>
                         <h1 className="fs-0 w-100 pb-2 align-self-center border-bottom border-3 text-center show-sm">Notifications</h1>
+                        <Dropdown className="mt-3 mt-md-0">
+                            <Dropdown.Toggle variant="primary-cream" id="dropdown-basic">
+                                FILTER BY
+                                <span className="ms-2 text-decoration-underline">{query.filter}</span>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="all">All</Dropdown.Item>
+                                <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="read">Read</Dropdown.Item>
+                                <Dropdown.Item onClick={(e) => handleFilter(e)} className="text-primary-brown" id="unread">Unread</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
 
                         {/* If fetching from database, show Loading..., otherwise, list notifications */}
                         {loading ? (<p className="text-center">Loading...</p>) : (
@@ -78,65 +106,7 @@ const Notification = () => {
                             </>
                         )}
 
-                        <div className="text-center h-100 d-flex justify-content-center">
-                            <div className="d-flex flex-row justify-content-between align-self-end">
-                                {query.page > 1 && query.page <= totalPages ? (
-                                    <Button
-                                        variant="primary-cream"
-                                        onClick={() =>
-                                            setSearchParams({ ...query, page: query.page - 1 })
-                                        }
-                                        className="mx-1"
-                                    >
-                                        &lt;
-                                    </Button>
-                                ) : (
-                                    <Button
-                                        variant="primary-cream"
-                                        onClick={() =>
-                                            setSearchParams({ ...query, page: query.page - 1 })
-                                        }
-                                        className="mx-1"
-                                        disabled
-                                    >
-                                        &lt;
-                                    </Button>
-                                )}
-                                
-                                {pageButtons.map((pageNumber) => (
-                                    <Button
-                                        variant="primary-cream"
-                                        onClick={() => setSearchParams({ ...query, page: pageNumber })}
-                                        className="mx-1"
-                                    >
-                                        {pageNumber}
-                                    </Button>
-                                ))}
-
-                                {query.page < totalPages ? (
-                                    <Button
-                                        variant="primary-cream"
-                                        onClick={() =>
-                                            setSearchParams({ ...query, page: query.page + 1 })
-                                        }
-                                        className="mx-1"
-                                    >
-                                        &gt;
-                                    </Button>
-                                ) : (
-                                    <Button
-                                        variant="primary-cream"
-                                        onClick={() =>
-                                            setSearchParams({ ...query, page: query.page + 1 })
-                                        }
-                                        className="mx-1"
-                                        disabled
-                                    >
-                                        &gt;
-                                    </Button>
-                                )}
-                            </div>
-                        </div>
+                        <PaginationButtons query={query} setSearchParams={setSearchParams} totalPages={totalPages} />
                     </div>
                 </div>
             </div>

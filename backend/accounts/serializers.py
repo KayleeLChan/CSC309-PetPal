@@ -161,11 +161,11 @@ class ShelterSerializer(serializers.ModelSerializer):
 class ShelterDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PetShelter
-        fields = ['profilepic','sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy']
+        fields = ['profilepic','sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy', 'date_joined', 'phonenumber', 'email']
 
 class ShelterListSerializer(serializers.ModelSerializer):
     class Meta:
         model = PetShelter
-        fields = ['sheltername']  
+        fields = ['sheltername', 'id']  
 
 
