@@ -18,7 +18,7 @@ const ImgCarouselSmall = ({images}) => {
   };
 
   return (
-    <div className="container vw-50 show-lg">
+    <div className="container vw-50 show-md">
       <Carousel id="petSmallCarousel" activeIndex={index} onSelect={handleSelect} interval={null} keyboard={false} controls={false} indicators={false}>
         {images.map((image) => (
           <Carousel.Item>

@@ -331,6 +331,11 @@
 [data-bs-theme=petpal] .rounded-circle {
   aspect-ratio: 1/1;
 }
+[data-bs-theme=petpal] .detail-img {
+  aspect-ratio: 1/1;
+  max-width: 15vw;
+  max-height: 15vw;
+}
 [data-bs-theme=petpal] #adopt-dropdown {
   color: #FFEFD0 !important;
 }
@@ -421,6 +426,10 @@
     width: 80px !important;
     height: 80px !important;
     max-width: 80px !important;
+  }
+  [data-bs-theme=petpal] .detail-img {
+    max-width: 30vw;
+    max-height: 30vw;
   }
 }
 @media (max-width: 1247.98px) {

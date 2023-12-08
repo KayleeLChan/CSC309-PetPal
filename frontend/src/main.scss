@@ -468,6 +468,12 @@ $grid-breakpoints: (
         aspect-ratio: 1/1;
     }
 
+    .detail-img {
+        aspect-ratio: 1/1;
+        max-width: 15vw;
+        max-height: 15vw;
+    }
+
     #adopt-dropdown {
         color: $primary-cream !important;
     }
@@ -588,6 +594,11 @@ $grid-breakpoints: (
             width: 80px !important;
             height: 80px !important;
             max-width: 80px !important;
+        }
+
+        .detail-img {
+            max-width: 30vw;
+            max-height: 30vw;
         }
     }
 
