@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+import { Link } from 'react-router-dom';
+
 function BlogList() {
 
     const [data, setData] = useState([]);
@@ -31,7 +33,9 @@ function BlogList() {
                     {/* {console.log(data)} */}
                     {data.map(blog => (
                         <div className="d-flex flex-row pt-5 pb-5" key={blog.id}>
-                            <p className="pe-5 fs-2">{blog.blog_title}</p>
+                            <Link to={`/blogs/${blog.id}`} className="pe-5 fs-2">
+                                <p className="pe-5 fs-2">"{blog.blog_title}" by {blog.author_name}</p>
+                            </Link>
                             {/* <p className="pe-5 fs-2">{blog.text}</p> */}
                             {/* Render other blog details as needed */}
                         </div>
