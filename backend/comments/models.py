@@ -4,10 +4,15 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
 class Comment(models.Model):
+    ACCOUNT_TYPE_CHOICES = [("petseeker", "Pet Seeker"), ("petshelter", "Pet Shelter")]
+
     text = models.TextField()
     creation_time = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='comments', null=True) 
     # if user that comments is deleted, it will reflect that user has been deleted
+    author_name = models.CharField(max_length=40, null=True) # new; might new more?
+    profilepic = models.ImageField(upload_to='images/', blank=True) # new
+    accounttype = models.CharField(max_length=15, choices=ACCOUNT_TYPE_CHOICES, null=True) # new
 
     # comment id is the django generated object ID
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)

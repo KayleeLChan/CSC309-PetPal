@@ -8,7 +8,6 @@ from django.contrib.auth.models import Group
 from rest_framework import permissions
 
 
-
 class Account(AbstractUser):
 # username, password, email already included
     ACCOUNT_TYPE_CHOICES = [("petseeker", "Pet Seeker"), ("petshelter", "Pet Shelter")]

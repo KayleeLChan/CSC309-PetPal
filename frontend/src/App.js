@@ -10,6 +10,8 @@ import Error404 from "./pages/Errors/404";
 import Error403 from "./pages/Errors/403";
 import ShelterList from "./pages/ShelterList/Index";
 import ShelterDetails from "./pages/ShelterDetails/Index";
+import ShelterReviews from "./pages/ShelterReviews/Index";
+import BlogList from "./pages/BlogList/Index";
 
 import ListingPage from "./pages/Listings/Index";
 import Listing from "./pages/Listings/Listing";
@@ -34,6 +36,8 @@ export default function App() {
           <Route path="accounts/:id" element={<Update />} />
           <Route path="accounts/shelters" element={<ShelterList />} />
           <Route path="accounts/shelters/:id" element={<ShelterDetails />} />
+          <Route path="accounts/shelters/:id/reviews" element={<ShelterReviews />} />
+          <Route path="accounts/blogs" element={<BlogList />} />
           {/* Accounts pages */}
 
           {/* Listings pages */}
