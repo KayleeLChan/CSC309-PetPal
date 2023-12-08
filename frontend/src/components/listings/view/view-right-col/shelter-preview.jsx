@@ -52,7 +52,7 @@ const ShelterPreview = ({ shelterID }) => {
                         </p>
                     </div>
 
-                    <a className="align-self-center w-50 m-3 mt-0" href={`http://localhost:3000/accounts/shelter/${shelterID}/details`}>
+                    <a className="align-self-center w-50 m-3 mt-0" href={`/accounts/shelters/${shelterID}`}>
                         <Button variant="cream" className="btn btn-lg w-100 shadow-lg" type="button">
                             Learn More
                         </Button>

@@ -18,7 +18,7 @@ const ListingRightCol = ({ listing }) => {
       <AdoptionStatus listing={listing}></AdoptionStatus>
 
       <ShelterPreview shelterID={listing.shelter}></ShelterPreview>
-      {userID == listing.shelter ? (<a href={`http://localhost:3000/listings/update/${listing.id}`}>
+      {userID == listing.shelter ? (<a href={`/listings/${listing.id}/update`}>
         <Button className="btn btn-lg cta-btn-xl m-3 mb-5 shadow-sm" type="button" variant="primary-orange">
           Edit Listing
         </Button>

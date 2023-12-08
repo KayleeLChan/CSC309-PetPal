@@ -104,7 +104,7 @@ const Header = () => {
 
             <NavbarMainSearch></NavbarMainSearch>
             <NavbarToggleSearch></NavbarToggleSearch>
-              {isLoggedIn && isSeeker && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout} handleProfile={handleProfile}/>}
+              {isLoggedIn && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout} handleProfile={handleProfile}/>}
               {!isLoggedIn && <AnonCorner />}
           </Navbar.Collapse>
         </Navbar>

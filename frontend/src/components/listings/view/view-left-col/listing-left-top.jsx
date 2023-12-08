@@ -3,6 +3,7 @@ import ImgCarouselSmall from '../../../carousels/img-carousel-small';
 import ImgCarousel from '../../../carousels/img-carousel';
 
 const ListingLeftTop = ({ listing }) => {
+  console.log(listing);
   return (
     <>
       {/* Title */}

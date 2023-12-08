@@ -2,12 +2,13 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 
 const PetCard = ({listing}) => {
+  console.log("listing", listing);
 
   return (
     <>
       <div class="hide-xxl m-3 shadow overflow-auto carousel-card rounded-1">
         <Card className="text-center rounded-1 w-100 h-100">
-          <Card.Link href={`https://twizzy-petpal.vercel.app/listings/view/${listing.id}`} className="w-100 h-100 carousel-card-content">
+          <Card.Link href={`/listings/${listing.id}`} className="w-100 h-100 carousel-card-content">
             <Card.Title className="fs-4 px-4 pt-3">{listing.name}</Card.Title>
             <div className="img-bg p-0">
             <Card.Img variant="top" src={listing.images[0].image} className="rounded-1 card-img p-0 px-5" />
@@ -25,7 +26,7 @@ const PetCard = ({listing}) => {
 
       <div className="show-xl m-3 shadow overflow-auto carousel-card rounded-1">
         <Card className="text-center rounded-1">
-          <Card.Link href={`https://twizzy-petpal.vercel.app/listings/view/${listing.id}`}>
+          <Card.Link href={`/listings/${listing.id}`}>
             <Card.Title className="fs-6 px-4 pt-3">{listing.name}</Card.Title>
             <Card.Img variant="top" src={listing.images[0].image} className="py-0 rounded-1 card-img" />
             <Card.Body className="d-flex flex-column align-items-center">

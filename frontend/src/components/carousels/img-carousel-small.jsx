@@ -17,6 +17,8 @@ const ImgCarouselSmall = ({images}) => {
     setIndex((index + 1) % images.length);
   };
 
+
+  console.log("smol", images);
   return (
     <div className="container vw-50 show-md">
       <Carousel id="petSmallCarousel" activeIndex={index} onSelect={handleSelect} interval={null} keyboard={false} controls={false} indicators={false}>

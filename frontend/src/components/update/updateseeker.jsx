@@ -22,13 +22,19 @@ function UpdateSeekerProfile(props) {
         formData.set('pref_size', size);
         formData.set('pref_personality', personality);
         formData.set('pref_age', age);
+        const keysToDelete = [];
+
         for (const [key, value] of formData.entries()) {
             if (!value) {
-              formData.delete(key);
+                console.log("marking for deletion", key);
+                keysToDelete.push(key);
             }
         }
-        console.log(`http://127.0.0.1:8000/accounts/${id}/profile/`)
-    
+
+        for (const keyToDelete of keysToDelete) {
+            console.log("deleting", keyToDelete);
+            formData.delete(keyToDelete);
+        }    
     
         fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
                 method: 'PUT',
@@ -127,7 +133,7 @@ function UpdateSeekerProfile(props) {
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="age">Preferred Age</label>
-                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5 mx-3"
                                 aria-label="age"
                                 id="age"
                                 onChange={(e) => setAge(e.target.value)}>
@@ -140,7 +146,7 @@ function UpdateSeekerProfile(props) {
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="size">Preferred Size</label>
-                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5 mx-3"
                                 aria-label="size"
                                 id="size"
                                 onChange={(e) => setSize(e.target.value)}>
@@ -152,7 +158,7 @@ function UpdateSeekerProfile(props) {
                             </Form.Select>
                         </div>
                         <label className="row-form-label text-primary-cream h5" htmlFor="sex">Preferred Sex</label>
-                        <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                        <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5 mx-1"
                                 aria-label="sex"
                                 id="sex"
                                 onChange={(e) => setSex(e.target.value)}>
@@ -162,7 +168,7 @@ function UpdateSeekerProfile(props) {
                             </Form.Select>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="personality">Preferred Personality</label>
-                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5 mx-3"
                                 aria-label="personality"
                                 id="personality"
                                 onChange={(e) => setPersonality(e.target.value)}>

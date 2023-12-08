@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom/';
 
 function RegisterShelter(){
-    const [account_type, setAccountType] = useState('')
+    const [account_type, setAccountType] = useState('petshelter')
     const [error, setError] = useState("")
     const navigate = useNavigate();
     const [photo, setPhoto] = useState(null);
@@ -15,14 +15,7 @@ function RegisterShelter(){
     const [isValError, setisValError] = useState(false)
 
 
-    const handleAccountRadio = (event) =>{
-        if(event.target.value === "petshelter"){
-            setAccountType(event.target.value);
-        }
-        else{
-            navigate('/accounts/registration/seeker')
-        }
-    }
+    // setAccountType("petshelter");
 
     const handlePhotoChange = (event) => {
         if(event.target.files[0]){
@@ -107,15 +100,6 @@ function RegisterShelter(){
                     <div className="d-flex w-50 flex-column pt-5 align-items-center justify-center bg-primary-brown">
                         <h1 className="text-primary-cream">Welcome to PetPal!</h1>
                         <form onSubmit={handleSubmit}>
-                        <label className="row-form-label text-primary-cream h5" htmlFor="account_type">Account Type</label>
-                        <div className="form-check" id="account_type">
-                            <input className="form-check-input bg-primary-orange" type="radio" name="radio" id="petseekerradio" value="petseeker" checked={account_type === 'petseeker'} onChange={handleAccountRadio} required />
-                            <label className="form-check-label text-primary-cream font-family-sans-serif" htmlFor="petseekerradio">Pet Seeker</label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input bg-primary-orange" type="radio" name="radio" id="petshelterradio" value="petshelter" checked={account_type === 'petshelter'} onChange={handleAccountRadio}required/>
-                            <label className="form-check-label text-primary-cream font-family-sans-serif" htmlFor="petshelterradio">Pet Shelter</label>
-                        </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="username">Username</label>
                             <div className="col-sm-10">

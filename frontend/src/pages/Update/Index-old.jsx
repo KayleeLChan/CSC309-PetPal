@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import UpdateShelterProfile from '../../components/update/updateshelter';
-import ViewShelterProfile from '../../components/update/viewshelterprofile';
+import ViewSeekerProfile from '../../components/update/viewseekerprofile';
+import UpdateSeekerProfile from '../../components/update/updateseeker';
 
-function UpdateShelter(){
+function UpdateSeeker(){
     const { id } = useParams();
     const accessToken = localStorage.getItem('access_token');
     const navigate = useNavigate();
@@ -12,22 +12,25 @@ function UpdateShelter(){
     const [error, setError] = useState();
     const [isComponentVisible, setIsComponentVisible] = useState(true);
     
-    function handleDelete(){
+
+function handleDelete(){
       fetch(`http://localhost:8000/accounts/${id}/deletion/`, {
       method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
       })
       .then((response) => {
       console.log(response);
       if (response.ok) {
       console.log('Item deleted successfully');
+      navigate('/accounts')
       }
       })
       .catch((error) => {
       console.error(error);
       });
     };
-
-
 
     const displayUpdate = () => {
         setIsComponentVisible(!isComponentVisible);
@@ -62,7 +65,7 @@ function UpdateShelter(){
             <div data-bs-theme="petpal">
                 <div className="main">
                 <div>
-                    {isComponentVisible ? <ViewShelterProfile data={data} displayUpdate={displayUpdate} handleDelete={handleDelete} /> : <UpdateShelterProfile data={data} displayUpdate={displayUpdate}/>}
+                    {isComponentVisible ? <ViewSeekerProfile data={data} displayUpdate={displayUpdate} handleDelete={handleDelete}/> : <UpdateSeekerProfile data={data} displayUpdate={displayUpdate}/>}
                 </div>
                 </div>
             </div>
@@ -70,4 +73,4 @@ function UpdateShelter(){
     );
 }
 
-export default UpdateShelter;
+export default UpdateSeeker;

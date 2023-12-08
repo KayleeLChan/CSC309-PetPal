@@ -6,19 +6,17 @@ import Layout from "./components/layout";
 import Home from "./pages/Home/Index";
 import Notification from "./pages/Notification/Index";
 import Login from "./pages/Login/Index";
-import Error404 from "./pages/404/Index";
-import RegisterSeeker from "./pages/RegisterSeeker/Index";
-import RegisterShelter from "./pages/RegisterShelter/Index";
+import Error404 from "./pages/Errors/404";
+import Error403 from "./pages/Errors/403";
 import ShelterList from "./pages/ShelterList/Index";
 import ShelterDetails from "./pages/ShelterDetails/Index";
-import UpdateSeeker from "./pages/Update/Index";
 
 import ListingPage from "./pages/Listings/Index";
 import Listing from "./pages/Listings/Listing";
 import Search from "./pages/Search/Index";
 import SearchResults from "./pages/Search/Results";
-import UpdateShelter from "./pages/UpdateShelter/Index";
 import Register from "./pages/Register/Index";
+import Update from "./pages/Update/Index";
 
 export default function App() {
   return (
@@ -26,24 +24,29 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          {/* Notifications pages */}
           <Route path="notifications" element={<Notification />} />
-          
+          {/* Notifications pages */}
+
+          {/* Accounts pages */}
           <Route path="accounts" element={<Login />} />
           <Route path="accounts/registration" element={<Register />} />
-          <Route path="accounts/registration/seeker" element={<RegisterSeeker />} />
-          <Route path="accounts/registration/shelter" element={<RegisterShelter />} />
-          <Route path="accounts/shelters/all" element={<ShelterList />} />
-          
-          <Route path="accounts/shelter/:id/details" element={<ShelterDetails />} />
-          <Route path="accounts/seeker/:id/profile" element={<UpdateSeeker />} />
-          <Route path="accounts/shelter/:id/profile" element={<UpdateShelter />} />
-          <Route path="listings/update/:id" element={<ListingPage />} />
-          <Route path="listings/view/:id" element={<Listing />} />
-          <Route path="listings/create" element={<ListingPage />} />
+          <Route path="accounts/:id" element={<Update />} />
+          <Route path="accounts/shelters" element={<ShelterList />} />
+          <Route path="accounts/shelters/:id" element={<ShelterDetails />} />
+          {/* Accounts pages */}
+
+          {/* Listings pages */}
           <Route path="search" element={<Search />} />
           <Route path="listings" element={<SearchResults />} />
+          <Route path="listings/create" element={<ListingPage />} />
+          <Route path="listings/:id/update" element={<ListingPage />} />
+          <Route path="listings/:id" element={<Listing />} />
+          {/* Listings pages */}
 
           {/* ERROR404 MUST BE THE LAST ROUTE!!! PUT ALL OF YOUR ROUTES ABOVE THIS!!! */}
+          {/* TODO MAKE 403 UNAUTHORIZED AND REROUTE ACCOUNTTYPES TO THERE */}
+          <Route path="unauthorized" element={<Error403 />} />
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>

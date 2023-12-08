@@ -9,7 +9,7 @@ function RegisterSeeker(){
     const [personality, setPersonality] = useState('very active');
     const [age, setAge] = useState('new');
     const [size, setSize] = useState('S');
-    const [account_type, setAccountType] = useState('')
+    const [account_type, setAccountType] = useState('petseeker')
     const [error, setError] = useState("")
     const navigate = useNavigate();
     const [photo, setPhoto] = useState(null);
@@ -21,16 +21,8 @@ function RegisterSeeker(){
     const [emailError, setEmailError] = useState()
     const [isValError, setisValError] = useState(false)
 
-    const handleAccountRadio = (event) =>{
-        if(event.target.value === "petseeker"){
-            setAccountType(event.target.value);
-        }
-        else{
-            navigate('/accounts/registration/shelter')
-        }
-    }
-
     const handlePhotoChange = (event) => {
+        console.log(event.target.files);
         if(event.target.files[0]){
             setPhoto(event.target.files[0]);
         }
@@ -121,15 +113,6 @@ function RegisterSeeker(){
                     <div className="d-flex w-50 flex-column pt-5 align-items-center justify-center bg-primary-brown">
                         <h1 className="text-primary-cream">Welcome to PetPal!</h1>
                         <form onSubmit={handleSubmit}>
-                        <label className="row-form-label text-primary-cream h5" htmlFor="account_type">Account Type</label>
-                        <div className="form-check" id="account_type">
-                            <input className="form-check-input bg-primary-orange" type="radio" name="radio" id="petseekerradio" value="petseeker" checked={account_type === 'petseeker'} onChange={handleAccountRadio} required />
-                            <label className="form-check-label text-primary-cream font-family-sans-serif" htmlFor="petseekerradio">Pet Seeker</label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input bg-primary-orange" type="radio" name="radio" id="petshelterradio" value="petshelter" checked={account_type === 'petshelter'} onChange={handleAccountRadio}required/>
-                            <label className="form-check-label text-primary-cream font-family-sans-serif" htmlFor="petshelterradio">Pet Shelter</label>
-                        </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="first_name">First Name</label>
                             <div className="col-sm-10">
@@ -211,7 +194,7 @@ function RegisterSeeker(){
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="age">Preferred Age</label>
-                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5 mx-3"
                                 aria-label="age"
                                 id="age"
                                 onChange={(e) => setAge(e.target.value)} required>
@@ -224,7 +207,7 @@ function RegisterSeeker(){
                         </div>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="size">Preferred Size</label>
-                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5 mx-3"
                                 aria-label="size"
                                 id="size"
                                 onChange={(e) => setSize(e.target.value)} required>
@@ -236,7 +219,7 @@ function RegisterSeeker(){
                             </Form.Select>
                         </div>
                         <label className="row-form-label text-primary-cream h5" htmlFor="sex">Preferred Sex</label>
-                        <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                        <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5 mx-1"
                                 aria-label="sex"
                                 id="sex"
                                 onChange={(e) => setSex(e.target.value)} required>
@@ -246,7 +229,7 @@ function RegisterSeeker(){
                             </Form.Select>
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="personality">Preferred Personality</label>
-                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5"
+                            <Form.Select className="form-select form-select-sm font-plain w-auto border fs-5 mx-3"
                                 aria-label="personality"
                                 id="personality"
                                 onChange={(e) => setPersonality(e.target.value)} required>

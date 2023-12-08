@@ -1,7 +1,8 @@
 import React from 'react';
-import { Form, Button, Dropdown } from 'react-bootstrap';
+import { Form, Dropdown } from 'react-bootstrap';
 
 const AdditionalFilters = ({ searchParams, handleFilterChange, handleInputChange }) => {
+    // Each item has option in index 0 and label in index 1
     const ageOptions = [["all", "Filter By Age"], ["new", "Newborn"], ["young", "Young"], ["adult", "Adult"], ["senior", "Senior"]];
     const sizeOptions = [["all", "Filter By Size"], ["S", "Small"], ["M", "Medium"], ["L", "Large"], ["XL", "Extra Large"]];
     const statusOptions = [["all", "Filter By Status"], ["available", "Available"], ["adopted", "Adopted"], ["pending", "Pending"], ["withdrawn", "Withdrawn"]];

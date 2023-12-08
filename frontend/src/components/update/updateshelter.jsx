@@ -15,13 +15,19 @@ function UpdateShelterProfile(props) {
         event.preventDefault();
         console.log("save")
         const formData = new FormData(event.target);
+        const keysToDelete = [];
+
         for (const [key, value] of formData.entries()) {
             if (!value) {
-              formData.delete(key);
+                console.log("marking for deletion", key);
+                keysToDelete.push(key);
             }
         }
-        console.log(`http://127.0.0.1:8000/accounts/${id}/profile/`)
-    
+
+        for (const keyToDelete of keysToDelete) {
+            console.log("deleting", keyToDelete);
+            formData.delete(keyToDelete);
+        }        
     
         fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
                 method: 'PUT',
