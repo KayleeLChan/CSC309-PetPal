@@ -10,7 +10,7 @@ const AnonCorner = () => {
     }
   
     function handleRegisterClick(){
-      navigate(`/accounts/registration/seeker`)
+      navigate(`/accounts/registration`)
     }
 
     const account_type = localStorage.getItem("accounttype")
