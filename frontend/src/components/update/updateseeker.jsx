@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom/';
 
 function UpdateSeekerProfile(props) {
     console.log(props.data)
@@ -13,10 +14,15 @@ function UpdateSeekerProfile(props) {
     const accessToken = localStorage.getItem('access_token');
     const [age, setAge] = useState('');
     const [size, setSize] = useState('');
+    const navigate = useNavigate()
     
     function handleSave(event){
         event.preventDefault();
-        console.log("save")
+
+        if (!accessToken) {
+            navigate(`/accounts`);
+            return;
+          }
         const formData = new FormData(event.target);
         formData.set('pref_sex', sex);
         formData.set('pref_size', size);

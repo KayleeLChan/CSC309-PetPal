@@ -15,24 +15,28 @@ function Update() {
     const [error, setError] = useState();
     const [isComponentVisible, setIsComponentVisible] = useState(true);
 
+function handleDelete(){
+      if (!accessToken) {
+        navigate(`/accounts`);
+        return;
+      }
 
-    function handleDelete() {
-        fetch(`http://localhost:8000/accounts/${id}/deletion/`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        })
-            .then((response) => {
-                console.log(response);
-                if (response.ok) {
-                    console.log('Item deleted successfully');
-                    navigate('/accounts')
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+      fetch(`http://localhost:8000/accounts/${id}/deletion/`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+      })
+      .then((response) => {
+      console.log(response);
+      if (response.ok) {
+      console.log('Item deleted successfully');
+      navigate('/accounts')
+      }
+      })
+      .catch((error) => {
+      console.error(error);
+      });
     };
 
     const displayUpdate = () => {
