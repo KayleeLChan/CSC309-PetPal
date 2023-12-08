@@ -63,6 +63,12 @@ const Header = () => {
           setProfilePic(data.profilepic);
           localStorage.setItem("profilepic", profilePic)
         }
+        else if(isSeeker){
+          setProfilePic(`/imgs/pfp.jpg`)
+        }
+        else{
+          setProfilePic(`/imgs/shelterpfp.png`)
+        }
     } catch (error) {
         console.error('Error fetching', error);
     }
@@ -104,7 +110,7 @@ const Header = () => {
 
             <NavbarMainSearch></NavbarMainSearch>
             <NavbarToggleSearch></NavbarToggleSearch>
-              {isLoggedIn && isSeeker && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout} handleProfile={handleProfile}/>}
+              {isLoggedIn && <UserCorner user_id={user_id} profilepic={profilePic} handleLogout={handleLogout} handleProfile={handleProfile}/>}
               {!isLoggedIn && <AnonCorner />}
           </Navbar.Collapse>
         </Navbar>

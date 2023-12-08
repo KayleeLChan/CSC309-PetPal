@@ -8,12 +8,25 @@ function UpdatePhoto(props) {
     const [photo, setPhoto] = useState();
     const id = props.data.id
     const accessToken = localStorage.getItem('access_token');
+    const accounttype = localStorage.getItem('accounttype');
+    const [isSeeker, setIsSeeker] = useState(false)
     const [error, setError] = useState("")
+
+
 
     useEffect(() => {
         console.log("data on call", props.data.profilepic);
-        if (props.data) {
+        if(accounttype === 'petseeker'){
+            setIsSeeker(true)
+        }
+        if (props.data.profilepic) {
             setPhotoPath(props.data.profilepic);
+        }
+        else if(isSeeker){
+            setPhotoPath('/imgs/pfp.jpg')
+        }
+        else{
+            setPhotoPath('/imgs/shelterpfp.png')
         }
     }, [props.data.profilepic]);
 
