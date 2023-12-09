@@ -14,7 +14,18 @@ function UpdateSeekerProfile(props) {
     const accessToken = localStorage.getItem('access_token');
     const [age, setAge] = useState('');
     const [size, setSize] = useState('');
+    const [isValError, setisValError] = useState(false)
     const navigate = useNavigate()
+    const [isPass, setIsPass]= useState(false)
+
+    function pass(event){
+        if(event.target.value){
+            setIsPass(true)
+        }
+        else{
+            setIsPass(false)
+        }
+    }
     
     function handleSave(event){
         event.preventDefault();
@@ -52,6 +63,13 @@ function UpdateSeekerProfile(props) {
 
             .then(response => {
                 console.log(response);
+                if (response.status == 400) {
+                    console.log("response is 400")
+                    setisValError(true)
+                }
+                else{
+                    setisValError(false)
+                }
                 return response.json();
             })
             // add in proper error displays
@@ -94,12 +112,22 @@ function UpdateSeekerProfile(props) {
                             <input type="password" name="password" className="form-control bg-primary-cream font-plain" id="password" />
                             </div>
                         </div>
+                        {isPass && (
                         <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="verifypassword">Verify Password</label>
+                            <label className="row-form-label h5" htmlFor="confirmpassword">
+                            Verify Password
+                            </label>
                             <div className="col-sm-10">
-                            <input type="password" name="confirmpassword" className="form-control bg-primary-cream font-plain" id="verifypassword" />
+                            <input
+                                type="password"
+                                name="confirmpassword"
+                                className="form-control bg-primary-cream font-plain"
+                                id="confirmpassword"
+                                required
+                            />
                             </div>
                         </div>
+                        )}
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="email">Email</label>
                             <div className="col-sm-10">
@@ -186,6 +214,9 @@ function UpdateSeekerProfile(props) {
                             </Form.Select>
                         </div>
                         <p className="smallpar">{error}</p>
+                        {isValError &&
+                        <p className="smallpar">One or more fields are invalid. Please review your input</p>
+                        }
                         <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Save</button>
                         <button className="btn btn-lg btn-primary-cream m-3 shadow-sm" onClick={props.displayUpdate}>Back</button>
                         </form>

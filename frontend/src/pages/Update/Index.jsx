@@ -49,7 +49,6 @@ function handleDelete(){
             navigate(`/accounts`);
             return;
         }
-
         fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
             method: 'GET',
             headers: {

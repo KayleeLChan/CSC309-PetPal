@@ -35,7 +35,6 @@ const Header = () => {
     localStorage.removeItem('profilepic');
     setIsLoggedIn(false)
     navigate(`/accounts`)
-    // other logout logic
   }
 
   // function handleProfile(){
@@ -87,6 +86,7 @@ const Header = () => {
             setIsSeeker(true)
           }
           else{
+            setIsSeeker(false)
             setIsShelter(true)
           }
         }
