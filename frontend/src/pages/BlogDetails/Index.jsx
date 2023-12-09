@@ -16,11 +16,7 @@ function BlogDetails() {
       return;
     }
 
-    fetch(`http://localhost:8000/blogs/${id}/`, {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    })
+    fetch(`http://localhost:8000/blogs/${id}/`)
       .then(response => response.json())
       .then(data => setData(data));
   }, [id, accessToken, navigate]);

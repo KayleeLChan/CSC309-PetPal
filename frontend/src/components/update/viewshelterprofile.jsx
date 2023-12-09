@@ -3,6 +3,7 @@ import UpdatePhoto from './updatePhoto';
 
 
 function ViewShelterProfile(props) {
+    console.log(props.data);
     return (
         <>
             <div data-bs-theme="petpal">

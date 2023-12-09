@@ -18,6 +18,10 @@ const NavbarDropdowns = () => {
         navigate(`/listings`)
       }
 
+      function blogs(){
+        navigate(`/accounts/blogs/`)
+      }
+
 
     return (
         <Nav className="me-auto mb-2 mb-lg-0">
@@ -28,6 +32,9 @@ const NavbarDropdowns = () => {
           <NavDropdown title="Shelter" id="shelter-dropdown" className="h1 fs-3 btn-cream m-0">
             <NavDropdown.Item onClick={handleViewAll} className="font-plain">View All Shelters</NavDropdown.Item>
           </NavDropdown>
+          <NavDropdown title="Blogs" id="shelter-dropdown" className="h1 fs-3 btn-cream m-0">
+            <NavDropdown.Item onClick={blogs} className="font-plain">View All Blogs</NavDropdown.Item>
+        </NavDropdown>
         </Nav>
     );
 }
