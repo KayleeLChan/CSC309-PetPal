@@ -17,26 +17,25 @@ const SeekerDropDowns = (props) => {
           console.log(ids)
           const randomIndex = Math.floor(Math.random() * ids.length);
           const luckyId = ids[randomIndex];
-          navigate(`/accounts/shelter/${luckyId}/details`)
+          navigate(`/accounts/shelters/${luckyId}/`)
         }
         )
-
       }
 
-              // pet shelters need to fix the urls for this but should work the same?
       function handleFeelingLuckyListing(){
-        fetch('http://localhost:8000/listings')
+        fetch('http://localhost:8000/listings/')
         .then(response => response.json())
         .then(data =>{
-          const ids = data.map(item => item.id);
+          console.log(data)
+          console.log(data.results)
+          const ids = data.results.map(item => item.id);
+          console.log(ids)
           const randomIndex = Math.floor(Math.random() * ids.length);
           const luckyId = ids[randomIndex];
-          navigate(`/accounts/shelter/${luckyId}/details`)
+          navigate(`/listings/${luckyId}/`)
         }
         )
-
       }
-
 
       function handleViewAll(){
       navigate(`/accounts/shelters`)

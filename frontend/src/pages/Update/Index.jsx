@@ -7,7 +7,7 @@ import ViewShelterProfile from '../../components/update/viewshelterprofile';
 import UpdateShelterProfile from '../../components/update/updateshelter';
 
 function Update() {
-    const id = localStorage.getItem('user_id');
+    const {id} = useParams() 
     const accessToken = localStorage.getItem('access_token');
     const accountType = localStorage.getItem('accounttype');
     const navigate = useNavigate();
@@ -28,10 +28,10 @@ function handleDelete(){
       }
       })
       .then((response) => {
-      console.log(response);
-      if (response.ok) {
-      console.log('Item deleted successfully');
-      navigate('/accounts')
+        console.log(response);
+        if (response.ok) {
+        console.log('Item deleted successfully');
+        navigate('/accounts')
       }
       })
       .catch((error) => {
@@ -49,14 +49,21 @@ function handleDelete(){
             navigate(`/accounts`);
             return;
         }
-
         fetch(`http://127.0.0.1:8000/accounts/${id}/profile/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
-            .then(response => response.json())
+            .then(response =>{
+                if(response.status === 403){
+                    navigate('/unauthorized')
+                }
+                else if(response.status === 404){
+                    navigate('*')
+                }
+                return response.json()
+            })
             .then(data => {
                 console.log("data", data);
                 setData(data);
