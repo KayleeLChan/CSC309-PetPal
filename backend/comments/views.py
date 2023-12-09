@@ -77,7 +77,6 @@ class CommentListCreateView(ListCreateAPIView):
         model = self.kwargs['model']
         
         if model != "shelter":
-        
             application = get_object_or_404(Application, id=object_id)
             involved_users = [application.pet_seeker_user, application.pet_listing.shelter]
         

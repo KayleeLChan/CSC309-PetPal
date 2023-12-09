@@ -3,17 +3,65 @@ import React, { useState, useEffect } from 'react';
 const StatusBoxComponent = ({ application, userAccountType }) => {
 
     console.log('app.', application);
-    console.log('account', userAccountType)
+    console.log('account', userAccountType);
+    console.log(application.application_status);
     const [status, setStatus] = useState(application.application_status);
+    const accessToken = localStorage.getItem('access_token');
+
+    // Fetch initial application status from backend when the component mount
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await fetch(`http://localhost:8000/applications/details/${application.id}/`,
+    //             {
+    //                 headers: { 
+    //                     Authorization: `Bearer ${accessToken}`
+    //                 } 
+    //             });
+    //             const data = await response.json();
+    //             setStatus(data.application_status || 'PENDING');
+    //         } catch (error) {
+    //             console.error('Error fetching application data:', error);
+    //             setStatus('ERROR');
+    //         }
+    //     };
+    //     // Re-fetch data when application ID changes - if same ID between renders, effect won't run again.
+    //     fetchData();
+    // }, [application.id]); 
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Ensure application.id is defined before making the request
+                if (!application.id) {
+                    console.log('Application ID is undefined. Skipping data fetch.');
+                    return;
+                }
+    
+                const response = await fetch(`http://localhost:8000/applications/details/${application.id}/`, {
+                    headers: { Authorization: `Bearer ${accessToken}` }
+                });
+                const data = await response.json();
+    
+                setStatus(data.application_status || 'PENDING');
+            } catch (error) {
+                console.error('Error fetching application data:', error);
+                setStatus('ERROR');
+            }
+        };
+    
+        // Fetch data only if application.id is available
+        if (application.id) {
+            fetchData();
+        }
+    }, [application.id, accessToken]);
 
     // Send a PUT request to backend to update the application status
     const updateStatus = async (newStatus) => {
     try {
         const response = await fetch(`http://localhost:8000/applications/editor/${application.id}/`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json', 
-            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMTMxNDA0LCJpYXQiOjE3MDE5MjE4MDQsImp0aSI6IjdmOTQ4YmZmODFiMjQzYmFiNjhiM2M4NGVmN2FlZThmIiwidXNlcl9pZCI6MX0.4eFhRDwAJWRC_uSC8gyYapbxx2s12-il08jacj7pBcI"
-        },
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}`},
             body: JSON.stringify({ application_status: newStatus }),
         });
         // If response successful, status state is changed
@@ -27,25 +75,6 @@ const StatusBoxComponent = ({ application, userAccountType }) => {
             console.error('Error updating application status:', error);
         }
     };
-
-    // Fetch initial application status from backend when the component mount
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`http://localhost:8000/applications/details/${application.id}/`,
-                {
-                    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMTMxNDA0LCJpYXQiOjE3MDE5MjE4MDQsImp0aSI6IjdmOTQ4YmZmODFiMjQzYmFiNjhiM2M4NGVmN2FlZThmIiwidXNlcl9pZCI6MX0.4eFhRDwAJWRC_uSC8gyYapbxx2s12-il08jacj7pBcI", }
-                });
-                const data = await response.json();
-                setStatus(data.application_status || 'PENDING');
-            } catch (error) {
-                console.error('Error fetching application data:', error);
-                setStatus('ERROR');
-            }
-        };
-        // Re-fetch data when application ID changes - if same ID between renders, effect won't run again.
-        fetchData();
-    }, [application.id]); 
 
     // Display certain buttons based on who the user is 
     return (

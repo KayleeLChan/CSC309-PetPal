@@ -25,6 +25,7 @@ import Update from "./pages/Update/Index";
 import ApplicationDetails from "./pages/ApplicationViewUpdate/Index";
 import CreateApplication from "./pages/ApplicationCreate/Index";
 import ListApplications from "./pages/ApplicationList/Index";
+import ApplicationChat from "./pages/ApplicationChat/Index";
 
 export default function App() {
   return (
@@ -61,6 +62,7 @@ export default function App() {
           <Route path="applications/details/:id" element={<ApplicationDetails />} />
           <Route path="applications/editor/:id" element={<ApplicationDetails />} />
           <Route path="applications/" element={<ListApplications />} />
+          <Route path="applications/chat/:id" element={<ApplicationChat />} />
 
           {/* ERROR404 MUST BE THE LAST ROUTE!!! PUT ALL OF YOUR ROUTES ABOVE THIS!!! */}
           {/* TODO MAKE 403 UNAUTHORIZED AND REROUTE ACCOUNTTYPES TO THERE */}

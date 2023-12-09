@@ -1,5 +1,7 @@
 import React from 'react';
 
+// replaced by chat box on a separate page
+
 const ChatComponent = ({ user }) => {
     console.log(user);
     return (
