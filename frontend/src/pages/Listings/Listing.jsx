@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ListingLeftCol from '../../components/listings/view/view-left-col/listing-left-col';
 import ListingRightCol from '../../components/listings/view/view-right-col/listing-right-col';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import Error403 from '../../components/403';
 
 const Listing = () => {
     const accessToken = localStorage.getItem('access_token');
@@ -30,6 +31,10 @@ const Listing = () => {
             console.error('Error fetching listing:', error);
         }
     };
+
+    if (!accessToken) {
+        return <Error403></Error403>
+    }
 
     return (
         <div>

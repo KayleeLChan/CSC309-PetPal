@@ -7,7 +7,6 @@ import Home from "./pages/Home/Index";
 import Notification from "./pages/Notification/Index";
 import Login from "./pages/Login/Index";
 import Error404 from "./pages/Errors/404";
-import Error403 from "./pages/Errors/403";
 import ShelterList from "./pages/ShelterList/Index";
 import ShelterDetails from "./pages/ShelterDetails/Index";
 import ShelterReviews from "./pages/ShelterReviews/Index";
@@ -49,8 +48,7 @@ export default function App() {
           {/* Listings pages */}
 
           {/* ERROR404 MUST BE THE LAST ROUTE!!! PUT ALL OF YOUR ROUTES ABOVE THIS!!! */}
-          {/* TODO MAKE 403 UNAUTHORIZED AND REROUTE ACCOUNTTYPES TO THERE */}
-          <Route path="unauthorized" element={<Error403 />} />
+          {/* <Route path="unauthorized" element={<Error403 />} /> */}
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>

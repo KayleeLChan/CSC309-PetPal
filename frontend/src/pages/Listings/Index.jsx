@@ -5,6 +5,7 @@ import DetailsTab from '../../components/listings/details-tab/details-tab';
 import ApplicationsTab from '../../components/listings/applications-tab';
 import CompatabilityTab from '../../components/listings/compatability-tab';
 import ApplicationStatus from '../../components/listings/application-status';
+import Error403 from '../../components/403';
 
 const ListingPage = () => {
     const navigate = useNavigate();
@@ -177,19 +178,8 @@ const ListingPage = () => {
         }
     };
 
-    if (!accessToken) {
-        navigate("/accounts");
-        return;
-    }
-    
-    if (accountType != "petshelter") {
-        navigate("/unauthorized");
-        return;
-    }
-
-    if (listing && listing.shelter.username != username) {
-        navigate("/unauthorized");
-        return;
+    if (!accessToken || (accountType != "petshelter") || (listing && listing.shelter.username != username)) {
+        return <Error403></Error403>
     }
 
     return (
