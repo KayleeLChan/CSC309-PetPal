@@ -31,6 +31,10 @@ class GetApplicationView(RetrieveAPIView):
     def retrieve(self, request, *args, **kwargs):
         application = self.get_object()
         serializer = self.get_serializer(application)
+        involved_users = [application.pet_seeker_user, application.pet_listing.shelter]
+        if self.request.user not in involved_users:
+            raise PermissionDenied("You do not have permission to access this view.")
+        
         return Response(serializer.data)
     
 
@@ -92,7 +96,9 @@ class UpdateApplicationView(UpdateAPIView):
     def update(self, request, *args, **kwargs):
         application_id = self.kwargs['pk']
         application = get_object_or_404(Application, id=application_id)
-        user = self.request.user
+        involved_users = [application.pet_seeker_user, application.pet_listing.shelter]
+        if self.request.user not in involved_users:
+            raise PermissionDenied("You do not have permission to access this view.")
 
         # check if user is shelter associated with application
         if self.request.user.accounttype in ['petshelter', 'Pet Shelter']:

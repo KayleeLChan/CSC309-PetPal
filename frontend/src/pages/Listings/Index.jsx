@@ -5,6 +5,7 @@ import DetailsTab from '../../components/listings/details-tab/details-tab';
 import ApplicationsTab from '../../components/listings/applications-tab';
 import CompatabilityTab from '../../components/listings/compatability-tab';
 import ApplicationStatus from '../../components/listings/application-status';
+import Error403Component from '../../components/403';
 
 const ListingPage = () => {
     const navigate = useNavigate();
@@ -154,7 +155,7 @@ const ListingPage = () => {
                 const formData = new FormData();
                 formData.append('image', file);
                 const listingID = id ? id : newID
-    
+
                 try {
                     console.log(accessToken);
                     const response = await fetch(`http://localhost:8000/listings/${listingID}/image/`, {
@@ -164,7 +165,7 @@ const ListingPage = () => {
                             'Authorization': `Bearer ${accessToken}`,
                         }
                     });
-    
+
                     if (response.ok) {
                         console.log(`File ${file.name} uploaded successfully`);
                     } else {
@@ -177,19 +178,12 @@ const ListingPage = () => {
         }
     };
 
-    if (!accessToken) {
-        navigate("/accounts");
-        return;
-    }
-    
-    if (accountType != "petshelter") {
-        navigate("/unauthorized");
-        return;
-    }
-
-    if (listing && listing.shelter.username != username) {
-        navigate("/unauthorized");
-        return;
+    if (!accessToken || (accountType != "petshelter") || (listing && listing.shelter.username != username)) {
+        return (
+            <div data-bs-theme="petpal">
+                <Error403Component></Error403Component>
+            </div>
+        )
     }
 
     return (
@@ -198,7 +192,7 @@ const ListingPage = () => {
                 <div className="main d-flex flex-column justify-content-start align-items-center">
                     {loading ? (<p className="text-center">Loading...</p>) : (
                         <>
-                        <DetailsTab listing={listing} formData={formData} setFormData={setFormData} setImages={setImages}></DetailsTab>
+                            <DetailsTab listing={listing} formData={formData} setFormData={setFormData} setImages={setImages}></DetailsTab>
                             {/* <Tab.Container id="listing-tabs" defaultActiveKey={key}>
                                 <Nav variant="tabs" className="mt-5 fs-5">
                                     <Nav.Item>

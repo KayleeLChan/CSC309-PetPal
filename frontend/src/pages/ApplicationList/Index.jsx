@@ -4,6 +4,7 @@ import ApplicationFilterSidebar from '../../components/applications/list/applica
 import ApplicationSortHeader from '../../components/applications/list/application-sort-header';
 import ApplicationPetCard from '../../components/applications/list/application-pet-cards';
 import PaginationButtons from '../../components/pagination-buttons';
+import Error403Component from '../../components/403';
 
 
 const ListApplications = () => {
@@ -13,6 +14,7 @@ const ListApplications = () => {
     const FORBIDDEN_STATUS_CODE = 403;
     const navigate = useNavigate();
     const accessToken = localStorage.getItem('access_token');
+    const [denied, setDenied] = useState(false);
 
     const handleInputChange = (e) => {
         setSearchParams({
@@ -83,7 +85,7 @@ const ListApplications = () => {
             console.log(data)
 
             if (response.status === FORBIDDEN_STATUS_CODE) {
-                navigate("/unauthorized");
+                setDenied(true);
             }
 
             // setApplications(data.results); // map crashing cause of this, data.results isnt a thing
@@ -99,6 +101,14 @@ const ListApplications = () => {
             console.error('Error fetching applications:', error);
         }
     };
+
+    if (denied) {
+        return (
+            <div data-bs-theme="petpal">
+                <Error403Component></Error403Component>
+            </div>
+        )
+    }
 
     return (
         <>
