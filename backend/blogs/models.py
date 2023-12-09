@@ -14,7 +14,7 @@ class Blog(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='blogs', null=True) 
     # if shelter user that made this article is deleted, it will reflect that user has been deleted
     author_name = models.CharField(max_length=40, null=True)
-    profilepic = models.ImageField(upload_to='images/', blank=True)
+    # profilepic = models.ImageField(upload_to='images/', blank=True)
 
     def __str__(self):
         return f"{self.author} at {self.creation_time}: {self.blog_title}"
