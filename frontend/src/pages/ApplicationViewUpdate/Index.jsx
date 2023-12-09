@@ -16,6 +16,9 @@ function ApplicationDetails() {
     const FORBIDDEN_STATUS_CODE = 403;
     const navigate = useNavigate();
 
+    const handleClick = (event) =>
+        navigate(`/applications/chat/${id}`)
+
     // Fetch application data and user details based on the ID
     useEffect(() => {
         const fetchData = async () => {
@@ -84,9 +87,11 @@ function ApplicationDetails() {
                 {/* Right Column Start */}
                 <div className="d-flex flex-column m-5 p-5 justify-content-start align-items-center w-40 text-primary-brown two-col-child">
                     <StatusBoxComponent application={application} userAccountType={userAccountType}/>
-                    <ChatComponent user={user}/>
+                    
+                    {/* <ChatComponent user={user}/> */}
                     {/* All Comments inside the Chat Component go here */}
-                
+                    <button type="button" className="btn btn-lg text-dark-brown bg-primary-orange m-3 ms-0 shadow-sm" onClick={handleClick}>Your Application Chat!</button>
+                    
                 </div>
                 {/* Right Column End */}
 

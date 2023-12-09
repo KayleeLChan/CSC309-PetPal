@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import DetailsTop from '../../components/shelterdetails/shelterTop';
 import ShelterReviewsSection from '../../components/reviews/shelterReviewsSection';
-import CommentBar from '../../components/reviews/commentBar';
+import CommentBar from '../../components/comments/commentBar';
+import ApplicationChatSection from '../../components/applications/chat/applicationChatSection';
 
 function ApplicationChat() {
     const [shelterData, setShelterData] = useState([]);
@@ -58,7 +59,7 @@ function ApplicationChat() {
             <div data-bs-theme="petpal">
                 <div className="main">
                     {/* {console.log(commentsData)} */}
-                    <ShelterReviewsSection commentsData={commentsData} shelterID={id} onCommentSubmit={handleCommentSubmit} setQuery={setQuery} query={query} totalPages={totalPages} />
+                    <ApplicationChatSection commentsData={commentsData} applicationID={id} onCommentSubmit={handleCommentSubmit} setQuery={setQuery} query={query} totalPages={totalPages} />
                 </div>
             </div>
         </>
