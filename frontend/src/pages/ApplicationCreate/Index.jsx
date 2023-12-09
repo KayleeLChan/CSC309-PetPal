@@ -136,10 +136,12 @@ function CreateApplication() {
                 const responseData = await response.json();
                 const newApplicationId = responseData.id;
                 console.log(`Application submitted successfully with ID: ${newApplicationId}`);
+                console.log(responseData)
             } else {
                 const responseData = await response.json();
                 console.error('Failed to submit application:', responseData);
-                navigate("/unauthorized");
+                navigate("/applications/");
+                console.log(responseData)
             }
         } catch (error) {
             console.error('Error submitting application:', error);

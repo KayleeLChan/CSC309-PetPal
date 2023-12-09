@@ -46,7 +46,8 @@ const ListApplications = () => {
             pet_listing_animal: searchParams.get("pet_listing_animal") ?? "",
             pet_listing_breed: searchParams.get("pet_listing_breed") ?? "",
 
-            application_status: searchParams.get("application_status") ?? "available",
+            // application_status: searchParams.get("application_status") ?? "available", // was causing errors but idk if intended
+            application_status: searchParams.get("application_status") ?? "pending",
             sort_by: searchParams.get("sort_by") ?? "",
         }),
         [searchParams],
@@ -86,7 +87,7 @@ const ListApplications = () => {
             }
 
             // setApplications(data.results); // map crashing cause of this, data.results isnt a thing
-            setApplications(data.application_status);
+            setApplications(data.results); // nvm was supposed to be this not data.application_status
             console.log(applications)
             console.log(data.count)
 
