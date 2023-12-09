@@ -15,7 +15,7 @@ const NavbarMainSearch = () => {
   };
 
   return (
-    <div className="w-25 pe-5 hide-lg" id="basic-addon1">
+    <div className="w-25 pe-1 hide-lg" id="basic-addon1">
       <div className="d-flex flex-row w-100">
         <Button
           variant="primary-cream"

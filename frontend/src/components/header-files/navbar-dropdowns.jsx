@@ -11,7 +11,7 @@ const NavbarDropdowns = () => {
       }
 
       function handleViewAll(){
-        navigate(`/accounts/shelters/all`)
+        navigate(`/accounts/shelters`)
       }
 
       function handleAdoptNow(){

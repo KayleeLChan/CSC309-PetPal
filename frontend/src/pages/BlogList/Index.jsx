@@ -27,7 +27,7 @@ function BlogList() {
     return (
         <>
             <div data-bs-theme="petpal">
-                <div className="main">
+                <div className="main d-flex flex-column">
                     {/*Top bar*/}
                     <div className="d-flex two-col p-4 align-self-center align-items-center mt-4 w-100 justify-content-left bg-brown rounded-2">
                         {/* <img src="/imgs/shelter.svg" width="10%" height="10%" alt="" /> */}
