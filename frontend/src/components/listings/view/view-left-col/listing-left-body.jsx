@@ -18,7 +18,7 @@ const ListingLeftBody = ({listing}) => {
         <p className="fs-3 mb-0">Good In a Home With</p>
         <p className="fs-5">{listing.good_with}</p>
 
-        <h1 className="fs-0 mt-5">Meet Mr. Newdles</h1>
+        <h1 className="fs-0 mt-5">Meet {listing.name}</h1>
         <p className="mb-1 fs-5">{listing.description}</p>
       </div>
   );
