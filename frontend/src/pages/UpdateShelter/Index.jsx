@@ -46,7 +46,12 @@ function UpdateShelter(){
             'Authorization': `Bearer ${accessToken}`
           }
         })
-          .then(response => response.json())
+          .then(response =>{
+            if(response.status === 403){
+              navigate('/unauthorized')
+            }
+            return response.json()
+          })
           .then(data => {
             setData(data);
             console.log(data);

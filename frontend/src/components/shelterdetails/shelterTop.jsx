@@ -10,13 +10,14 @@ function DetailsTop(props) {
         navigate(`/accounts/shelters/${props.id}/reviews`);
       }
 
-    //TODO: MAKE DATE HUMAN READABLE!
+    const dateJoined = new Date(props.shelterData.date_joined);
+    const formattedDate = dateJoined.toLocaleString();
     return (
         <>
             <div data-bs-theme="petpal">
                 <div className="d-flex two-col p-4 align-self-center align-items-center mt-4 w-100 justify-content-left bg-brown rounded-2">
                     {/* shelter logo */}
-                    <img src={props.shelterData.profilepic} className="user-pic two-col-child align-self-center rounded-circle m-5 mt-3 mb-3" />
+                    <img src={props.shelterData.profilepic ? props.shelterData.profilepic : '/imgs/shelterpfp.png'} className="user-pic two-col-child align-self-center rounded-circle m-5 mt-3 mb-3" />
 
 
                     {/* fields = ['profilepic','sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy', 'date_joined'] */}
@@ -29,7 +30,7 @@ function DetailsTop(props) {
 
                     {/* shelter contact details */}
                     <div className="d-flex two-col-child flex-column align-items-center align-self-center justify-content-start w-50 mb-2 mt-1">
-                        <p className="text-primary-cream mb-1">Account published on: {props.shelterData.date_joined}</p>
+                        <p className="text-primary-cream mb-1">Account published on: {formattedDate}</p>
                         <p className="text-primary-cream mb-1">Email: {props.shelterData.email}</p>
                         <p className="text-primary-cream mb-1">Phone Number: {props.shelterData.phonenumber}</p>
                         <p className="text-primary-cream mb-1">Website: {props.shelterData.website}</p>

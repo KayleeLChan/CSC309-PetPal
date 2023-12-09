@@ -35,7 +35,6 @@ const Header = () => {
     localStorage.removeItem('profilepic');
     setIsLoggedIn(false)
     navigate(`/accounts`)
-    // other logout logic
   }
 
   // function handleProfile(){
