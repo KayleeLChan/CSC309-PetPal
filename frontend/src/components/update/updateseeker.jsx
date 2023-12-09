@@ -109,7 +109,7 @@ function UpdateSeekerProfile(props) {
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="password">Password</label>
                             <div className="col-sm-10">
-                            <input type="password" name="password" className="form-control bg-primary-cream font-plain" id="password" />
+                            <input onChange={pass} type="password" name="password" className="form-control bg-primary-cream font-plain" id="password" />
                             </div>
                         </div>
                         {isPass && (
