@@ -10,7 +10,7 @@ function BlogListSection(props) {
                         {props.blogData.map(blog => (
                             <div className="d-flex flex-row pt-5 pb-5" key={blog.id}>
                                 <Link to={`/accounts/blogs/${blog.id}`} className="pe-5 fs-2">
-                                    <p className="pe-5 fs-2">"{blog.blog_title}" by {blog.author_name}</p>
+                                    <h4 className="pe-5 fs-2">"{blog.blog_title}" by {blog.author_name}</h4>
                                 </Link>
 
                                 {/* <p className="pe-5 fs-2">{blog.text}</p> */}

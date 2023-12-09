@@ -30,8 +30,8 @@ function BlogList() {
                 <div className="main">
                     {/*Top bar*/}
                     <div className="d-flex two-col p-4 align-self-center align-items-center mt-4 w-100 justify-content-left bg-brown rounded-2">
-                        <img src="/imgs/shelter.svg" width="10%" height="10%" alt="" />
-                        <h1>All Blogs</h1>
+                        {/* <img src="/imgs/shelter.svg" width="10%" height="10%" alt="" /> */}
+                        <h1 className="text-primary-cream">All Blogs</h1>
                     </div>
                     {/*List of Blogs*/}
                     <BlogListSection blogData={data}/>
