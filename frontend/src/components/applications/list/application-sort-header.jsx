@@ -5,10 +5,10 @@ import { Container, Form, Dropdown } from 'react-bootstrap';
 const ApplicationSortHeader = ({ query, handleSort }) => {
     let sort = "";
     switch(query.sort_by) {
-        case "name":
+        case "pet_listing_name": // was name
           sort = "A-Z";
           break;
-        case "-name":
+        case "-pet_listing_name": // was -name
             sort = "Z-A";
           break;
         case "-created_at":
@@ -37,8 +37,10 @@ const ApplicationSortHeader = ({ query, handleSort }) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={handleSort} className="text-primary-brown" id="name">A-Z</Dropdown.Item>
-                    <Dropdown.Item onClick={handleSort} className="text-primary-brown" id="-name">Z-A</Dropdown.Item>
+                    {/* <Dropdown.Item onClick={handleSort} className="text-primary-brown" id="name">A-Z</Dropdown.Item>
+                    <Dropdown.Item onClick={handleSort} className="text-primary-brown" id="-name">Z-A</Dropdown.Item> */}
+                    <Dropdown.Item onClick={handleSort} className="text-primary-brown" id="pet_listing_name">A-Z</Dropdown.Item>
+                    <Dropdown.Item onClick={handleSort} className="text-primary-brown" id="-pet_listing_name">Z-A</Dropdown.Item>
                     <Dropdown.Item onClick={handleSort} className="text-primary-brown" id="-created_at">Newest-Oldest</Dropdown.Item>
                     <Dropdown.Item onClick={handleSort} className="text-primary-brown" id="created_at">Oldest-Newest</Dropdown.Item>
                 </Dropdown.Menu>

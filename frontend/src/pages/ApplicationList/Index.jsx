@@ -31,7 +31,7 @@ const ListApplications = () => {
     const handleSort = (e) => {
         setSearchParams({
             ...query,
-            ['sort_by']: e.target.id,
+            ['sort_by']: e.target.id, // changed this in application-sort-header (id=name to id=pet_listing_name)
         });
         fetchApplications();
     };

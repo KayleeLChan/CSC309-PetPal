@@ -158,7 +158,8 @@ class SearchSortFilterApplication(django_filters.FilterSet):
     # Sorts
     sort_by = django_filters.OrderingFilter(
         fields=(
-            ('pet_listing_name', 'pet_listing_name'),
+            # ('pet_listing_name', 'pet_listing_name'),
+            ('pet_listing__name', 'pet_listing_name'),  # Adjust this based on your actual model structure
             ('created_at', 'created_at'),
         ),
         field_labels={
@@ -204,8 +205,8 @@ class ListApplicationView(ListAPIView):
     serializer_class = ApplicationSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
     filterset_class = SearchSortFilterApplication
-    # sort_by_fields = ['pet_listing__name', 'created_at'] // 
-    sort_by_fields = ['pet_listing_name', 'created_at']
+    sort_by_fields = ['pet_listing__name', 'created_at']
+    # sort_by_fields = ['pet_listing_name', 'created_at']
     search_fields = ['pet_listing_name', 'pet_listing_location', 'pet_listing_animal', 'pet_listing_breed']  
     pagination_class = StandardResultsSetPagination
 
