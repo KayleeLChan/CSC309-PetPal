@@ -22,6 +22,10 @@ import SearchResults from "./pages/Search/Results";
 import Register from "./pages/Register/Index";
 import Update from "./pages/Update/Index";
 
+import ApplicationDetails from "./pages/ApplicationViewUpdate/Index";
+import CreateApplication from "./pages/ApplicationCreate/Index";
+import ListApplications from "./pages/ApplicationList/Index";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -51,6 +55,12 @@ export default function App() {
           <Route path="listings/:id/update" element={<ListingPage />} />
           <Route path="listings/:id" element={<Listing />} />
           {/* Listings pages */}
+
+          {/* Application Pages */}
+          <Route path="applications/new/:petId" element={<CreateApplication />} />
+          <Route path="applications/details/:id" element={<ApplicationDetails />} />
+          <Route path="applications/editor/:id" element={<ApplicationDetails />} />
+          <Route path="applications/" element={<ListApplications />} />
 
           {/* ERROR404 MUST BE THE LAST ROUTE!!! PUT ALL OF YOUR ROUTES ABOVE THIS!!! */}
           {/* TODO MAKE 403 UNAUTHORIZED AND REROUTE ACCOUNTTYPES TO THERE */}

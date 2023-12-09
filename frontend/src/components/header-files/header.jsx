@@ -85,8 +85,10 @@ const Header = () => {
           if(accounttype === "petseeker"){
             console.log("isloggedinseeker")
             setIsSeeker(true)
+            setIsShelter(false)
           }
           else{
+            setIsSeeker(false)
             setIsShelter(true)
           }
         }
