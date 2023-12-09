@@ -10,6 +10,10 @@ function DetailsTop(props) {
         navigate(`/accounts/shelters/${props.id}/reviews`);
       }
 
+      function navigateListings(){
+        navigate(`/listings/?shelter=${props.shelterData.username}`);
+      }
+
     const dateJoined = new Date(props.shelterData.date_joined);
     const formattedDate = dateJoined.toLocaleString();
     return (
@@ -28,6 +32,7 @@ function DetailsTop(props) {
                         <Button variant="primary-cream" className="my-2" onClick={navigateReviews}>Reviews</Button>
                         {/* TODO MAKE BUTTON LEAD TO BLOGS PAGE */}
                         <Button variant="primary-cream" className="my-2" onClick={navigateReviews}>Reviews</Button>
+                        <Button variant="primary-cream" className="my-2" onClick={navigateListings}>Listings</Button>
                     </div>
 
                     {/* shelter contact details */}

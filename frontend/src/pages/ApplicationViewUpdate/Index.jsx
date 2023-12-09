@@ -9,7 +9,6 @@ import PetDetailsComponent from '../../components/applications/viewupdate/applic
 function ApplicationDetails() {
     const { id } = useParams();
     const [application, setApplication] = useState({});
-    const [userAccountType, setUserAccountType] = useState({});
     const [userName, setUserName] = useState({});
     const [user, setUser] = useState({});
     const accessToken = localStorage.getItem('access_token');
@@ -26,9 +25,9 @@ function ApplicationDetails() {
                 // Fetch application data
                 console.log(id)
                 const applicationResponse = await fetch(`http://localhost:8000/applications/details/${id}/`,
-                {
-                    headers: { Authorization: `Bearer ${accessToken}`, }
-                });
+                    {
+                        headers: { Authorization: `Bearer ${accessToken}`, }
+                    });
 
                 const applicationData = await applicationResponse.json();
 
@@ -39,27 +38,28 @@ function ApplicationDetails() {
                 console.log('data', applicationData);
                 setApplication(applicationData);
     
-                // Fetch user details if application data is available
-                if (applicationData.pet_seeker_user) {
-                    const userId = applicationData.pet_seeker_user;
+                // // Fetch user details if application data is available
+                // if (applicationData.pet_seeker_user) {
+                //     console.log("this is happening");
+                //     const userId = applicationData.pet_seeker_user;
     
-                    // Fetch user details from Django backend
-                    const userResponse = await fetch(`http://localhost:8000/accounts/${userId}/profile/`,
-                    {
-                        headers: { Authorization: `Bearer ${accessToken}`, }
-                    });
-                    const userData = await userResponse.json();
+                //     // Fetch user details from Django backend
+                //     const userResponse = await fetch(`http://localhost:8000/accounts/${userId}/profile/`,
+                //     {
+                //         headers: { Authorization: `Bearer ${accessToken}`, }
+                //     });
+                //     const userData = await userResponse.json();
 
-                    if (userResponse.status === FORBIDDEN_STATUS_CODE) {
-                        navigate("/unauthorized");
-                    }
+                //     if (userResponse.status === FORBIDDEN_STATUS_CODE) {
+                //         navigate("/unauthorized");
+                //     }
     
-                    // Set user details
-                    setUserAccountType(userData.accounttype);
-                    setUserName(userData.first_name);
-                    setUser(userData);
+                //     // Set user details
+                //     setUserAccountType(userData.accounttype);
+                //     setUserName(userData.first_name);
+                //     setUser(userData);
                     
-                }
+                // }
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -86,7 +86,7 @@ function ApplicationDetails() {
 
                 {/* Right Column Start */}
                 <div className="d-flex flex-column m-5 p-5 justify-content-start align-items-center w-40 text-primary-brown two-col-child">
-                    <StatusBoxComponent application={application} userAccountType={userAccountType}/>
+                    <StatusBoxComponent application={application}/>
                     
                     {/* <ChatComponent user={user}/> */}
                     {/* All Comments inside the Chat Component go here */}

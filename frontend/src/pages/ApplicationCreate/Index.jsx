@@ -122,8 +122,6 @@ function CreateApplication() {
         console.log('New Application', applicationData);
         
         // POST request to create new application
-        const dataBody = JSON.stringify(formData);
-        console.log('body', dataBody);
         try {
             const response = await fetch(`http://localhost:8000/applications/new/${petId}/`, {
                 method: 'POST',
@@ -136,6 +134,7 @@ function CreateApplication() {
                 const responseData = await response.json();
                 const newApplicationId = responseData.id;
                 console.log(`Application submitted successfully with ID: ${newApplicationId}`);
+                navigate("/applications/");
                 console.log(responseData)
             } else {
                 const responseData = await response.json();
@@ -311,7 +310,7 @@ function CreateApplication() {
                                     >
                                     <option value="">(required)</option>
                                     <option value="visa">Visa</option>
-                                    <option value="mastercard">Mastercard</option>
+                                    <option value="master">Mastercard</option>
                                     <option value="amex">American Express</option>
                                     <option value="interac">Interac E-transfer</option>
                                     <option value="paypal">Paypal</option>
@@ -349,7 +348,7 @@ function CreateApplication() {
                                     >
                                     <option value="">(required)</option>
                                     <option value="myself">myself</option>
-                                    <option value="my family">my family</option>
+                                    <option value="family">my family</option>
                                 </select>
                             </div>
                             </Form>
@@ -369,7 +368,7 @@ function CreateApplication() {
                                     >
                                     <option value="">(required)</option>
                                     <option value="kids">kids</option>
-                                    <option value="no kids">no kids</option>
+                                    <option value="none">no kids</option>
                                 </select>
                             </div>
                             <div className="col-12">
@@ -392,7 +391,7 @@ function CreateApplication() {
                                     >
                                     <option value="">(required)</option>
                                     <option value="previous">previous</option>
-                                    <option value="first-time">first-time</option>
+                                    <option value="first">first-time</option>
                                 </select>
                             </div>
                             <div className="col-12">
@@ -501,7 +500,7 @@ function CreateApplication() {
                                     <option value="very active">very active</option>
                                     <option value="active">active</option>
                                     <option value="laid-back">laid-back</option>
-                                    <option value="lap-pet">lap-pet</option>
+                                    <option value="lap">lap-pet</option>
                                 </select>
                             </div>
                             </Form>

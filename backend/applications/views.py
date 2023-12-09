@@ -18,6 +18,7 @@ from django.db.models import F
 from django.db import connection
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+from rest_framework.permissions import BasePermission, SAFE_METHODS, IsAuthenticated
 
 
 # Create your views here.
@@ -153,7 +154,7 @@ class SearchSortFilterApplication(django_filters.FilterSet):
     pet_listing_breed = django_filters.CharFilter(field_name='pet_listing__breed', lookup_expr='icontains')
 
     # Filters
-    status = django_filters.ChoiceFilter(choices=FILTER_STATUS_CHOICES, initial='pending', method='filter_status')
+    status = django_filters.ChoiceFilter(choices=Application.STATUS_CHOICES, initial='pending', method='filter_status')
 
     # Sorts
     sort_by = django_filters.OrderingFilter(
@@ -186,12 +187,17 @@ class SearchSortFilterApplication(django_filters.FilterSet):
 
 
     def filter_status(self, queryset, name, value):
-        if value == "all":
-            return queryset
-        elif value in [choice[0] for choice in Application.STATUS_CHOICES]:
-            return queryset.filter(application_status=value)
+        user = self.request.user
+
+        if user.accounttype == "petseeker":
+            applications = queryset.filter(pet_seeker_user=user)
         else:
-            return queryset.filter(application_status="pending")
+            applications = queryset.filter(pet_listing__shelter=user)
+
+        if value in [choice[0] for choice in Application.STATUS_CHOICES]:
+            return applications
+        else:
+            return applications.filter(application_status="pending")
 
 
 class ListApplicationView(ListAPIView):
@@ -201,28 +207,29 @@ class ListApplicationView(ListAPIView):
     - When an application receives a new comment, its "last update time" should be changed.
     - Pagination support (1 mark) 
     """
-    queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
     filterset_class = SearchSortFilterApplication
     sort_by_fields = ['pet_listing__name', 'created_at']
     # sort_by_fields = ['pet_listing_name', 'created_at']
-    search_fields = ['pet_listing_name', 'pet_listing_location', 'pet_listing_animal', 'pet_listing_breed']  
+    # search_fields = ['pet_listing_name', 'pet_listing_location', 'pet_listing_animal', 'pet_listing_breed']  
     pagination_class = StandardResultsSetPagination
+    permission_calsses=[IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
-        # to ensure shelter is only viewings their own applications
-        if user.is_authenticated:
-            if user.accounttype == "petseeker":
-                applications = Application.objects.filter(pet_seeker_user=user)
-                return applications.order_by('-created_at', '-last_updated_at')
+        return Application.objects.all()
+        # user = self.request.user
+        # # to ensure shelter is only viewings their own applications
+        # if user.is_authenticated:
+        #     if user.accounttype == "petseeker":
+        #         applications = Application.objects.filter(pet_seeker_user=user)
+        #         return applications.order_by('-created_at', '-last_updated_at')
             
-            print(f"Received application_status: {self.request.query_params.get('application_status')}")
-            # else, if pet is seeker,
-            applications = Application.objects.filter(pet_listing__shelter=user)
-            applications = self.filter_queryset(applications)
-            return self.paginate_queryset(applications)
+        #     print(f"Received application_status: {self.request.query_params.get('application_status')}")
+        #     # else, if pet is seeker,
+        #     applications = Application.objects.filter(pet_listing__shelter=user)
+        #     applications = self.filter_queryset(applications)
+        #     return self.paginate_queryset(applications)
         
-        # Return an empty queryset if the user is not authenticated
-        return Response({'error': 'Unauthorized to view these applications.'}, status=401)
+        # # Return an empty queryset if the user is not authenticated
+        # return Response({'error': 'Unauthorized to view these applications.'}, status=401)

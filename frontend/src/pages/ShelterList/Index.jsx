@@ -21,7 +21,7 @@ function ShelterList() {
     return (
         <>
             <div data-bs-theme="petpal">
-                <div className="main d-flex flex-column justify-content-center align-items-center justify-content-center bg-primary-brown">
+                <div className="main d-flex flex-column justify-content-center align-items-center justify-content-center bg-brown">
                     <h1 className="text-primary-cream">Our Shelters</h1>
                     <div className="d-flex flex-row align-items-center justify-content-between">
                     <img className="hide-xl" src="/imgs/Group_9.svg" height="10%" width="10%" alt="paws"></img>

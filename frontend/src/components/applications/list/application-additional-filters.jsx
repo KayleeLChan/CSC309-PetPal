@@ -4,7 +4,7 @@ import { Form, Dropdown } from 'react-bootstrap';
 const ApplicationAdditionalFilters = ({ searchParams, handleFilterChange, handleInputChange }) => {
     
     // const statusOptions = [["all", "Filter By Status"], ["available", "Available"], ["adopted", "Adopted"], ["pending", "Pending"], ["withdrawn", "Withdrawn"]];
-    const statusOptions = [["all", "Filter By Status"], ["adopted", "Adopted"], ["pending", "Pending"], ["withdrawn", "Withdrawn"]];
+    const statusOptions = [["accepted", "Accepted"], ["pending", "Pending"], ["denied", "Denied"], ["withdrawn", "Withdrawn"]];
     const selectedStatusLabel = statusOptions.find(([option]) => option === searchParams.application_status)?.[1];
 
     return (

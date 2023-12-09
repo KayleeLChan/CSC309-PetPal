@@ -29,8 +29,8 @@ const ApplicationSheetComponent = ({ application }) => {
       <h2 className="mb-4 text-dark-brown text-decoration-underline responsive_heading">SECTION III: PAYMENT</h2>
       <div className="align-self-center mb-2 px-5">
         <p className="d-flex w-100">CURRENTLY INSURED:<span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{application.currently_insured ? 'YES' : 'NO'}</span></p>
-        <p className="d-flex w-100">INSURANCE NAME:<span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{application.insurance_name}</span></p>
-        <p className="d-flex w-100">METHOD OF PAYMENT*:<span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{/* Add payment method data here */}</span></p>
+        {/* <p className="d-flex w-100">INSURANCE NAME:<span className="bg-primary-cream p-1 rounded ms-3 flex-fill"></span></p> */}
+        <p className="d-flex w-100">METHOD OF PAYMENT*:<span className="bg-primary-cream p-1 rounded ms-3 flex-fill">{application.insurance_name}</span></p>
         <p className="fst-italic d-flex w-100"> *Further payment information will be expected upon approval of the application.
           Please routinely check the chatbox or notifications for further instructions from the shelter.</p>
       </div>

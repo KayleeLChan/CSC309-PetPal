@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-const StatusBoxComponent = ({ application, userAccountType }) => {
-
-    console.log('app.', application);
-    console.log('account', userAccountType);
-    console.log(application.application_status);
+const StatusBoxComponent = ({ application }) => {
     const [status, setStatus] = useState(application.application_status);
     const accessToken = localStorage.getItem('access_token');
+    const userAccountType = localStorage.getItem('accounttype');
 
     // Fetch initial application status from backend when the component mount
     // useEffect(() => {
