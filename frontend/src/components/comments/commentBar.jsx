@@ -5,14 +5,32 @@ import { useState } from 'react';
 function CommentBar(props) {
     const [err, setError] = useState("")
     const accessToken = localStorage.getItem('access_token');
-    const { shelterID, onCommentSubmit } = props;
+    const { objectID, onCommentSubmit, commentType } = props;
 
     function handleSubmit(event){
         let data = new FormData(event.target);
         console.log(event.target)
         console.log(data)
 
-        fetch(`http://localhost:8000/comments/shelter/${shelterID}/`, {
+        // fetch(`http://localhost:8000/comments/shelter/${shelterID}/`, {
+        //     method: 'POST',
+        //     body: data,
+        //     headers: {
+        //         'Authorization': `Bearer ${accessToken}`
+        //     }
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     // Handle successful submission
+        //     setError("");
+        //     onCommentSubmit();
+        // })
+        // .catch(error => {
+        //     console.log("catch")
+        //     setError(error.toString());
+        // });
+        // commentType either 'shelter' or 'application'
+        fetch(`http://localhost:8000/comments/${commentType}/${objectID}/`, {
             method: 'POST',
             body: data,
             headers: {

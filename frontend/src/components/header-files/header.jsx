@@ -85,8 +85,10 @@ const Header = () => {
           if(accounttype === "petseeker"){
             console.log("isloggedinseeker")
             setIsSeeker(true)
+            setIsShelter(false)
           }
           else{
+            setIsSeeker(false)
             setIsShelter(true)
           }
         }
@@ -103,7 +105,7 @@ const Header = () => {
           <NavbarBrand></NavbarBrand>
 
           <Navbar.Toggle aria-controls="navbarSupportedContent" />
-          <Navbar.Collapse id="navbarSupportedContent" className="ps-5">
+          <Navbar.Collapse id="navbarSupportedContent" className="ps-1">
             {isLoggedIn && isSeeker && <SeekerDropDowns user_id={user_id}></SeekerDropDowns>}
             {isLoggedIn && isShelter && <ShelterDropDowns user_id={user_id}></ShelterDropDowns>}
             {!isLoggedIn && <NavbarDropdowns />}
