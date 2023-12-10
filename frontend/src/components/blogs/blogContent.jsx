@@ -1,4 +1,5 @@
 import React from 'react';
+import BlogContentSection from './blogContentSection';
 
 function BlogContent(props) {
     const date = new Date(props.blogContent.creation_time);
@@ -17,10 +18,11 @@ function BlogContent(props) {
                         {/* shelter author name */}
                         <h5 className="text-primary-cream mb-1 font-plain">author: {props.blogContent.author_name}</h5>
                         {/* blog creation time */}
-                        <h5 className="text-primary-cream mb-1 font-plain">created: {formattedDate}</h5>
-                        <p className="text-primary-brown mb-1">
+                        <h5 className="text-primary-cream mb-1">created: {props.blogContent.creation_time}</h5>
+                        {/* <p className="text-primary-brown mb-1">
                             {props.blogContent.text}
-                        </p>
+                        </p> */}
+                        <BlogContentSection blogContentData={props.blogContent}></BlogContentSection>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ import ShelterReviews from "./pages/ShelterReviews/Index";
 import BlogList from "./pages/BlogList/Index";
 import BlogDetails from "./pages/BlogDetails/Index";
 import BlogCreate from "./pages/BlogCreate/Index";
+import BlogCreateContent from "./pages/BlogCreateContent/Index";
 
 import ListingPage from "./pages/Listings/Index";
 import Listing from "./pages/Listings/Listing";
@@ -47,6 +48,7 @@ export default function App() {
           <Route path="accounts/blogs" element={<BlogList />} />
           <Route path="accounts/blogs/:id" element={<BlogDetails />} />
           <Route path="accounts/blogs/create" element={<BlogCreate />} />
+          <Route path="accounts/blogs/:id/create" element={<BlogCreateContent />} />
           {/* Accounts pages */}
 
           {/* Blogs Pages */}
