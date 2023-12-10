@@ -49,6 +49,10 @@ export default function App() {
           <Route path="accounts/blogs/create" element={<BlogCreate />} />
           {/* Accounts pages */}
 
+          {/* Blogs Pages */}
+
+          {/* Blogs Pages */}
+
           {/* Listings pages */}
           <Route path="search" element={<Search />} />
           <Route path="listings" element={<SearchResults />} />
@@ -58,14 +62,12 @@ export default function App() {
           {/* Listings pages */}
 
           {/* Application Pages */}
-          <Route path="applications/new/:petId" element={<CreateApplication />} />
-          <Route path="applications/details/:id" element={<ApplicationDetails />} />
-          <Route path="applications/editor/:id" element={<ApplicationDetails />} />
+          <Route path="listings/:petId/application" element={<CreateApplication />} />
           <Route path="applications/" element={<ListApplications />} />
-          <Route path="applications/chat/:id" element={<ApplicationChat />} />
-
+          <Route path="applications/:id" element={<ApplicationDetails />} />
+          <Route path="applications/:id/chat" element={<ApplicationChat />} />
+          
           {/* ERROR404 MUST BE THE LAST ROUTE!!! PUT ALL OF YOUR ROUTES ABOVE THIS!!! */}
-          {/* TODO MAKE 403 UNAUTHORIZED AND REROUTE ACCOUNTTYPES TO THERE */}
           <Route path="unauthorized" element={<Error403 />} />
           <Route path="*" element={<Error404 />} />
         </Route>
