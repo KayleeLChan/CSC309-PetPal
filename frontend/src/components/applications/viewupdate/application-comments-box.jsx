@@ -3,7 +3,6 @@ import React from 'react';
 // replaced by chat box on a separate page
 
 const ChatComponent = ({ user }) => {
-    console.log(user);
     return (
         <div className="d-flex flex-column m-4 mb-3 text-dark-brown bg-white rounded-5 position-relative mx-auto w-100 chat">
             

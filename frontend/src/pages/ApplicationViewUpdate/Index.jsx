@@ -24,7 +24,6 @@ function ApplicationDetails() {
         const fetchData = async () => {
             try {
                 // Fetch application data
-                console.log(id)
                 const applicationResponse = await fetch(`http://localhost:8000/applications/details/${id}/`,
                     {
                         headers: { Authorization: `Bearer ${accessToken}`, }
@@ -32,7 +31,6 @@ function ApplicationDetails() {
 
                 const applicationData = await applicationResponse.json();
 
-                console.log(applicationResponse.status);
 
                 if (applicationResponse.status === FORBIDDEN_STATUS_CODE) {
                     setDenied(true);

@@ -14,7 +14,6 @@ const SeekerDropDowns = (props) => {
         .then(response => response.json())
         .then(data =>{
           const ids = data.map(item => item.id);
-          console.log(ids)
           const randomIndex = Math.floor(Math.random() * ids.length);
           const luckyId = ids[randomIndex];
           navigate(`/accounts/shelters/${luckyId}/`)

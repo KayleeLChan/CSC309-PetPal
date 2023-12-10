@@ -74,15 +74,12 @@ const ListApplications = () => {
                 sort_by: query.sort_by,
             });
 
-            // Make request to backend
-            // console.log(`http://localhost:8000/applications/?${queryParams}`);
             const response = await fetch(`http://localhost:8000/applications/?${queryParams}`, {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`
                 }
             })
             const data = await response.json();
-            console.log(data)
 
             if (response.status === FORBIDDEN_STATUS_CODE) {
                 setDenied(true);
@@ -90,8 +87,6 @@ const ListApplications = () => {
 
             // setApplications(data.results); // map crashing cause of this, data.results isnt a thing
             setApplications(data.results); // nvm was supposed to be this not data.application_status
-            console.log(applications)
-            console.log(data.count)
 
             setTotalPages(
                 Math.ceil(Number(data.count) / 15)

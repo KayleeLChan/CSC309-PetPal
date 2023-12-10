@@ -4,18 +4,21 @@ import { useNavigate } from 'react-router-dom';
 
 function DetailsTop(props) {
     const navigate = useNavigate();
+    const date = new Date(props.shelterData.date_joined)
+    const formattedDate = date.toLocaleString();
 
-    console.log(props.shelterData);
     function navigateReviews(){
-        navigate(`/accounts/shelters/${props.id}/reviews`);
+        navigate(`/shelters/${props.id}/reviews`);
+      }
+
+      function navigateBlogs(){
+        navigate(`/blogs/?shelter=${props.id}`);
       }
 
       function navigateListings(){
         navigate(`/listings/?shelter=${props.shelterData.username}`);
       }
-
-    const dateJoined = new Date(props.shelterData.date_joined);
-    const formattedDate = dateJoined.toLocaleString();
+      
     return (
         <>
             <div data-bs-theme="petpal">
@@ -27,12 +30,11 @@ function DetailsTop(props) {
                     {/* fields = ['profilepic','sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy', 'date_joined'] */}
                     {/* shelter details */}
                     <div className="two-col-child align-self-center justify-content-center w-50 mt-2 mb-3">
-                        <h1 className="text-primary-cream text-decoration-underline mb-1">{props.shelterData.sheltername}</h1>
+                        <a className="text-primary-cream mb-1 h1" href={`/shelters/${props.id}`}>{props.shelterData.sheltername}</a>
                         <h5 className="text-primary-cream mb-1">{props.shelterData.companyaddress}, {props.shelterData.city}</h5>
-                        <Button variant="primary-cream" className="my-2" onClick={navigateReviews}>Reviews</Button>
-                        {/* TODO MAKE BUTTON LEAD TO BLOGS PAGE */}
-                        <Button variant="primary-cream" className="my-2" onClick={navigateReviews}>Reviews</Button>
-                        <Button variant="primary-cream" className="my-2" onClick={navigateListings}>Listings</Button>
+                        <Button variant="primary-cream" className="m-2 ms-0" onClick={navigateReviews}>Reviews</Button>
+                        <Button variant="primary-cream" className="m-2" onClick={navigateListings}>Listings</Button>
+                        <Button variant="primary-cream" className="m-2" onClick={navigateBlogs}>Blogs</Button>
                     </div>
 
                     {/* shelter contact details */}

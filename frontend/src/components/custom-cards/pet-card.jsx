@@ -2,7 +2,6 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 
 const PetCard = ({listing}) => {
-  console.log("listing", listing);
 
   return (
     <>

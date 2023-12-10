@@ -18,7 +18,6 @@ function UpdatePhoto(props) {
 
 
     useEffect(() => {
-        console.log("data on call", props.data.profilepic);
         if (accounttype === 'petseeker') {
             setIsSeeker(true)
         }
@@ -40,7 +39,6 @@ function UpdatePhoto(props) {
     };
 
     useEffect(() => {
-        console.log(photo)
 
         putRequest();
 
@@ -63,7 +61,6 @@ function UpdatePhoto(props) {
             body: formData
         })
             .then(response => {
-                console.log(response);
                 if (response.ok) {
                     getRequest();
                 }

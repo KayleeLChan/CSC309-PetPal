@@ -14,6 +14,7 @@ import ShelterReviews from "./pages/ShelterReviews/Index";
 import BlogList from "./pages/BlogList/Index";
 import BlogDetails from "./pages/BlogDetails/Index";
 import BlogCreate from "./pages/BlogCreate/Index";
+import BlogCreateContent from "./pages/BlogCreateContent/Index";
 
 import ListingPage from "./pages/Listings/Index";
 import Listing from "./pages/Listings/Listing";
@@ -41,13 +42,17 @@ export default function App() {
           <Route path="accounts" element={<Login />} />
           <Route path="accounts/registration" element={<Register />} />
           <Route path="accounts/:id" element={<Update />} />
-          <Route path="accounts/shelters" element={<ShelterList />} />
-          <Route path="accounts/shelters/:id" element={<ShelterDetails />} />
-          <Route path="accounts/shelters/:id/reviews" element={<ShelterReviews />} />
-          <Route path="accounts/blogs" element={<BlogList />} />
-          <Route path="accounts/blogs/:id" element={<BlogDetails />} />
-          <Route path="accounts/blogs/create" element={<BlogCreate />} />
+          <Route path="shelters" element={<ShelterList />} />
+          <Route path="shelters/:id" element={<ShelterDetails />} />
+          <Route path="shelters/:id/reviews" element={<ShelterReviews />} />
           {/* Accounts pages */}
+
+          {/* Blogs Pages */}
+          <Route path="blogs" element={<BlogList />} />
+          <Route path="blogs/create" element={<BlogCreate />} />
+          <Route path="blogs/:id" element={<BlogDetails />} />
+          <Route path="blogs/:id/create" element={<BlogCreateContent />} />
+          {/* Blogs Pages */}
 
           {/* Listings pages */}
           <Route path="search" element={<Search />} />
@@ -58,14 +63,12 @@ export default function App() {
           {/* Listings pages */}
 
           {/* Application Pages */}
-          <Route path="applications/new/:petId" element={<CreateApplication />} />
-          <Route path="applications/details/:id" element={<ApplicationDetails />} />
-          <Route path="applications/editor/:id" element={<ApplicationDetails />} />
+          <Route path="listings/:petId/application" element={<CreateApplication />} />
           <Route path="applications/" element={<ListApplications />} />
-          <Route path="applications/chat/:id" element={<ApplicationChat />} />
-
+          <Route path="applications/:id" element={<ApplicationDetails />} />
+          <Route path="applications/:id/chat" element={<ApplicationChat />} />
+          
           {/* ERROR404 MUST BE THE LAST ROUTE!!! PUT ALL OF YOUR ROUTES ABOVE THIS!!! */}
-          {/* TODO MAKE 403 UNAUTHORIZED AND REROUTE ACCOUNTTYPES TO THERE */}
           <Route path="unauthorized" element={<Error403 />} />
           <Route path="*" element={<Error404 />} />
         </Route>

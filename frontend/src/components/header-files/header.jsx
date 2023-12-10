@@ -75,14 +75,9 @@ const Header = () => {
 
 
       useEffect(() => {
-        console.log("useffect")
-        console.log(accounttype)
-        console.log(profilePic)
         if(accessToken){
-          console.log("isloggedin")
           setIsLoggedIn(true)
           if(accounttype === "petseeker"){
-            console.log("isloggedinseeker")
             setIsSeeker(true)
             setIsShelter(false)
           }

@@ -22,7 +22,6 @@ function RegisterSeeker(){
     const [isValError, setisValError] = useState(false)
 
     const handlePhotoChange = (event) => {
-        console.log(event.target.files);
         if(event.target.files[0]){
             setPhoto(event.target.files[0]);
         }
@@ -34,9 +33,7 @@ function RegisterSeeker(){
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      console.log(event.target)
       const userData = new FormData(event.target)
-      console.log(userData)
       userData.set('pref_sex', sex);
       userData.set('pref_size', size);
       userData.set('pref_personality', personality);
@@ -52,24 +49,19 @@ function RegisterSeeker(){
 
       })
       .then(response => {
-        console.log(response);
-        console.log(response.status)
         if (response.status == 400) {
-            console.log("response is 400")
             setisValError(true)
         }
         else{
             setisValError(false)
             if(response.ok){
             navigate('/accounts');
-            console.log("registration successful")
             }
         }
         return response.json();
       })
     //   add in proper error displays
       .then(userData => {
-        console.log(userData)
         if ('username' in userData && isValError) {
             setUserError(userData.username[0])
         }
