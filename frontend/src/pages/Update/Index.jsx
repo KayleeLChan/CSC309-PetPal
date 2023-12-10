@@ -15,28 +15,32 @@ function Update() {
     const [error, setError] = useState();
     const [isComponentVisible, setIsComponentVisible] = useState(true);
 
-function handleDelete(){
-      if (!accessToken) {
-        navigate(`/accounts`);
-        return;
-      }
+    function handleDelete() {
+        if (!accessToken) {
+            navigate(`/accounts`);
+            return;
+        }
 
-      fetch(`http://localhost:8000/accounts/${id}/deletion/`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-      })
-      .then((response) => {
-      console.log(response);
-      if (response.ok) {
-      console.log('Item deleted successfully');
-      navigate('/accounts')
-      }
-      })
-      .catch((error) => {
-      console.error(error);
-      });
+        fetch(`http://localhost:8000/accounts/${id}/deletion/`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+            .then((response) => {
+                if (response.ok) {
+                    localStorage.removeItem('access_token');
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('accounttype');
+                    localStorage.removeItem('user_id');
+                    localStorage.removeItem('profilepic');
+                    navigate('/accounts')
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        
     };
 
     const displayUpdate = () => {
@@ -44,7 +48,6 @@ function handleDelete(){
     };
 
     useEffect(() => {
-        console.log("useeffect")
         if (!accessToken) {
             navigate(`/accounts`);
             return;
@@ -58,9 +61,7 @@ function handleDelete(){
         })
             .then(response => response.json())
             .then(data => {
-                console.log("data", data);
                 setData(data);
-                console.log(data);
             })
             .catch(error => {
                 console.error(error);
@@ -73,7 +74,7 @@ function handleDelete(){
             <div data-bs-theme="petpal">
                 <div className="main">
                     {accountType === "petseeker" ? (
-                         isComponentVisible ? (
+                        isComponentVisible ? (
                             <ViewSeekerProfile data={data} displayUpdate={displayUpdate} handleDelete={handleDelete} />
                         ) : (
                             <UpdateSeekerProfile data={data} displayUpdate={displayUpdate} />

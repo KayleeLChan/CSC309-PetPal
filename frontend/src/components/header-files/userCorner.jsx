@@ -52,7 +52,7 @@ function UserCorner(props) {
         className="hide-lg"
         title={
           <>
-            {notifAlert ? <div class="ratio ratio-1x1 notif-dot w-20 rounded-circle position-absolute top-0 start-60"></div> : <></>}
+            {notifAlert ? <div className="ratio ratio-1x1 notif-dot w-20 rounded-circle position-absolute top-0 start-60"></div> : <></>}
             <img
               src={props.profilepic}
               alt="pfp"
@@ -62,7 +62,7 @@ function UserCorner(props) {
         }
       >
         <Dropdown.Item eventKey="1" onClick={handleViewProfile}>View Profile</Dropdown.Item>
-        <Dropdown.Item eventKey="2" onClick={handleNotifications}>Notifications {notifAlert ? <div class="ratio ratio-1x1 w-7 notif-dot rounded-circle position-absolute bottom-50 start-65"></div> : <></>}</Dropdown.Item>
+        <Dropdown.Item eventKey="2" onClick={handleNotifications}>Notifications {notifAlert ? <div className="ratio ratio-1x1 w-7 notif-dot rounded-circle position-absolute bottom-50 start-65"></div> : <></>}</Dropdown.Item>
         <Dropdown.Item eventKey="3" onClick={props.handleLogout}>Log Out</Dropdown.Item>
       </DropdownButton>
       <DropdownButton
@@ -73,7 +73,7 @@ function UserCorner(props) {
         variant="primary"
         className="show-md mx-0"
         title={<>
-          {notifAlert ? <div class="ratio ratio-1x1 notif-dot w-20 rounded-circle position-absolute top-0 start-60"></div> : <></>}
+          {notifAlert ? <div className="ratio ratio-1x1 notif-dot w-20 rounded-circle position-absolute top-0 start-60"></div> : <></>}
           <img
             src={props.profilepic}
             alt="pfp"
@@ -82,7 +82,7 @@ function UserCorner(props) {
         </>}
       >
         <Dropdown.Item eventKey="1" onClick={handleViewProfile}>View Profile</Dropdown.Item>
-        <Dropdown.Item eventKey="2" onClick={handleNotifications}>Notifications {notifAlert ? <div class="ratio ratio-1x1 w-7 notif-dot rounded-circle position-absolute bottom-50 start-65"></div> : <></>}</Dropdown.Item>
+        <Dropdown.Item eventKey="2" onClick={handleNotifications}>Notifications {notifAlert ? <div className="ratio ratio-1x1 w-7 notif-dot rounded-circle position-absolute bottom-50 start-65"></div> : <></>}</Dropdown.Item>
         <Dropdown.Item eventKey="3" onClick={props.handleLogout}>Log Out</Dropdown.Item>
       </DropdownButton>
     </>

@@ -11,9 +11,7 @@ function ApplicationChatSection(props) {
         return null; // or handle the loading state or display an error message
     }
 
-    // // console.log(sortedComments);
     // const sortedComments = (commentsData.results).sort((a, b) => b.creation_field - a.creation_time)
-    // console.log(sortedComments)
 
     const handlePageChangePrev = () => {
         // Increment the current page number

@@ -42,17 +42,16 @@ export default function App() {
           <Route path="accounts" element={<Login />} />
           <Route path="accounts/registration" element={<Register />} />
           <Route path="accounts/:id" element={<Update />} />
-          <Route path="accounts/shelters" element={<ShelterList />} />
-          <Route path="accounts/shelters/:id" element={<ShelterDetails />} />
-          <Route path="accounts/shelters/:id/reviews" element={<ShelterReviews />} />
-          <Route path="accounts/blogs" element={<BlogList />} />
-          <Route path="accounts/blogs/:id" element={<BlogDetails />} />
-          <Route path="accounts/blogs/create" element={<BlogCreate />} />
-          <Route path="accounts/blogs/:id/create" element={<BlogCreateContent />} />
+          <Route path="shelters" element={<ShelterList />} />
+          <Route path="shelters/:id" element={<ShelterDetails />} />
+          <Route path="shelters/:id/reviews" element={<ShelterReviews />} />
           {/* Accounts pages */}
 
           {/* Blogs Pages */}
-
+          <Route path="blogs" element={<BlogList />} />
+          <Route path="blogs/create" element={<BlogCreate />} />
+          <Route path="blogs/:id" element={<BlogDetails />} />
+          <Route path="blogs/:id/create" element={<BlogCreateContent />} />
           {/* Blogs Pages */}
 
           {/* Listings pages */}

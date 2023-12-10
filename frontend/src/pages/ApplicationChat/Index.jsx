@@ -32,7 +32,6 @@ function ApplicationChat() {
             }
         })
             .then(response => response.json())
-            // .then(data => console.log(data))
             .then(data => {
                 setComments(data)
                 setTotalPages(Math.ceil(Number(data.count) / 10))
@@ -58,7 +57,6 @@ function ApplicationChat() {
         <>
             <div data-bs-theme="petpal">
                 <div className="main">
-                    {/* {console.log(commentsData)} */}
                     <ApplicationChatSection commentsData={commentsData} applicationID={id} onCommentSubmit={handleCommentSubmit} setQuery={setQuery} query={query} totalPages={totalPages} />
                 </div>
             </div>

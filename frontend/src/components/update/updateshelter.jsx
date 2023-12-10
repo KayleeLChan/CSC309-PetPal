@@ -4,10 +4,7 @@ import { useNavigate } from 'react-router-dom/';
 
 
 function UpdateShelterProfile(props) {
-    console.log(props.data)
-    console.log(props.data.id)
     const id = props.data.id
-    console.log(id)
     const [error, setError] = useState("")
     const accessToken = localStorage.getItem('access_token');
     const navigate = useNavigate()
@@ -26,13 +23,11 @@ function UpdateShelterProfile(props) {
 
         for (const [key, value] of formData.entries()) {
             if (!value) {
-                console.log("marking for deletion", key);
                 keysToDelete.push(key);
             }
         }
 
         for (const keyToDelete of keysToDelete) {
-            console.log("deleting", keyToDelete);
             formData.delete(keyToDelete);
         }        
     
@@ -45,7 +40,6 @@ function UpdateShelterProfile(props) {
             
 
             .then(response => {
-                console.log(response);
                 return response.json();
             })
             // add in proper error displays

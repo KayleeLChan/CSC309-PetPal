@@ -4,10 +4,7 @@ import { Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom/';
 
 function UpdateSeekerProfile(props) {
-    console.log(props.data)
-    console.log(props.data.id)
     const id = props.data.id
-    console.log(id)
     const [error, setError] = useState("")
     const [sex, setSex] = useState('');
     const [personality, setPersonality] = useState('');
@@ -32,13 +29,11 @@ function UpdateSeekerProfile(props) {
 
         for (const [key, value] of formData.entries()) {
             if (!value) {
-                console.log("marking for deletion", key);
                 keysToDelete.push(key);
             }
         }
 
         for (const keyToDelete of keysToDelete) {
-            console.log("deleting", keyToDelete);
             formData.delete(keyToDelete);
         }    
     
@@ -51,7 +46,6 @@ function UpdateSeekerProfile(props) {
             
 
             .then(response => {
-                console.log(response);
                 return response.json();
             })
             // add in proper error displays

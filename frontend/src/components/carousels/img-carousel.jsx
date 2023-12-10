@@ -27,7 +27,6 @@ const ImgCarousel = ({ images }) => {
     setIndex((index + 1) % groupedImages.length);
   };
 
-  console.log("lorg", images);
   return (
     <Container className="container detail-carousel hide-lg">
       <Carousel id="petCarousel" className="d-flex flex-column" activeIndex={index} onSelect={handleSelect} interval={null} keyboard={false} controls={false} indicators={false}>

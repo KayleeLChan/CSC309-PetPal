@@ -11,11 +11,10 @@ function BlogContentSection(props) {
     return (
         <>
             <div data-bs-theme="petpal">
-                    <div className="d-flex align-self-start mt-4 w-100 justify-content-left">
+                    <div className="d-flex align-self-start mt-4 w-100 justify-content-center">
                         <div className="d-flex two-col-child w-90 m-4 px-5 py-5 bg-cream flex-column rounded">
-                            <h2 className="mb-4 text-dark-brown text-decoration-underline responsive_heading">Content:</h2>
+                            <h2 className="mb-4 text-dark-brown text-decoration-underline responsive_heading">Posts:</h2>
                         
-                            {console.log(blogContentData)}
                             {blogContentData.map((blog) => (
                                 <Blog key={blog.id} contentData={blog} />
                             ))}

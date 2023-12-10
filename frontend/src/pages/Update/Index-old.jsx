@@ -21,9 +21,7 @@ function handleDelete(){
       }
       })
       .then((response) => {
-      console.log(response);
       if (response.ok) {
-      console.log('Item deleted successfully');
       navigate('/accounts')
       }
       })
@@ -37,7 +35,6 @@ function handleDelete(){
     };
  
     useEffect(() => {
-        console.log("useeffect")
         if (!accessToken) {
           navigate(`/accounts`);
           return;
@@ -52,7 +49,6 @@ function handleDelete(){
           .then(response => response.json())
           .then(data => {
             setData(data);
-            console.log(data);
           })
           .catch(error => {
             console.error(error);

@@ -4,13 +4,17 @@ import { useNavigate } from 'react-router-dom';
 
 function DetailsTop(props) {
     const navigate = useNavigate();
+    const date = new Date(props.shelterData.date_joined)
+    const formattedDate = date.toLocaleString();
 
-    console.log(props.shelterData);
     function navigateReviews(){
-        navigate(`/accounts/shelters/${props.id}/reviews`);
+        navigate(`/shelters/${props.id}/reviews`);
       }
 
-    //TODO: MAKE DATE HUMAN READABLE!
+      function navigateBlogs(){
+        navigate(`/blogs/?shelter=${props.id}`);
+      }
+
     return (
         <>
             <div data-bs-theme="petpal">
@@ -22,16 +26,15 @@ function DetailsTop(props) {
                     {/* fields = ['profilepic','sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy', 'date_joined'] */}
                     {/* shelter details */}
                     <div className="two-col-child align-self-center justify-content-center w-50 mt-2 mb-3">
-                        <h1 className="text-primary-cream text-decoration-underline mb-1">{props.shelterData.sheltername}</h1>
+                        <a className="text-primary-cream mb-1 h1" href={`/shelters/${props.id}`}>{props.shelterData.sheltername}</a>
                         <h5 className="text-primary-cream mb-1">{props.shelterData.companyaddress}, {props.shelterData.city}</h5>
-                        <Button variant="primary-cream" className="my-2" onClick={navigateReviews}>Reviews</Button>
-                        {/* TODO MAKE BUTTON LEAD TO BLOGS PAGE */}
-                        <Button variant="primary-cream" className="my-2" onClick={navigateReviews}>Reviews</Button>
+                        <Button variant="primary-cream" className="m-2 ms-0" onClick={navigateReviews}>Reviews</Button>
+                        <Button variant="primary-cream" className="m-2" onClick={navigateBlogs}>Blogs</Button>
                     </div>
 
                     {/* shelter contact details */}
                     <div className="d-flex two-col-child flex-column align-items-center align-self-center justify-content-start w-50 mb-2 mt-1">
-                        <p className="text-primary-cream mb-1">Account published on: {props.shelterData.date_joined}</p>
+                        <p className="text-primary-cream mb-1">Account published on: {formattedDate}</p>
                         <p className="text-primary-cream mb-1">Email: {props.shelterData.email}</p>
                         <p className="text-primary-cream mb-1">Phone Number: {props.shelterData.phonenumber}</p>
                         <p className="text-primary-cream mb-1">Website: {props.shelterData.website}</p>

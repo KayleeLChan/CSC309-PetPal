@@ -4,7 +4,6 @@ import BlogContentSection from './blogContentSection';
 function BlogContent(props) {
     const date = new Date(props.blogContent.creation_time);
     const formattedDate = date.toLocaleString();
-    console.log(props);
 
     return (
         <>

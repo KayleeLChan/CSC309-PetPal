@@ -52,9 +52,11 @@ class CommentListCreateView(ListCreateAPIView):
             comment_content = "A new comment has been added to your shelter!"
             comment_title = "comment" 
             comment_recipient = get_object_or_404(PetShelter, id=object_id)
+            url = f"/shelters/{object_id}/reviews"
         else:
             comment_content = "A new comment has been added to one of your applications!"
             comment_title = "application"
+            url = f"/applications/{object_id}/chat"
             if self.request.user.accounttype == "petshelter":
                 comment_recipient = application.pet_seeker_user
             else:
@@ -69,7 +71,7 @@ class CommentListCreateView(ListCreateAPIView):
             notifier= self.request.user,
             content=comment_content,
             title= comment_title,
-            link= reverse("comments:comment", kwargs={'model': model, 'object_id': object_id})
+            link= url
         )
 
     def get_queryset(self):
@@ -85,32 +87,3 @@ class CommentListCreateView(ListCreateAPIView):
             return comments
         else:
             raise PermissionDenied("You do not have permission to access this view.")
-
-# class ApplicationCommentListCreateView(ListCreateAPIView):
-#     queryset = Comment.objects.filter(content_type='application')
-#     serializer_class = CommentSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     def perform_create(self, serializer):
-#         application_id = self.kwargs.get('application_id')
-#         application = get_object_or_404(Application, id=application_id)
-#         serializer.save(author=self.request.user, content_object=application)
-
-# class ApplicationCommentListCreateView(ListCreateAPIView):
-#     serializer_class = CommentSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     # making a comment for given shelter
-#     def perform_create(self, serializer):
-#         application_id = self.kwargs['application_id']
-#         shelter = get_object_or_404(ContentType, id=object_id)
-#         print(object_id)
-#         print(shelter)
-#         serializer.save(author=self.request.user, object_id=object_id, content_type=shelter)
-
-#     def get_queryset(self):
-#         object_id = self.kwargs['object_id']
-#         # print(object_id)
-#         account_content_type = ContentType.objects.get_for_model(PetShelter)
-#         petshelter_comments = Comment.objects.filter(content_type=account_content_type, object_id=object_id)
-#         return petshelter_comments

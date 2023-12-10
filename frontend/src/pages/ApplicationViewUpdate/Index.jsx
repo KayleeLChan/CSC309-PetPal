@@ -24,7 +24,6 @@ function ApplicationDetails() {
         const fetchData = async () => {
             try {
                 // Fetch application data
-                console.log(id)
                 const applicationResponse = await fetch(`http://localhost:8000/applications/details/${id}/`,
                 {
                     headers: { Authorization: `Bearer ${accessToken}`, }
@@ -36,7 +35,6 @@ function ApplicationDetails() {
                     navigate("/unauthorized");
                 }
 
-                console.log('data', applicationData);
                 setApplication(applicationData);
     
                 // Fetch user details if application data is available

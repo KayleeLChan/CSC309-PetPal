@@ -13,14 +13,16 @@ class Blog(models.Model):
     shelter = models.OneToOneField(User, on_delete=models.CASCADE, related_name='blog', null=True)
     # blog id is the django generated object ID (let it do its thing)
 
-    blog_title = models.CharField(max_length=40, null=True) # new; might new more?
+    blog_title = models.CharField(max_length=40, null=True)
+    description = models.TextField(null=True)
     creation_time = models.DateTimeField(auto_now_add=True)
     author_name = models.CharField(max_length=40, null=True)
 
     def __str__(self):
-        return f"{self.author} at {self.creation_time}: {self.blog_title}"
+        return f"{self.author_name} at {self.creation_time}: {self.blog_title}"
 
 class BlogContent(models.Model):
+    title = models.CharField(max_length=40)
     text = models.TextField()  # Body of the blog content
     creation_time = models.DateTimeField(auto_now_add=True)
     blog = models.ForeignKey(Blog, on_delete=models.SET_NULL, related_name='blog_content', null=True) # most important thing

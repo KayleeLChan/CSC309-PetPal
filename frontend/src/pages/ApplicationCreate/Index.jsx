@@ -51,7 +51,6 @@ function CreateApplication() {
 
                 setUserInfo(userData);
 
-                console.log('userdata', userData);
 
                 setFormData({
                     firstName: userData.first_name || '', 
@@ -95,7 +94,6 @@ function CreateApplication() {
     // Create instance of application model upon submit button click
     const handleSubmit = async () => {
 
-        console.log('Form Data:', formData);
 
         const applicationData = {
             application_status: "pending",
@@ -119,11 +117,9 @@ function CreateApplication() {
             insurance_name: formData.insuranceName,
         };
 
-        console.log('New Application', applicationData);
         
         // POST request to create new application
         const dataBody = JSON.stringify(formData);
-        console.log('body', dataBody);
         try {
             const response = await fetch(`http://localhost:8000/applications/new/${petId}/`, {
                 method: 'POST',
@@ -135,13 +131,10 @@ function CreateApplication() {
             if (response.ok) {
                 const responseData = await response.json();
                 const newApplicationId = responseData.id;
-                console.log(`Application submitted successfully with ID: ${newApplicationId}`);
-                console.log(responseData)
             } else {
                 const responseData = await response.json();
                 console.error('Failed to submit application:', responseData);
                 navigate("/applications/");
-                console.log(responseData)
             }
         } catch (error) {
             console.error('Error submitting application:', error);

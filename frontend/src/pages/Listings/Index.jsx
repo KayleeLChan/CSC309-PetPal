@@ -140,9 +140,7 @@ const ListingPage = () => {
                     }
                 });
 
-                if (response.ok) {
-                    console.log('Default file uploaded successfully');
-                } else {
+                if (!response.ok) {
                     console.error('Failed to upload default file');
                 }
             } catch (error) {
@@ -156,7 +154,6 @@ const ListingPage = () => {
                 const listingID = id ? id : newID
     
                 try {
-                    console.log(accessToken);
                     const response = await fetch(`http://localhost:8000/listings/${listingID}/image/`, {
                         method: 'POST',
                         body: formData,
@@ -165,9 +162,7 @@ const ListingPage = () => {
                         }
                     });
     
-                    if (response.ok) {
-                        console.log(`File ${file.name} uploaded successfully`);
-                    } else {
+                    if (!response.ok) {
                         console.error(`Failed to upload file ${file.name}`);
                     }
                 } catch (error) {

@@ -1,10 +1,11 @@
 # views.py
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from .models import Blog, BlogContent
 from .serializers import BlogSerializer, BlogContentSerializer
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
+from accounts.models import Account
 
 class BlogCreateView(CreateAPIView):
     serializer_class = BlogSerializer
@@ -43,7 +44,15 @@ class BlogListView(ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        return Blog.objects.all()
+        queryset = Blog.objects.all()
+        shelter_id = self.request.query_params.get('shelter', None)
+
+        if shelter_id and shelter_id != "all":
+            shelter = get_object_or_404(Account, id=shelter_id)
+            print(shelter)
+            queryset = queryset.filter(shelter=shelter)
+
+        return queryset
 
 class BlogContentListView(ListCreateAPIView):
     serializer_class = BlogContentSerializer
@@ -57,5 +66,5 @@ class BlogContentListView(ListCreateAPIView):
         blog = get_object_or_404(Blog, pk=blog_id)
 
         # Filter BlogContent objects based on the related Blog
-        return BlogContent.objects.filter(blog=blog)
+        return BlogContent.objects.filter(blog=blog).order_by('-creation_time')
 

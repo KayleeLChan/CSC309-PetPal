@@ -12,43 +12,33 @@ function Login() {
 
     function handle_login(event) {
         let data = new FormData(event.target);
-        console.log(event.target)
-        console.log(data)
 
         fetch('http://localhost:8000/accounts/', {
             method: 'POST',
             body: data
         })
             .then(function (response) {
-                // console.log(response.json())
                 return response.json()
             }
             )
             .then(json => {
-                console.log("then json")
-                console.log(json)
                 if ('access_token' in json) {
                     localStorage.setItem('access_token', json.access_token);
                     localStorage.setItem('username', data.get('username'));
                     localStorage.setItem('accounttype', json.accounttype);
                     localStorage.setItem('user_id', json.user_id);
                     navigate('/');
-                    console.log("successful login")
-                    console.log(localStorage.getItem("accounttype"))
-                    console.log(localStorage.getItem("user_id"))
                     // navigate to the landing page
                 }
                 else if ('message' in json) {
-                    console.log("if message")
                     setError(json.message.toString());
-                    console.log(json.message.toString())
                 }
                 else {
                     setError("Unknown error while signing in.")
                 }
             })
             .catch(error => {
-                console.log("catch")
+                console.error("catch")
                 setError(error.toString());
             });
 

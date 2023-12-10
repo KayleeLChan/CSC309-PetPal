@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 const StatusBoxComponent = ({ application, userAccountType }) => {
 
-    console.log('app.', application);
-    console.log('account', userAccountType);
-    console.log(application.application_status);
     const [status, setStatus] = useState(application.application_status);
     const accessToken = localStorage.getItem('access_token');
 
@@ -34,7 +31,6 @@ const StatusBoxComponent = ({ application, userAccountType }) => {
             try {
                 // Ensure application.id is defined before making the request
                 if (!application.id) {
-                    console.log('Application ID is undefined. Skipping data fetch.');
                     return;
                 }
     
@@ -67,7 +63,6 @@ const StatusBoxComponent = ({ application, userAccountType }) => {
         // If response successful, status state is changed
         if (response.ok) {
             setStatus(newStatus);
-            console.log('Application status updated successfully.');
         } else {
             console.error('Error updating application status:', response.statusText);
         }

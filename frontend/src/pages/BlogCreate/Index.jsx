@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom/';
 
 function BlogCreate() {
@@ -6,45 +6,45 @@ function BlogCreate() {
     const currShelterName = localStorage.getItem('username');
     const navigate = useNavigate();
 
-    function handleSubmit(event){
-        let data = new FormData(event.target);
-        data.append('author_name', currShelterName);
-
-        console.log(event.target)
-        console.log(data)
-
-        fetch(`http://localhost:8000/blogs/creation/`, {
-            method: 'POST',
-            body: data,
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle successful submission (after posting a comment, immediately redirect them to all blogs, so they can see)
-            // console.log(data);
-            navigate("/accounts/blogs/")
-        })
-        .catch(error => {
-            console.log(error)
-        });
-
+    async function handleSubmit(event) {
         event.preventDefault();
+    
+        try {
+            // Use the updated state directly here
+            const response = await fetch('http://localhost:8000/blogs/creation/', {
+                method: 'POST',
+                body: JSON.stringify({
+                    blog_title: event.target.blog_title.value,
+                    description: event.target.description.value,
+                    author_name: currShelterName
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
+    
+            const responseData = await response.json();
+    
+            // Handle successful submission
+            navigate('/blogs');
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
         <>
-            <div onSubmit={handleSubmit} class="d-flex two-col-child w-90 m-4 p-3 px-5 py-5 bg-cream flex-column rounded">
-                <form id="blogForm" class="d-flex flex-column h-100 responsive-col">
-                    <div class="d-flex flex-column mb-3 h-50">
-                        <label class="row-form-label text-primary-cream h1 mb-1" for="blog_title">Blog Title</label>
-                        <input type="text" class="form-control border border-0 h-100" placeholder="Put your Blog title here" id="blog_title" name="blog_title" required />
+            <div onSubmit={handleSubmit} className="d-flex two-col-child w-90 m-4 p-3 px-5 py-5 bg-cream flex-column rounded">
+                <form id="blogForm" className="d-flex flex-column h-100 responsive-col">
+                    <div className="d-flex flex-column mb-3 h-50">
+                        <label className="row-form-label text-primary-cream h1 mb-1" for="blog_title">Blog Title</label>
+                        <input type="text" className="form-control border border-0 h-100" placeholder="Put your blog title here" id="blog_title" name="blog_title" required />
                     </div>
-                    {/* <div class="d-flex flex-column h-50">
-                        <label class="row-form-label text-primary-cream h1 mb-1" for="text">Content</label>
-                        <textarea class="form-control border border-0 h-100" placeholder="Put your content here" id="text" name="text"></textarea>
-                    </div> */}
+                    <div className="d-flex flex-column h-50">
+                        <label className="row-form-label text-primary-cream h1 mb-1" for="description">Description</label>
+                        <textarea className="form-control border border-0 h-100" placeholder="Put your blog description here" id="description" name="description"></textarea>
+                    </div>
                     <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Post</button>
                 </form>
             </div>

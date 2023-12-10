@@ -9,6 +9,7 @@ function BlogDetails() {
   const [blogContentData, setBlogContentData] = useState([]);
   const { id } = useParams();
   const accessToken = localStorage.getItem('access_token');
+  const userID = localStorage.getItem('user_id')
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,7 +34,6 @@ function BlogDetails() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
 
         // Convert the single object to an array
         const contentArray = Array.isArray(data) ? data : [data];
@@ -42,21 +42,31 @@ function BlogDetails() {
   }, [id, accessToken]);
 
   function navigateCreateBlogContent() {
-    navigate(`/accounts/blogs/${id}/create`);
+    navigate(`/blogs/${id}/create`);
   }
+
+  function navigateShelter() {
+    navigate(`/accounts/shelters/${blogData.shelter}/`);
+  }
+
+  const date = new Date(blogData.creation_time)
+  const formattedDate = date.toLocaleString();
 
   return (
     <div data-bs-theme="petpal">
       <div className="main">
-        <h1>{blogData.blog_title}</h1>
-        <p>{blogData.creation_time}</p>
-        <p>{blogData.author_name}</p>
-        {/* {console.log(blogData)} */}
+        <div className="d-flex flex-column mt-5 bg-brown rounded-1 p-3 text-primary-cream">
+          <h1 className="text-primary-cream">{blogData.blog_title}</h1>
+          <p>Published: {formattedDate}</p>
 
-        <Button variant="primary-cream" className="my-2" onClick={navigateCreateBlogContent}>Add Post to this Blog</Button>
+        </div>
+        <div className="d-flex flex-auto align-items-center mt-3">
+          <Button variant="cream" className="text-start btn-lg" onClick={navigateShelter}>
+            Shelter: {blogData.author_name}
+          </Button>
+          {userID == blogData.shelter ? <Button variant="primary-cream" className="my-2" onClick={navigateCreateBlogContent}>Add Post</Button> : <></>}
+        </div>
 
-        {/* Render the BlogContent component for each entry in blogData.blog_content */}
-        {console.log(blogContentData)}
         <BlogContentSection blogContentData={blogContentData}></BlogContentSection>
 
       </div>
