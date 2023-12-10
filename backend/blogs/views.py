@@ -1,6 +1,6 @@
 # views.py
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, CreateAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from .models import Blog, BlogContent
 from .serializers import BlogSerializer, BlogContentSerializer
 from django.shortcuts import get_object_or_404
@@ -32,15 +32,15 @@ class BlogCreateContentView(CreateAPIView):
 
 class BlogDetailsView(RetrieveAPIView):
     serializer_class = BlogSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_object(self):
         # because of the serializer, the content is attatched as a field called 'blog_content'
         return get_object_or_404(Blog, pk=self.kwargs['blog_id']) 
 
-class BlogListView(ListCreateAPIView):
+class BlogListView(ListAPIView):
     serializer_class = BlogSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         return Blog.objects.all()

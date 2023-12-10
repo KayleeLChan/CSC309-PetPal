@@ -25,6 +25,8 @@ function DetailsTop(props) {
                         <h1 className="text-primary-cream text-decoration-underline mb-1">{props.shelterData.sheltername}</h1>
                         <h5 className="text-primary-cream mb-1">{props.shelterData.companyaddress}, {props.shelterData.city}</h5>
                         <Button variant="primary-cream" className="my-2" onClick={navigateReviews}>Reviews</Button>
+                        {/* TODO MAKE BUTTON LEAD TO BLOGS PAGE */}
+                        <Button variant="primary-cream" className="my-2" onClick={navigateReviews}>Reviews</Button>
                     </div>
 
                     {/* shelter contact details */}

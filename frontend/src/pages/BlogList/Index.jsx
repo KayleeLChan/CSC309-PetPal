@@ -9,11 +9,7 @@ function BlogList() {
     const accessToken = localStorage.getItem('access_token');
 
     useEffect(() => {
-        fetch('http://localhost:8000/blogs/all/', {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        })
+        fetch('http://localhost:8000/blogs/all/')
             .then(response => response.json())
             .then(response_data => {
                 // console.log(response_data);
