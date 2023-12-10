@@ -1,7 +1,14 @@
 import React from 'react';
 import PetCarousel from '../../components/carousels/pet-carousel';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+    const navigate = useNavigate();
+    function navigateListings() {
+        navigate('/listings');
+        return;
+    }
+
     return (
         <>
             <div data-bs-theme="petpal">
@@ -12,7 +19,7 @@ function Home() {
                         <PetCarousel></PetCarousel>
 
                         <div class="text-primary-brown">
-                            <button class="btn btn-lg btn-primary-orange m-3 shadow-sm" type="">Meet More Pals!</button>
+                            <button class="btn btn-lg btn-primary-orange m-3 shadow-sm" onClick={navigateListings}>Meet More Pals!</button>
                         </div>
                     </div>
                     <div className="align-self-end text-end w-50 hide-xl">
