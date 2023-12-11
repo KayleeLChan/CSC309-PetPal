@@ -13,11 +13,11 @@ const ShelterDropDowns = (props) => {
 
     //change if we need to
     function blogs(){
-      navigate(`/accounts/blogs/`)
+      navigate(`/blogs`)
     }
 
     function createBlog(){
-      navigate(`/accounts/blogs/create`)
+      navigate(`/blogs/create`)
     }
 
     function manage(){
@@ -29,15 +29,15 @@ const ShelterDropDowns = (props) => {
     }
 
     function shelter(){
-        navigate(`/accounts/shelters/${props.user_id}`)
+        navigate(`/shelters/${props.user_id}`)
     }
 
     function review(){
-      navigate(`/accounts/shelters/${props.user_id}/reviews`)
+      navigate(`/shelters/${props.user_id}/reviews`)
   }
 
     function handleViewAll(){
-      navigate(`/accounts/shelters`)
+      navigate(`/shelters`)
       }
 
     return (

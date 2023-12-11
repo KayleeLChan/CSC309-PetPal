@@ -130,7 +130,7 @@ const ListingPage = () => {
     const uploadImages = async (newID) => {
         if (images.length === 0 && (!id || listing.images.length === 0)) {
             const formData = new FormData();
-            formData.append('image', await fetch("/imgs/Logo.png").then((res) => res.blob()), 'default-image.jpg');
+            formData.append('image', await fetch("/imgs/default.jpg").then((res) => res.blob()), 'default-image.jpg');
 
             try {
                 const response = await fetch(`http://localhost:8000/listings/${newID}/image/`, {

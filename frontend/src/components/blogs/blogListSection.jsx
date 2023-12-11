@@ -5,7 +5,8 @@ import { Button } from 'react-bootstrap';
 function BlogListSection(props) {
     return (
         <div className="d-flex mt-4 w-100 justify-content-center">
-            <div className="d-flex two-col-child w-90 m-4 px-5 py-5 bg-cream flex-column rounded">
+            <div className="d-flex w-100 m-4 px-5 py-5 bg-cream flex-column rounded">
+                {props.blogData.length === 0 ? (<h2 className="justify-self-center align-self-center">No blogs found</h2>) : <></>}
                 {props.blogData.map(blog => (
                     <Link to={`/blogs/${blog.id}`} className="text-decoration-none d-flex flex-row">
                         <Button variant="primary-cream" className="text-dark-brown bg-none text-start w-100" key={blog.id}>

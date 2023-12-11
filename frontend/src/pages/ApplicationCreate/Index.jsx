@@ -135,11 +135,11 @@ function CreateApplication() {
             if (response.ok) {
                 const responseData = await response.json();
                 const newApplicationId = responseData.id;
-                navigate("/applications/");
+                navigate("/applications");
             } else {
                 const responseData = await response.json();
                 console.error('Failed to submit application:', responseData);
-                navigate("/applications/");
+                navigate("/applications");
             }
         } catch (error) {
             console.error('Error submitting application:', error);
@@ -154,7 +154,7 @@ function CreateApplication() {
         setFormData((prevData) => ({ ...prevData, currentlyInsured: e.target.value }));
     };
 
-    if (denied || (accountType != "petshelter")) {
+    if (denied) {
         return (
             <div data-bs-theme="petpal">
                 <Error403Component></Error403Component>

@@ -17,7 +17,7 @@ function ApplicationDetails() {
     const navigate = useNavigate();
 
     const handleClick = (event) =>
-        navigate(`/applications/chat/${id}`)
+        navigate(`/applications/${id}/chat`)
 
     // Fetch application data and user details based on the ID
     useEffect(() => {

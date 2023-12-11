@@ -14,5 +14,5 @@ urlpatterns = [
     path('<int:pk>/profile/', views.ProfileUpdateView.as_view()),
     path('shelter/<int:pk>/details/', views.ShelterDetailsView.as_view()),
     path('<int:pk>/deletion/', views.AccountDeleteView.as_view()),
-    path('shelter/all/', views.ShelterListView.as_view()),
+    path('shelter/', views.ShelterListView.as_view()),
 ]

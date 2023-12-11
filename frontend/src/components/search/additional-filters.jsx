@@ -6,7 +6,7 @@ const AdditionalFilters = ({ searchParams, handleFilterChange, handleInputChange
     const ageOptions = [["all", "Filter By Age"], ["new", "Newborn"], ["young", "Young"], ["adult", "Adult"], ["senior", "Senior"]];
     const sizeOptions = [["all", "Filter By Size"], ["S", "Small"], ["M", "Medium"], ["L", "Large"], ["XL", "Extra Large"]];
     const statusOptions = [["all", "Filter By Status"], ["available", "Available"], ["adopted", "Adopted"], ["pending", "Pending"], ["withdrawn", "Withdrawn"]];
-    const sexOptions = [["all", "Filter By Sex"], ["F", "Female"], ["M", "male"]];
+    const sexOptions = [["all", "Filter By Sex"], ["F", "Female"], ["M", "Male"]];
 
     const selectedAgeLabel = ageOptions.find(([option]) => option === searchParams.age)?.[1];
     const selectedSizeLabel = sizeOptions.find(([option]) => option === searchParams.size)?.[1];

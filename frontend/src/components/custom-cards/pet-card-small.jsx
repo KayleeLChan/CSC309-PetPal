@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 const PetCardSmall = ({ listing }) => {
   return (
     <div className="m-3 shadow overflow-auto carousel-card rounded-1 w-100">
-        <Card.Link href={`https://twizzy-petpal.vercel.app/listings/view/${listing.id}`}>
+        <Card.Link href={`/listings/${listing.id}`}>
             <Card className="text-center rounded-1">
                 <Card.Title className="fs-4 px-4 pt-3">{listing.name}</Card.Title>
                 <Card.Img variant="top" src={listing.images[0].image} className="py-0 rounded-1 h-100 card-img" />

@@ -12,7 +12,7 @@ const ListingRightCol = ({ listing }) => {
   const [application, setApplication] = useState({});
 
   function navigateApplication() {
-    navigate(`/applications/new/${listing.id}`);
+    navigate(`/listings/${listing.id}/application`);
   }
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const ListingRightCol = ({ listing }) => {
   };
 
   function navigateViewApplication() {
-    navigate(`/applications/details/${application[0].id}`);
+    navigate(`/applications/${application[0].id}`);
   };
   
   //TODO: MAKE IT SO THAT BUTTON IS DISABLED FOR SEEKERS WHO HAVE AN APPLICATION, AND INSTEAD PUT IN A VIEW APPLICATION BUTTON

@@ -7,8 +7,7 @@ const ApplicationPetCard = ({ application }) => {
       <div class="hide-xxl m-3 shadow overflow-auto carousel-card rounded-1">
 
         <Card className="text-center rounded-1 w-100 h-100">
-          {/* <Card.Link href={`https://twizzy-petpal.vercel.app/applications/details/${application.id}`} className="w-100 h-100 carousel-card-content"> */}
-          <Card.Link href={`/applications/details/${application.id}`} className="w-100 h-100 carousel-card-content">
+          <Card.Link href={`/applications/${application.id}`} className="w-100 h-100 carousel-card-content">
 
             <Card.Title className="fs-1 px-4 pt-3">{application.pet_listing_name}</Card.Title>
             <div className="img-bg p-0">
@@ -28,7 +27,7 @@ const ApplicationPetCard = ({ application }) => {
 
       <div className="show-xl m-3 shadow overflow-auto carousel-card rounded-1">
       <Card className="text-center rounded-1 w-100 h-100">
-          <Card.Link href={`https://twizzy-petpal.vercel.app/applications/details/${application.id}`} className="w-100 h-100 carousel-card-content">
+          <Card.Link href={`/applications/${application.id}`} className="w-100 h-100 carousel-card-content">
 
             <Card.Title className="fs-1 px-4 pt-3">{application.pet_listing_name}</Card.Title>
             

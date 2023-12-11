@@ -7,7 +7,7 @@ function ViewShelterProfile(props) {
         <>
             <div data-bs-theme="petpal">
                 <div className="main mh-100 d-flex two-col">
-                    <div className=" mh-100 d-flex flex-column justify-content-center align-items-center w-50 two-col-child">
+                    <div className=" mh-100 d-flex flex-column justify-content-center align-items-center w-50 two-col-child mt-5">
                         <h1>Hi {props.data.sheltername}!</h1>
                         <div className="paddingify">
                             <div className="d-flex flex-row">

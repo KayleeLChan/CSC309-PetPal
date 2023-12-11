@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ApplicationSheetComponent = ({ application }) => {
+  //TODO: Map keys to values labels
   return (
     <>
       <h2 className="mb-4 text-dark-brown text-decoration-underline responsive_heading">SECTION I: APPLICANT</h2>
@@ -20,7 +21,6 @@ const ApplicationSheetComponent = ({ application }) => {
         <p>I have <span className="bg-primary-cream p-1 rounded ms-2 me-2 flex-fill">{application.children}</span> at home</p>
         <p>I am a <span className="bg-primary-cream p-1 rounded ms-2 me-2 flex-fill">{application.pet_owner_history}</span> pet owner</p>
         <p>I currently have <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.current_pets}</span></p>
-        <p>My ideal pet is a <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.ideal_pet}</span></p>
         <p>I would like to adopt a <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.ideal_pet_sex}</span></p>
         <p>I prefer a pet that is <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.ideal_pet_size}</span></p>
         <p>My pet's behavior should be <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.ideal_pet_behaviour}</span></p>

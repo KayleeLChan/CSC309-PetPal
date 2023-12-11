@@ -29,5 +29,5 @@ def notify_pet_seekers_on_listing_save(sender, instance, **kwargs):
                 notifier=listing.shelter,
                 content=f"A new listing matches your preferences! See if you'd like to be {listing.name}'s pal!",
                 title="match",
-                link=f"https://twizzy-petpal.vercel.app/listings/view/{listing.id}"
+                link=f"/listings/{listing.id}"
             )

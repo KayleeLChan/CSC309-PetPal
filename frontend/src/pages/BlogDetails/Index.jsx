@@ -46,7 +46,7 @@ function BlogDetails() {
   }
 
   function navigateShelter() {
-    navigate(`/accounts/shelters/${blogData.shelter}/`);
+    navigate(`/shelters/${blogData.shelter}/`);
   }
 
   const date = new Date(blogData.creation_time)

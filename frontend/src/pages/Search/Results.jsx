@@ -82,6 +82,7 @@ const SearchResults = () => {
             // Make request to backend
             const response = await fetch(`http://localhost:8000/listings/?${queryParams}`)
             const data = await response.json();
+            console.log('data', data);
             setListings(data.results);
             setTotalPages(
                 Math.ceil(Number(data.count) / 15)
