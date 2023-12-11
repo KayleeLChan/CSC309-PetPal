@@ -16,12 +16,6 @@ function UpdateShelter(){
       fetch(`http://localhost:8000/accounts/${id}/deletion/`, {
       method: 'DELETE',
       })
-      .then((response) => {
-      console.log(response);
-      if (response.ok) {
-      console.log('Item deleted successfully');
-      }
-      })
       .catch((error) => {
       console.error(error);
       });
@@ -34,7 +28,6 @@ function UpdateShelter(){
     };
  
     useEffect(() => {
-        console.log("useeffect")
         if (!accessToken) {
           navigate(`/accounts`);
           return;
@@ -46,10 +39,14 @@ function UpdateShelter(){
             'Authorization': `Bearer ${accessToken}`
           }
         })
-          .then(response => response.json())
+          .then(response =>{
+            if(response.status === 403){
+              navigate('/unauthorized')
+            }
+            return response.json()
+          })
           .then(data => {
             setData(data);
-            console.log(data);
           })
           .catch(error => {
             console.error(error);

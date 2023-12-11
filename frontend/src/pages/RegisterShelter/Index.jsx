@@ -27,9 +27,7 @@ function RegisterShelter(){
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      console.log(event.target)
       const userData = new FormData(event.target)
-      console.log(userData)
       userData.set('accounttype', account_type);
       if(photo){
         userData.set("profilepic", photo)
@@ -41,22 +39,18 @@ function RegisterShelter(){
 
       })
       .then(response => {
-        console.log(response);
         if (response.status == 400) {
-            console.log("response is 400")
             setisValError(true)
         }
         else{
             setisValError(false)
             if(response.ok){
             navigate('/accounts');
-            console.log("registration successful")
             }
         }
         return response.json();
       })
       .then(userData => {
-        console.log(userData)
         if ('username' in userData && isValError) {
             setUserError(userData.username[0])
         }
@@ -82,7 +76,6 @@ function RegisterShelter(){
             setEmailError("")
         }
       }) 
-      .then(userData => console.log(userData))
       .catch(error => {
         console.error(error);
         setError(error.toString());

@@ -10,9 +10,34 @@ from accounts.models import Account
 from notifications.models import Notification
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
+from rest_framework.pagination import PageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
+import django_filters
+from django.db.models.functions import Lower
+from django.db.models import F
+from django.db import connection
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+from rest_framework.permissions import BasePermission, SAFE_METHODS, IsAuthenticated
 
 
 # Create your views here.
+class GetApplicationView(RetrieveAPIView):
+    """ Get Application (2 marks).
+    """
+    queryset = Application.objects.all()
+    serializer_class = ApplicationSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        application = self.get_object()
+        serializer = self.get_serializer(application)
+        involved_users = [application.pet_seeker_user, application.pet_listing.shelter]
+        if self.request.user not in involved_users:
+            raise PermissionDenied("You do not have permission to access this view.")
+        
+        return Response(serializer.data)
+    
+
 class CreateApplicationView(CreateAPIView):
     """ Pet Seekers can only create applications for a pet listing that is "available"
     Pet Shelters cannot create applications.
@@ -46,7 +71,7 @@ class CreateApplicationView(CreateAPIView):
             notifier=self.request.user, 
             content=f"New Application", 
             title="application", 
-            link=reverse('applications:application-get', kwargs={'pk': new_application.id}))
+            link=f"/applications/{new_application.id}")
 
         # Call the super method to perform the actual creation
         return super().perform_create(new_application)
@@ -71,7 +96,9 @@ class UpdateApplicationView(UpdateAPIView):
     def update(self, request, *args, **kwargs):
         application_id = self.kwargs['pk']
         application = get_object_or_404(Application, id=application_id)
-        user = self.request.user
+        involved_users = [application.pet_seeker_user, application.pet_listing.shelter]
+        if self.request.user not in involved_users:
+            raise PermissionDenied("You do not have permission to access this view.")
 
         # check if user is shelter associated with application
         if self.request.user.accounttype in ['petshelter', 'Pet Shelter']:
@@ -87,7 +114,7 @@ class UpdateApplicationView(UpdateAPIView):
                         notifier=request.user, 
                         content=f"Status update", 
                         title="application", 
-                        link=reverse('applications:application-get', kwargs={'pk': application.id}))
+                        link=f"/applications/{application_id}")
 
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
@@ -108,7 +135,7 @@ class UpdateApplicationView(UpdateAPIView):
                         notifier=request.user, 
                         content=f"Status update", 
                         title="application", 
-                        link=reverse('applications:application-get', kwargs={'pk': application.id}))
+                        link=f"/applications/{application_id}")
 
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
@@ -118,6 +145,66 @@ class UpdateApplicationView(UpdateAPIView):
         # else return error
         return Response({'error': 'Unauthorized to update this application.'}, status=401)
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 15
+    page_size_query_param = 'page_size'
+    max_page_size = 15
+
+class SearchSortFilterApplication(django_filters.FilterSet):
+    FILTER_STATUS_CHOICES = Application.STATUS_CHOICES + [("all", "all")]
+
+    # Search params
+    pet_listing_name = django_filters.CharFilter(field_name='pet_listing__name', lookup_expr='icontains')
+    pet_listing_location = django_filters.CharFilter(field_name='pet_listing__location', lookup_expr='icontains')
+    pet_listing_animal = django_filters.CharFilter(field_name='pet_listing__animal', lookup_expr='icontains')
+    pet_listing_breed = django_filters.CharFilter(field_name='pet_listing__breed', lookup_expr='icontains')
+
+    # Filters
+    status = django_filters.ChoiceFilter(choices=Application.STATUS_CHOICES, initial='pending', method='filter_status')
+
+    # Sorts
+    sort_by = django_filters.OrderingFilter(
+        fields=(
+            # ('pet_listing_name', 'pet_listing_name'),
+            ('pet_listing__name', 'pet_listing_name'),  # Adjust this based on your actual model structure
+            ('created_at', 'created_at'),
+        ),
+        field_labels={
+            'pet_listing_name': 'Name',
+            'created_at': 'Newest',
+        }
+    )
+    
+    class Meta:
+        model = Application
+        fields = ['pet_listing_name', 'pet_listing_location', 'application_status']
+
+    def __init__(self, data=None, *args, **kwargs):
+        if data is not None:
+            data = data.copy()    # get a mutable copy of the QueryDict
+            for name, f in self.base_filters.items():
+                initial = f.extra.get('initial')
+                
+                # filter param is either missing or empty, use initial as default
+                if not data.get(name) and initial:
+                    data[name] = initial
+
+        super().__init__(data, *args, **kwargs)
+
+
+    def filter_status(self, queryset, name, value):
+        user = self.request.user
+
+        if user.accounttype == "petseeker":
+            applications = queryset.filter(pet_seeker_user=user)
+        else:
+            applications = queryset.filter(pet_listing__shelter=user)
+
+        if value in [choice[0] for choice in Application.STATUS_CHOICES]:
+            return applications
+        else:
+            return applications.filter(application_status="pending")
+
 
 class ListApplicationView(ListAPIView):
     """ Shelters can only view their own applications, not that of other shelters.
@@ -126,69 +213,29 @@ class ListApplicationView(ListAPIView):
     - When an application receives a new comment, its "last update time" should be changed.
     - Pagination support (1 mark) 
     """
-    queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
+    filterset_class = SearchSortFilterApplication
+    sort_by_fields = ['pet_listing__name', 'created_at']
+    # sort_by_fields = ['pet_listing_name', 'created_at']
+    # search_fields = ['pet_listing_name', 'pet_listing_location', 'pet_listing_animal', 'pet_listing_breed']  
+    pagination_class = StandardResultsSetPagination
+    permission_calsses=[IsAuthenticated]
 
     def get_queryset(self):
-        # to ensure shelter is only viewings their own applications
-        user = self.request.user
-        if user.is_authenticated:
-            # retrieve all applications associated to that shelter
-            if user.accounttype == "petseeker":
-                applications = Application.objects.filter(pet_seeker_user=user)
-                status = self.request.query_params.get('application_status')
-                if status:
-                    applications = applications.filter(application_status=status)
-                
-                return applications.order_by('-created_at', '-last_updated_at')
+        return Application.objects.all()
+        # user = self.request.user
+        # # to ensure shelter is only viewings their own applications
+        # if user.is_authenticated:
+        #     if user.accounttype == "petseeker":
+        #         applications = Application.objects.filter(pet_seeker_user=user)
+        #         return applications.order_by('-created_at', '-last_updated_at')
             
-            applications = Application.objects.filter(pet_listing__shelter=user)
-
-            # # Combine the QuerySets using the | operator (or union method)
-            # all_applications = Application.objects.none()  # Create an empty queryset as the initial value
-            # for queryset in application_querysets:
-            #     all_applications |= queryset
-
-            # filter applications by status
-            status = self.request.query_params.get('application_status')
-            if status:
-                applications = applications.filter(application_status=status)
-            else:
-                applications = applications
-
-            # filter applications by listing id
-            listing = self.request.query_params.get('listing_id')
-            if listing:
-                applications = applications.filter(pet_listing=listing)
-            else:
-                applications = applications
-            
-            # # when an application receives a new comment ...
-            # for application in application_querysets:
-            #     # update last update time when a new comment is added
-            #     comments_added = application.Comments_set.all().order_by("creation_time")
-            #     # update last update time of application (creation time of comment)
-            #     new_comment_creation_time = comments_added.last().creation_time
-            #     application.last_updated_at = new_comment_creation_time
-            #     application.save()
-
-            # sort application by creation time and last update time
-            return applications.order_by('-created_at', '-last_updated_at')
-
-        # Return an empty queryset if the user is not authenticated
-        return Response({'error': 'Unauthorized to view these applications.'}, status=401)
-
-
-class GetApplicationView(RetrieveAPIView):
-    """ Get Application (2 marks).
-    """
-    queryset = Application.objects.all()
-    serializer_class = ApplicationSerializer
-
-    def retrieve(self, request, *args, **kwargs):
-        application = self.get_object()
-        serializer = self.get_serializer(application)
-        return Response(serializer.data)
-
-
-
+        #     print(f"Received application_status: {self.request.query_params.get('application_status')}")
+        #     # else, if pet is seeker,
+        #     applications = Application.objects.filter(pet_listing__shelter=user)
+        #     applications = self.filter_queryset(applications)
+        #     return self.paginate_queryset(applications)
+        
+        # # Return an empty queryset if the user is not authenticated
+        # return Response({'error': 'Unauthorized to view these applications.'}, status=401)

@@ -22,6 +22,7 @@ class PetSeekerGetSerializer(serializers.ModelSerializer):
     password = serializers.CharField(required=False)
     phonenumber = serializers.CharField(required=False)
     username = serializers.CharField(required=False)
+    confirmpassword = serializers.CharField(write_only=True)
 
     class Meta:
         model = PetSeeker
@@ -50,6 +51,7 @@ class PetShelterGetSerializer(serializers.ModelSerializer):
     password = serializers.CharField(required=False)
     phonenumber = serializers.CharField(required=False)
     username = serializers.CharField(required=False)
+    confirmpassword = serializers.CharField(write_only=True)
 
     class Meta:
         model = PetShelter
@@ -161,11 +163,11 @@ class ShelterSerializer(serializers.ModelSerializer):
 class ShelterDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PetShelter
-        fields = ['profilepic','sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy', 'date_joined', 'phonenumber', 'email']
+        fields = ['profilepic','sheltername', 'companyaddress', 'city', 'postal', 'website', 'mission', 'policy', 'date_joined', 'phonenumber', 'email', 'username']
 
 class ShelterListSerializer(serializers.ModelSerializer):
     class Meta:
         model = PetShelter
-        fields = ['sheltername', 'id']  
+        fields = ['sheltername', 'id', 'profilepic']  
 
 

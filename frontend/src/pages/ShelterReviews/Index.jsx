@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import DetailsTop from '../../components/shelterdetails/shelterTop';
 import ShelterReviewsSection from '../../components/reviews/shelterReviewsSection';
-import CommentBar from '../../components/reviews/commentBar';
+import CommentBar from '../../components/comments/commentBar';
 
 function ShelterReviews() {
     const [shelterData, setShelterData] = useState([]);
@@ -31,7 +31,6 @@ function ShelterReviews() {
             }
         })
             .then(response => response.json())
-            // .then(data => console.log(data))
             .then(data => {
                 setComments(data)
                 setTotalPages(Math.ceil(Number(data.count) / 10))
@@ -69,7 +68,6 @@ function ShelterReviews() {
             <div data-bs-theme="petpal">
                 <div className="main">
                     <DetailsTop shelterData={shelterData} id={id} />
-                    {/* {console.log(commentsData)} */}
                     <ShelterReviewsSection commentsData={commentsData} shelterID={id} onCommentSubmit={handleCommentSubmit} setQuery={setQuery} query={query} totalPages={totalPages}/>
                 </div>
             </div>

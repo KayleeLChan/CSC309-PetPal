@@ -15,6 +15,8 @@ from django.shortcuts import get_object_or_404
 from django.core.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
+
 
 class PetSeekerRegisterView(CreateAPIView):
     serializer_class = SeekerSerializer
@@ -121,10 +123,17 @@ class ShelterDetailsView(RetrieveAPIView):
     serializer_class = ShelterDetailsSerializer
     def get_object(self):
         return get_object_or_404(PetShelter, pk=self.kwargs['pk'])
-    
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+    max_page_size = 5
+
 class ShelterListView(ListAPIView):
     serializer_class = ShelterListSerializer
     permission_classes = [permissions.AllowAny]
+    pagination_class = StandardResultsSetPagination
+    
     def get_queryset(self):
         query_set = PetShelter.objects.all()
         return query_set

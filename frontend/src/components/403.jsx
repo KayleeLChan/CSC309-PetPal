@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Error403() {
+function Error403Component() {
     return (
         <>
             <div data-bs-theme="petpal">
@@ -12,4 +12,4 @@ function Error403() {
     );
 }
 
-export default Error403;
+export default Error403Component;

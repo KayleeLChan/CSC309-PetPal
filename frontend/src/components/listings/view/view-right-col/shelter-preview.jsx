@@ -36,8 +36,7 @@ const ShelterPreview = ({ shelterID }) => {
                 <div className="d-flex flex-column pb-2 m-4 text-primary-cream bg-dark-brown rounded-5 position-relative">
                     <Image
                         src={shelter.profilepic}
-                        className="position-absolute top-0 start-50 translate-middle rounded-circle"
-                        width="30%"
+                        className="position-absolute top-0 start-50 translate-middle rounded-circle shelter-img"
                     />
 
                     <div className="p-1 pt-5 text-dark-brown bg-primary-orange rounded-top-5 text-center shadow">
@@ -52,7 +51,7 @@ const ShelterPreview = ({ shelterID }) => {
                         </p>
                     </div>
 
-                    <a className="align-self-center w-50 m-3 mt-0" href={`/accounts/shelters/${shelterID}`}>
+                    <a className="align-self-center w-50 m-3 mt-0" href={`/shelters/${shelterID}`}>
                         <Button variant="cream" className="btn btn-lg w-100 shadow-lg" type="button">
                             Learn More
                         </Button>

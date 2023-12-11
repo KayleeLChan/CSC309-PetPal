@@ -12,6 +12,14 @@ const ShelterDropDowns = (props) => {
     }
 
     //change if we need to
+    function blogs(){
+      navigate(`/blogs`)
+    }
+
+    function createBlog(){
+      navigate(`/blogs/create`)
+    }
+
     function manage(){
         navigate(`/listings/?shelter=${username}`)
     }
@@ -21,28 +29,32 @@ const ShelterDropDowns = (props) => {
     }
 
     function shelter(){
-        navigate(`/accounts/shelters/${props.user_id}`)
+        navigate(`/shelters/${props.user_id}`)
     }
 
     function review(){
-      navigate(`/accounts/shelters/${props.user_id}/reviews`)
+      navigate(`/shelters/${props.user_id}/reviews`)
   }
 
     function handleViewAll(){
-      navigate(`/accounts/shelters`)
+      navigate(`/shelters`)
       }
 
     return (
         <Nav className="me-auto mb-2 mb-lg-0">
-          <NavDropdown title="Pet Listings" id="adopt-dropdown" className="h1 fs-3 btn-cream m-0 pe-5">
+          <NavDropdown title="Pet Listings" id="adopt-dropdown" className="h1 fs-3 btn-cream m-0 pe-3">
             <NavDropdown.Item  onClick={listings} className="font-plain">Find Listings</NavDropdown.Item>
             <NavDropdown.Item  onClick={manage} className="font-plain">Manage Listings</NavDropdown.Item>
             <NavDropdown.Item  onClick={create} className="font-plain">Create Listing</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Shelter Management" id="shelter-dropdown" className="h1 fs-3 btn-cream m-0">
+          <NavDropdown title="Shelter Management" id="shelter-dropdown" className="h1 fs-3 btn-cream m-0 pe-3">
             <NavDropdown.Item onClick={handleViewAll} className="font-plain">View All Shelters</NavDropdown.Item>
             <NavDropdown.Item onClick={review} className="font-plain">Your Reviews</NavDropdown.Item>
             <NavDropdown.Item onClick={shelter}className="font-plain">Your Shelter</NavDropdown.Item>
+          </NavDropdown>
+          <NavDropdown title="Blogs" id="shelter-dropdown" className="h1 fs-3 btn-cream m-0">
+            <NavDropdown.Item onClick={blogs} className="font-plain">View All Blogs</NavDropdown.Item>
+            <NavDropdown.Item onClick={createBlog} className="font-plain">Create Blog</NavDropdown.Item>
           </NavDropdown>
         </Nav>
     );

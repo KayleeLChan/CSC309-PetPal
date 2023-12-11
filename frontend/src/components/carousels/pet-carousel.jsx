@@ -27,7 +27,7 @@ const PetCarousel = () => {
   const fetchListings = async () => {
     try {
       // Make request to backend
-      const response = await fetch("http://localhost:8000/listings/");
+      const response = await fetch("http://localhost:8000/listings");
       const data = await response.json();
       const firstNine = data.results.slice(0, 9);
       setListings(firstNine);

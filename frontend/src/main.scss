@@ -69,6 +69,7 @@ $grid-breakpoints: (
 
     p {
         font-size: larger;
+        white-space: pre-line;
     }
 
     h1 {
@@ -201,6 +202,10 @@ $grid-breakpoints: (
         font-family: var(--bs-font-sans-serif) !important;
     }
 
+    .font-head {
+        font-family: var(--bs-font) !important;
+    }
+
     .bg-none {
         background-color: rgba(0, 0, 0, 0);
     }
@@ -219,6 +224,10 @@ $grid-breakpoints: (
     .nav-tabs {
         flex-direction: row !important;
         border-bottom: none !important;
+    }
+
+    .shelter-img {
+        max-width: 6vw;
     }
 
     .shelter-header-text {

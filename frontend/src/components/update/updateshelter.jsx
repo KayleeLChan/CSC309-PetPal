@@ -3,14 +3,23 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom/';
 
 
+
 function UpdateShelterProfile(props) {
-    console.log(props.data)
-    console.log(props.data.id)
     const id = props.data.id
-    console.log(id)
     const [error, setError] = useState("")
     const accessToken = localStorage.getItem('access_token');
     const navigate = useNavigate()
+    const [isValError, setisValError] = useState(false)
+    const [isPass, setIsPass]= useState(false)
+
+    function pass(event){
+        if(event.target.value){
+            setIsPass(true)
+        }
+        else{
+            setIsPass(false)
+        }
+    }
 
     
     function handleSave(event){
@@ -25,14 +34,16 @@ function UpdateShelterProfile(props) {
         const keysToDelete = [];
 
         for (const [key, value] of formData.entries()) {
+            if(value){
+                console.log(key)
+                console.log(value)
+            }
             if (!value) {
-                console.log("marking for deletion", key);
                 keysToDelete.push(key);
             }
         }
 
         for (const keyToDelete of keysToDelete) {
-            console.log("deleting", keyToDelete);
             formData.delete(keyToDelete);
         }        
     
@@ -46,7 +57,16 @@ function UpdateShelterProfile(props) {
 
             .then(response => {
                 console.log(response);
+                if (response.status == 400) {
+                    setisValError(true)
+                }
+                else{
+                    setisValError(false)
+                }
                 return response.json();
+            })
+            .then(data =>{
+                console.log(data)
             })
             // add in proper error displays
             .catch(error => {
@@ -73,15 +93,25 @@ function UpdateShelterProfile(props) {
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="password">Password</label>
                             <div className="col-sm-10">
-                            <input type="password" name="password" className="form-control bg-primary-cream font-plain" id="password" />
+                            <input type="password" onChange={pass} name="password" className="form-control bg-primary-cream font-plain" id="password" />
                             </div>
                         </div>
+                        {isPass && (
                         <div className="form-group row text-primary-cream">
-                            <label className="row-form-label h5" htmlFor="verifypassword">Verify Password</label>
+                            <label className="row-form-label h5" htmlFor="confirmpassword">
+                            Verify Password
+                            </label>
                             <div className="col-sm-10">
-                            <input type="password" name="confirmpassword" className="form-control bg-primary-cream font-plain" id="verifypassword" />
+                            <input
+                                type="password"
+                                name="confirmpassword"
+                                className="form-control bg-primary-cream font-plain"
+                                id="confirmpassword"
+                                required
+                            />
                             </div>
                         </div>
+                        )}
                         <div className="form-group row text-primary-cream">
                             <label className="row-form-label h5" htmlFor="email">Email</label>
                             <div className="col-sm-10">
@@ -138,6 +168,9 @@ function UpdateShelterProfile(props) {
                         </div>
  
                         <p className="smallpar">{error}</p>
+                        {isValError &&
+                        <p className="smallpar">One or more fields are invalid. Please review your input</p>
+                        }
                         <button type="submit" className="btn btn-lg btn-primary-orange m-3 shadow-sm" required>Save</button>
                         <button className="btn btn-lg btn-primary-cream m-3 shadow-sm" onClick={props.displayUpdate}>Back</button>
                         </form>

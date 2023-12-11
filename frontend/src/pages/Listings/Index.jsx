@@ -5,7 +5,7 @@ import DetailsTab from '../../components/listings/details-tab/details-tab';
 import ApplicationsTab from '../../components/listings/applications-tab';
 import CompatabilityTab from '../../components/listings/compatability-tab';
 import ApplicationStatus from '../../components/listings/application-status';
-import Error403 from '../../components/403';
+import Error403Component from '../../components/403';
 
 const ListingPage = () => {
     const navigate = useNavigate();
@@ -17,7 +17,8 @@ const ListingPage = () => {
     const [error, setError] = useState('');
     const accessToken = localStorage.getItem('access_token');
     const accountType = localStorage.getItem('accounttype');
-    const username = localStorage.getItem('username');
+    const userID = localStorage.getItem('user_id');
+    const [denied, setDenied] = useState(false);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -72,6 +73,9 @@ const ListingPage = () => {
                     headers: { Authorization: `Bearer ${accessToken}`, }
                 });
             const data = await response.json();
+            if (data.shelter != userID) {
+                setDenied(true);
+            }
             setListing(data);
         } catch (error) {
             // setLoading(false);
@@ -120,7 +124,7 @@ const ListingPage = () => {
             } else {
                 // Handle the case where the update was not successful
                 console.error('Listing update failed.');
-                setError("You are one or more fields");
+                setError("You are missing one or more fields");
             }
         } catch (error) {
             console.error('Error updating listing:', error);
@@ -130,7 +134,7 @@ const ListingPage = () => {
     const uploadImages = async (newID) => {
         if (images.length === 0 && (!id || listing.images.length === 0)) {
             const formData = new FormData();
-            formData.append('image', await fetch("/imgs/Logo.png").then((res) => res.blob()), 'default-image.jpg');
+            formData.append('image', await fetch("/imgs/default.jpg").then((res) => res.blob()), 'default-image.jpg');
 
             try {
                 const response = await fetch(`http://localhost:8000/listings/${newID}/image/`, {
@@ -141,9 +145,7 @@ const ListingPage = () => {
                     }
                 });
 
-                if (response.ok) {
-                    console.log('Default file uploaded successfully');
-                } else {
+                if (!response.ok) {
                     console.error('Failed to upload default file');
                 }
             } catch (error) {
@@ -155,9 +157,8 @@ const ListingPage = () => {
                 const formData = new FormData();
                 formData.append('image', file);
                 const listingID = id ? id : newID
-    
+
                 try {
-                    console.log(accessToken);
                     const response = await fetch(`http://localhost:8000/listings/${listingID}/image/`, {
                         method: 'POST',
                         body: formData,
@@ -166,9 +167,7 @@ const ListingPage = () => {
                         }
                     });
     
-                    if (response.ok) {
-                        console.log(`File ${file.name} uploaded successfully`);
-                    } else {
+                    if (!response.ok) {
                         console.error(`Failed to upload file ${file.name}`);
                     }
                 } catch (error) {
@@ -178,8 +177,12 @@ const ListingPage = () => {
         }
     };
 
-    if (!accessToken || (accountType != "petshelter") || (listing && listing.shelter.username != username)) {
-        return <Error403></Error403>
+    if (!accessToken || (accountType != "petshelter") || denied) {
+        return (
+            <div data-bs-theme="petpal">
+                <Error403Component></Error403Component>
+            </div>
+        )
     }
 
     return (
@@ -188,7 +191,7 @@ const ListingPage = () => {
                 <div className="main d-flex flex-column justify-content-start align-items-center">
                     {loading ? (<p className="text-center">Loading...</p>) : (
                         <>
-                        <DetailsTab listing={listing} formData={formData} setFormData={setFormData} setImages={setImages}></DetailsTab>
+                            <DetailsTab listing={listing} formData={formData} setFormData={setFormData} setImages={setImages}></DetailsTab>
                             {/* <Tab.Container id="listing-tabs" defaultActiveKey={key}>
                                 <Nav variant="tabs" className="mt-5 fs-5">
                                     <Nav.Item>

@@ -1,30 +1,70 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
-from rest_framework.permissions import IsAuthenticated
-from .models import Blog
-from .serializers import BlogSerializer
+# views.py
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, CreateAPIView, ListAPIView
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from .models import Blog, BlogContent
+from .serializers import BlogSerializer, BlogContentSerializer
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
+from accounts.models import Account
 
-class BlogCreateView(ListCreateAPIView):
+class BlogCreateView(CreateAPIView):
     serializer_class = BlogSerializer
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+        serializer.save(shelter=self.request.user) # this was causing the issue
 
-    def get_queryset(self):
-        return Blog.objects.filter(author=self.request.user)
+class BlogCreateContentView(CreateAPIView):
+    serializer_class = BlogContentSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        # Get the blog_id from URL parameters
+        blog_id = self.kwargs.get('blog_id')
+        
+        # Check if the Blog with the given ID exists
+        try:
+            blog = Blog.objects.get(pk=blog_id)
+        except Blog.DoesNotExist:
+            return Response({"error": "Blog not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Associate the BlogContent with the identified Blog
+        serializer.save(blog=blog, author=self.request.user)
 
 class BlogDetailsView(RetrieveAPIView):
     serializer_class = BlogSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_object(self):
-        return get_object_or_404(Blog, pk=self.kwargs['blog_id'])
+        # because of the serializer, the content is attatched as a field called 'blog_content'
+        return get_object_or_404(Blog, pk=self.kwargs['blog_id']) 
 
-class BlogListView(ListCreateAPIView):
+class BlogListView(ListAPIView):
     serializer_class = BlogSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        queryset = Blog.objects.all()
+        shelter_id = self.request.query_params.get('shelter', None)
+
+        if shelter_id and shelter_id != "all":
+            shelter = get_object_or_404(Account, id=shelter_id)
+            print(shelter)
+            queryset = queryset.filter(shelter=shelter)
+
+        return queryset
+
+class BlogContentListView(ListCreateAPIView):
+    serializer_class = BlogContentSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Blog.objects.all()
+        # Get the blog_id from URL parameters
+        blog_id = self.kwargs.get('blog_id')
+
+        # Fetch the Blog object or return a 404 response if not found
+        blog = get_object_or_404(Blog, pk=blog_id)
+
+        # Filter BlogContent objects based on the related Blog
+        return BlogContent.objects.filter(blog=blog).order_by('-creation_time')
+

@@ -9,7 +9,7 @@ from django.core.exceptions import PermissionDenied
 from rest_framework.pagination import PageNumberPagination
 import django_filters
 from django.db.models.functions import Lower
-from django.db.models import F
+from django.db.models import Q
 from django.db import connection
 
 class IsShelterOrReadOnly(BasePermission):
@@ -46,8 +46,8 @@ class ListingFilter(django_filters.FilterSet):
     age = django_filters.ChoiceFilter(choices=FILTER_AGE_CHOICES, initial='all', method='filter_age')
     size = django_filters.ChoiceFilter(choices=FILTER_SIZE_CHOICES, initial='all', method='filter_size')
     shelter = django_filters.CharFilter(
-        field_name='shelter__username',
-        lookup_expr='icontains'
+        method='filter_shelter',
+        label='listing',
     )
     # Sorts
     sort_by = django_filters.OrderingFilter(
@@ -105,6 +105,11 @@ class ListingFilter(django_filters.FilterSet):
             return queryset.filter(sex=value)
         else:
             return queryset
+        
+    def filter_shelter(self, queryset, name, value):
+        return queryset.filter(
+            Q(shelter__petshelter__username__icontains=value) | Q(shelter__petshelter__sheltername__icontains=value)
+        )
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 15

@@ -17,7 +17,6 @@ const Notification = () => {
         () => ({
             page: parseInt(searchParams.get("page") ?? 1),
             filter: searchParams.get("filter") ?? "all",
-            //TODO: Make errors on Put and Create
         }),
         [searchParams]
     );
@@ -28,7 +27,6 @@ const Notification = () => {
     }, [query]);
 
     const handleFilter = (e) => {
-        console.log(e.target.id);
         setSearchParams((prevSearchParams) => {
             const newSearchParams = new URLSearchParams(prevSearchParams);
             newSearchParams.set("filter", e.target.id);

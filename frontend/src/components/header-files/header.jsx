@@ -35,7 +35,6 @@ const Header = () => {
     localStorage.removeItem('profilepic');
     setIsLoggedIn(false)
     navigate(`/accounts`)
-    // other logout logic
   }
 
   // function handleProfile(){
@@ -76,17 +75,14 @@ const Header = () => {
 
 
       useEffect(() => {
-        console.log("useffect")
-        console.log(accounttype)
-        console.log(profilePic)
         if(accessToken){
-          console.log("isloggedin")
           setIsLoggedIn(true)
           if(accounttype === "petseeker"){
-            console.log("isloggedinseeker")
             setIsSeeker(true)
+            setIsShelter(false)
           }
           else{
+            setIsSeeker(false)
             setIsShelter(true)
           }
         }

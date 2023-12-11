@@ -1,22 +1,29 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from "react-router-dom";
+import BlogListSection from '../../components/blogs/blogListSection';
 
-import { Link } from 'react-router-dom';
 
 function BlogList() {
-
     const [data, setData] = useState([]);
     const accessToken = localStorage.getItem('access_token');
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    // useMemo to store search parameters
+    const query = useMemo(
+        () => ({
+            shelter: searchParams.get("shelter") ?? "all",
+        }),
+        [searchParams]
+    );
 
     useEffect(() => {
-        fetch('http://localhost:8000/blogs/all/', {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        })
+        const queryParams = new URLSearchParams({
+            shelter: query.shelter,
+        });
+
+        fetch(`http://localhost:8000/blogs/?${queryParams}`)
             .then(response => response.json())
             .then(response_data => {
-                // console.log(response_data);
                 setData(response_data);
             })
             .catch(error => {
@@ -27,19 +34,14 @@ function BlogList() {
     return (
         <>
             <div data-bs-theme="petpal">
-                <div className="main d-flex flex-column justify-content-center align-items-center justify-content-center bg-primary-orange">
-                    <h1>All Blogs</h1>
-                    <img src="/imgs/shelter.svg" width="10%" height="10%" alt="" />
-                    {/* {console.log(data)} */}
-                    {data.map(blog => (
-                        <div className="d-flex flex-row pt-5 pb-5" key={blog.id}>
-                            <Link to={`/blogs/${blog.id}`} className="pe-5 fs-2">
-                                <p className="pe-5 fs-2">"{blog.blog_title}" by {blog.author_name}</p>
-                            </Link>
-                            {/* <p className="pe-5 fs-2">{blog.text}</p> */}
-                            {/* Render other blog details as needed */}
-                        </div>
-                    ))}
+                <div className="main d-flex flex-column">
+                    {/*Top bar*/}
+                    <div className="d-flex p-4 align-self-center align-items-center mt-4 w-100 justify-content-center bg-brown rounded-2">
+                        {/* <img src="/imgs/shelter.svg" width="10%" height="10%" alt="" /> */}
+                        <h1 className="text-primary-cream">All Blogs</h1>
+                    </div>
+                    {/*List of Blogs*/}
+                    <BlogListSection blogData={data}/>
                 </div>
             </div>
         </>

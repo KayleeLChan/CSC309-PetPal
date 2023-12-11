@@ -1,6 +1,6 @@
 import React from 'react';
-import Comment from './comment';
-import CommentBar from './commentBar';
+import Comment from '../comments/comment';
+import CommentBar from '../comments/commentBar';
 import PaginationButtons from '../pagination-buttons';
 
 function ShelterReviewsSection(props) {
@@ -11,9 +11,7 @@ function ShelterReviewsSection(props) {
         return null; // or handle the loading state or display an error message
     }
 
-    // // console.log(sortedComments);
     // const sortedComments = (commentsData.results).sort((a, b) => b.creation_field - a.creation_time)
-    // console.log(sortedComments)
 
     const handlePageChangePrev = () => {
         // Increment the current page number
@@ -36,7 +34,7 @@ function ShelterReviewsSection(props) {
                     <div className="d-flex align-self-start mt-4 w-100 justify-content-left">
                         <div className="d-flex two-col-child w-90 m-4 px-5 py-5 bg-cream flex-column rounded">
                             <h2 className="mb-4 text-dark-brown text-decoration-underline responsive_heading">Comments:</h2>
-                            <CommentBar shelterID={shelterID} onCommentSubmit={onCommentSubmit}/>
+                            <CommentBar objectID={shelterID} onCommentSubmit={onCommentSubmit} commentType='shelter'/>
 
                             {commentsData.results.map((comment) => (
                                 <Comment key={comment.id} commentData={comment} />

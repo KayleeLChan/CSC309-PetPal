@@ -16,7 +16,6 @@ def notify_pet_seekers_on_listing_save(sender, instance, **kwargs):
     for seeker in pet_seekers:
         if (
             (seeker.pref_animal == listing.animal) and
-            (seeker.pref_breed == listing.breed) and
             (seeker.pref_age == 'none' or seeker.pref_age == listing.age) and
             (seeker.pref_size == 'none' or seeker.pref_size == listing.size) and
             (seeker.pref_colour == listing.colour) and
@@ -29,5 +28,5 @@ def notify_pet_seekers_on_listing_save(sender, instance, **kwargs):
                 notifier=listing.shelter,
                 content=f"A new listing matches your preferences! See if you'd like to be {listing.name}'s pal!",
                 title="match",
-                link=f"https://twizzy-petpal.vercel.app/listings/view/{listing.id}"
+                link=f"/listings/{listing.id}"
             )

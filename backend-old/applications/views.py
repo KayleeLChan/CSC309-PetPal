@@ -46,7 +46,7 @@ class CreateApplicationView(CreateAPIView):
             notifier=self.request.user, 
             content=f"New Application", 
             title="application", 
-            link=reverse('applications:application-get', kwargs={'pk': new_application.id}))
+            link=f"/listings/${pet_listing_id}")
 
         # Call the super method to perform the actual creation
         return super().perform_create(new_application)
@@ -87,7 +87,7 @@ class UpdateApplicationView(UpdateAPIView):
                         notifier=request.user, 
                         content=f"Status update", 
                         title="application", 
-                        link=reverse('applications:application-get', kwargs={'pk': application.id}))
+                        link=f"/applications/{application_id}")
 
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)
@@ -108,7 +108,7 @@ class UpdateApplicationView(UpdateAPIView):
                         notifier=request.user, 
                         content=f"Status update", 
                         title="application", 
-                        link=reverse('applications:application-get', kwargs={'pk': application.id}))
+                        link=f"/applications/{application_id}")
 
                     application.save()
                     return Response({'message': 'Application status updated successfully.'}, status=200)

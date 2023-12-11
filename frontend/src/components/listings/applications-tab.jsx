@@ -33,7 +33,7 @@ const ApplicationsTab = ({ listing }) => {
                         {applications.length === 0 ? (<h2 className="m-0 notif-title text-center">No Applications Yet</h2>) : (
                             <>
                                 {applications.map((application) => (
-                                        <a href={`http://localhost:8000/applications/details/${application.id}`} class="text-center">
+                                        <a href={`/applications/${application.id}`} class="text-center">
                                             <button type="button" class="btn btn-lg btn-primary-cream text-dark-brown bg-none border border-0 mx-3">
                                                 <h3 class="m-0 notif-title">{application.pet_seeker_username}</h3>
                                             </button>
