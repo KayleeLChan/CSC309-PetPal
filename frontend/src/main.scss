@@ -226,6 +226,10 @@ $grid-breakpoints: (
         border-bottom: none !important;
     }
 
+    .shelter-img {
+        max-width: 6vw;
+    }
+
     .shelter-header-text {
         font-size: calc(1.275rem + 0.3vw);
     }

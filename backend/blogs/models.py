@@ -13,7 +13,7 @@ class Blog(models.Model):
     shelter = models.OneToOneField(User, on_delete=models.CASCADE, related_name='blog', null=True)
     # blog id is the django generated object ID (let it do its thing)
 
-    blog_title = models.CharField(max_length=40, null=True)
+    blog_title = models.CharField(max_length=100, null=True)
     description = models.TextField(null=True)
     creation_time = models.DateTimeField(auto_now_add=True)
     author_name = models.CharField(max_length=40, null=True)
@@ -22,7 +22,7 @@ class Blog(models.Model):
         return f"{self.author_name} at {self.creation_time}: {self.blog_title}"
 
 class BlogContent(models.Model):
-    title = models.CharField(max_length=40)
+    title = models.CharField(max_length=100)
     text = models.TextField()  # Body of the blog content
     creation_time = models.DateTimeField(auto_now_add=True)
     blog = models.ForeignKey(Blog, on_delete=models.SET_NULL, related_name='blog_content', null=True) # most important thing

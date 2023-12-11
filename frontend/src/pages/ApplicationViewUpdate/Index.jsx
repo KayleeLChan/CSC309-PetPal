@@ -85,7 +85,7 @@ function ApplicationDetails() {
                 {/* CONTENT STARTS HERE */}
 
                 {/* Left Column Start */}
-                <div className="d-flex flex-column w-50 m-5 bg-cream flex-column align-items-center two-col-child">
+                <div className="d-flex flex-column w-50 m-5 bg-cream rounded-3 flex-column align-items-center two-col-child">
 
                     <PetDetailsComponent application={application} />
                     <ApplicationSheetComponent application={application} />
@@ -100,7 +100,7 @@ function ApplicationDetails() {
 
                     {/* <ChatComponent user={user}/> */}
                     {/* All Comments inside the Chat Component go here */}
-                    <button type="button" className="btn btn-lg text-dark-brown bg-primary-orange m-3 ms-0 shadow-sm" onClick={handleClick}>Your Application Chat!</button>
+                    <button type="button" className="btn btn-lg text-dark-brown bg-primary-orange m-3 shadow-sm" onClick={handleClick}>Your Application Chat!</button>
 
                 </div>
                 {/* Right Column End */}

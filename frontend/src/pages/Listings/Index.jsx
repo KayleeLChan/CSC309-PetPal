@@ -17,7 +17,8 @@ const ListingPage = () => {
     const [error, setError] = useState('');
     const accessToken = localStorage.getItem('access_token');
     const accountType = localStorage.getItem('accounttype');
-    const username = localStorage.getItem('username');
+    const userID = localStorage.getItem('user_id');
+    const [denied, setDenied] = useState(false);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -72,6 +73,9 @@ const ListingPage = () => {
                     headers: { Authorization: `Bearer ${accessToken}`, }
                 });
             const data = await response.json();
+            if (data.shelter != userID) {
+                setDenied(true);
+            }
             setListing(data);
         } catch (error) {
             // setLoading(false);
@@ -120,7 +124,7 @@ const ListingPage = () => {
             } else {
                 // Handle the case where the update was not successful
                 console.error('Listing update failed.');
-                setError("You are one or more fields");
+                setError("You are missing one or more fields");
             }
         } catch (error) {
             console.error('Error updating listing:', error);
@@ -173,7 +177,7 @@ const ListingPage = () => {
         }
     };
 
-    if (!accessToken || (accountType != "petshelter") || (listing && listing.shelter.username != username)) {
+    if (!accessToken || (accountType != "petshelter") || denied) {
         return (
             <div data-bs-theme="petpal">
                 <Error403Component></Error403Component>

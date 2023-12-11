@@ -1,7 +1,21 @@
 import React from 'react';
 
 const ApplicationSheetComponent = ({ application }) => {
-  //TODO: Map keys to values labels
+  const adoptingForOptions = [["myself", "myself"], ["family", "my family"]];
+  const childrenOptions = [["kids", "kids"], ["none", "no kids"]];
+  const historyOptions = [["previous", "previous"], ["first", "first-time"]];
+  const currentOptions = [["none", "no pet(s)"], ["cat", "cat(s)"], ["dog", "dog(s)"], ["both", "dog(s) and cat(s)"], ["other", "other pet(s)"]];
+  const ageOptions = [["none", "no age preference"], ["new", "newborn"], ["young", "young"], ["adult", "adult"], ["senior", "senior"]];
+  const sizeOptions = [["none", "no size preference"], ["S", "small"], ["M", "medium"], ["L", "large"], ["XL", "extra large"]];
+  const sexOptions = [["none", "no age preference"], ["F", "female"], ["M", "male"]];
+
+  const selectedAdopt = adoptingForOptions.find(([option]) => option === application.adopting_for)?.[1];
+  const selectedChildren = childrenOptions.find(([option]) => option === application.children)?.[1];
+  const selectedHistory = historyOptions.find(([option]) => option === application.pet_owner_history)?.[1];
+  const selectedCurrent = currentOptions.find(([option]) => option === application.current_pets)?.[1];
+  const selectedAgeLabel = ageOptions.find(([option]) => option === application.ideal_pet_age)?.[1];
+  const selectedSizeLabel = sizeOptions.find(([option]) => option === application.ideal_pet_size)?.[1];
+  const selectedSexLabel = sexOptions.find(([option]) => option === application.ideal_pet_sex)?.[1];
   return (
     <>
       <h2 className="mb-4 text-dark-brown text-decoration-underline responsive_heading">SECTION I: APPLICANT</h2>
@@ -17,13 +31,14 @@ const ApplicationSheetComponent = ({ application }) => {
 
       <h2 className="mb-4 text-dark-brown text-decoration-underline responsive_heading">SECTION II: APPLICATION DETAILS</h2>
       <div className="align-self-center mb-2 px-5">
-        <p>I am looking to adopt for: <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.adopting_for}</span></p>
-        <p>I have <span className="bg-primary-cream p-1 rounded ms-2 me-2 flex-fill">{application.children}</span> at home</p>
-        <p>I am a <span className="bg-primary-cream p-1 rounded ms-2 me-2 flex-fill">{application.pet_owner_history}</span> pet owner</p>
-        <p>I currently have <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.current_pets}</span></p>
-        <p>I would like to adopt a <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.ideal_pet_sex}</span></p>
-        <p>I prefer a pet that is <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.ideal_pet_size}</span></p>
-        <p>My pet's behavior should be <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.ideal_pet_behaviour}</span></p>
+        <p className="d-flex w-100">I am looking to adopt for: <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{selectedAdopt}</span></p>
+        <p className="d-flex w-100">I have <span className="bg-primary-cream p-1 rounded ms-2 me-2 flex-fill">{selectedChildren}</span> at home</p>
+        <p className="d-flex w-100">I am a <span className="bg-primary-cream p-1 rounded ms-2 me-2 flex-fill">{selectedHistory}</span> pet owner</p>
+        <p className="d-flex w-100">I currently have <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{selectedCurrent}</span></p>
+        <p className="d-flex w-100">My ideal pet is a(n) <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{selectedAgeLabel}</span></p>
+        <p className="d-flex w-100">I would like to adopt a <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{selectedSexLabel}</span></p>
+        <p className="d-flex w-100">I prefer a pet that is <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{selectedSizeLabel}</span></p>
+        <p className="d-flex w-100">My pet's behavior should be <span className="bg-primary-cream p-1 rounded ms-2 flex-fill">{application.ideal_pet_behaviour}</span></p>
       </div>
 
       <h2 className="mb-4 text-dark-brown text-decoration-underline responsive_heading">SECTION III: PAYMENT</h2>
@@ -34,7 +49,7 @@ const ApplicationSheetComponent = ({ application }) => {
         <p className="fst-italic d-flex w-100"> *Further payment information will be expected upon approval of the application.
           Please routinely check the chatbox or notifications for further instructions from the shelter.</p>
       </div>
-      </>
+    </>
   );
 };
 

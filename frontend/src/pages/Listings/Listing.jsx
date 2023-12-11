@@ -9,6 +9,7 @@ const Listing = () => {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [listing, setListing] = useState(null);
+    const [denied, setDenied] = useState(false);
 
     useEffect(() => {
         // Fetch the listing when the component mounts
@@ -23,6 +24,10 @@ const Listing = () => {
                 {
                     headers: { Authorization: `Bearer ${accessToken}`, }
                 });
+
+            if (!response.ok) {
+                setDenied(true);
+            }
             const data = await response.json();
             setListing(data);
             setLoading(false);
@@ -32,13 +37,9 @@ const Listing = () => {
         }
     };
 
-    if (!accessToken) {
-        return(<Error403Component></Error403Component>)
-    }
-
     return (
         <div>
-            {loading ? (<p className="text-center">Loading...</p>) : (
+            {denied ? <Error403Component></Error403Component> : loading ? (<p className="text-center">Loading...</p>) : (
                 <div data-bs-theme="petpal">
                     <div className="main d-flex two-col mt-5">
                         <ListingLeftCol listing={listing}></ListingLeftCol>

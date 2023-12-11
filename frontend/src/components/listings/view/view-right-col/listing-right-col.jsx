@@ -38,8 +38,6 @@ const ListingRightCol = ({ listing }) => {
     navigate(`/applications/${application[0].id}`);
   };
   
-  //TODO: MAKE IT SO THAT BUTTON IS DISABLED FOR SEEKERS WHO HAVE AN APPLICATION, AND INSTEAD PUT IN A VIEW APPLICATION BUTTON
-
   return (
     <div className="d-flex flex-column m-5 p-5 justify-content-start align-items-center w-40 text-primary-brown two-col-child">
 

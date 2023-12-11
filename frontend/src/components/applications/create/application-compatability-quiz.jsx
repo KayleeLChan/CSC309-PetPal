@@ -82,7 +82,7 @@ const CompatibilityQuizComponent = ({ user_id, handleFormSubmit }) => {
                 >
                 <option selected="">(required)</option>
                 <option value="myself">myself</option>
-                <option value="my family">my family</option>
+                <option value="family">my family</option>
             </Form.select>
         </div>
         </Form>
@@ -102,7 +102,7 @@ const CompatibilityQuizComponent = ({ user_id, handleFormSubmit }) => {
                 >
                 <option selected="">(required)</option>
                 <option value="kids">kids</option>
-                <option value="no kids">no kids</option>
+                <option value="none">no kids</option>
             </Form.select>
         </div>
         <div className="col-12">
@@ -125,7 +125,7 @@ const CompatibilityQuizComponent = ({ user_id, handleFormSubmit }) => {
                 >
                 <option selected="">(required)</option>
                 <option value="previous">previous</option>
-                <option value="first-time">first-time</option>
+                <option value="first">first-time</option>
             </Form.select>
         </div>
         <div className="col-12">
@@ -169,29 +169,10 @@ const CompatibilityQuizComponent = ({ user_id, handleFormSubmit }) => {
                 onChange={(e) => setFormData({ ...formData, preferredAge: e.target.value })} required
                 >
                 <option selected="">(no age preference)</option>
-                <option value="newborn">newborn</option>
+                <option value="new">newborn</option>
                 <option value="young">young</option>
                 <option value="adult">adult</option>
                 <option value="senior">senior</option>
-            </Form.select>
-        </div>
-        </Form>
-
-        {/* I would like to adopt a (Preferred Animal) */}
-        <Form className="row row-cols-xs-auto gx-3 gy-1 w-100 pt-4 align-items-center">
-        <div className="col-12">
-            <p className="mb-0">I would like to adopt a</p>
-        </div>
-        <div className="col-12">
-            <Form.select
-                className="form-select form-select-sm font-plain w-auto border border-0"
-                aria-label="Default select example"
-                value={formData.preferedAnimal}
-                onChange={(e) => setFormData({ ...formData, preferedAnimal: e.target.value })} required
-                >
-                <option selected="">(no gender preference)</option>
-                <option value="female">female</option>
-                <option value="male">male</option>
             </Form.select>
         </div>
         </Form>
@@ -208,11 +189,11 @@ const CompatibilityQuizComponent = ({ user_id, handleFormSubmit }) => {
                 value={formData.preferredSize}
                 onChange={(e) => setFormData({ ...formData, preferredSize: e.target.value })} required
                 >
-                <option selected="">(no size preference)</option>
-                <option value="small">small</option>
-                <option value="medium">medium</option>
-                <option value="large">large</option>
-                <option value="extra large">extra large</option>
+                <option value="none">(no size preference)</option>
+                <option value="S">small</option>
+                <option value="M">medium</option>
+                <option value="L">large</option>
+                <option value="XL">extra large</option>
             </Form.select>
         </div>
         </Form>
@@ -230,11 +211,11 @@ const CompatibilityQuizComponent = ({ user_id, handleFormSubmit }) => {
                 value={formData.preferredPersonality}
                 onChange={(e) => setFormData({ ...formData, preferredPersonality: e.target.value })} required
                 >
-                <option selected="">(no behaviour preference)</option>
+                <option value="none">(no behaviour preference)</option>
                 <option value="very active">very active</option>
                 <option value="active">active</option>
                 <option value="laid-back">laid-back</option>
-                <option value="lap-pet">lap-pet</option>
+                <option value="lap">lap-pet</option>
             </Form.select>
         </div>
         </Form>
@@ -251,9 +232,9 @@ const CompatibilityQuizComponent = ({ user_id, handleFormSubmit }) => {
                 value={formData.preferredSex}
                 onChange={(e) => setFormData({ ...formData, preferredSex: e.target.value })} required
                 >
-                <option selected="">(no behaviour preference)</option>
-                <option value="male">male</option>
-                <option value="female">female</option>
+                <option value="none">(no behaviour preference)</option>
+                <option value="M">male</option>
+                <option value="F">female</option>
             </Form.select>
         </div>
         </Form>

@@ -16,7 +16,6 @@ def notify_pet_seekers_on_listing_save(sender, instance, **kwargs):
     for seeker in pet_seekers:
         if (
             (seeker.pref_animal == listing.animal) and
-            (seeker.pref_breed == listing.breed) and
             (seeker.pref_age == 'none' or seeker.pref_age == listing.age) and
             (seeker.pref_size == 'none' or seeker.pref_size == listing.size) and
             (seeker.pref_colour == listing.colour) and
