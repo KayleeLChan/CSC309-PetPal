@@ -6,7 +6,7 @@ const NavbarDropdowns = () => {
     const navigate = useNavigate()
 
       function handleViewAll(){
-        navigate(`/shelters/`)
+        navigate(`/shelters`)
       }
 
       function handleAdoptNow(){
@@ -14,7 +14,7 @@ const NavbarDropdowns = () => {
       }
 
       function blogs(){
-        navigate(`/blogs/`)
+        navigate(`/blogs`)
       }
 
 
