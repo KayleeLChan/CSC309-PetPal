@@ -37,6 +37,10 @@ const ListingRightCol = ({ listing }) => {
   function navigateViewApplication() {
     navigate(`/applications/${application[0].id}`);
   };
+
+  function allApplications() {
+    navigate(`/applications/?pet_listing_name=${listing.name}`);
+  }
   
   return (
     <div className="d-flex flex-column m-5 p-5 justify-content-start align-items-center w-40 text-primary-brown two-col-child">
@@ -47,9 +51,11 @@ const ListingRightCol = ({ listing }) => {
         Become My Pal!
       </Button>}
 
-      {application.length > 0 ? (<Button className="btn btn-lg cta-btn-xl m-3 mb-5 shadow-sm" type="button" variant="primary-orange" onClick={navigateViewApplication}>
+      {accountType == "petshelter" ? (<Button className="btn btn-lg cta-btn-xl m-3 mb-5 shadow-sm" type="button" variant="primary-orange" onClick={allApplications}>
+          View Applications
+        </Button>) : (application.length > 0 ? (<Button className="btn btn-lg cta-btn-xl m-3 mb-5 shadow-sm" type="button" variant="primary-orange" onClick={navigateViewApplication}>
           View Application
-        </Button>) : (<></>)}
+        </Button>) : (<></>))}
 
       <AdoptionStatus listing={listing}></AdoptionStatus>
 

@@ -40,12 +40,17 @@ const ShelterDropDowns = (props) => {
       navigate(`/shelters`)
       }
 
+      function applications(){
+        navigate(`/applications`)
+      }
+
     return (
         <Nav className="me-auto mb-2 mb-lg-0">
           <NavDropdown title="Pet Listings" id="adopt-dropdown" className="h1 fs-3 btn-cream m-0 pe-3">
             <NavDropdown.Item  onClick={listings} className="font-plain">Find Listings</NavDropdown.Item>
             <NavDropdown.Item  onClick={manage} className="font-plain">Manage Listings</NavDropdown.Item>
             <NavDropdown.Item  onClick={create} className="font-plain">Create Listing</NavDropdown.Item>
+            <NavDropdown.Item onClick={applications} className="font-plain">Listing Applications</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Shelter Management" id="shelter-dropdown" className="h1 fs-3 btn-cream m-0 pe-3">
             <NavDropdown.Item onClick={handleViewAll} className="font-plain">View All Shelters</NavDropdown.Item>
